@@ -1,7 +1,9 @@
-html body {
-  height: 100vh;
-  width: 100%vw;
-  position: absolute;
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #2c3e50;
+  color: #ecf0f1;
 }
 
 .thumbnail img {
@@ -11,6 +13,8 @@ html body {
 
 .thumbnail {
   width: 100%;
+  background: #674172;
+  border: 1px dashed #BE90D4;
 }
 
 .thumbnail:hover {
@@ -21,17 +25,18 @@ button:focus {
   outline: 0 !important;
 }
 
-.YoutubeContainer {
-  min-height: 100%;
-  max-height: 100%;
+.videoTitle {
+  text-align: center;
 }
 
-.root {
-  min-height: 100%;
-  max-height: 100%;
+.videoDescription {
+  padding: 0 2%;
 }
 
-.container-fluid,
-.row-fluid {
-  height: inherit;
+.channelButtons {
+  margin: 2% 0;
+}
+
+.channelButton {
+  height: 4em;
 }

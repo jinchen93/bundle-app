@@ -6,18 +6,17 @@ const YoutubeChannelVid = ({video, videoId}) => {
   const date = new Date(video.publishedAt);
 
   return(
-    <div className="container-fluid">
-
-      <div className="row-fluid">
-        <div className="col-xs-10 col-xs-offset-1 embed-responsive embed-responsive-16by9">
-          <iframe src={url} className="embed-responsive-item"></iframe>
+    <div className="row videoContainer">
+      <div className="col-md-offset-1 col-md-10 videoPlayerRow">
+        <div className="embed-responsive embed-responsive-16by9">
+          <iframe src={url} className="embed-responsive-item" allowFullScreen></iframe>
         </div>
       </div>
 
-      <div className="row-fluid descriptionBox">
-        <div className="col-xs-10 col-xs-offset-1 well">
-          <div>
-            <h1>{video.title}</h1>
+      <div className="row videoDescription">
+        <div className="col-md-8 col-md-offset-2">
+          <div className="videoTitle">
+            <h2>{video.title}</h2>
           </div>
           <div>
             Posted: {date.toLocaleString('en-US', options)} &nbsp; - &nbsp; {date.toLocaleTimeString('en-US')}
@@ -26,7 +25,6 @@ const YoutubeChannelVid = ({video, videoId}) => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };

@@ -15,39 +15,41 @@ const YoutubeChannels = ({channelVideos, currentChannel, channels, onVideoSelect
     // Render active channel button
     if (currentChannel === channel.name) {
       return ( 
-        <button
-          key={channel.name} 
-          onClick={ () => { onChannelSelect(channel)} } 
-          className="btn btn-default active">
-          {channel.name}
-        </button>
+        <div className="col-sm-2">
+          <button
+            key={channel.name} 
+            onClick={ () => { onChannelSelect(channel)} } 
+            className="btn btn-default btn-block active channelButton">
+            {channel.name}
+          </button>
+        </div>
       );        
     }
     // Render inactive channel buttons
     else {
       return (
-        <button 
-          key={channel.name}
-          onClick={ () => { onChannelSelect(channel)} } 
-          className="btn btn-default">
+        <div className="col-sm-2">
+          <button
+            key={channel.name} 
+            onClick={ () => { onChannelSelect(channel)} } 
+            className="btn btn-default btn-block channelButton">
             {channel.name}
-        </button>
+          </button>
+        </div>
       );
     }
   });
 
   return(
-    <div className="container-fluid">
-      <div className="panel">
-        <div className="btn-group">
-          {renderChannels}
-        </div>
+    <div className="channelContainer">
+      <div className="row channelButtons">
+        {renderChannels}
+        <hr />
       </div>
-      
-      <div className="row-fluid">
-        <div className="col-xs-1"></div>
-          {channelItems}
-        </div>
+      <div className="row videoThumbnails">
+        <div className="col-sm-1"></div>
+        {channelItems}
+      </div>
     </div>
   );
 };

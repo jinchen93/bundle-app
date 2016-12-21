@@ -3,17 +3,32 @@ import Request from 'superagent';
 import YoutubeChannels from './youtube_channels';
 import YoutubeChannelVid from './youtube_channel_vid';
 
+// URL to get channel properties: https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails&forUsername=gcmeanslove&key=${API_KEY}
 const API_KEY = 'AIzaSyDHiPdfGo_j7syM6QgvgzDHZ5jy-rwNnM4';
 const Channels = [
     {
-      name: 'Casey',
-      url: `https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails&forUsername=caseyneistat&key=${API_KEY}`,
-      uploads: 'UUtinbF-Q-fVthA0qrFQTgXQ',
+      name: 'Casey Neistat',
+      uploads: 'UUtinbF-Q-fVthA0qrFQTgXQ'
     },
     { 
-      name: 'Asha', 
-      url: `https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails&forUsername=gcmeanslove&key=${API_KEY}`,
-      uploads: 'UU4YtAO528H6PdbJkJsolggA',
+      name: 'Asha Cuthbert', 
+      uploads: 'UU4YtAO528H6PdbJkJsolggA'
+    },
+    {
+      name: 'Josh James',
+      uploads: 'UUynWet3zR-Yu7xUVHjFq6hA'
+    },
+    {
+      name: 'Ben Brown',
+      uploads: 'UUAkP51BEzkKimJh7KDflx_g'
+    },
+    {
+      name: 'Jon Olsson',
+      uploads: 'UUyQb1TTrfRzQZmEfsx770qw'
+    },
+    {
+      name: 'Justin Escalona',
+      uploads: 'UUMTuzWoOmO_A6hw0878xnQg'
     }
 ];
 
@@ -21,6 +36,7 @@ class YoutubePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      selectedCategory: '',
       selectedChannelVideos: [],
       selectedChannel: '',
       selectedVideo: '',
@@ -54,7 +70,7 @@ class YoutubePage extends Component {
 
   render() {
     return(
-      <div className="YoutubeContainer">
+      <div className="container youtubeContainer">
         <YoutubeChannels
           channels={Channels}
           channelVideos={this.state.selectedChannelVideos}
