@@ -1,10 +1,6 @@
-const express = require('express');
-const app = express();
+const server = require('pushstate-server');
 
-app.get("*", function(req, res) {
-  res.render("./build/index.html");
+server.start({
+  port: 9000,
+  directory: './build'
 })
-
-app.listen(9000, function() {
-  console.log("Listening on port 9000");
-});
