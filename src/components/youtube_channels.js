@@ -1,47 +1,55 @@
 import React from 'react';
-import YoutubeChannelList from './youtube_channel_list';
-const API_KEY = 'AIzaSyDHiPdfGo_j7syM6QgvgzDHZ5jy-rwNnM4';
-const channels = [
-    { 
-      name: 'Asha', 
-      url: `https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails&forUsername=gcmeanslove&key=${API_KEY}`,
-      uploads: 'UU4YtAO528H6PdbJkJsolggA',
-    },
-    {
-      name: 'Casey',
-      url: `https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails&forUsername=caseyneistat&key=${API_KEY}`,
-      uploads: 'UUtinbF-Q-fVthA0qrFQTgXQ',
-    }
-]
+import YoutubeChannelListVids from './youtube_channel_list_vids';
 
-const YoutubeChannels = ({channelVideos, channel, onVideoSelect, onChannelSelect}) => {
+const YoutubeChannels = ({channelVideos, currentChannel, channels, onVideoSelect, onChannelSelect}) => {
   const channelItems = channelVideos.map( video => {
     return(
-      <YoutubeChannelList
+      <YoutubeChannelListVids
         key={video.etag}
         video={video} 
         onVideoSelect={onVideoSelect} />
-    )
-  })
+    );
+  });
 
   const renderChannels = channels.map( channel => {
-      return <button onClick={ () => onChannelSelect(channel) } 
-        className="btn btn-default">{channel.name}</button>
-  })
-
+    // Render active channel button
+    if (currentChannel === channel.name) {
+      return ( 
+        <button
+          key={channel.name} 
+          onClick={ () => { onChannelSelect(channel)} } 
+          className="btn btn-default active">
+          {channel.name}
+        </button>
+      );        
+    }
+    // Render inactive channel buttons
+    else {
+      return (
+        <button 
+          key={channel.name}
+          onClick={ () => { onChannelSelect(channel)} } 
+          className="btn btn-default">
+            {channel.name}
+        </button>
+      );
+    }
+  });
 
   return(
-    <div className="container">
+    <div className="container-fluid">
       <div className="panel">
-        {renderChannels}
+        <div className="btn-group">
+          {renderChannels}
+        </div>
       </div>
       
-      <div className="row">
-        <div className="col-sm-1"></div>
-        {channelItems}
-      </div>
+      <div className="row-fluid">
+        <div className="col-xs-1"></div>
+          {channelItems}
+        </div>
     </div>
-  )
-}
+  );
+};
 
 export default YoutubeChannels;
