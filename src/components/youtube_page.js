@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Request from 'superagent';
 import YoutubeChannels from './youtube_channels';
 import YoutubeChannelVid from './youtube_channel_vid';
+import YoutubeChannelListVids from './youtube_channel_list_vids';
 
 // URL to get channel properties: https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails&forUsername=gcmeanslove&key=${API_KEY}
 const API_KEY = 'AIzaSyDHiPdfGo_j7syM6QgvgzDHZ5jy-rwNnM4';
@@ -43,6 +44,7 @@ class YoutubePage extends Component {
       selectedVideoId: ''
     };
     this.findChannelVideos(Channels[0]);
+    this.toggleSidebar = this.toggleSidebar.bind(this);
   };
 
   findChannelVideos(channel) {
@@ -60,25 +62,83 @@ class YoutubePage extends Component {
           selectedChannel: channel.name,
           selectedVideo: videos[0].snippet,
           selectedVideoId: videos[0].snippet.resourceId.videoId,
+          sidebarToggled: false
         });
       }
     });
   };
 
+
+  toggleSidebar() {
+    if(this.state.sidebarToggled === true) {
+      this.setState({ sidebarToggled: false });
+    }
+    if(this.state.sidebarToggled === false) {
+      this.setState({ sidebarToggled: true });
+    }
+  }
+
   render() {
-    return(
-      <div className="container youtubeContainer">
+    // ------------- SIDEBAR NOT TOGGLED ------------- //
+    if(this.state.sidebarToggled === false) {
+      return (
+        <div className="youtubeContainer" id="wrapper">
+        
         <YoutubeChannels
-          channels={Channels}
-          channelVideos={this.state.selectedChannelVideos}
-          currentChannel={this.state.selectedChannel}
-          onChannelSelect={ channel => { this.findChannelVideos(channel) } }
-          onVideoSelect={ (selectedVideo, selectedVideoId) => { this.setState({ selectedVideo: selectedVideo.snippet, selectedVideoId }) }} />
-        <YoutubeChannelVid 
-          video={this.state.selectedVideo} 
-          videoId={this.state.selectedVideoId}/>
+            channels={Channels}
+            currentChannel={this.state.selectedChannel}
+            onChannelSelect={ channel => { this.findChannelVideos(channel) } } />    
+        
+        <a href="#" className="btn btn-lg" id="menu-toggle" onClick={this.toggleSidebar} >
+          <span className="glyphicon glyphicon-menu-hamburger"></span>
+        </a>
+        
+        <div id="page-content-wrapper">
+          <div className="container-fluid">
+            <div className="row">
+              <YoutubeChannelListVids 
+                  channelVideos={ this.state.selectedChannelVideos }
+                  onVideoSelect={ (selectedVideo, selectedVideoId) => { this.setState({ selectedVideo: selectedVideo.snippet, selectedVideoId }) }} />
+              <YoutubeChannelVid 
+                  video={this.state.selectedVideo} 
+                  videoId={this.state.selectedVideoId}/>    
+            </div>
+          </div>
+        </div>
       </div>
-    );
+      );
+    }
+    // ------------- SIDEBAR TOGGLED ------------- //
+    else {
+      return(
+        <div className="youtubeContainer toggled" id="wrapper">
+        
+        <YoutubeChannels
+            channels={Channels}
+            currentChannel={this.state.selectedChannel}
+            onChannelSelect={ channel => { this.findChannelVideos(channel) } } />    
+        
+        
+        <a href="#" className="btn btn-lg" id="menu-toggle" onClick={this.toggleSidebar} >
+          <span className="glyphicon glyphicon-menu-hamburger"></span>
+        </a>
+        
+        
+        <div id="page-content-wrapper">
+          <div className="container-fluid">
+            <div className="row">
+              <YoutubeChannelListVids 
+                  channelVideos={ this.state.selectedChannelVideos }
+                  onVideoSelect={ (selectedVideo, selectedVideoId) => { this.setState({ selectedVideo: selectedVideo.snippet, selectedVideoId }) }} />
+              <YoutubeChannelVid 
+                  video={this.state.selectedVideo} 
+                  videoId={this.state.selectedVideoId}/>    
+            </div>
+          </div>
+        </div>
+      </div>
+      );
+    }
   };
 };
 

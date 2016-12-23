@@ -5,5 +5,5 @@ import '../styles/style.css';
 
 ReactDOM.render(
   <App />,
-  document.getElementById('root')
+  document.querySelector('.root')
 );

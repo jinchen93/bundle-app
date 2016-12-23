@@ -1,53 +1,37 @@
 import React from 'react';
-import YoutubeChannelListVids from './youtube_channel_list_vids';
 
-const YoutubeChannels = ({channelVideos, currentChannel, channels, onVideoSelect, onChannelSelect}) => {
-  const channelItems = channelVideos.map( video => {
-    return(
-      <YoutubeChannelListVids
-        key={video.etag}
-        video={video} 
-        onVideoSelect={onVideoSelect} />
-    );
-  });
+const YoutubeChannels = ({currentChannel, channels, onChannelSelect, sidebarToggled}) => {
 
   const renderChannels = channels.map( channel => {
     // Render active channel button
     if (currentChannel === channel.name) {
       return ( 
-        <div className="col-md-2" key={channel.name}>
-          <button
-            onClick={ () => { onChannelSelect(channel)} } 
-            className="btn btn-default active channelButton">
-            {channel.name}
-          </button>
-        </div>
+        <li
+          key={channel.name}
+          onClick={ () => { onChannelSelect(channel)} } 
+          className="activeChannel">
+          <a>{channel.name}</a>
+        </li>
       );        
     }
     // Render inactive channel buttons
     else {
       return (
-        <div className="col-md-2" key={channel.name} >
-          <button
-            onClick={ () => { onChannelSelect(channel)} } 
-            className="btn btn-default channelButton">
-            {channel.name}
-          </button>
-        </div>
+        <li
+          key={channel.name}
+          onClick={ () => { onChannelSelect(channel)} } 
+          className="inactiveChannel">
+          <a><span>{channel.name}</span></a>
+        </li>
       );
     }
   });
 
   return(
-    <div className="channelContainer">
-      <div className="row channelButtons">
+    <div id="sidebar-wrapper">
+      <ul className="sidebar-nav">
         {renderChannels}
-        <hr />
-      </div>
-      <div className="row videoThumbnails">
-        <div className="col-sm-1"></div>
-        {channelItems}
-      </div>
+      </ul>
     </div>
   );
 };

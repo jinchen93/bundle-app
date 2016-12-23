@@ -7,7 +7,7 @@ const YoutubeChannelVid = ({video, videoId}) => {
 
   return(
     <div className="row videoContainer">
-      <div className="col-md-offset-1 col-md-10 videoPlayerRow">
+      <div className="col-md-offset-2 col-md-8 videoPlayerRow">
         <div className="embed-responsive embed-responsive-16by9">
           <iframe src={url} className="embed-responsive-item" allowFullScreen></iframe>
         </div>
