@@ -3,6 +3,15 @@ const path = require('path');
 
 const app = express();
 
+function requireHTTPS(req, res, next) {
+  if (!req.secure) {
+    //FYI this should work for local development as well
+    return res.redirect('https://bundle.jinchen.io');
+  }
+  next();
+}
+
+app.use(requireHTTPS);
 app.use(express.static('build'));
 
 app.get('*', function(req, res) {
