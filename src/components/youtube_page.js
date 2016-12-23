@@ -42,9 +42,6 @@ class YoutubePage extends Component {
       selectedVideo: '',
       selectedVideoId: ''
     };
-  };
-
-  componentWillMount() {
     this.findChannelVideos(Channels[0]);
   };
 

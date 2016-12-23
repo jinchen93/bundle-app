@@ -15,11 +15,10 @@ const YoutubeChannels = ({channelVideos, currentChannel, channels, onVideoSelect
     // Render active channel button
     if (currentChannel === channel.name) {
       return ( 
-        <div className="col-sm-2">
+        <div className="col-md-2" key={channel.name}>
           <button
-            key={channel.name} 
             onClick={ () => { onChannelSelect(channel)} } 
-            className="btn btn-default btn-block active channelButton">
+            className="btn btn-default active channelButton">
             {channel.name}
           </button>
         </div>
@@ -28,11 +27,10 @@ const YoutubeChannels = ({channelVideos, currentChannel, channels, onVideoSelect
     // Render inactive channel buttons
     else {
       return (
-        <div className="col-sm-2">
+        <div className="col-md-2" key={channel.name} >
           <button
-            key={channel.name} 
             onClick={ () => { onChannelSelect(channel)} } 
-            className="btn btn-default btn-block channelButton">
+            className="btn btn-default channelButton">
             {channel.name}
           </button>
         </div>
