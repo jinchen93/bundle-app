@@ -162,3 +162,44 @@ body {
 .activeChannel {
     background: rgba(255,255,255,0.15);
 }
+
+.menu-toggle {
+  padding-top: 8px;
+  height: 40px;
+  width: 50px;
+  background: #34495e;
+}
+
+.menu-toggle:hover {
+  background: #2980b9;
+}
+
+.menu-toggle .line{
+  width: 25px;
+  height: 3px;
+  border-radius: 100px;
+  background-color: #ecf0f1;
+  display: block;
+  margin: 4px auto;
+  -webkit-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.menu-toggle.is-active .line:nth-child(2){
+  opacity: 0;
+}
+
+.menu-toggle.is-active .line:nth-child(1){
+  -webkit-transform: translateY(6.5px);
+  -ms-transform: translateY(6.5px);
+  -o-transform: translateY(6.5px);
+  transform: translateY(6.5px);
+}
+
+.menu-toggle.is-active .line:nth-child(3){
+  -webkit-transform: translateY(-6.5px) rotate(90deg);
+  -ms-transform: translateY(-6.5px) rotate(90deg);
+  -o-transform: translateY(-6.5px) rotate(90deg);
+  transform: translateY(-6.5px) rotate(90deg);
+}

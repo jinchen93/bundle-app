@@ -4,7 +4,7 @@ import YoutubeChannels from './youtube_channels';
 import YoutubeChannelVid from './youtube_channel_vid';
 import YoutubeChannelListVids from './youtube_channel_list_vids';
 
-// URL to get channel properties: https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails&forUsername=gcmeanslove&key=${API_KEY}
+// URL to get channel properties: https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails&forUsername=GaryVaynerchuk&key=AIzaSyDHiPdfGo_j7syM6QgvgzDHZ5jy-rwNnM4
 const API_KEY = 'AIzaSyDHiPdfGo_j7syM6QgvgzDHZ5jy-rwNnM4';
 const Channels = [
     {
@@ -28,8 +28,12 @@ const Channels = [
       uploads: 'UUyQb1TTrfRzQZmEfsx770qw'
     },
     {
-      name: 'Justin Escalona',
-      uploads: 'UUMTuzWoOmO_A6hw0878xnQg'
+      name: 'Gary Vaynerchuk',
+      uploads: 'UUctXZhXmG-kf3tlIXgVZUlw'
+    },
+    {
+      name: 'Eric Conover',
+      uploads: 'UUu8ucb1LRJd1gwwXutYDgTg'
     }
 ];
 
@@ -84,14 +88,23 @@ class YoutubePage extends Component {
       return (
         <div className="youtubeContainer" id="wrapper">
         
+        <div className="row">
+          <div className="col-md-1">
+          </div>
+        </div>
         <YoutubeChannels
             channels={Channels}
             currentChannel={this.state.selectedChannel}
             onChannelSelect={ channel => { this.findChannelVideos(channel) } } />    
         
-        <a href="#" className="btn btn-lg" id="menu-toggle" onClick={this.toggleSidebar} >
-          <span className="glyphicon glyphicon-menu-hamburger"></span>
+        <a href="#" onClick={this.toggleSidebar} >
+          <div className="menu-toggle is-active">
+                <span className="line"></span>
+                <span className="line"></span>
+                <span className="line"></span>
+          </div>
         </a>
+
         
         <div id="page-content-wrapper">
           <div className="container-fluid">
@@ -119,8 +132,13 @@ class YoutubePage extends Component {
             onChannelSelect={ channel => { this.findChannelVideos(channel) } } />    
         
         
-        <a href="#" className="btn btn-lg" id="menu-toggle" onClick={this.toggleSidebar} >
-          <span className="glyphicon glyphicon-menu-hamburger"></span>
+        
+        <a href="#" onClick={this.toggleSidebar} >
+          <div className="menu-toggle">
+            <span className="line"></span>
+            <span className="line"></span>
+            <span className="line"></span>
+          </div>
         </a>
         
         
