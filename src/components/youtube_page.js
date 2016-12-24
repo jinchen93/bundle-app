@@ -9,30 +9,37 @@ const API_KEY = 'AIzaSyDHiPdfGo_j7syM6QgvgzDHZ5jy-rwNnM4';
 const Channels = [
     {
       name: 'Casey Neistat',
+      username: 'caseyneistat',
       uploads: 'UUtinbF-Q-fVthA0qrFQTgXQ'
     },
     { 
       name: 'Asha Cuthbert', 
+      username: 'gcmeanslove',
       uploads: 'UU4YtAO528H6PdbJkJsolggA'
     },
     {
       name: 'Josh James',
+      username: 'joshjameskiwibushman',
       uploads: 'UUynWet3zR-Yu7xUVHjFq6hA'
     },
     {
       name: 'Ben Brown',
+      username: 'benbrown100',
       uploads: 'UUAkP51BEzkKimJh7KDflx_g'
     },
     {
       name: 'Jon Olsson',
+      username: 'JonOlssonVideoBlog',
       uploads: 'UUyQb1TTrfRzQZmEfsx770qw'
     },
     {
       name: 'Gary Vaynerchuk',
+      username: 'GaryVaynerchuk',
       uploads: 'UUctXZhXmG-kf3tlIXgVZUlw'
     },
     {
       name: 'Eric Conover',
+      username: 'erikconover',
       uploads: 'UUu8ucb1LRJd1gwwXutYDgTg'
     }
 ];
@@ -44,8 +51,10 @@ class YoutubePage extends Component {
       selectedCategory: '',
       selectedChannelVideos: [],
       selectedChannel: '',
+      selectedChannelUsername: '',
       selectedVideo: '',
-      selectedVideoId: ''
+      selectedVideoId: '',
+      sidebarToggled: false
     };
     this.findChannelVideos(Channels[0]);
     this.toggleSidebarState = this.toggleSidebarState.bind(this);
@@ -64,9 +73,9 @@ class YoutubePage extends Component {
         this.setState({
           selectedChannelVideos: videos,
           selectedChannel: channel.name,
+          selectedChannelUsername: channel.username,
           selectedVideo: videos[0].snippet,
-          selectedVideoId: videos[0].snippet.resourceId.videoId,
-          sidebarToggled: false
+          selectedVideoId: videos[0].snippet.resourceId.videoId
         });
       }
     });
@@ -92,11 +101,24 @@ class YoutubePage extends Component {
             currentChannel={this.state.selectedChannel}
             onChannelSelect={ channel => { this.findChannelVideos(channel) } } />
 
-        <div className={ this.state.sidebarToggled ? 'menu-toggle is-active' : 'menu-toggle' } onClick={this.toggleSidebarState}>
-          <span className="line"></span>
-          <span className="line"></span>
-          <span className="line"></span>
-        </div>
+            <div className="youtubeHeader">
+              <div className={ this.state.sidebarToggled ? 'menu-toggle is-active' : 'menu-toggle' } onClick={this.toggleSidebarState}>
+                <span className="line"></span>
+                <span className="line"></span>
+                <span className="line"></span>
+              </div>
+            
+              <a className="channelHeader" href={"https://www.youtube.com/" + this.state.selectedChannelUsername} target="_blank">
+                <div className="channelHeader">
+                  <div className="channelName">
+                    <strong>
+                      <p>{this.state.selectedChannel.split(" ")[0]}</p>
+                      <p>{this.state.selectedChannel.split(" ")[1]}</p>
+                    </strong>
+                  </div>
+                </div>
+              </a>
+            </div>
 
         <div id="page-content-wrapper">
           <div className="container-fluid">

@@ -1,6 +1,20 @@
+/*COLOR SCHEME
+LIGHTEST  color: #617487 
+          color: #42586E 
+          color: #2C3E50
+          color: #1B3147 
+DARKEST   color: #0C2032 
+*/
+
+
 html, body {
-  background: #2c3e50;
+  font-family: Oxygen, Arial, sans-serif;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  background: #0C2032;
   color: #ecf0f1;
+  text-rendering: optimizeLegibility;
 }
 
 .thumbnail img {
@@ -10,8 +24,8 @@ html, body {
 
 .thumbnail {
   width: 100%;
-  background: #34495e;
-  border: 1px dashed #BE90D4;
+  background: #0C2032;
+  border: 1px solid #617487;
 }
 
 .thumbnail:hover {
@@ -73,6 +87,7 @@ body {
     width: 100%;
     position: absolute;
     padding: 15px;
+    font-weight: 100;
 }
 
 #wrapper.toggled #page-content-wrapper {
@@ -143,28 +158,25 @@ body {
     }
 }
 
-.activeChannel {
-  background: rgba(255,255,255,0.15);
-  
+li.activeChannel {
+  border-left: 5px solid #3498db;
 }
 
-.activeChannel:hover {
-  background: rgba(255,255,255,0.15);
-}
-
-.inactiveChannel:hover {
-  background: rgba(255,255,255,0.15);
+a#activeChannel {
+  color: #fff;
 }
 
 .menu-toggle {
+  position: absolute;
   padding-top: 8px;
   height: 40px;
   width: 50px;
-  background: #34495e;
+  background: #2C3E50;
+  overflow: hidden;
 }
 
 .menu-toggle:hover {
-  background: #2980b9;
+  background: #42586E;
   cursor: pointer;
 }
 
@@ -196,4 +208,40 @@ body {
   -ms-transform: translateY(-6.5px) rotate(90deg);
   -o-transform: translateY(-6.5px) rotate(90deg);
   transform: translateY(-6.5px) rotate(90deg);
+}
+
+.youtubeHeader{
+  width: calc(100% + 50px);
+}
+
+.channelHeader {
+  display: block;
+  padding-left: 25px;
+  width: 100%;
+  height: 80px;
+  line-height: 30px;
+  background: #1B3147;
+  text-transform: uppercase;
+  font-size: 26px;
+  letter-spacing: 5px;
+  text-align: center;
+  width: calc(100% - 50px);
+  color: #fff;
+  text-decoration: none;
+}
+
+.channelHeader:hover {
+  background: #42586E;
+  text-decoration: none;
+}
+
+.channelHeader:link,
+.channelHeader:visited,
+.channelHeader:active {
+  text-decoration: none;
+}
+
+.channelName {
+  padding-top: 5px;
+  font-weight: 400;
 }

@@ -10,7 +10,7 @@ const YoutubeChannels = ({currentChannel, channels, onChannelSelect, sidebarTogg
           key={channel.name}
           onClick={ () => { onChannelSelect(channel)} } 
           className="activeChannel">
-          <a>{channel.name}</a>
+          <a id="activeChannel"><span>{channel.name}</span></a>
         </li>
       );        
     }
