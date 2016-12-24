@@ -48,7 +48,7 @@ class YoutubePage extends Component {
       selectedVideoId: ''
     };
     this.findChannelVideos(Channels[0]);
-    this.toggleSidebar = this.toggleSidebar.bind(this);
+    this.toggleSidebarState = this.toggleSidebarState.bind(this);
   };
 
   findChannelVideos(channel) {
@@ -73,7 +73,7 @@ class YoutubePage extends Component {
   };
 
 
-  toggleSidebar() {
+  toggleSidebarState() {
     if(this.state.sidebarToggled === true) {
       this.setState({ sidebarToggled: false });
     }
@@ -82,66 +82,22 @@ class YoutubePage extends Component {
     }
   }
 
-  render() {
-    // ------------- SIDEBAR NOT TOGGLED ------------- //
-    if(this.state.sidebarToggled === false) {
-      return (
-        <div className="youtubeContainer" id="wrapper">
-        
-        <div className="row">
-          <div className="col-md-1">
-          </div>
-        </div>
-        <YoutubeChannels
-            channels={Channels}
-            currentChannel={this.state.selectedChannel}
-            onChannelSelect={ channel => { this.findChannelVideos(channel) } } />    
-        
-        <a href="#" onClick={this.toggleSidebar} >
-          <div className="menu-toggle is-active">
-                <span className="line"></span>
-                <span className="line"></span>
-                <span className="line"></span>
-          </div>
-        </a>
 
-        
-        <div id="page-content-wrapper">
-          <div className="container-fluid">
-            <div className="row">
-              <YoutubeChannelListVids 
-                  channelVideos={ this.state.selectedChannelVideos }
-                  onVideoSelect={ (selectedVideo, selectedVideoId) => { this.setState({ selectedVideo: selectedVideo.snippet, selectedVideoId }) }} />
-              <YoutubeChannelVid 
-                  video={this.state.selectedVideo} 
-                  videoId={this.state.selectedVideoId}/>    
-            </div>
-          </div>
-        </div>
-      </div>
-      );
-    }
-    // ------------- SIDEBAR TOGGLED ------------- //
-    else {
-      return(
-        <div className="youtubeContainer toggled" id="wrapper">
-        
+  render() {
+    return (
+      <div className={this.state.sidebarToggled ? 'youtubeContainer toggled' : 'youtubeContainer'} id="wrapper">
+
         <YoutubeChannels
             channels={Channels}
             currentChannel={this.state.selectedChannel}
-            onChannelSelect={ channel => { this.findChannelVideos(channel) } } />    
-        
-        
-        
-        <a href="#" onClick={this.toggleSidebar} >
-          <div className="menu-toggle">
-            <span className="line"></span>
-            <span className="line"></span>
-            <span className="line"></span>
-          </div>
-        </a>
-        
-        
+            onChannelSelect={ channel => { this.findChannelVideos(channel) } } />
+
+        <div className={ this.state.sidebarToggled ? 'menu-toggle is-active' : 'menu-toggle' } onClick={this.toggleSidebarState}>
+          <span className="line"></span>
+          <span className="line"></span>
+          <span className="line"></span>
+        </div>
+
         <div id="page-content-wrapper">
           <div className="container-fluid">
             <div className="row">
@@ -149,14 +105,13 @@ class YoutubePage extends Component {
                   channelVideos={ this.state.selectedChannelVideos }
                   onVideoSelect={ (selectedVideo, selectedVideoId) => { this.setState({ selectedVideo: selectedVideo.snippet, selectedVideoId }) }} />
               <YoutubeChannelVid 
-                  video={this.state.selectedVideo} 
-                  videoId={this.state.selectedVideoId}/>    
+                  video={this.state.selectedVideo}
+                  videoId={this.state.selectedVideoId}/>
             </div>
           </div>
         </div>
       </div>
-      );
-    }
+    );
   };
 };
 

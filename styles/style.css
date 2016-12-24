@@ -40,10 +40,10 @@ body {
 
 #wrapper {
     padding-left: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 #wrapper.toggled {
@@ -59,10 +59,10 @@ body {
     margin-left: -250px;
     overflow-y: auto;
     background: #000;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -165,6 +165,7 @@ body {
 
 .menu-toggle:hover {
   background: #2980b9;
+  cursor: pointer;
 }
 
 .menu-toggle .line{
@@ -174,9 +175,9 @@ body {
   background-color: #ecf0f1;
   display: block;
   margin: 4px auto;
-  -webkit-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .menu-toggle.is-active .line:nth-child(2){
