@@ -102,7 +102,7 @@ class YoutubePage extends Component {
             onChannelSelect={ channel => { this.findChannelVideos(channel) } } />
 
             <div className="youtubeHeader">
-              <div className={ this.state.sidebarToggled ? 'menu-toggle is-active' : 'menu-toggle' } onClick={this.toggleSidebarState}>
+              <div className='menu-toggle' onClick={this.toggleSidebarState}>
                 <span className="line"></span>
                 <span className="line"></span>
                 <span className="line"></span>

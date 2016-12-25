@@ -192,24 +192,6 @@ a#activeChannel {
   transition: all 0.3s ease-in-out;
 }
 
-.menu-toggle.is-active .line:nth-child(2){
-  opacity: 0;
-}
-
-.menu-toggle.is-active .line:nth-child(1){
-  -webkit-transform: translateY(6.5px);
-  -ms-transform: translateY(6.5px);
-  -o-transform: translateY(6.5px);
-  transform: translateY(6.5px);
-}
-
-.menu-toggle.is-active .line:nth-child(3){
-  -webkit-transform: translateY(-6.5px) rotate(90deg);
-  -ms-transform: translateY(-6.5px) rotate(90deg);
-  -o-transform: translateY(-6.5px) rotate(90deg);
-  transform: translateY(-6.5px) rotate(90deg);
-}
-
 .youtubeHeader{
   width: calc(100% + 50px);
 }

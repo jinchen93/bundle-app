@@ -3,7 +3,7 @@ import moment from 'moment';
 
 const YoutubeChannelVid = ({video, videoId}) => {
   const url = `https://www.youtube.com/embed/${videoId}`;
-  const date = moment(video.publishedAt).format('ddd, MMMM YYYY, h:mm A');
+  const date = moment(video.publishedAt).format('ddd, MMMM Do YYYY, h:mm A');
 
   return(
     <div className="row videoContainer">
