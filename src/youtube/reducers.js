@@ -14,7 +14,7 @@ export const channels = (state = CHANNELS) => {
   return state;
 };
 
-export const channel = (state = CHANNELS[0], action) => {
+export const channel = (state = 0, action) => {
   switch (action.type) {
     case SELECT_CHANNEL:
       return action.payload;

@@ -5,37 +5,44 @@ export const CHANNELS = [
     {
       name: 'Casey Neistat',
       username: 'caseyneistat',
-      uploads: 'UUtinbF-Q-fVthA0qrFQTgXQ'
+      uploads: 'UUtinbF-Q-fVthA0qrFQTgXQ',
+      id: 0
     },
     { 
       name: 'Asha Cuthbert', 
       username: 'gcmeanslove',
-      uploads: 'UU4YtAO528H6PdbJkJsolggA'
+      uploads: 'UU4YtAO528H6PdbJkJsolggA',
+      id: 1
     },
     {
       name: 'Josh James',
       username: 'joshjameskiwibushman',
-      uploads: 'UUynWet3zR-Yu7xUVHjFq6hA'
+      uploads: 'UUynWet3zR-Yu7xUVHjFq6hA',
+      id: 2
     },
     {
       name: 'Ben Brown',
       username: 'benbrown100',
-      uploads: 'UUAkP51BEzkKimJh7KDflx_g'
+      uploads: 'UUAkP51BEzkKimJh7KDflx_g',
+      id: 3
     },
     {
       name: 'Jon Olsson',
       username: 'JonOlssonVideoBlog',
-      uploads: 'UUyQb1TTrfRzQZmEfsx770qw'
+      uploads: 'UUyQb1TTrfRzQZmEfsx770qw',
+      id: 4
     },
     {
       name: 'Gary Vaynerchuk',
       username: 'GaryVaynerchuk',
-      uploads: 'UUctXZhXmG-kf3tlIXgVZUlw'
+      uploads: 'UUctXZhXmG-kf3tlIXgVZUlw',
+      id: 5
     },
     {
       name: 'Eric Conover',
       username: 'erikconover',
-      uploads: 'UUu8ucb1LRJd1gwwXutYDgTg'
+      uploads: 'UUu8ucb1LRJd1gwwXutYDgTg',
+      id: 6
     }
 ];
 

@@ -6,11 +6,11 @@ import { selectChannel }            from '../actions';
 class Channels extends Component {
   render() {
     const renderChannels = this.props.channels.map( channel => {
-      if (this.props.channel.name === channel.name) {
+      if (this.props.channels[this.props.channel].name === channel.name) {
         return (
           <li
             key={channel.name}
-            onClick={ () => { this.props.selectChannel(channel) } } 
+            onClick={ () => { this.props.selectChannel(channel.id) } } 
             className="activeChannel">
             <a id="activeChannel"><span>{channel.name}</span></a>
           </li>
@@ -21,7 +21,7 @@ class Channels extends Component {
         return (
           <li
             key={channel.name}
-            onClick={ () => { this.props.selectChannel(channel) } } 
+            onClick={ () => { this.props.selectChannel(channel.id) } } 
             className="inactiveChannel">
             <a><span>{channel.name}</span></a>
           </li>

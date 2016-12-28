@@ -16,7 +16,7 @@ class YoutubePage extends Component {
       selectedVideo: '',
       selectedVideoId: ''
     };
-    this.findChannelVideos(this.props.channel);
+    this.findChannelVideos(this.props.channels[this.props.channel]);
   };
 
   findChannelVideos(channel) {
@@ -37,10 +37,12 @@ class YoutubePage extends Component {
       }
     });
   };
+  
 
-  componentWillUpdate(nextProps) {
-    this.findChannelVideos(nextProps.channel)
+  componentWillReceiveProps (nextProps) {
+    this.findChannelVideos(nextProps.channels[nextProps.channel])
   }
+
 
   render() {
     return (
@@ -49,12 +51,12 @@ class YoutubePage extends Component {
             <div className="youtubeHeader">
               <Hamburger />
             
-              <a className="channelHeader" href={"https://www.youtube.com/" + this.props.channel.username} target="_blank">
+              <a className="channelHeader" href={"https://www.youtube.com/" + this.props.channels[this.props.channel].username} target="_blank">
                 <div className="channelHeader">
                   <div className="channelName">
                     <strong>
-                      <p>{this.props.channel.name.split(" ")[0]}</p>
-                      <p>{this.props.channel.name.split(" ")[1]}</p>
+                      <p>{this.props.channels[this.props.channel].name.split(" ")[0]}</p>
+                      <p>{this.props.channels[this.props.channel].name.split(" ")[1]}</p>
                     </strong>
                   </div>
                 </div>
@@ -82,6 +84,7 @@ class YoutubePage extends Component {
 function mapStateToProps(state) {
   return { 
     sidebar: state.sidebar,
+    channels: state.channels,
     channel: state.channel
   };
 };
