@@ -11,6 +11,7 @@ export const toggleSidebar = () => {
 
 export const selectChannel = (channel) => {
   return {
-    type: SELECT_CHANNEL
+    type: SELECT_CHANNEL,
+    payload: channel
   };
 };

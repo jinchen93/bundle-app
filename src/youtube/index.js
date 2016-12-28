@@ -1,10 +1,8 @@
 import Request                      from 'superagent';
 import { connect }                  from 'react-redux';
 import React, { Component }         from 'react';
-import { bindActionCreators }       from 'redux';
 
-import { selectChannel }            from './actions';
-import Channels                     from './components/channels';
+import Channels                     from './containers/channels';
 import Hamburger                    from './containers/hamburger';
 import VideoList                    from './components/videoList';
 import CurrentVideo                 from './components/currentVideo';
@@ -40,14 +38,14 @@ class YoutubePage extends Component {
     });
   };
 
+  componentWillUpdate(nextProps) {
+    this.findChannelVideos(nextProps.channel)
+  }
+
   render() {
     return (
       <div className={this.props.sidebar ? 'youtubeContainer toggled' : 'youtubeContainer'} id="wrapper">
-        <Channels
-            channels={this.props.channels}
-            currentChannel={this.props.channel}
-            onChannelSelect={ channel => { this.findChannelVideos(channel) } } />
-
+        <Channels />
             <div className="youtubeHeader">
               <Hamburger />
             
@@ -84,13 +82,8 @@ class YoutubePage extends Component {
 function mapStateToProps(state) {
   return { 
     sidebar: state.sidebar,
-    channels: state.channels,
     channel: state.channel
-  }
-}
+  };
+};
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators( { selectChannel }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(YoutubePage);
+export default connect(mapStateToProps)(YoutubePage);
