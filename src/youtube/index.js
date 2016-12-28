@@ -3,7 +3,7 @@ import Request from 'superagent';
 import Channels from './components/channels';
 import CurrentVideo from './components/currentVideo';
 import VideoList from './components/videoList';
-import { API_KEY, CHANNELS } from './constants';
+import { CHANNELS, PLAYLIST_URL } from './constants';
 
 class YoutubePage extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class YoutubePage extends Component {
   };
 
   findChannelVideos(channel) {
-    const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${channel.uploads}&key=${API_KEY}`;
+    const url = PLAYLIST_URL + channel.uploads;
     Request.get(url).end( (error, response) => {
       if (error) {
         console.log('Error while getting videos');

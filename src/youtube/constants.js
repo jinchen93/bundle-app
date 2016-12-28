@@ -38,3 +38,5 @@ export const CHANNELS = [
       uploads: 'UUu8ucb1LRJd1gwwXutYDgTg'
     }
 ];
+
+export const PLAYLIST_URL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&key=${API_KEY}&playlistId=`;
