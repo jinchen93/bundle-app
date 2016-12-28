@@ -1,1 +1,0 @@
-import { SET_SIDEBAR_TOGGLE } from './actionTypes';

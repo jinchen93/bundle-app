@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
-import Request from 'superagent';
-import Channels from './components/channels';
-import CurrentVideo from './components/currentVideo';
-import VideoList from './components/videoList';
-import { CHANNELS, PLAYLIST_URL } from './constants';
+import Request                      from 'superagent';
+import { connect }                  from 'react-redux';
+import React, { Component }         from 'react';
+import { bindActionCreators }       from 'redux';
+
+import { toggleSidebar }            from './actions';
+import Channels                     from './components/channels';
+import VideoList                    from './components/videoList';
+import CurrentVideo                 from './components/currentVideo';
+import { CHANNELS, PLAYLIST_URL }   from './constants';
 
 class YoutubePage extends Component {
   constructor(props) {
@@ -14,11 +18,9 @@ class YoutubePage extends Component {
       selectedChannel: '',
       selectedChannelUsername: '',
       selectedVideo: '',
-      selectedVideoId: '',
-      sidebarToggled: false
+      selectedVideoId: ''
     };
     this.findChannelVideos(CHANNELS[0]);
-    this.toggleSidebarState = this.toggleSidebarState.bind(this);
   };
 
   findChannelVideos(channel) {
@@ -42,20 +44,9 @@ class YoutubePage extends Component {
     });
   };
 
-
-  toggleSidebarState() {
-    if(this.state.sidebarToggled === true) {
-      this.setState({ sidebarToggled: false });
-    }
-    if(this.state.sidebarToggled === false) {
-      this.setState({ sidebarToggled: true });
-    }
-  }
-
-
   render() {
     return (
-      <div className={this.state.sidebarToggled ? 'youtubeContainer toggled' : 'youtubeContainer'} id="wrapper">
+      <div className={this.props.sidebar ? 'youtubeContainer toggled' : 'youtubeContainer'} id="wrapper">
 
         <Channels
             channels={CHANNELS}
@@ -63,7 +54,7 @@ class YoutubePage extends Component {
             onChannelSelect={ channel => { this.findChannelVideos(channel) } } />
 
             <div className="youtubeHeader">
-              <div className='menu-toggle' onClick={this.toggleSidebarState}>
+              <div className='menu-toggle' onClick={this.props.toggleSidebar}>
                 <span className="line"></span>
                 <span className="line"></span>
                 <span className="line"></span>
@@ -98,4 +89,12 @@ class YoutubePage extends Component {
   };
 };
 
-export default YoutubePage;
+function mapStateToProps(state) {
+  return { sidebar: state.sidebar }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ toggleSidebar }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(YoutubePage);
