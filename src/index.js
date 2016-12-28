@@ -7,9 +7,8 @@ import '../styles/style.css';
 import YoutubeApp from './youtube/index';
 import reducer from './rootReducer';
 
-
 const store = createStore(
-  reducer, 
+  reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

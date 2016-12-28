@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import { sidebar } from './youtube/reducers';
+import { sidebar, channels, channel } from './youtube/reducers';
 
 export default combineReducers({
-  sidebar
+  sidebar,
+  channels,
+  channel
 });
