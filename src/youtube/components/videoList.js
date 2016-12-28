@@ -1,6 +1,6 @@
 import React from 'react';
 
-const YoutubeChannelListVids = ({channelVideos, onVideoSelect}) => {
+const VideoList = ({channelVideos, onVideoSelect}) => {
   return (
     <div className="row">
       <div className="col-md-1"></div>
@@ -21,4 +21,4 @@ const YoutubeChannelListVids = ({channelVideos, onVideoSelect}) => {
   );
 };
 
-export default YoutubeChannelListVids;
+export default VideoList;

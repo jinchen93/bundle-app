@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import Request from 'superagent';
-import YoutubeChannels from './components/youtube_channels';
-import YoutubeChannelVid from './components/youtube_channel_vid';
-import YoutubeChannelListVids from './components/youtube_channel_list_vids';
+import Channels from './components/channels';
+import CurrentVideo from './components/currentVideo';
+import VideoList from './components/videoList';
 import { API_KEY, CHANNELS } from './constants';
-
-// URL to get channel properties: https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails&forUsername=GaryVaynerchuk&key=AIzaSyDHiPdfGo_j7syM6QgvgzDHZ5jy-rwNnM4
 
 class YoutubePage extends Component {
   constructor(props) {
@@ -59,7 +57,7 @@ class YoutubePage extends Component {
     return (
       <div className={this.state.sidebarToggled ? 'youtubeContainer toggled' : 'youtubeContainer'} id="wrapper">
 
-        <YoutubeChannels
+        <Channels
             channels={CHANNELS}
             currentChannel={this.state.selectedChannel}
             onChannelSelect={ channel => { this.findChannelVideos(channel) } } />
@@ -86,10 +84,10 @@ class YoutubePage extends Component {
         <div id="page-content-wrapper">
           <div className="container-fluid">
             <div className="row">
-              <YoutubeChannelListVids 
+              <VideoList 
                   channelVideos={ this.state.selectedChannelVideos }
                   onVideoSelect={ (selectedVideo, selectedVideoId) => { this.setState({ selectedVideo: selectedVideo.snippet, selectedVideoId }) }} />
-              <YoutubeChannelVid 
+              <CurrentVideo 
                   video={this.state.selectedVideo}
                   videoId={this.state.selectedVideoId}/>
             </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
-const YoutubeChannelVid = ({video, videoId}) => {
+const CurrentVideo = ({video, videoId}) => {
   const url = `https://www.youtube.com/embed/${videoId}`;
   const date = moment(video.publishedAt).format('ddd, MMMM Do YYYY, h:mm A');
 
@@ -28,4 +28,4 @@ const YoutubeChannelVid = ({video, videoId}) => {
   );
 };
 
-export default YoutubeChannelVid;
+export default CurrentVideo;

@@ -1,14 +1,13 @@
 import React from 'react';
 
-const YoutubeChannels = ({currentChannel, channels, onChannelSelect, sidebarToggled}) => {
-
-  const renderChannels = channels.map( channel => {
+export default (props) => {
+  const renderChannels = props.channels.map( channel => {
     // Render active channel button
-    if (currentChannel === channel.name) {
+    if (props.currentChannel === channel.name) {
       return ( 
         <li
           key={channel.name}
-          onClick={ () => { onChannelSelect(channel)} } 
+          onClick={ () => { props.onChannelSelect(channel)} } 
           className="activeChannel">
           <a id="activeChannel"><span>{channel.name}</span></a>
         </li>
@@ -19,7 +18,7 @@ const YoutubeChannels = ({currentChannel, channels, onChannelSelect, sidebarTogg
       return (
         <li
           key={channel.name}
-          onClick={ () => { onChannelSelect(channel)} } 
+          onClick={ () => { props.onChannelSelect(channel)} } 
           className="inactiveChannel">
           <a><span>{channel.name}</span></a>
         </li>
@@ -35,5 +34,3 @@ const YoutubeChannels = ({currentChannel, channels, onChannelSelect, sidebarTogg
     </div>
   );
 };
-
-export default YoutubeChannels;
