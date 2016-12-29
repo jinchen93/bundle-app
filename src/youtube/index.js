@@ -6,7 +6,7 @@ import Channels                     from './containers/channels';
 import Hamburger                    from './containers/hamburger';
 import VideoList                    from './components/videoList';
 import CurrentVideo                 from './components/currentVideo';
-import { PLAYLIST_URL }   from './constants';
+import { PLAYLIST_URL }             from './constants';
 
 class YoutubePage extends Component {
   constructor(props) {
