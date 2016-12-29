@@ -1,14 +1,16 @@
 import Request                      from 'superagent';
 import { connect }                  from 'react-redux';
 import React, { Component }         from 'react';
+import { bindActionCreators }       from 'redux';
 
-import Channels                     from './containers/channels';
-import Hamburger                    from './containers/hamburger';
-import VideoList                    from './components/videoList';
-import CurrentVideo                 from './components/currentVideo';
-import { PLAYLIST_URL }             from './constants';
+import { fetchVideos }              from '../actions'
+import Channels                     from './channels';
+import Hamburger                    from './hamburger';
+import VideoList                    from '../components/videoList';
+import CurrentVideo                 from '../components/currentVideo';
+import { PLAYLIST_URL }             from '../constants';
 
-class YoutubePage extends Component {
+class YoutubeApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,6 +36,7 @@ class YoutubePage extends Component {
           selectedVideo: videos[0].snippet,
           selectedVideoId: videos[0].snippet.resourceId.videoId
         });
+        this.props.fetchVideos(videos); 
       }
     });
   };
@@ -42,7 +45,6 @@ class YoutubePage extends Component {
   componentWillReceiveProps (nextProps) {
     this.findChannelVideos(nextProps.channels[nextProps.channel])
   }
-
 
   render() {
     return (
@@ -85,8 +87,14 @@ function mapStateToProps(state) {
   return { 
     sidebar: state.sidebar,
     channels: state.channels,
-    channel: state.channel
+    channel: state.channel,
+    videos: state.videos,
+    video: state.video
   };
 };
 
-export default connect(mapStateToProps)(YoutubePage);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchVideos }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(YoutubeApp);

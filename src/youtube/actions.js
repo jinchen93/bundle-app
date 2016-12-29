@@ -1,7 +1,8 @@
 import { 
   SET_SIDEBAR_TOGGLE, 
   SELECT_CHANNEL,
-  SELECT_VIDEO
+  SELECT_VIDEO,
+  FETCH_VIDEOS
 } from './actionTypes';
 
 export const toggleSidebar = () => {
@@ -21,5 +22,12 @@ export const selectVideo = (video) => {
   return {
     type: SELECT_VIDEO,
     payload: video
+  }
+}
+
+export const fetchVideos = (videos) => {
+  return {
+    type: FETCH_VIDEOS,
+    payload: videos
   }
 }

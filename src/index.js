@@ -7,7 +7,7 @@ import ReduxThunk from 'redux-thunk';
 
 
 import '../styles/style.css';
-import YoutubeApp from './youtube/index';
+import YoutubeApp from './youtube/containers/app';
 import reducer from './rootReducer';
 
 const store = createStore(

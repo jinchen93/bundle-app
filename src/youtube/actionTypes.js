@@ -1,3 +1,4 @@
 export const SET_SIDEBAR_TOGGLE = 'SET_SIDEBAR_TOGGLE';
 export const SELECT_CHANNEL = 'SELECT_CHANNEL';
 export const SELECT_VIDEO = 'SELECT_VIDEO';
+export const FETCH_VIDEOS = 'FETCH_VIDEOS';

@@ -1,7 +1,8 @@
 import { 
   SET_SIDEBAR_TOGGLE, 
   SELECT_CHANNEL,
-  SELECT_VIDEO
+  SELECT_VIDEO,
+  FETCH_VIDEOS
 } from './actionTypes';
 import { CHANNELS } from './constants';
 
@@ -30,6 +31,15 @@ export const channel = (state = 0, action) => {
 export const video = (state = 0, action) => {
   switch (action.type) {
     case SELECT_VIDEO:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+export const videos = (state = [], action) => {
+  switch(action.type) {
+    case FETCH_VIDEOS:
       return action.payload;
     default:
       return state;
