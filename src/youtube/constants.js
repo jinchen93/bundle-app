@@ -1,6 +1,6 @@
 export const API_KEY = 'AIzaSyDHiPdfGo_j7syM6QgvgzDHZ5jy-rwNnM4';
 
-// URL to get channel properties: https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails&forUsername=GaryVaynerchuk&key=AIzaSyDHiPdfGo_j7syM6QgvgzDHZ5jy-rwNnM4
+// URL to get channel properties: https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails&key=AIzaSyDHiPdfGo_j7syM6QgvgzDHZ5jy-rwNnM4&forUsername=GaryVaynerchuk
 export const CHANNELS = [
     {
       name: 'Casey Neistat',

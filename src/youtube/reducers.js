@@ -1,5 +1,6 @@
 import { 
-  SET_SIDEBAR_TOGGLE, 
+  SET_SIDEBAR_TOGGLE,
+  SET_CHANNELS,
   SELECT_CHANNEL,
   SELECT_VIDEO,
   SET_VIDEOS
@@ -9,14 +10,19 @@ import { CHANNELS } from './constants';
 export const sidebar = (state = false, action) => {
   switch (action.type) {
     case SET_SIDEBAR_TOGGLE:
-      return (!state);
+      return action.payload;
     default:
       return state;
   }
 };
 
-export const channels = (state = CHANNELS) => {
-  return state;
+export const channels = (state = CHANNELS, action) => {
+  switch (action.type) {
+    case SET_CHANNELS:
+      return action.payload;
+    default:
+      return state;
+  }
 };
 
 export const channel = (state = 0, action) => {

@@ -6,7 +6,7 @@ import { toggleSidebar }          from '../actions';
 class Hamburger extends Component {
   render() {
     return(
-      <div className='menu-toggle' onClick={this.props.toggleSidebar}>
+      <div className='menu-toggle' onClick={ () => this.props.toggleSidebar(this.props.sidebar) }>
         <span className="line"></span>
         <span className="line"></span>
         <span className="line"></span>
@@ -15,8 +15,12 @@ class Hamburger extends Component {
   };
 };
 
+function mapStateToProps(state) {
+  return { sidebar: state.sidebar };
+};
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ toggleSidebar }, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(Hamburger);
+export default connect(mapStateToProps, mapDispatchToProps)(Hamburger);

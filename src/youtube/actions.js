@@ -1,5 +1,6 @@
 import { 
-  SET_SIDEBAR_TOGGLE, 
+  SET_SIDEBAR_TOGGLE,
+  SET_CHANNELS,
   SELECT_CHANNEL,
   SELECT_VIDEO,
   SET_VIDEOS
@@ -7,11 +8,24 @@ import {
 import Request from 'superagent';
 import { PLAYLIST_URL } from './constants';
 
-export const toggleSidebar = () => {
+export const toggleSidebar = (status) => {
+  const newStatus = !status;
   return {
-    type: SET_SIDEBAR_TOGGLE
+    type: SET_SIDEBAR_TOGGLE,
+    payload: newStatus
   };
 };
+
+export const fetchChannels = (usernames) => {
+
+}
+
+export const setChannels = (channels) => {
+  return {
+    type: SET_CHANNELS,
+    payload: channels
+  }
+}
 
 export const selectChannel = (channel) => {
   return {
