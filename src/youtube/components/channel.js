@@ -7,9 +7,11 @@ export default (props) => {
       className={props.status}>
       <a id={props.status}>
         <div>
-          <img id={props.status} src={props.image} alt={props.name} />
-          <br />
-          <span className="channel-name">{props.name}</span>
+          <span className="channel-name">
+            <img id={props.status} src={props.image} alt={props.name} />
+            {props.status === 'activeChannel' ? <br/> : ''}
+            {props.name}
+          </span>
         </div>
       </a>
     </li>
