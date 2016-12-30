@@ -1,9 +1,9 @@
 import React from 'react';
 import moment from 'moment';
 
-const CurrentVideo = ({video, videoId}) => {
-  const url = `https://www.youtube.com/embed/${videoId}`;
-  const date = moment(video.publishedAt).format('ddd, MMMM Do YYYY, h:mm A');
+export default (props) => {
+  const url = `https://www.youtube.com/embed/${props.video.resourceId.videoId}`;
+  const date = moment(props.video.publishedAt).format('ddd, MMMM Do YYYY, h:mm A');
 
   return(
     <div className="row videoContainer">
@@ -15,17 +15,15 @@ const CurrentVideo = ({video, videoId}) => {
       <div className="row videoDescription">
         <div className="col-md-8 col-md-offset-2">
           <div className="videoTitle">
-            <h2>{video.title}</h2>
+            <h2>{props.video.title}</h2>
           </div>
           <div>
             Posted on: {date}
             <hr />
-            <p>{video.description}</p>
+            <p>{props.video.description}</p>
           </div>
         </div>
       </div>
     </div>
   );
 };
-
-export default CurrentVideo;

@@ -1,76 +1,44 @@
-import Request                      from 'superagent';
 import { connect }                  from 'react-redux';
 import React, { Component }         from 'react';
 import { bindActionCreators }       from 'redux';
 
-import { fetchVideos }              from '../actions'
 import Channels                     from './channels';
 import Hamburger                    from './hamburger';
+import Header                       from '../components/header';
 import VideoList                    from '../components/videoList';
 import CurrentVideo                 from '../components/currentVideo';
-import { PLAYLIST_URL }             from '../constants';
+import { fetchVideos, selectVideo } from '../actions'
 
 class YoutubeApp extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectedChannelVideos: [],
-      selectedVideo: '',
-      selectedVideoId: ''
-    };
-    this.findChannelVideos(this.props.channels[this.props.channel]);
     this.props.fetchVideos(this.props.channels[this.props.channel]);
   };
-
-  findChannelVideos(channel) {
-    const url = PLAYLIST_URL + channel.uploads;
-    Request.get(url).end( (error, response) => {
-      if (error) {
-        console.log('Error while getting videos');
-      }
-      else {
-        const videos = response.body.items.map( (video) => {
-          return video;
-        });
-        this.setState({
-          selectedChannelVideos: videos,
-          selectedVideo: videos[0].snippet,
-          selectedVideoId: videos[0].snippet.resourceId.videoId
-        });
-      }
-    });
-  };
-
 
   render() {
     return (
       <div className={this.props.sidebar ? 'youtubeContainer toggled' : 'youtubeContainer'} id="wrapper">
         <Channels />
-            <div className="youtubeHeader">
-              <Hamburger />
-            
-              <a className="channelHeader" href={"https://www.youtube.com/" + this.props.channels[this.props.channel].username} target="_blank">
-                <div className="channelHeader">
-                  <div className="channelName">
-                    <strong>
-                      <p>{this.props.channels[this.props.channel].name.split(" ")[0]}</p>
-                      <p>{this.props.channels[this.props.channel].name.split(" ")[1]}</p>
-                    </strong>
-                  </div>
-                </div>
-              </a>
-
-            </div>
-
+        <div className="youtubeHeader">
+          <Hamburger />
+          <Header
+            username={this.props.channels[this.props.channel].username} 
+            name={this.props.channels[this.props.channel].name} 
+          />
+        </div>
         <div id="page-content-wrapper">
           <div className="container-fluid">
             <div className="row">
               <VideoList 
-                  channelVideos={ this.state.selectedChannelVideos }
-                  onVideoSelect={ (selectedVideo, selectedVideoId) => { this.setState({ selectedVideo: selectedVideo.snippet, selectedVideoId }) }} />
-              <CurrentVideo 
-                  video={this.state.selectedVideo}
-                  videoId={this.state.selectedVideoId}/>
+                channelVideos={ this.props.videos }
+                onSelectVideo={ (position) => this.props.selectVideo(position) }
+              />
+              { 
+                this.props.videos.length > 0 ? 
+                  <CurrentVideo video={this.props.videos[this.props.video]} /> 
+                : 
+                  ''
+              }
             </div>
           </div>
         </div>
@@ -90,7 +58,7 @@ function mapStateToProps(state) {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchVideos }, dispatch)
+  return bindActionCreators({ fetchVideos, selectVideo }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(YoutubeApp);

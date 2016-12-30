@@ -1,16 +1,16 @@
 import React from 'react';
 
-const VideoList = ({channelVideos, onVideoSelect}) => {
+export default (props) => {
   return (
     <div className="row">
       <div className="col-md-1"></div>
       {
-        channelVideos.map( video => { 
+        props.channelVideos.map( video => { 
           return( 
-            <div className="col-md-2 col-sm-4 col-xs-4 videos" key={video.etag}>
+            <div className="col-md-2 col-sm-4 col-xs-4 videos" key={video.resourceId.videoId}>
               <div className="video">
-                <img onClick={ () => onVideoSelect(video, video.snippet.resourceId.videoId) } 
-                    className="thumbnail" src={video.snippet.thumbnails.medium.url} 
+                <img onClick={ () => props.onSelectVideo(video.position) } 
+                    className="thumbnail" src={video.thumbnails.medium.url} 
                     alt="Youtube Clip Thumbnail" />
               </div>
             </div>
@@ -20,5 +20,3 @@ const VideoList = ({channelVideos, onVideoSelect}) => {
     </div>
   );
 };
-
-export default VideoList;

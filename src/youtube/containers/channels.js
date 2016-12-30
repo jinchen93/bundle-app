@@ -1,8 +1,12 @@
-import React, { Component }         from 'react';
-import { connect }                  from 'react-redux';
-import { bindActionCreators}        from 'redux';
-import { selectChannel }            from '../actions';
-import Channel                      from '../components/channel';
+import React, { Component }           from 'react';
+import { connect }                    from 'react-redux';
+import { bindActionCreators}          from 'redux';
+import Channel                        from '../components/channel';
+import { 
+  selectChannel, 
+  fetchVideos, 
+  selectVideo 
+} from '../actions';
 
 class Channels extends Component {
   render() {
@@ -14,7 +18,11 @@ class Channels extends Component {
               key={channel.id}
               id={channel.id} 
               name={channel.name}
-              handleClick={ (id) => this.props.selectChannel(id) }
+              handleClick={ (id) => {
+                this.props.selectChannel(id);
+                this.props.fetchVideos(this.props.channels[id]);
+                this.props.selectVideo(0);
+              }}
               status={this.props.channels[this.props.channel].name === channel.name ? "activeChannel" : "inactiveChannel"}
             /> 
           )}
@@ -32,7 +40,7 @@ function mapStateToProps(state) {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectChannel }, dispatch);
+  return bindActionCreators({ selectChannel, fetchVideos, selectVideo }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Channels);
