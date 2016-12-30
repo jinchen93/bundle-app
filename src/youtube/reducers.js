@@ -56,7 +56,7 @@ export const videos = (state = [], action) => {
   }
 };
 
-export const usernameInput = (state='', action) => {
+export const usernameInput = (state = '', action) => {
   switch(action.type) {
     case ON_USERNAME_INPUT:
       return action.payload;

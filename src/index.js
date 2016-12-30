@@ -36,7 +36,7 @@ CHANNELS.forEach( (channel) => {
         const initialState = {
           channels: newChannels
         }
-        let store = createStore(
+        const initStore = createStore(
           rootReducer,
           initialState,
           composeWithDevTools(
@@ -44,9 +44,16 @@ CHANNELS.forEach( (channel) => {
           )
         );
         const load = Storage.createLoader(engine);
-        load(store)
+        load(initStore)
           .then( (newState) => {
-            store = createStore(
+            if (newState.channels === undefined) {
+              newState = initialState;
+            }
+            else {
+              // newState stays the same
+            }
+            // redux dev tools currently not working with new changes made to local storage
+            const store = createStore(
               rootReducer,
               newState,
               composeWithDevTools(

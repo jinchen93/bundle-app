@@ -54,7 +54,12 @@ class Channels extends Component {
                 <button className="btn btn-success">+</button>
               </span>
             </form>
-
+            <button 
+              className="btn btn-danger" 
+              onClick={ () => {
+                localStorage.clear();
+                location.reload();
+              }}>Clear Usernames</button>
           </div>
         </ul>
       </div>

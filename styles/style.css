@@ -251,3 +251,8 @@ form {
     width: 84%;
     margin: 5% 8%;
 }
+
+.btn-danger {
+    width: 84%;
+    margin: 0 8%;
+}
