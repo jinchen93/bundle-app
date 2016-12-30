@@ -4,13 +4,15 @@ import {
   channels,
   channel,
   videos,
-  video
+  video,
+  usernameInput
 } from './youtube/reducers';
 
-export default combineReducers({
+export const rootReducer = combineReducers({
   sidebar,
   channels,
   channel,
   videos,
-  video
+  video,
+  usernameInput
 });

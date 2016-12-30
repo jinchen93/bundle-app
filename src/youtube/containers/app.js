@@ -7,7 +7,12 @@ import Hamburger                    from './hamburger';
 import Header                       from '../components/header';
 import VideoList                    from '../components/videoList';
 import CurrentVideo                 from '../components/currentVideo';
-import { fetchVideos, selectVideo } from '../actions'
+
+import { 
+  fetchVideos, 
+  selectVideo, 
+  fetchChannels 
+} from '../actions'
 
 class YoutubeApp extends Component {
   constructor(props) {
@@ -58,7 +63,7 @@ function mapStateToProps(state) {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchVideos, selectVideo }, dispatch)
+  return bindActionCreators({ fetchVideos, selectVideo, fetchChannels }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(YoutubeApp);

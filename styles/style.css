@@ -166,6 +166,25 @@ a#activeChannel {
   color: #fff;
 }
 
+img#inactiveChannel {
+  height: 50px;
+  width: 50px;
+}
+
+.channel-name {
+    margin-left: 10px;
+}
+
+.channel-list {
+    margin-top: 15px;
+}
+
+.list-header > a >img {
+    height: 44px;
+    margin-left: 68.75px;
+}
+
+
 .menu-toggle {
   position: absolute;
   padding-top: 8px;
@@ -226,4 +245,9 @@ a#activeChannel {
   padding-left: 50px;
   padding-top: 5px;
   font-weight: 400;
+}
+
+form {
+    width: 84%;
+    margin: 5% 8%;
 }
