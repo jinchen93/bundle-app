@@ -2,7 +2,7 @@ import {
   SET_SIDEBAR_TOGGLE, 
   SELECT_CHANNEL,
   SELECT_VIDEO,
-  FETCH_VIDEOS
+  SET_VIDEOS
 } from './actionTypes';
 import { CHANNELS } from './constants';
 
@@ -39,7 +39,7 @@ export const video = (state = 0, action) => {
 
 export const videos = (state = [], action) => {
   switch(action.type) {
-    case FETCH_VIDEOS:
+    case SET_VIDEOS:
       return action.payload;
     default:
       return state;

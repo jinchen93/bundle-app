@@ -19,6 +19,7 @@ class YoutubeApp extends Component {
       selectedVideoId: ''
     };
     this.findChannelVideos(this.props.channels[this.props.channel]);
+    this.props.fetchVideos(this.props.channels[this.props.channel]);
   };
 
   findChannelVideos(channel) {
@@ -36,15 +37,10 @@ class YoutubeApp extends Component {
           selectedVideo: videos[0].snippet,
           selectedVideoId: videos[0].snippet.resourceId.videoId
         });
-        this.props.fetchVideos(videos); 
       }
     });
   };
-  
 
-  componentWillReceiveProps (nextProps) {
-    this.findChannelVideos(nextProps.channels[nextProps.channel])
-  }
 
   render() {
     return (
