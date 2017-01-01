@@ -46,7 +46,6 @@ export function fetchChannels(channels) {
 };
 
 export function fetchChannel(username) {
-  console.log(username);
   return (dispatch) => {
     const url = CHANNEL_URL + username;
     Request.get(url).end( (error, response) => {
