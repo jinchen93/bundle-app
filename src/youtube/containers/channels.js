@@ -59,7 +59,7 @@ class Channels extends Component {
               onClick={ () => {
                 localStorage.clear();
                 location.reload();
-              }}>Clear Usernames</button>
+              }}>Default Usernames</button>
           </div>
         </ul>
       </div>
