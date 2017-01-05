@@ -11,7 +11,7 @@ import {
 export function channels(state = { all: [], current: 0 }, action) {
   switch (action.type) {
     case SET_CHANNELS:
-      return { ...state, asd: action.payload }
+      return { ...state, all: action.payload }
     case SELECT_CHANNEL:
       return { ...state, current: action.payload }
     case ADD_CHANNEL:
