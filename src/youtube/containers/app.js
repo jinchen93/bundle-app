@@ -17,7 +17,7 @@ import {
 class YoutubeApp extends Component {
   constructor(props) {
     super(props);
-    this.props.fetchVideos(this.props.channels[this.props.channel]);
+    this.props.fetchVideos(this.props.channels.all[this.props.channels.current]);
   };
 
   render() {
@@ -27,8 +27,8 @@ class YoutubeApp extends Component {
         <div className="youtubeHeader">
           <Hamburger />
           <Header
-            username={this.props.channels[this.props.channel].username} 
-            name={this.props.channels[this.props.channel].name} 
+            username={this.props.channels.all[this.props.channels.current].username} 
+            name={this.props.channels.all[this.props.channels.current].name} 
           />
         </div>
         <div id="page-content-wrapper">
@@ -56,7 +56,6 @@ function mapStateToProps(state) {
   return { 
     sidebar: state.sidebar,
     channels: state.channels,
-    channel: state.channel,
     videos: state.videos,
     video: state.video
   };

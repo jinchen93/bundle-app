@@ -4,8 +4,6 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import ReduxThunk from 'redux-thunk';
-import Storage from 'redux-storage';
-import CreateEngine from 'redux-storage-engine-localstorage';
 
 import '../styles/style.css';
 import YoutubeApp from './youtube/containers/app';
@@ -42,12 +40,11 @@ const makeChannelArray = new Promise( resolve => {
 })
 
 makeChannelArray.then( channelArray => {
-  const engine = CreateEngine('my-save-key');
-  const middleware = [ReduxThunk, Storage.createMiddleware(engine)];
+  const middleware = [ReduxThunk];
   const initialState = {
-    channels: channelArray
+    channels: { all: channelArray, current: 0 }
   }
-  const initStore = createStore(
+  const store = createStore(
     rootReducer,
     initialState,
     composeWithDevTools(
@@ -55,27 +52,12 @@ makeChannelArray.then( channelArray => {
     )
   );
 
-  const load = Storage.createLoader(engine);
-
-  load(initStore)
-    .then( (newState) => {
-      if (newState.channels === undefined) {
-        newState = initialState;
-      }
-      // redux dev tools currently not working with new changes made to local storage
-      const store = createStore(
-        rootReducer,
-        newState,
-        composeWithDevTools(
-          applyMiddleware(...middleware)
-        )
-      );
-      ReactDOM.render(
-        <Provider store={store}>
-          <YoutubeApp />
-        </Provider>,
-        document.querySelector('.root'))
-    })
+  ReactDOM.render(
+    <Provider store={store}>
+      <YoutubeApp />
+    </Provider>,
+    document.querySelector('.root')
+  )
 })
 
 

@@ -22,17 +22,17 @@ class Channels extends Component {
               </a>
               <hr />
             </div>
-            {this.props.channels.map( (channel) => 
+            {this.props.channels.all.map( (channel) => 
               <Channel 
                 key={channel.username}
-                position={this.props.channels.map( channel => channel.username ).indexOf(channel.username)} 
+                position={this.props.channels.all.map( channel => channel.username ).indexOf(channel.username)} 
                 name={channel.name}
                 handleClick={ (position) => {
                   this.props.selectChannel(position);
-                  this.props.fetchVideos(this.props.channels[position]);
+                  this.props.fetchVideos(this.props.channels.all[position]);
                   this.props.selectVideo(0);
                 }}
-                status={this.props.channels[this.props.channel].name === channel.name ? "activeChannel" : "inactiveChannel"}
+                status={this.props.channels.all[this.props.channels.current].name === channel.name ? "activeChannel" : "inactiveChannel"}
                 image={channel.thumbnail}
               />
             )}
@@ -70,7 +70,6 @@ class Channels extends Component {
 function mapStateToProps(state) {
   return {
     channels: state.channels,
-    channel: state.channel,
     usernameInput: state.usernameInput
   };
 };

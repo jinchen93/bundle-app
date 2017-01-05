@@ -7,31 +7,23 @@ import {
   ADD_CHANNEL,
   ON_USERNAME_INPUT
 } from './actionTypes';
-import { CHANNELS } from './constants';
+
+export function channels(state = { all: [], current: 0 }, action) {
+  switch (action.type) {
+    case SET_CHANNELS:
+      return { ...state, asd: action.payload }
+    case SELECT_CHANNEL:
+      return { ...state, current: action.payload }
+    case ADD_CHANNEL:
+      return { ...state, all: [...state.all, action.payload] }
+    default:
+      return state;
+  }
+}
 
 export const sidebar = (state = false, action) => {
   switch (action.type) {
     case SET_SIDEBAR_TOGGLE:
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-export const channels = (state = CHANNELS, action) => {
-  switch (action.type) {
-    case SET_CHANNELS:
-      return action.payload;
-    case ADD_CHANNEL:
-      return [...state, action.payload];
-    default:
-      return state;
-  }
-};
-
-export const channel = (state = 0, action) => {
-  switch (action.type) {
-    case SELECT_CHANNEL:
       return action.payload;
     default:
       return state;

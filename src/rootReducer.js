@@ -1,18 +1,16 @@
 import { combineReducers } from 'redux';
 import { 
   sidebar,
-  channels,
-  channel,
   videos,
   video,
-  usernameInput
+  usernameInput,
+  channels
 } from './youtube/reducers';
 
 export const rootReducer = combineReducers({
   sidebar,
-  channels,
-  channel,
   videos,
   video,
-  usernameInput
+  usernameInput,
+  channels
 });
