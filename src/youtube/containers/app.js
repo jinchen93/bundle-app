@@ -21,14 +21,15 @@ class YoutubeApp extends Component {
   };
 
   render() {
+    const channels = this.props.channels
     return (
       <div className={this.props.sidebar ? 'youtubeContainer toggled' : 'youtubeContainer'} id="wrapper">
         <Channels />
         <div className="youtubeHeader">
           <Hamburger />
           <Header
-            username={this.props.channels.all[this.props.channels.current].username} 
-            name={this.props.channels.all[this.props.channels.current].name} 
+            username={channels.all[channels.current].username} 
+            name={channels.all[channels.current].name} 
           />
         </div>
         <div id="page-content-wrapper">

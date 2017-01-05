@@ -12,6 +12,7 @@ import {
 
 class Channels extends Component {
   render() {
+    const channels = this.props.channels;
     return(
       <div id="sidebar-wrapper">
         <ul className="sidebar-nav">
@@ -22,20 +23,23 @@ class Channels extends Component {
               </a>
               <hr />
             </div>
-            {this.props.channels.all.map( (channel) => 
-              <Channel 
-                key={channel.username}
-                position={this.props.channels.all.map( channel => channel.username ).indexOf(channel.username)} 
-                name={channel.name}
-                handleClick={ (position) => {
-                  this.props.selectChannel(position);
-                  this.props.fetchVideos(this.props.channels.all[position]);
-                  this.props.selectVideo(0);
-                }}
-                status={this.props.channels.all[this.props.channels.current].name === channel.name ? "activeChannel" : "inactiveChannel"}
-                image={channel.thumbnail}
-              />
-            )}
+
+            {
+              channels.all.map( (channel) => 
+                <Channel 
+                  key={channel.username}
+                  position={channels.all.map( channel => channel.username ).indexOf(channel.username)} 
+                  name={channel.name}
+                  handleClick={ (position) => {
+                    this.props.selectChannel(position);
+                    this.props.fetchVideos(channels.all[position]);
+                    this.props.selectVideo(0);
+                  }}
+                  status={channels.all[channels.current].name === channel.name ? "activeChannel" : "inactiveChannel"}
+                  image={channel.thumbnail}
+                />
+              )
+            }
 
             <form 
               onSubmit={ (e) => {
