@@ -1,10 +1,10 @@
 import { 
-  SET_SIDEBAR_TOGGLE,
   SET_CHANNELS,
   SELECT_CHANNEL,
-  SELECT_VIDEO,
-  SET_VIDEOS,
   ADD_CHANNEL,
+  SET_VIDEOS,
+  SELECT_VIDEO,
+  SET_SIDEBAR_TOGGLE,
   ON_USERNAME_INPUT
 } from './actionTypes';
 
@@ -19,29 +19,22 @@ export function channels(state = { all: [], current: 0 }, action) {
     default:
       return state;
   }
-}
+};
+
+export const videos = (state = { all: [], current: 0 }, action) => {
+  switch(action.type) {
+    case SET_VIDEOS:
+      return { ...state, all: action.payload };
+    case SELECT_VIDEO:
+      return { ...state, current: action.payload };
+    default:
+      return state;
+  }
+};
 
 export const sidebar = (state = false, action) => {
   switch (action.type) {
     case SET_SIDEBAR_TOGGLE:
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-export const video = (state = 0, action) => {
-  switch (action.type) {
-    case SELECT_VIDEO:
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-export const videos = (state = [], action) => {
-  switch(action.type) {
-    case SET_VIDEOS:
       return action.payload;
     default:
       return state;

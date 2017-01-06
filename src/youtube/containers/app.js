@@ -21,7 +21,9 @@ class YoutubeApp extends Component {
   };
 
   render() {
-    const channels = this.props.channels
+    const channels = this.props.channels;
+    const videos = this.props.videos;
+
     return (
       <div className={this.props.sidebar ? 'youtubeContainer toggled' : 'youtubeContainer'} id="wrapper">
         <Channels />
@@ -36,12 +38,12 @@ class YoutubeApp extends Component {
           <div className="container-fluid">
             <div className="row">
               <VideoList 
-                channelVideos={ this.props.videos }
+                channelVideos={ videos.all }
                 onSelectVideo={ (position) => this.props.selectVideo(position) }
               />
               { 
-                this.props.videos.length > 0 ? 
-                  <CurrentVideo video={this.props.videos[this.props.video]} /> 
+                videos.all.length > 0 ? 
+                  <CurrentVideo video={videos.all[videos.current]} /> 
                 : 
                   ''
               }
@@ -57,8 +59,7 @@ function mapStateToProps(state) {
   return { 
     sidebar: state.sidebar,
     channels: state.channels,
-    videos: state.videos,
-    video: state.video
+    videos: state.videos
   };
 };
 
