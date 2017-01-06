@@ -8,7 +8,7 @@ import {
   ON_USERNAME_INPUT
 } from './actionTypes';
 
-export function channels(state = { all: [], current: 0 }, action) {
+export function channelsReducer(state = { all: [], current: 0 }, action) {
   switch (action.type) {
     case SET_CHANNELS:
       return { ...state, all: action.payload }
@@ -21,7 +21,7 @@ export function channels(state = { all: [], current: 0 }, action) {
   }
 };
 
-export const videos = (state = { all: [], current: 0 }, action) => {
+export function videosReducer(state = { all: [], current: 0 }, action) {
   switch(action.type) {
     case SET_VIDEOS:
       return { ...state, all: action.payload };
@@ -32,7 +32,7 @@ export const videos = (state = { all: [], current: 0 }, action) => {
   }
 };
 
-export const sidebar = (state = false, action) => {
+export function sidebarReducer(state = false, action) {
   switch (action.type) {
     case SET_SIDEBAR_TOGGLE:
       return action.payload;
@@ -41,7 +41,7 @@ export const sidebar = (state = false, action) => {
   }
 };
 
-export const usernameInput = (state = '', action) => {
+export function usernameInputReducer(state = '', action) {
   switch(action.type) {
     case ON_USERNAME_INPUT:
       return action.payload;
