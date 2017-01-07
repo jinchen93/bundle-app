@@ -5,7 +5,7 @@ import { bindActionCreators }       from 'redux';
 import Channels                     from './channels';
 import Hamburger                    from './hamburger';
 import Header                       from '../components/header';
-import VideoList                    from '../components/videoList';
+import VideoThumbnail               from '../components/videoThumbnail';
 import CurrentVideo                 from '../components/currentVideo';
 
 import { 
@@ -37,10 +37,19 @@ class YoutubeApp extends Component {
         <div id="page-content-wrapper">
           <div className="container-fluid">
             <div className="row">
-              <VideoList 
-                channelVideos={ videos.all }
-                onSelectVideo={ (position) => this.props.selectVideo(position) }
-              />
+              <div className="row">
+                <div className="col-md-1"></div>
+                { 
+                  videos.all.map( (video) => 
+                      <VideoThumbnail 
+                        video={video} 
+                        active={videos.current === video.position ? 'thumbnail-active' : ''}
+                        onSelectVideo={ (position) => this.props.selectVideo(position) }
+                        key={video.position}
+                      />
+                  )
+                }
+              </div>
               { 
                 videos.all.length > 0 ? 
                   <CurrentVideo video={videos.all[videos.current]} /> 

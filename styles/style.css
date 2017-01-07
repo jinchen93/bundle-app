@@ -23,13 +23,20 @@ html, body {
 }
 
 .thumbnail {
+  border: none;
+  opacity: 0.75;
   width: 100%;
   background: #0C2032;
-  border: 1px solid #617487;
 }
+
 
 .thumbnail:hover {
   cursor: pointer;
+}
+
+.thumbnail-active {
+  opacity: 1;
+  padding-top: 15px;
 }
 
 button:focus {
