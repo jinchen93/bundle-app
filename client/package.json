@@ -22,5 +22,6 @@
     "build": "react-scripts build",
     "test": "mocha",
     "eject": "react-scripts eject"
-  }
+  },
+  "proxy": "http://localhost:9000"
 }

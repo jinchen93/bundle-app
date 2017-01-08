@@ -10,6 +10,8 @@ import {
 import Request from 'superagent';
 import { PLAYLIST_URL, CHANNEL_URL } from './constants';
 
+
+// ========== SIDEBAR ACTIONS ==========
 export function toggleSidebar(status) {
   const newStatus = !status;
   return {
@@ -17,8 +19,23 @@ export function toggleSidebar(status) {
     payload: newStatus
   };
 };
+// ========== END SIDEBAR ACTIONS ==========
 
-export function fetchChannels(channels) {
+// ========== CHANNEL ACTIONS ==========
+export function fetchChannelsUsernames() {
+  return (dispatch) => {
+    Request.get('/api/channels').end( (error, response) => {
+      if (error) {
+        console.log('Error occured while fetching channels');
+      }
+      else {
+        dispatch(fetchChannelsProperties(response.body))
+      }
+    });
+  };
+};
+
+export function fetchChannelsProperties(channels) {
   return (dispatch) => {
     let newChannels = [];
     channels.forEach( (channel) => {
@@ -45,6 +62,13 @@ export function fetchChannels(channels) {
   };
 };
 
+export function setChannels(channels) {
+  return {
+    type: SET_CHANNELS,
+    payload: channels
+  };
+};
+
 export function fetchChannel(username) {
   return (dispatch) => {
     const url = CHANNEL_URL + username;
@@ -59,7 +83,9 @@ export function fetchChannel(username) {
           thumbnail: response.body.items[0].snippet.thumbnails.default.url,
           uploads: response.body.items[0].contentDetails.relatedPlaylists.uploads
         };
-        dispatch(addChannel(newChannel));
+        Request.post('/api/channels').send(newChannel).end( () => 
+          dispatch(addChannel(newChannel))
+        )
       };
     });
   };
@@ -72,13 +98,6 @@ export function addChannel(channel) {
   };
 };
 
-export function setChannels(channels) {
-  return {
-    type: SET_CHANNELS,
-    payload: channels
-  };
-};
-
 export function selectChannel(channel) {
   return {
     type: SELECT_CHANNEL,
@@ -86,6 +105,9 @@ export function selectChannel(channel) {
   };
 };
 
+// ========== END CHANNEL ACTIONS ==========
+
+// ========== VIDEO ACTIONS ==========
 export function selectVideo(video) {
   return {
     type: SELECT_VIDEO,
@@ -94,17 +116,22 @@ export function selectVideo(video) {
 };
 
 export function fetchVideos(channel) {
-  const url = PLAYLIST_URL + channel.uploads;
   return (dispatch) => {  
-    Request.get(url).end( (error, response) => {
-      if (error) {
-        console.log('Error occured while fetching videos');
-      }
-      else {
-        const videos = response.body.items.map( (video) => video.snippet );
-        dispatch(setVideos(videos));
-      };
-    });
+    if (channel !== undefined) {
+      const url = PLAYLIST_URL + channel.uploads;
+      Request.get(url).end( (error, response) => {
+        if (error) {
+          console.log('Error occured while fetching videos');
+        }
+        else {
+          const videos = response.body.items.map( (video) => video.snippet );
+          dispatch(setVideos(videos));
+        };
+      });
+    }
+    else {
+      dispatch(setVideos([]))
+    }
   };
 };
 
@@ -114,10 +141,13 @@ export function setVideos(videos) {
     payload: videos
   };
 };
+// ========== END VIDEO ACTIONS ==========
 
+// ========== FORM ACTIONS ==========
 export function onUsernameInput(event) {
   return {
     type: ON_USERNAME_INPUT,
     payload: event
   };
 };
+// ========== END FORM ACTIONS ==========
