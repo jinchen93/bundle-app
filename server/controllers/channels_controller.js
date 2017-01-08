@@ -16,5 +16,11 @@ module.exports = {
     Channel.create(channelProps)
       .then( (channel) => res.send(channel) )
       .catch(next);
+  },
+
+  deleteAll(req, res, next) {
+    Channel.remove({})
+      .then( (channels) => res.status(204).send(channels))
+      .catch(next);
   }
 };

@@ -7,7 +7,7 @@ const Channel = mongoose.model('channel');
 
 describe('Channels controller', () => {
 
-  it('Post to /api/channels creates a new channel', (done) => {
+  it('POST to /api/channels creates a new channel', (done) => {
     Channel.count().then( (count) => {
       request(app)
         .post('/api/channels')
@@ -21,16 +21,31 @@ describe('Channels controller', () => {
     });
   });
 
-  it('Get /api/channels shows all channels', (done) => {
+  it('GET to /api/channels shows all channels', (done) => {
     Channel.create({ username: 'caseyneistat' });
-    Channel.find({}).then( (channels) => {
-      request(app)
-        .get('/api/channels')
-        .end( (error, result) => {
-          assert(result.body[0].username === 'caseyneistat');
-          done();
-        });
-    });
+    request(app)
+      .get('/api/channels')
+      .end( (error, result) => {
+        assert(result.body[0].username === 'caseyneistat');
+        done();
+      });
+  });
+
+  it('DELETE to /api/channels deletes all channels', (done) => {
+    Channel.create({ username: 'caseyneistat' });
+    Channel.create({ username: 'gcmeanslove' });
+    request(app)
+      .delete('/api/channels')
+      .end( (error, result) => {
+        assert(!error);
+        assert(result.status === 204);
+        request(app)
+          .get('/api/chanenls')
+          .end( (error, result) => {
+            assert(result.body[0] === undefined)
+            done();
+          })
+      });
   });
 
 });
