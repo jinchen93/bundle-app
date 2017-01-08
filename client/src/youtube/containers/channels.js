@@ -7,7 +7,8 @@ import {
   fetchVideos, 
   selectVideo,
   fetchChannel,
-  onUsernameInput
+  onUsernameInput,
+  deleteAllChannels
 } from '../actions';
 
 class Channels extends Component {
@@ -58,12 +59,15 @@ class Channels extends Component {
                 <button className="btn btn-success">+</button>
               </span>
             </form>
-            <button 
+            <a 
+              href="#"
               className="btn btn-danger" 
               onClick={ () => {
-                localStorage.clear();
-                location.reload();
-              }}>Default Usernames</button>
+                this.props.deleteAllChannels();
+                document.getElementsByClassName('btn-danger').blur();
+              }}>
+              Clear Usernames
+            </a>
           </div>
         </ul>
       </div>
@@ -74,12 +78,19 @@ class Channels extends Component {
 function mapStateToProps(state) {
   return {
     channels: state.channels,
-    usernameInput: state.usernameInput
+    usernameInput: state.usernameInput,
   };
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectChannel, fetchVideos, selectVideo, fetchChannel, onUsernameInput }, dispatch);
+  return bindActionCreators({ 
+    fetchVideos, 
+    selectVideo, 
+    selectChannel, 
+    fetchChannel, 
+    onUsernameInput,
+    deleteAllChannels
+  }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Channels);

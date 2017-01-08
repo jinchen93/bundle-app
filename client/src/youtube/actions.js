@@ -29,35 +29,8 @@ export function fetchChannelsUsernames() {
         console.log('Error occured while fetching channels');
       }
       else {
-        dispatch(fetchChannelsProperties(response.body))
+        dispatch(setChannels(response.body))
       }
-    });
-  };
-};
-
-export function fetchChannelsProperties(channels) {
-  return (dispatch) => {
-    let newChannels = [];
-    channels.forEach( (channel) => {
-      const url = CHANNEL_URL + channel.username;
-      Request.get(url).end( (error, response) => {
-        if (error) {
-          console.log(`Error occured while fetching channel ${channel.username}`);
-        }
-        else {
-          newChannels = [ ...newChannels, 
-            {
-              username: channel.username,
-              name: response.body.items[0].snippet.title,
-              thumbnail: response.body.items[0].snippet.thumbnails.default.url,
-              uploads: response.body.items[0].contentDetails.relatedPlaylists.uploads
-            }
-          ];
-          if ( newChannels.length === channels.length ) {
-            dispatch(setChannels(newChannels));
-          }
-        };
-      });
     });
   };
 };
@@ -102,6 +75,14 @@ export function selectChannel(channel) {
   return {
     type: SELECT_CHANNEL,
     payload: channel
+  };
+};
+
+export function deleteAllChannels() {
+  return (dispatch) => {
+    Request.delete('/api/channels').end( (error, response) => {
+      dispatch(setChannels([]))
+    });
   };
 };
 

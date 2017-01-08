@@ -1,13 +1,10 @@
 import { connect }                  from 'react-redux';
 import React, { Component }         from 'react';
-import { bindActionCreators }       from 'redux';
 
 import Channels                     from './channels';
 import Hamburger                    from './hamburger';
 import Videos                       from './videos';
 import Header                       from '../components/header';
-
-import { fetchChannelsUsernames } from '../actions'
 
 class YoutubeApp extends Component {
   render() {
@@ -52,8 +49,4 @@ function mapStateToProps(state) {
   };
 };
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchChannelsUsernames }, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(YoutubeApp);
+export default connect(mapStateToProps)(YoutubeApp);

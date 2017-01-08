@@ -273,3 +273,11 @@ form {
     width: 84%;
     margin: 0 8%;
 }
+
+.btn-danger:focus {
+  background: #d9534f;
+}
+
+.btn-success:focus {
+  background: #5cb85c;
+}
