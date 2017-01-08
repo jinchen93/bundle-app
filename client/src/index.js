@@ -59,9 +59,3 @@ makeChannelArray.then( channelArray => {
     document.querySelector('.root')
   )
 })
-
-
-
-
-
-
