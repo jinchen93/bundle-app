@@ -281,3 +281,10 @@ form {
 .btn-success:focus {
   background: #5cb85c;
 }
+
+.channel-delete-x {
+    display: inline-block;
+    background: purple;
+    float: right;
+    height: 0;
+}

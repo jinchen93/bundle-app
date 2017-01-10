@@ -8,7 +8,8 @@ import {
   selectVideo,
   fetchChannel,
   onUsernameInput,
-  deleteAllChannels
+  deleteAllChannels,
+  deleteChannel
 } from '../actions';
 
 class Channels extends Component {
@@ -28,12 +29,16 @@ class Channels extends Component {
             {
               channels.all.map( (channel) => 
                 <Channel 
-                  key={channel.username}
+                  key={channel._id.toString()}
                   position={channels.all.map( channel => channel.username ).indexOf(channel.username)} 
                   name={channel.name}
-                  handleClick={ (position) => {
+                  handleSelectClick={ (position) => {
                     this.props.selectChannel(position);
                     this.props.fetchVideos(channels.all[position]);
+                    this.props.selectVideo(0);
+                  }}
+                  handleDeleteClick={ (id) => {
+                    this.props.deleteChannel(id);
                     this.props.selectVideo(0);
                   }}
                   status={channels.all[channels.current].name === channel.name ? "activeChannel" : "inactiveChannel"}
@@ -89,7 +94,8 @@ function mapDispatchToProps(dispatch) {
     selectChannel, 
     fetchChannel, 
     onUsernameInput,
-    deleteAllChannels
+    deleteAllChannels,
+    deleteChannel
   }, dispatch);
 };
 

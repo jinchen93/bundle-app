@@ -1,6 +1,5 @@
 export const SET_SIDEBAR_TOGGLE = 'SET_SIDEBAR_TOGGLE';
 export const SET_CHANNELS = 'SET_CHANNELS';
-export const ADD_CHANNEL = 'ADD_CHANNEL';
 export const SELECT_CHANNEL = 'SELECT_CHANNEL';
 export const SET_VIDEOS = 'SET_VIDEOS';
 export const SELECT_VIDEO = 'SELECT_VIDEO';

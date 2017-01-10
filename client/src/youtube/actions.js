@@ -4,7 +4,6 @@ import {
   SELECT_CHANNEL,
   SELECT_VIDEO,
   SET_VIDEOS,
-  ADD_CHANNEL,
   ON_USERNAME_INPUT
 } from './actionTypes';
 import Request from 'superagent';
@@ -57,17 +56,10 @@ export function fetchChannel(username) {
           uploads: response.body.items[0].contentDetails.relatedPlaylists.uploads
         };
         Request.post('/api/channels').send(newChannel).end( () => 
-          dispatch(addChannel(newChannel))
+          dispatch(fetchChannelsUsernames())
         )
       };
     });
-  };
-};
-
-export function addChannel(channel) {
-  return {
-    type: ADD_CHANNEL,
-    payload: channel
   };
 };
 
@@ -80,12 +72,19 @@ export function selectChannel(channel) {
 
 export function deleteAllChannels() {
   return (dispatch) => {
-    Request.delete('/api/channels').end( (error, response) => {
-      dispatch(setChannels([]))
+    Request.delete('/api/channels').end( () => {
+      dispatch(fetchChannelsUsernames());
     });
   };
 };
 
+export function deleteChannel(id) {
+  return(dispatch) => {
+    Request.delete(`/api/channels/${id}`).end( () => {
+      dispatch(fetchChannelsUsernames());
+    })
+  };
+};
 // ========== END CHANNEL ACTIONS ==========
 
 // ========== VIDEO ACTIONS ==========

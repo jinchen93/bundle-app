@@ -1,10 +1,6 @@
 const Channel = require('../models/channel');
 
 module.exports = {
-  greeting(req, res) {
-    res.send({ hi: "there" });
-  },
-
   show(req, res) {
     Channel.find({}).then( (channels) => {
       res.send(channels);
