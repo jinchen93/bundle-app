@@ -22,5 +22,12 @@ module.exports = {
     Channel.remove({})
       .then( (channels) => res.status(204).send(channels))
       .catch(next);
+  },
+  
+  delete(req, res, next) {
+    const channelId = req.params.id;
+    Channel.findByIdAndRemove({ _id: channelId })
+      .then( channel => res.status(204).send(channel) )
+      .catch(next);
   }
 };

@@ -22,30 +22,45 @@ describe('Channels controller', () => {
   });
 
   it('GET to /api/channels shows all channels', (done) => {
-    Channel.create({ username: 'caseyneistat' });
-    request(app)
-      .get('/api/channels')
-      .end( (error, result) => {
-        assert(result.body[0].username === 'caseyneistat');
-        done();
-      });
+    const channel = new Channel({ username: 'caseyneistat' });
+    channel.save().then( () => {
+      request(app)
+        .get('/api/channels')
+        .end( (error, result) => {
+          assert(result.body[0].username === 'caseyneistat');
+          done();
+        });
+    });
   });
 
   it('DELETE to /api/channels deletes all channels', (done) => {
-    Channel.create({ username: 'caseyneistat' });
-    Channel.create({ username: 'gcmeanslove' });
-    request(app)
-      .delete('/api/channels')
-      .end( (error, result) => {
-        assert(!error);
-        assert(result.status === 204);
-        request(app)
-          .get('/api/chanenls')
-          .end( (error, result) => {
-            assert(result.body[0] === undefined)
-            done();
-          })
-      });
+    const channel = new Channel({ username: 'caseyneistat' });
+    channel.save().then( () => {
+      request(app)
+        .delete('/api/channels')
+        .end( () => {
+          Channel.findOne({ username: 'caseyneistat' })
+            .then( (channel) => {
+              assert(channel === null);
+              done();
+            })
+        })
+    });
   });
 
+  it('DELETE to /api/channels/:id deletes the channel', (done) => {
+    const channel = new Channel({ username: 'caseyneistat' });
+    channel.save().then( () => {
+      const id = channel._id.toString();
+      request(app)
+        .delete(`/api/channels/${id}`)
+        .end( () => {
+          Channel.findOne({ username: 'caseyneistat' })
+            .then( channel => {
+              assert(channel === null);
+              done();
+            });
+        });
+    });
+  });
 });
