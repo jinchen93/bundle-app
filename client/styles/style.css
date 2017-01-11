@@ -120,6 +120,10 @@ body {
     font-size: 18px;
 }
 
+.sidebar-nav li a:hover {
+    
+}
+
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
@@ -282,9 +286,16 @@ form {
   background: #5cb85c;
 }
 
-.channel-delete-x {
+#channel-delete-x {
+    display: none;
+}
+
+.sidebar-nav li a:hover #channel-delete-x {
     display: inline-block;
-    background: purple;
+    margin-right: 5px;
     float: right;
-    height: 0;
+}
+
+.sidebar-nav li .channel-name a:hover {
+    color: red !important;
 }
