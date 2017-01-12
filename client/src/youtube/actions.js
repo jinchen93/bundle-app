@@ -81,8 +81,9 @@ export function deleteAllChannels() {
 export function deleteChannel(id) {
   return(dispatch) => {
     Request.delete(`/api/channels/${id}`).end( () => {
+      console.log("HI")
       dispatch(fetchChannelsUsernames());
-    })
+    });
   };
 };
 // ========== END CHANNEL ACTIONS ==========

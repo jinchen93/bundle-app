@@ -30,14 +30,16 @@ class Channels extends Component {
               channels.all.map( (channel) => 
                 <Channel 
                   key={channel._id.toString()}
+                  id={channel._id.toString()}
                   position={channels.all.map( channel => channel.username ).indexOf(channel.username)} 
                   name={channel.name}
-                  handleSelectClick={ (position) => {
+                  current={channels.current}
+                  onSelectClick={ (position) => {
                     this.props.selectChannel(position);
                     this.props.fetchVideos(channels.all[position]);
                     this.props.selectVideo(0);
                   }}
-                  handleDeleteClick={ (id) => {
+                  onDeleteClick={ (id) => {
                     this.props.deleteChannel(id);
                     this.props.selectVideo(0);
                   }}

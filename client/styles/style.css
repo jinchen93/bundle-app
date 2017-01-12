@@ -288,14 +288,14 @@ form {
 
 #channel-delete-x {
     display: none;
+    margin-right: 10px;
+    float: right;
 }
 
 .sidebar-nav li a:hover #channel-delete-x {
     display: inline-block;
-    margin-right: 5px;
-    float: right;
 }
 
-.sidebar-nav li .channel-name a:hover {
+.sidebar-nav li #channel-delete-x:hover {
     color: red !important;
 }
