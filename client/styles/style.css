@@ -15,47 +15,12 @@ html, body {
   background: #0C2032;
   color: #ecf0f1;
   text-rendering: optimizeLegibility;
-}
-
-.thumbnail img {
-  height: 100%;
-  width: 100%;
-}
-
-.thumbnail {
-  border: none;
-  opacity: 0.75;
-  width: 100%;
-  background: #0C2032;
-}
-
-
-.thumbnail:hover {
-  cursor: pointer;
-}
-
-.thumbnail-active {
-  opacity: 1;
-  padding-top: 15px;
+  overflow-x: hidden;
 }
 
 button:focus {
   outline: 0 !important;
 }
-
-.videoTitle {
-  text-align: center;
-}
-
-.videoDescription {
-  padding: 0 2%;
-}
-
-
-
-body {
-    overflow-x: hidden;
- }
 
 /* Toggle Styles */
 

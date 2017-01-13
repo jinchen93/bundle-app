@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import '../styles/currentVideo.css';
 
 export default (props) => {
   const url = `https://www.youtube.com/embed/${props.video.resourceId.videoId}`;
