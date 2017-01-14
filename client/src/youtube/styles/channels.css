@@ -1,0 +1,88 @@
+.sidebar__wrapper__nav {
+    position: absolute;
+    top: 0;
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar__wrapper__nav li {
+    text-indent: 20px;
+    line-height: 40px;
+    padding-left: 10px;
+    font-size: 18px;
+}
+
+.sidebar__wrapper__nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar__wrapper__nav li a:hover {
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+}
+
+.sidebar__wrapper__nav li a:active,
+.sidebar__wrapper__nav li a:focus {
+    text-decoration: none;
+}
+
+#sidebar__wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 200px;
+    width: 200px;
+    height: 100%;
+    margin-left: -200px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.1s ease;
+    -moz-transition: all 0.1s ease;
+    -o-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+}
+
+
+
+.sidebar__wrapper__nav li a:hover #channel-delete-x {
+    display: inline-block;
+}
+
+.sidebar__wrapper__nav li #channel-delete-x:hover {
+    color: red !important;
+}
+
+
+.channelName {
+  padding-left: 50px;
+  padding-top: 5px;
+  font-weight: 400;
+}
+
+form {
+    width: 84%;
+    margin: 5% 8%;
+}
+
+.btn-danger {
+    width: 84%;
+    margin: 0 8%;
+}
+
+.btn-danger:focus {
+  background: #d9534f;
+}
+
+.btn-success:focus {
+  background: #5cb85c;
+}
+
+#channel-delete-x {
+    display: none;
+    margin-right: 10px;
+    float: right;
+}

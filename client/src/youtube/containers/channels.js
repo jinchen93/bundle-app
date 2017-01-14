@@ -12,34 +12,33 @@ import {
   deleteChannel
 } from '../actions';
 
+import '../styles/channels.css';
+
 class Channels extends Component {
   render() {
     const channels = this.props.channels;
     return(
-      <div id="sidebar-wrapper">
-        <ul className="sidebar-nav">
+      <div id="sidebar__wrapper">
+        <ul className="sidebar__wrapper__nav">
           <div className="channel-list">
             <div className="list-header">
-              <a href="https://youtube.com" target="_blank">
-                <img src="https://www.youtube.com/yt/brand/media/image/YouTube-icon-full_color.png" alt="Youtube Logo" />
-              </a>
+              <img src="https://www.youtube.com/yt/brand/media/image/YouTube-icon-full_color.png" alt="Youtube Logo" />
               <hr />
             </div>
-
             {
-              channels.all.map( (channel) => 
+              channels.all.map( channel => 
                 <Channel 
                   key={channel._id.toString()}
                   id={channel._id.toString()}
                   position={channels.all.map( channel => channel.username ).indexOf(channel.username)} 
                   name={channel.name}
                   current={channels.current}
-                  onSelectClick={ (position) => {
+                  onSelectClick={ position => {
                     this.props.selectChannel(position);
                     this.props.fetchVideos(channels.all[position]);
                     this.props.selectVideo(0);
                   }}
-                  onDeleteClick={ (id) => {
+                  onDeleteClick={ id => {
                     this.props.deleteChannel(id);
                     this.props.selectVideo(0);
                   }}
@@ -50,8 +49,8 @@ class Channels extends Component {
             }
 
             <form 
-              onSubmit={ (e) => {
-                e.preventDefault();
+              onSubmit={ event => {
+                event.preventDefault();
                 this.props.fetchChannel(this.props.usernameInput);
                 this.props.onUsernameInput('');
               }}
@@ -60,7 +59,7 @@ class Channels extends Component {
                 className="form-control" 
                 placeholder="Add username" 
                 value={this.props.usernameInput}
-                onChange={ e => this.props.onUsernameInput(e.target.value)}
+                onChange={ event => this.props.onUsernameInput(event.target.value)}
               />
               <span className="input-group-btn">
                 <button className="btn btn-success">+</button>
