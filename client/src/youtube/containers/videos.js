@@ -17,21 +17,31 @@ class Videos extends Component {
   render() {
     const videos = this.props.videos;
     return (
-      <Grid className="content-wrapper">
+      <Grid
+        className={
+          this.props.sidebarHidden === true
+            ? "content-wrapper content-wrapper--expanded"
+            : "content-wrapper"
+        }
+      >
         <Grid fluid={true}>
           <div className="row">
             <div className="row">
               <div className="col-sm-1"></div>
               {
                 videos.all.map(
-                  video =>
-                    <VideoThumbnail video={video} active={
-                      videos.current === video.position
-                        ? "video-thumbnail--selected"
-                        : "video-thumbnail"
-                    } onSelectVideo={position => this.props.selectVideo(position)} key={
-                      video.position
-                    } />
+                  video => (
+                    <VideoThumbnail
+                      video={video}
+                      active={
+                        videos.current === video.position
+                          ? "video-thumbnail--selected"
+                          : "video-thumbnail"
+                      }
+                      onSelectVideo={position => this.props.selectVideo(position)}
+                      key={video.position}
+                    />
+                  )
                 )
               }
             </div>
@@ -44,7 +54,7 @@ class Videos extends Component {
 }
 
 function mapStateToProps(state) {
-  return { videos: state.videos };
+  return { videos: state.videos, sidebarHidden: state.sidebarHidden };
 }
 
 function mapDispatchToProps(dispatch) {

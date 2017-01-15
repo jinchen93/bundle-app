@@ -5,3 +5,15 @@
   height: auto;
   padding: 10px 20px;
 }
+
+.content-wrapper--expanded {
+  left: 0;
+  width: 100%;
+}
+
+@media screen and (max-width: 750px) {
+  .content-wrapper {
+    left: 0;
+    width: 100%;
+  }
+}

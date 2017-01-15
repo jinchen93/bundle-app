@@ -1,4 +1,5 @@
 .sidebar__wrapper {
+  display: block;
   position: fixed;
   bottom: 0;
   top: 50px;
@@ -42,4 +43,15 @@
   font-size: 1.5em;
   text-align: center;
   margin: 0px -7.5px 5px -7.5px;
+}
+
+.sidebar__wrapper--hidden {
+  display: none !important;
+}
+
+@media screen and (max-width: 750px) {
+  .sidebar__wrapper {
+    display: block;
+    z-index: 1;
+  }
 }

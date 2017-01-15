@@ -1,15 +1,11 @@
-import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
+import { combineReducers } from "redux";
+import { reducer as formReducer } from "redux-form";
 
-import { 
-  sidebarReducer,
-  videosReducer,
-  usernameInputReducer,
-  channelsReducer
-} from './youtube/reducers';
+import { videosReducer, usernameInputReducer, channelsReducer } from "./youtube/reducers";
+import { sidebarReducer } from "./reducers";
 
 export const rootReducer = combineReducers({
-  sidebar: sidebarReducer,
+  sidebarHidden: sidebarReducer,
   videos: videosReducer,
   usernameInput: usernameInputReducer,
   channels: channelsReducer,

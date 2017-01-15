@@ -5,3 +5,7 @@ html, body {
   background: #E8F4FA;
   text-rendering: optimizeLegibility;
 }
+
+.appbar .container {
+  width: 100%;
+}

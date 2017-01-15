@@ -1,28 +1,27 @@
-import { 
+import {
   SET_CHANNELS,
   SELECT_CHANNEL,
   ADD_CHANNEL,
   SET_VIDEOS,
   SELECT_VIDEO,
-  SET_SIDEBAR_TOGGLE,
   ON_USERNAME_INPUT
-} from './actionTypes';
+} from "./actionTypes";
 
 export function channelsReducer(state = { all: [], current: 0 }, action) {
   switch (action.type) {
     case SET_CHANNELS:
-      return { ...state, all: action.payload }
+      return { ...state, all: action.payload };
     case SELECT_CHANNEL:
-      return { ...state, current: action.payload }
+      return { ...state, current: action.payload };
     case ADD_CHANNEL:
-      return { ...state, all: [...state.all, action.payload] }
+      return { ...state, all: [ ...state.all, action.payload ] };
     default:
       return state;
   }
-};
+}
 
 export function videosReducer(state = { all: [], current: 0 }, action) {
-  switch(action.type) {
+  switch (action.type) {
     case SET_VIDEOS:
       return { ...state, all: action.payload };
     case SELECT_VIDEO:
@@ -30,22 +29,13 @@ export function videosReducer(state = { all: [], current: 0 }, action) {
     default:
       return state;
   }
-};
+}
 
-export function sidebarReducer(state = false, action) {
+export function usernameInputReducer(state = "", action) {
   switch (action.type) {
-    case SET_SIDEBAR_TOGGLE:
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-export function usernameInputReducer(state = '', action) {
-  switch(action.type) {
     case ON_USERNAME_INPUT:
       return action.payload;
     default:
       return state;
   }
-};
+}
