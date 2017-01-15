@@ -17,3 +17,13 @@ $ cd server
 $ npm install
 $ node app.js
 ```
+
+### Changelog
+#### Version 1.1
+
+- New bootstrap layout following Google's Material Design
+- Revamped delete channel behavior
+- Add App bar
+
+#### Version 1.0
+- Fully integrated app with MongoDB
