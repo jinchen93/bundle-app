@@ -1,21 +1,21 @@
-.thumbnail img {
-  height: 100%;
+.video-thumbnail,
+.video-thumbnail--selected {
+  margin-top: 10px;
   width: 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
-.thumbnail {
-  border: none;
-  opacity: 0.75;
-  width: 100%;
-  background: #0C2032;
-}
-
-
-.thumbnail:hover {
+.video-thumbnail:hover,
+.video-thumbnail--selected:hover {
   cursor: pointer;
 }
 
-.thumbnail-active {
+.video-thumbnail {
+  opacity: 0.75;
+}
+
+.video-thumbnail--selected {
   opacity: 1;
-  padding-top: 15px;
+  outline: 1px solid #ecf0f1;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.4);
 }

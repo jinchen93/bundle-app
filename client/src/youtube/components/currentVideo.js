@@ -1,30 +1,27 @@
-import React from 'react';
-import moment from 'moment';
-import '../styles/currentVideo.css';
+import React from "react";
+import moment from "moment";
+import "../styles/currentVideo.css";
+import { Col, Grid, Row, ResponsiveEmbed } from "react-bootstrap";
 
-export default (props) => {
+export default props => {
   const url = `https://www.youtube.com/embed/${props.video.resourceId.videoId}`;
-  const date = moment(props.video.publishedAt).format('ddd, MMMM Do YYYY, h:mm A');
+  const date = moment(props.video.publishedAt).format("ddd, MMMM Do YYYY, h:mm A");
 
-  return(
-    <div className="row videoContainer">
-      <div className="col-md-offset-2 col-md-8 videoPlayerRow">
-        <div className="embed-responsive embed-responsive-16by9">
+  return (
+    <Grid fluid={true}>
+      <Row className="video-container">
+        <ResponsiveEmbed a16by9 className="video-container__embedd">
           <iframe src={url} className="embed-responsive-item" allowFullScreen></iframe>
-        </div>
-      </div>
-      <div className="row videoDescription">
-        <div className="col-md-8 col-md-offset-2">
-          <div className="videoTitle">
-            <h2>{props.video.title}</h2>
-          </div>
-          <div>
-            Posted on: {date}
-            <hr />
-            <p>{props.video.description}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+        </ResponsiveEmbed>
+      </Row>
+      <Row>
+        <h2>{props.video.title}</h2>
+      </Row>
+      <Row>
+        Posted on:{date}
+        <hr />
+        <p>{props.video.description}</p>
+      </Row>
+    </Grid>
   );
-};
+}
