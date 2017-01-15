@@ -9,10 +9,14 @@ export default props => {
 
   return (
     <Grid fluid={true}>
-      <Row className="video-container">
-        <ResponsiveEmbed a16by9 className="video-container__embedd">
-          <iframe src={url} className="embed-responsive-item" allowFullScreen></iframe>
-        </ResponsiveEmbed>
+      <Row>
+        <Col smOffset={1} sm={10}>
+          <div className="video-container">
+            <ResponsiveEmbed a16by9 className="video-container__embedd">
+              <iframe src={url} className="embed-responsive-item" allowFullScreen></iframe>
+            </ResponsiveEmbed>
+          </div>
+        </Col>
       </Row>
       <Row>
         <h2>{props.video.title}</h2>

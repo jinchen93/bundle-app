@@ -2,22 +2,23 @@
   position: fixed;
   bottom: 0;
   top: 50px;
-  width: 200px;
-  background: #e3e3e3;
+  width: 250px;
+  background: #849FBB;
+  padding: 0 7.5px;
   overflow: hidden;
 }
 
 .sidebar__wrapper:hover {
-  overflow: auto;
+  overflow-y: auto;
 }
 
 .sidebar__wrapper::-webkit-scrollbar {
-    width: 5px;
+  width: 5px;
 }
  
 .sidebar__wrapper::-webkit-scrollbar-thumb {
-  background-color: #808080;
-  outline: 1px solid slategrey;
+  background-color: #595959;
+  outline: 1px solid black;
 }
 
 
@@ -28,4 +29,14 @@
 
 .sidebar__wrapper__input:focus {
   background: #f7f7f7;
+}
+
+.sidebar__wrapper button:last-of-type {
+  margin-bottom: 20px;
+}
+
+.sidebar__wrapper__header {
+  font-size: 1.5em;
+  text-align: center;
+  margin: 0 -7.5px 5px -7.5px;
 }

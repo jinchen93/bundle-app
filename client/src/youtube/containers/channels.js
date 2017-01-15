@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Channel from "../components/channel";
 import { selectChannel, fetchVideos, selectVideo, fetchChannel, onUsernameInput, deleteAllChannels, deleteChannel } from "../actions";
-import { ListGroup, FormGroup, FormControl, Button } from "react-bootstrap";
+import { Well, ListGroup, FormGroup, FormControl, Button } from "react-bootstrap";
 
 import "../styles/channels.css";
 
@@ -12,6 +12,9 @@ class Channels extends Component {
     const channels = this.props.channels;
     return (
       <div className="sidebar__wrapper">
+        <Well className="sidebar__wrapper__header">
+          CHANNELS
+        </Well>
         <ListGroup>
           {channels.all.map(
               channel =>
@@ -44,13 +47,13 @@ class Channels extends Component {
           } bsStyle="success" type="submit" className="sidebar__wrapper__input__add">
             +
           </Button>
+          <Button block={true} bsStyle="danger" onClick={() => {
+              this.props.deleteAllChannels();
+              document.getElementsByClassName("btn-danger").blur();
+            }}>
+            Clear Usernames
+          </Button>
         </form>
-        <Button block={true} bsStyle="danger" onClick={() => {
-            this.props.deleteAllChannels();
-            document.getElementsByClassName("btn-danger").blur();
-          }}>
-          Clear Usernames
-        </Button>
       </div>
     );
   }
