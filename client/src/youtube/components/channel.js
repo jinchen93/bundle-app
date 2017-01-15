@@ -7,16 +7,17 @@ export default props => {
     props.onSelectClick(position);
   };
 
-  const handleDeleteClick = id => {
-    props.onDeleteClick(id);
+  const handleDeleteClick = (id, position) => {
+    props.onDeleteClick(id, position);
   };
 
   return (
-    <ListGroupItem id={props.status} href="#" className={props.status} onClick={
-      () => handleSelectClick(props.position)
-    }>
-      <img id={props.status} src={props.image} alt={props.name} />
-      <span>{props.name}</span>
-    </ListGroupItem>
+    <div className={props.status}>
+      <ListGroupItem href="#" onClick={() => handleSelectClick(props.position)}>
+        <img id={props.status} src={props.image} alt={props.name} />
+        <span>{props.name}</span>
+      </ListGroupItem>
+      <i className="fa fa-times" onClick={() => handleDeleteClick(props.id, props.position)}></i>
+    </div>
   );
 }

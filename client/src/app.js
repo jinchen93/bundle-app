@@ -1,6 +1,6 @@
 import React from "react";
 import YoutubeApp from "./youtube/containers/app";
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from "react-bootstrap";
+import { Navbar, Nav, NavItem } from "react-bootstrap";
 
 export default () => {
   const navbar = <Navbar fixedTop={true}>
@@ -11,15 +11,10 @@ export default () => {
       <NavItem eventKey={1}>
         Youtube
       </NavItem>
-      <NavItem eventKey={2}>
-        Reddit
-      </NavItem>
-      <Navbar.Toggle />
     </Nav>
+    <Navbar.Toggle />
     <Navbar.Collapse>
       <Nav pullRight={true}>
-        <NavItem eventKey={3} href="#">Login</NavItem>
-        <NavItem eventKey={4} href="#">Signup</NavItem>
       </Nav>
     </Navbar.Collapse>
   </Navbar>;

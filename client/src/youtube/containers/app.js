@@ -4,7 +4,6 @@ import React, { Component } from "react";
 import Channels from "./channels";
 import Videos from "./videos";
 import "../styles/app.css";
-import { Clearfix } from "react-bootstrap";
 
 class YoutubeApp extends Component {
   render() {

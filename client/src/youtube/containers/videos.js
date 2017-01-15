@@ -6,7 +6,7 @@ import VideoThumbnail from "../components/videoThumbnail";
 import CurrentVideo from "../components/currentVideo";
 import { fetchVideos, selectVideo } from "../actions";
 import "../styles/videos.css";
-import { Grid, Row, Col } from "react-bootstrap";
+import { Grid } from "react-bootstrap";
 
 class Videos extends Component {
   constructor(props) {

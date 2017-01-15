@@ -25,6 +25,7 @@
 .sidebar__wrapper__input {
   background: #f0f0f0;
   height: 40px;
+  padding: 10px;
 }
 
 .sidebar__wrapper__input:focus {
@@ -36,7 +37,9 @@
 }
 
 .sidebar__wrapper__header {
+  background: white;
+  padding: 5px 0px;
   font-size: 1.5em;
   text-align: center;
-  margin: 0 -7.5px 5px -7.5px;
+  margin: 0px -7.5px 5px -7.5px;
 }
