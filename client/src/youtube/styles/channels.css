@@ -49,7 +49,7 @@
   display: none !important;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 767px) {
   .sidebar__wrapper {
     display: block;
     z-index: 1;

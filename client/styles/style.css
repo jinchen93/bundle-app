@@ -6,6 +6,47 @@ html, body {
   text-rendering: optimizeLegibility;
 }
 
-.appbar .container {
-  width: 100%;
+.navbar-brand {
+  padding: 0;
+  height: 50px;
+  width: 250px;
+}
+
+.navbar-header {
+  float: left !important;
+}
+
+.navbar-brand a {
+  height: 100%;
+  display: inline-block;
+}
+
+.nav-brand-logo {
+  display: inline-block;
+  height: 100%;
+  margin-left: 5px;
+  padding: 5px 0 5px 0;
+}
+
+.nav-brand-text {
+  font-size: 40px;
+  position: relative;
+  top: 10px;
+  left: 15px;
+}
+
+@media screen and (max-width: 767px) {
+  .navbar-brand {
+    width: auto;
+  }
+
+  .nav-brand-logo {
+    margin-top: 5px;
+    margin-right: 25px;
+    display: block;
+  }
+
+  .nav-brand-text {
+    display: none;
+  }
 }
