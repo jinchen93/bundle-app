@@ -1,5 +1,6 @@
 .content-wrapper {
   position: absolute;
+  top: 50px;
   left: 250px;
   width: calc(100% - 250px);
   height: auto;

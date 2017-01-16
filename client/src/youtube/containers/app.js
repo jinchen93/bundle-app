@@ -3,7 +3,6 @@ import React, { Component } from "react";
 
 import Channels from "./channels";
 import Videos from "./videos";
-import "../styles/app.css";
 
 class YoutubeApp extends Component {
   render() {
