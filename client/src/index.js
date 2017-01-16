@@ -10,11 +10,13 @@ import "./styles/style.css";
 import routes from "./routes";
 import { rootReducer } from "./rootReducer";
 import { fetchChannelsUsernames } from "./youtube/actions";
+import { fetchSubreddit } from "./reddit/actions";
 
 const middleware = [ ReduxThunk ];
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middleware)));
 
 store.dispatch(fetchChannelsUsernames());
+store.dispatch(fetchSubreddit("javascript"));
 
 ReactDOM.render(
   (
