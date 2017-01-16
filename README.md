@@ -19,8 +19,11 @@ $ node app.js
 ```
 
 ### Changelog
-#### Version 1.1
+#### Version 1.2
+- Add React Router
+- Add branding
 
+#### Version 1.1
 - New bootstrap layout following Google's Material Design
 - Revamped delete channel behavior
 - Add App bar
