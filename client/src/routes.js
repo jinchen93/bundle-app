@@ -4,10 +4,12 @@ import React from "react";
 import App from "./components/app";
 import Main from "./components/main";
 import YoutubeApp from "./youtube/containers/app";
+import RedditApp from "./reddit/containers/app";
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Main} />
     <Route path="/youtube" component={YoutubeApp} />
+    <Route path="/reddit" component={RedditApp} />
   </Route>
 )

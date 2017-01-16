@@ -36,6 +36,11 @@ class AppNavBar extends Component {
               Youtube
             </Link>
           </li>
+          <li role="presentation" className={this.props.path === "/reddit" ? "active" : ""}>
+            <Link to="/reddit">
+              Reddit
+            </Link>
+          </li>
         </ul>
       </Navbar>
     );
