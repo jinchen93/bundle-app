@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import { ListGroup } from "react-bootstrap";
+import { fetchSubreddit } from "../actions";
 import "../styles/subreddits.css";
 
 class Subreddits extends Component {
@@ -16,6 +18,8 @@ class Subreddits extends Component {
         <div className="sidebar__wrapper__header">
           <h2>SUBREDDITS</h2>
         </div>
+        <ListGroup>
+        </ListGroup>
       </div>
     );
   }
