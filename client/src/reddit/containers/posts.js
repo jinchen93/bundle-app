@@ -29,7 +29,9 @@ class Posts extends Component {
                 <Row key={post.title}>
                   <Col xsOffset={1} xs={10}>
                     <Well>
-                      {post.title}
+                      <h4>{post.title}</h4>
+                      <a href={post.url}>{post.url}</a>
+                      <h6>{post.selftext}</h6>
                     </Well>
                   </Col>
                 </Row>
