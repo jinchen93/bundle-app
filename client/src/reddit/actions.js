@@ -1,9 +1,15 @@
 import Request from "superagent";
-import { SET_SUBREDDIT_POSTS, SET_SUBREDDITS } from "./actionTypes";
+import {
+  SET_SUBREDDIT_POSTS,
+  SET_SUBREDDITS,
+  ON_SUBREDDIT_INPUT,
+  SELECT_SUBREDDIT
+} from "./actionTypes";
 
 export function addSubreddit(subreddit) {
   return dispatch => {
-    Request.post("/api/subreddits").send(subreddit).end(() => dispatch(fetchSubreddits));
+    const newSubreddit = { subreddit: subreddit };
+    Request.post("/api/subreddits").send(newSubreddit).end(() => dispatch(fetchSubreddits()));
   };
 }
 
@@ -21,6 +27,34 @@ export function fetchSubreddits() {
 
 export function setSubreddits(subreddits) {
   return { type: SET_SUBREDDITS, payload: subreddits };
+}
+
+export function deleteAllSubreddits() {
+  return dispatch => {
+    Request.delete("/api/subreddits").end((error, response) => {
+      if (error) {
+        console.log("An error occured while deleting all subreddits from database");
+      } else {
+        dispatch(fetchSubreddits());
+      }
+    });
+  };
+}
+
+export function deleteSubreddit(id) {
+  return dispatch => {
+    Request.delete(`/api/subreddits/${id}`).end((error, response) => {
+      if (error) {
+        console.log("An error occured while trying to delete subreddit from database");
+      } else {
+        dispatch(fetchSubreddits());
+      }
+    });
+  };
+}
+
+export function selectSubreddit(position) {
+  return { type: SELECT_SUBREDDIT, payload: position };
 }
 
 // --------- SUBREDDIT POSTS --------- //
@@ -45,4 +79,8 @@ export function fetchSubredditPosts(subreddit) {
 
 export function setSubredditPosts(data) {
   return { type: SET_SUBREDDIT_POSTS, payload: data };
+}
+
+export function onSubredditInput(event) {
+  return { type: ON_SUBREDDIT_INPUT, payload: event };
 }

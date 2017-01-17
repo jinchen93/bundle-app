@@ -1,4 +1,20 @@
-import { SET_SUBREDDIT_POSTS, SET_SUBREDDITS } from "./actionTypes";
+import {
+  SET_SUBREDDIT_POSTS,
+  SET_SUBREDDITS,
+  ON_SUBREDDIT_INPUT,
+  SELECT_SUBREDDIT
+} from "./actionTypes";
+
+export function subredditsReducer(state = { all: [ "" ], current: 0 }, action) {
+  switch (action.type) {
+    case SET_SUBREDDITS:
+      return { ...state, all: action.payload };
+    case SELECT_SUBREDDIT:
+      return { ...state, current: action.payload };
+    default:
+      return state;
+  }
+}
 
 export function subredditPostsReducer(
   state = [ { permalink: "", selftext: "", title: "", url: "", mediaEmbed: "" } ],
@@ -12,9 +28,9 @@ export function subredditPostsReducer(
   }
 }
 
-export function subredditsReducer(state = [], action) {
+export function subredditInputReducer(state = "", action) {
   switch (action.type) {
-    case SET_SUBREDDITS:
+    case ON_SUBREDDIT_INPUT:
       return action.payload;
     default:
       return state;
