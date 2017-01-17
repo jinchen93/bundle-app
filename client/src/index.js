@@ -6,14 +6,20 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import ReduxThunk from "redux-thunk";
 import { Router, browserHistory } from "react-router";
 
-import "./styles/style.css";
+import "./app/styles/style.css";
 import routes from "./routes";
 import { rootReducer } from "./rootReducer";
 import { fetchChannelsUsernames } from "./youtube/actions";
 import { fetchSubreddits } from "./reddit/actions";
 
 const middleware = [ ReduxThunk ];
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middleware)));
+
+let store;
+if (process.env.NODE_ENV === "development") {
+  store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middleware)));
+} else {
+  store = createStore(rootReducer, applyMiddleware(...middleware));
+}
 
 store.dispatch(fetchChannelsUsernames());
 store.dispatch(fetchSubreddits());
