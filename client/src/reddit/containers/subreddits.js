@@ -9,7 +9,8 @@ import {
   onSubredditInput,
   deleteAllSubreddits,
   selectSubreddit,
-  deleteSubreddit
+  deleteSubreddit,
+  fetchSubredditPosts
 } from "../actions";
 import "../styles/subreddits.css";
 
@@ -26,18 +27,17 @@ class Subreddits extends Component {
 
     const onSelectClick = position => {
       this.props.selectSubreddit(position);
-      // this.props.fetchVideos(channels.all[position]);
-      // this.props.selectVideo(0);
+      this.props.fetchSubredditPosts(subreddits.all[position].subreddit);
     };
     const onDeleteClick = (id, position) => {
       this.props.deleteSubreddit(id);
       if (position === subreddits.current) {
         if (position === subreddits.all.length - 1) {
           this.props.selectSubreddit(0);
-          // this.props.fetchVideos(channels.all[0]);
+          this.props.fetchSubredditPosts(subreddits.all[0].subreddit);
         } else {
           this.props.selectSubreddit(position);
-          // this.props.fetchVideos(channels.all[position + 1]);
+          this.props.fetchSubredditPosts(subreddits.all[position + 1].subreddit);
         }
       }
     };
@@ -123,7 +123,14 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    { addSubreddit, onSubredditInput, deleteAllSubreddits, selectSubreddit, deleteSubreddit },
+    {
+      addSubreddit,
+      onSubredditInput,
+      deleteAllSubreddits,
+      selectSubreddit,
+      deleteSubreddit,
+      fetchSubredditPosts
+    },
     dispatch
   );
 }

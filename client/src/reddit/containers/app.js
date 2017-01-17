@@ -1,10 +1,26 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Subreddits from "./subreddits";
+import Posts from "./posts";
 
 class RedditApp extends Component {
   render() {
-    return <Subreddits />;
+    const { subreddits } = this.props;
+    if (subreddits.all.length === 0) {
+      return <Subreddits />;
+    } else {
+      return (
+        <div className="wrapper">
+          <Subreddits />
+          <Posts subredditName={subreddits.all[subreddits.current].subreddit} />
+        </div>
+      );
+    }
   }
 }
 
-export default RedditApp;
+function mapStateToProps(state) {
+  return { subreddits: state.subreddits };
+}
+
+export default connect(mapStateToProps)(RedditApp)

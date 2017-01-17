@@ -9,7 +9,7 @@ class YoutubeApp extends Component {
     const channels = this.props.channels;
 
     if (channels.all[0] === undefined) {
-      return <div><Channels /></div>;
+      return <Channels />;
     } else {
       return (
         <div className="wrapper">
@@ -22,7 +22,7 @@ class YoutubeApp extends Component {
 }
 
 function mapStateToProps(state) {
-  return { sidebar: state.sidebar, channels: state.channels };
+  return { channels: state.channels };
 }
 
 export default connect(mapStateToProps)(YoutubeApp)

@@ -3,7 +3,7 @@ import { reducer as formReducer } from "redux-form";
 
 import { videosReducer, usernameInputReducer, channelsReducer } from "./youtube/reducers";
 import { sidebarReducer } from "./reducers";
-import { subredditsReducer, subredditInputReducer } from "./reddit/reducers";
+import { subredditsReducer, subredditInputReducer, subredditPostsReducer } from "./reddit/reducers";
 
 export const rootReducer = combineReducers({
   sidebarHidden: sidebarReducer,
@@ -12,5 +12,6 @@ export const rootReducer = combineReducers({
   channels: channelsReducer,
   form: formReducer,
   subreddits: subredditsReducer,
-  subredditInput: subredditInputReducer
+  subredditInput: subredditInputReducer,
+  subredditPosts: subredditPostsReducer
 });
