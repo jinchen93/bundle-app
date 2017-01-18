@@ -19,6 +19,9 @@ $ node app.js
 ```
 
 ### Changelog
+#### Version 1.3
+- Add Reddit
+
 #### Version 1.2
 - Add React Router
 - Add branding
