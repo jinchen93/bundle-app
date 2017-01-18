@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 
 import { fetchSubredditPosts } from "../actions";
 import Linkify from "react-linkify";
-import { Grid, ListGroup, ListGroupItem, Image } from "react-bootstrap";
+import { Grid, ListGroup, ListGroupItem, Image, Thumbnail, Row, Col } from "react-bootstrap";
 import "../styles/posts.css";
 
 class Posts extends Component {
@@ -65,11 +65,23 @@ class Posts extends Component {
                     </ListGroupItem>
                     <ListGroupItem className={`redditPost${post.id}`}>
                       <h6>{post.url}</h6>
-                      {
-                        isImage(post.url) === true
-                          ? <Image src={post.url} alt={post.title} responsive />
-                          : ""
-                      }
+                      {isImage(post.url) === true ? (
+                            <Row>
+                              <Col sm={12} md={4} className={`thumbnail--${post.id}`}>
+                                <Thumbnail
+                                  src={post.url}
+                                  alt={post.title}
+                                  responsive={true}
+                                  onClick={
+                                    () =>
+                                      document.querySelector(
+                                        `.thumbnail--${post.id}`
+                                      ).classList.toggle("col-md-4")
+                                  }
+                                />
+                              </Col>
+                            </Row>
+                          ) : ""}
                       {
                         post.media === null
                           ? ""
