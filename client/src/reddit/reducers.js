@@ -17,7 +17,7 @@ export function subredditsReducer(state = { all: [ "" ], current: 0 }, action) {
 }
 
 export function subredditPostsReducer(
-  state = [ { permalink: "", selftext: "", title: "", url: "", mediaEmbed: "" } ],
+  state = [ { permalink: "", selftext: "", title: "", url: "", media: null } ],
   action
 ) {
   switch (action.type) {

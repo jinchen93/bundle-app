@@ -3,7 +3,9 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 
 import { fetchSubredditPosts } from "../actions";
-import { Grid, Row, Col, Well } from "react-bootstrap";
+import Linkify from "react-linkify";
+import { Grid, ListGroup, ListGroupItem } from "react-bootstrap";
+import "../styles/posts.css";
 
 class Posts extends Component {
   constructor(props) {
@@ -15,6 +17,12 @@ class Posts extends Component {
 
   render() {
     const { posts } = this.props;
+    const decodeHTML = html => {
+      var txt = document.createElement("textarea");
+      txt.innerHTML = html;
+      return txt.value;
+    };
+
     return (
       <Grid
         className={
@@ -25,16 +33,38 @@ class Posts extends Component {
       >
         <Grid fluid={true}>
           {posts.map(post => {
+              const postText = post.selftext.split("\n");
               return (
-                <Row key={post.title}>
-                  <Col xsOffset={1} xs={10}>
-                    <Well>
-                      <h4>{post.title}</h4>
-                      <a href={post.url}>{post.url}</a>
-                      <h6>{post.selftext}</h6>
-                    </Well>
-                  </Col>
-                </Row>
+                <ListGroup key={post.title}>
+                  <Linkify>
+                    <ListGroupItem href="#">
+                      <h3>{post.title}</h3>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <h6>{post.url}</h6>
+                      {
+                        post.media === null
+                          ? ""
+                          : (
+                            <div
+                              className="embed-responsive embed-responsive-16by9"
+                              dangerouslySetInnerHTML={
+                                {
+                                  __html: decodeHTML(
+                                    post.media.oembed.html.replace(
+                                      "embedly-embed",
+                                      "embed-responsive-item"
+                                    )
+                                  )
+                                }
+                              }
+                            />
+                          )
+                      }
+                      {postText.map(line => <text key={line}>{line}<br /></text>)}
+                    </ListGroupItem>
+                  </Linkify>
+                </ListGroup>
               );
             })}
         </Grid>
