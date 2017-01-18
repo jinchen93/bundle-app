@@ -3,6 +3,10 @@
   width: 100%;
 }
 
-.reddit-embed .embedly-embed {
-  
+.hidden {
+  display: none !important;
+}
+
+.minimizeText {
+  font-size: 1em !important;
 }

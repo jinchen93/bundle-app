@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 
 import { fetchSubredditPosts } from "../actions";
 import Linkify from "react-linkify";
-import { Grid, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Grid, ListGroup, ListGroupItem, Image } from "react-bootstrap";
 import "../styles/posts.css";
 
 class Posts extends Component {
@@ -22,7 +22,21 @@ class Posts extends Component {
       txt.innerHTML = html;
       return txt.value;
     };
-
+    const isImage = url => {
+      const extension = url.split(".").pop();
+      switch (extension) {
+        case "png":
+          return true;
+        case "jpg":
+          return true;
+        case "gif":
+          return true;
+        case "gifv":
+          return true;
+        default:
+          return false;
+      }
+    };
     return (
       <Grid
         className={
@@ -37,11 +51,25 @@ class Posts extends Component {
               return (
                 <ListGroup key={post.title}>
                   <Linkify>
-                    <ListGroupItem href="#">
-                      <h3>{post.title}</h3>
+                    <ListGroupItem
+                      onClick={() => {
+                          document.querySelector(
+                            `.redditPost${post.id}`
+                          ).classList.toggle("hidden");
+                          document.querySelector(
+                            `.redditTitle${post.id}`
+                          ).classList.toggle("minimizeText");
+                        }}
+                    >
+                      <h3 className={`redditTitle${post.id}`}>{post.title}</h3>
                     </ListGroupItem>
-                    <ListGroupItem>
+                    <ListGroupItem className={`redditPost${post.id}`}>
                       <h6>{post.url}</h6>
+                      {
+                        isImage(post.url) === true
+                          ? <Image src={post.url} alt={post.title} responsive />
+                          : ""
+                      }
                       {
                         post.media === null
                           ? ""

@@ -69,7 +69,8 @@ export function fetchSubredditPosts(subreddit) {
           selftext: postData.selftext,
           title: postData.title,
           url: postData.url,
-          media: postData.media
+          media: postData.media,
+          id: postData.id
         };
       });
       dispatch(setSubredditPosts(postsData));
