@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
 
 import { videosReducer, usernameInputReducer, channelsReducer } from "./youtube/reducers";
-import { sidebarReducer } from "./reducers";
+import { sidebarReducer } from "./app/reducers";
 import { subredditsReducer, subredditInputReducer, subredditPostsReducer } from "./reddit/reducers";
 
 export const rootReducer = combineReducers({
