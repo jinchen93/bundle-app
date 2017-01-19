@@ -85,3 +85,11 @@ export function setSubredditPosts(data) {
 export function onSubredditInput(event) {
   return { type: ON_SUBREDDIT_INPUT, payload: event };
 }
+
+// --------- SUBREDDIT POST COMMENTS --------- //
+export function fetchPostComments(permalink) {
+  const url = `www.reddit.com${permalink}.json`;
+  Request.get(url).end((error, response) => {
+    const fetchedData = JSON.parse(response.text).data.children;
+  });
+}
