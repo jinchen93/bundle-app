@@ -2,11 +2,10 @@ import { connect } from "react-redux";
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 
-import { fetchSubredditPosts, selectSubreddit } from "../actions";
-import Linkify from "react-linkify";
-import { Grid, ListGroup, ListGroupItem, Well, Thumbnail, Row, Col } from "react-bootstrap";
-import PostTitle from "../components/postTitle";
-import PostContent from "../components/postContent";
+import { fetchSubredditPosts, selectSubreddit, fetchPostComments } from "../actions";
+
+import { Grid } from "react-bootstrap";
+import Post from "./post";
 import "../styles/posts.css";
 
 class Posts extends Component {
@@ -16,12 +15,6 @@ class Posts extends Component {
   }
 
   render() {
-    const { posts } = this.props;
-    const handleTitleClick = id => {
-      document.querySelector(`.redditPost${id}`).classList.toggle("hidden");
-      document.querySelector(`.redditTitle${id}`).classList.toggle("minimizeText");
-    };
-
     return (
       <Grid
         className={
@@ -31,27 +24,17 @@ class Posts extends Component {
         }
       >
         <Grid fluid={true}>
-          {posts.map(post => {
+          {this.props.posts.map(post => {
               return (
-                <ListGroup key={post.title}>
-                  <Linkify>
-                    <PostTitle
-                      id={post.id}
-                      title={post.title}
-                      onTitleClick={id => handleTitleClick(id)}
-                    />
-                    <PostContent
-                      id={post.id}
-                      title={post.title}
-                      content={post.selftext}
-                      media={post.media}
-                      url={post.url}
-                    />
-                    <Well bsSize={"small"}>
-                      <i className="fa fa-comments" aria-hidden="true"></i>
-                    </Well>
-                  </Linkify>
-                </ListGroup>
+                <Post
+                  key={post.title}
+                  id={post.id}
+                  title={post.title}
+                  selftext={post.selftext}
+                  media={post.media}
+                  url={post.url}
+                  permalink={post.permalink}
+                />
               );
             })}
         </Grid>
@@ -69,7 +52,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchSubredditPosts, selectSubreddit }, dispatch);
+  return bindActionCreators({ fetchSubredditPosts, selectSubreddit, fetchPostComments }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts)

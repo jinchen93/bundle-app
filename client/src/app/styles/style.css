@@ -7,6 +7,10 @@ html, body {
   text-rendering: optimizeLegibility;
 }
 
+a {
+  word-wrap: break-word;
+}
+
 .navbar-brand {
   padding: 0;
   height: 50px;

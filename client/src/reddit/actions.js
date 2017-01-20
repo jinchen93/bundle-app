@@ -61,7 +61,7 @@ export function selectSubreddit(position) {
 export function fetchSubredditPosts(subreddit) {
   return dispatch => {
     Request.get(`https://www.reddit.com/r/${subreddit}/top/.json`).end((err, res) => {
-      const fetchedData = JSON.parse(res.text).data.children;
+      const fetchedData = res.body.data.children;
       const postsData = fetchedData.map(post => {
         const postData = post.data;
         return {
@@ -89,7 +89,9 @@ export function onSubredditInput(event) {
 // --------- SUBREDDIT POST COMMENTS --------- //
 export function fetchPostComments(permalink) {
   const url = `www.reddit.com${permalink}.json`;
+  console.log(url);
   Request.get(url).end((error, response) => {
     const fetchedData = JSON.parse(response.text).data.children;
+    console.log(fetchedData);
   });
 }

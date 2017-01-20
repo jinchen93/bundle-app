@@ -19,6 +19,9 @@ $ node app.js
 ```
 
 ### Changelog
+#### Version 1.4
+- Add Reddit comments
+
 #### Version 1.3
 - Add Reddit
 
