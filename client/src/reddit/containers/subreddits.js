@@ -3,14 +3,15 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import Subreddit from "../components/subreddit";
-import { ListGroup, FormControl, Button } from "react-bootstrap";
+import { FormGroup, ControlLabel, FormControl, ListGroup, Button } from "react-bootstrap";
 import {
   addSubreddit,
   onSubredditInput,
   deleteAllSubreddits,
   selectSubreddit,
   deleteSubreddit,
-  fetchSubredditPosts
+  fetchSubredditPosts,
+  setSortBy
 } from "../actions";
 import "../styles/subreddits.css";
 
@@ -22,22 +23,23 @@ class Subreddits extends Component {
       addSubreddit,
       subredditInput,
       sidebarHidden,
-      deleteAllSubreddits
+      deleteAllSubreddits,
+      sortBy
     } = this.props;
 
     const onSelectClick = position => {
       this.props.selectSubreddit(position);
-      this.props.fetchSubredditPosts(subreddits.all[position].subreddit);
+      this.props.fetchSubredditPosts(subreddits.all[position].subreddit, sortBy);
     };
     const onDeleteClick = (id, position) => {
       this.props.deleteSubreddit(id);
       if (position === subreddits.current) {
         if (position === subreddits.all.length - 1) {
           this.props.selectSubreddit(0);
-          this.props.fetchSubredditPosts(subreddits.all[0].subreddit);
+          this.props.fetchSubredditPosts(subreddits.all[0].subreddit, sortBy);
         } else {
           this.props.selectSubreddit(position);
-          this.props.fetchSubredditPosts(subreddits.all[position + 1].subreddit);
+          this.props.fetchSubredditPosts(subreddits.all[position + 1].subreddit, sortBy);
         }
       }
     };
@@ -50,6 +52,26 @@ class Subreddits extends Component {
       >
         <div className="sidebar__wrapper__header">
           <h2>SUBREDDITS</h2>
+          <form>
+            <FormGroup controlId="formControlsSelect" className="sort-by-selector">
+              <ControlLabel>TOP POSTS FROM PAST:</ControlLabel>
+              <FormControl
+                componentClass="select"
+                onChange={e => {
+                    this.props.setSortBy(e.target.value);
+                    this.props.fetchSubredditPosts(
+                      subreddits.all[subreddits.current].subreddit,
+                      e.target.value
+                    );
+                  }}
+              >
+                <option value="day">day</option>
+                <option value="week">week</option>
+                <option value="month">month</option>
+                <option value="year">year</option>
+              </FormControl>
+            </FormGroup>
+          </form>
         </div>
         <ListGroup>
           {
@@ -117,7 +139,8 @@ function mapStateToProps(state) {
   return {
     sidebarHidden: state.sidebarHidden,
     subredditInput: state.subredditInput,
-    subreddits: state.subreddits
+    subreddits: state.subreddits,
+    sortBy: state.sortBy
   };
 }
 
@@ -129,7 +152,8 @@ function mapDispatchToProps(dispatch) {
       deleteAllSubreddits,
       selectSubreddit,
       deleteSubreddit,
-      fetchSubredditPosts
+      fetchSubredditPosts,
+      setSortBy
     },
     dispatch
   );

@@ -31,8 +31,8 @@ export default props => {
 
   const renderRedditImage = url => {
     if (
-      (url.search("reddituploads") !== -1 || url.search("imgur") !== -1) && media === null &&
-        isImage(url) !== "VIDEO"
+      (url.search("reddituploads") !== -1 || url.search("imgur") !== -1) &&
+        (media === null && isImage(url) !== "VIDEO" && preview !== undefined)
     ) {
       return (
         <Row>

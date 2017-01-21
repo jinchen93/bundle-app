@@ -11,7 +11,7 @@ import "../styles/posts.css";
 class Posts extends Component {
   constructor(props) {
     super(props);
-    props.fetchSubredditPosts(props.subredditName);
+    props.fetchSubredditPosts(props.subredditName, props.sortBy);
   }
 
   render() {
@@ -48,7 +48,8 @@ function mapStateToProps(state) {
   return {
     posts: state.subredditPosts,
     sidebarHidden: state.sidebarHidden,
-    subreddits: state.subreddits
+    subreddits: state.subreddits,
+    sortBy: state.sortBy
   };
 }
 

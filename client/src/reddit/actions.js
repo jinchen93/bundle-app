@@ -3,7 +3,8 @@ import {
   SET_SUBREDDIT_POSTS,
   SET_SUBREDDITS,
   ON_SUBREDDIT_INPUT,
-  SELECT_SUBREDDIT
+  SELECT_SUBREDDIT,
+  SET_SUBREDDIT_SORT
 } from "./actionTypes";
 
 export function addSubreddit(subreddit) {
@@ -58,9 +59,9 @@ export function selectSubreddit(position) {
 }
 
 // --------- SUBREDDIT POSTS --------- //
-export function fetchSubredditPosts(subreddit) {
+export function fetchSubredditPosts(subreddit, time) {
   return dispatch => {
-    Request.get(`https://www.reddit.com/r/${subreddit}/top/.json`).end((err, res) => {
+    Request.get(`https://www.reddit.com/r/${subreddit}/top.json?t=${time}`).end((err, res) => {
       const fetchedData = res.body.data.children;
       const postsData = fetchedData.map(post => {
         const postData = post.data;
@@ -95,4 +96,9 @@ export function fetchPostComments(permalink) {
     const fetchedData = JSON.parse(response.text).data.children;
     console.log(fetchedData);
   });
+}
+
+// --------- SUBREDDIT POST SORT --------- //
+export function setSortBy(time) {
+  return { type: SET_SUBREDDIT_SORT, payload: time };
 }
