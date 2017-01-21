@@ -79,7 +79,7 @@ class Channels extends Component {
         >
           <FormControl
             className="sidebar__wrapper__input"
-            placeholder="Add username"
+            placeholder="Add channel username/ID"
             value={this.props.usernameInput}
             onChange={event => this.props.onUsernameInput(event.target.value)}
           />

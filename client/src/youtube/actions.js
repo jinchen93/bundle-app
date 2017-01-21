@@ -6,7 +6,7 @@ import {
   ON_USERNAME_INPUT
 } from "./actionTypes";
 import Request from "superagent";
-import { PLAYLIST_URL, CHANNEL_URL } from "./constants";
+import { PLAYLIST_URL, CHANNEL_USERNAME_URL, CHANNEL_ID_URL } from "./constants";
 
 // ========== CHANNEL ACTIONS ==========
 export function fetchChannelsUsernames() {
@@ -27,11 +27,11 @@ export function setChannels(channels) {
 
 export function fetchChannel(username) {
   return dispatch => {
-    const url = CHANNEL_URL + username;
+    const url = CHANNEL_USERNAME_URL + username;
     Request.get(url).end((error, response) => {
       if (error) {
         console.log(`Error occured while fetching channel ${username}`);
-      } else {
+      } else if (response.body.items[0] !== undefined) {
         const newChannel = {
           username: username,
           name: response.body.items[0].snippet.title,
@@ -42,6 +42,24 @@ export function fetchChannel(username) {
           .post("/api/channels")
           .send(newChannel)
           .end(() => dispatch(fetchChannelsUsernames()));
+      } else {
+        const url = CHANNEL_ID_URL + username;
+        Request.get(url).end((error, response) => {
+          if (error) {
+            console.log(`Error occured while fetching channel ${username}`);
+          } else {
+            const newChannel = {
+              username: username,
+              name: response.body.items[0].snippet.title,
+              thumbnail: response.body.items[0].snippet.thumbnails.default.url,
+              uploads: response.body.items[0].contentDetails.relatedPlaylists.uploads
+            };
+            Request
+              .post("/api/channels")
+              .send(newChannel)
+              .end(() => dispatch(fetchChannelsUsernames()));
+          }
+        });
       }
     });
   };
@@ -62,7 +80,6 @@ export function deleteAllChannels() {
 export function deleteChannel(id) {
   return dispatch => {
     Request.delete(`/api/channels/${id}`).end(() => {
-      console.log("HI");
       dispatch(fetchChannelsUsernames());
     });
   };
