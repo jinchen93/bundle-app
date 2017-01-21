@@ -1,6 +1,7 @@
 import React from "react";
 import Linkify from "react-linkify";
 import { ListGroupItem, Row, Col, Thumbnail } from "react-bootstrap";
+import "../styles/postContent.css";
 
 export default props => {
   const decodeHTML = html => {
@@ -43,22 +44,20 @@ export default props => {
                 </Col>
               </Row>
             ) : ""}
-        {
-          media === null
-            ? ""
-            : (
-              <div
-                className="embed-responsive embed-responsive-16by9"
-                dangerouslySetInnerHTML={
-                  {
-                    __html: decodeHTML(
-                      media.oembed.html.replace("embedly-embed", "embed-responsive-item")
-                    )
+        {media === null ? "" : (
+              <div className="embed-container">
+                <div
+                  className="embed-responsive embed-responsive-16by9"
+                  dangerouslySetInnerHTML={
+                    {
+                      __html: decodeHTML(
+                        media.oembed.html.replace("embedly-embed", "embed-responsive-item")
+                      )
+                    }
                   }
-                }
-              />
-            )
-        }
+                />
+              </div>
+            )}
         {postText.map((line, index) => <text key={index}>{line}<br /></text>)}
       </ListGroupItem>
     </Linkify>
