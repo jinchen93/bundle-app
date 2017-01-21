@@ -29,6 +29,26 @@ export default props => {
     }
   };
 
+  const renderRedditImage = url => {
+    if ((url.search("reddituploads") !== -1 || url.search("imgur") !== -1) && media === null) {
+      return (
+        <Row>
+          <Col sm={12} md={4} className={`thumbnail--${id}`}>
+            <Thumbnail
+              src={preview.images[0].source.url}
+              alt={title}
+              onClick={
+                () => document.querySelector(`.thumbnail--${id}`).classList.toggle("col-md-4")
+              }
+            />
+          </Col>
+        </Row>
+      );
+    } else {
+      return "";
+    }
+  };
+
   const renderImage = url => {
     if (isImage(url) === "IMAGE") {
       return (
@@ -45,7 +65,7 @@ export default props => {
         </Row>
       );
     } else {
-      return "";
+      return renderRedditImage(url);
     }
   };
 
@@ -69,33 +89,12 @@ export default props => {
     }
   };
 
-  const renderRedditImage = url => {
-    if (url.search("reddituploads") !== -1) {
-      return (
-        <Row>
-          <Col sm={12} md={4} className={`thumbnail--${id}`}>
-            <Thumbnail
-              src={preview.images[0].source.url}
-              alt={title}
-              onClick={
-                () => document.querySelector(`.thumbnail--${id}`).classList.toggle("col-md-4")
-              }
-            />
-          </Col>
-        </Row>
-      );
-    } else {
-      return "";
-    }
-  };
-
   return (
     <Linkify>
       <ListGroupItem className={`redditPost${id}`}>
         <h6>{url}</h6>
         {renderImage(url)}
         {renderGIFV(url)}
-        {renderRedditImage(url)}
         {media === null ? "" : (
               <div className="embed-container">
                 <div
