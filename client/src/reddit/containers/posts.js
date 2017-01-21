@@ -34,6 +34,7 @@ class Posts extends Component {
                   media={post.media}
                   url={post.url}
                   permalink={post.permalink}
+                  preview={post.preview}
                 />
               );
             })}

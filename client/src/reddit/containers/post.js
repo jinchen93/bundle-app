@@ -11,7 +11,7 @@ export default class Post extends Component {
   }
 
   render() {
-    const { id, title, selftext, media, url, permalink } = this.props;
+    const { id, title, selftext, media, url, permalink, preview } = this.props;
     const handleTitleClick = () => {
       const newVisibilityFilter = !this.state.visibilityFilter;
       this.setState({ visibilityFilter: newVisibilityFilter });
@@ -23,7 +23,14 @@ export default class Post extends Component {
           <ListGroupItem onClick={() => handleTitleClick()} className="reddit-post-title">
             {title}
           </ListGroupItem>
-          <PostContent id={id} title={title} content={selftext} media={media} url={url} />
+          <PostContent
+            id={id}
+            title={title}
+            content={selftext}
+            media={media}
+            url={url}
+            preview={preview}
+          />
           <PostComments permalink={permalink} />
         </ListGroup>
       );

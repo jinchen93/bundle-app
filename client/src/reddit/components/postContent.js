@@ -4,7 +4,7 @@ import { ListGroupItem, Row, Col, Thumbnail } from "react-bootstrap";
 import "../styles/postContent.css";
 
 export default props => {
-  const { url, id, title, content, media } = props;
+  const { url, id, title, content, media, preview } = props;
   const postText = content.split("\n");
 
   const decodeHTML = html => {
@@ -69,12 +69,33 @@ export default props => {
     }
   };
 
+  const renderRedditImage = url => {
+    if (url.search("reddituploads") !== -1) {
+      return (
+        <Row>
+          <Col sm={12} md={4} className={`thumbnail--${id}`}>
+            <Thumbnail
+              src={preview.images[0].source.url}
+              alt={title}
+              onClick={
+                () => document.querySelector(`.thumbnail--${id}`).classList.toggle("col-md-4")
+              }
+            />
+          </Col>
+        </Row>
+      );
+    } else {
+      return "";
+    }
+  };
+
   return (
     <Linkify>
       <ListGroupItem className={`redditPost${id}`}>
         <h6>{url}</h6>
         {renderImage(url)}
         {renderGIFV(url)}
+        {renderRedditImage(url)}
         {media === null ? "" : (
               <div className="embed-container">
                 <div

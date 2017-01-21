@@ -66,6 +66,7 @@ export function fetchSubredditPosts(subreddit) {
         const postData = post.data;
         return {
           permalink: postData.permalink,
+          preview: postData.preview,
           selftext: postData.selftext,
           title: postData.title,
           url: postData.url,
