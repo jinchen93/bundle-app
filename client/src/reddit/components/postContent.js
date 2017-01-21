@@ -30,7 +30,10 @@ export default props => {
   };
 
   const renderRedditImage = url => {
-    if ((url.search("reddituploads") !== -1 || url.search("imgur") !== -1) && media === null) {
+    if (
+      (url.search("reddituploads") !== -1 || url.search("imgur") !== -1) && media === null &&
+        isImage(url) !== "VIDEO"
+    ) {
       return (
         <Row>
           <Col sm={12} md={4} className={`thumbnail--${id}`}>
