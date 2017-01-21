@@ -11,6 +11,10 @@ a {
   word-wrap: break-word;
 }
 
+p {
+  margin: 0;
+}
+
 .navbar-brand {
   padding: 0;
   height: 50px;
