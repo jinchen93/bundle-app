@@ -4,46 +4,77 @@ import { ListGroupItem, Row, Col, Thumbnail } from "react-bootstrap";
 import "../styles/postContent.css";
 
 export default props => {
+  const { url, id, title, content, media } = props;
+  const postText = content.split("\n");
+
   const decodeHTML = html => {
     var txt = document.createElement("textarea");
     txt.innerHTML = html;
     return txt.value;
   };
+
   const isImage = url => {
     const extension = url.split(".").pop();
     switch (extension) {
       case "png":
-        return true;
+        return "IMAGE";
       case "jpg":
-        return true;
+        return "IMAGE";
       case "gif":
-        return true;
+        return "IMAGE";
       case "gifv":
-        return true;
+        return "VIDEO";
       default:
         return false;
     }
   };
 
-  const { url, id, title, content, media } = props;
-  const postText = content.split("\n");
+  const renderImage = url => {
+    if (isImage(url) === "IMAGE") {
+      return (
+        <Row>
+          <Col sm={12} md={4} className={`thumbnail--${id}`}>
+            <Thumbnail
+              src={url}
+              alt={title}
+              onClick={
+                () => document.querySelector(`.thumbnail--${id}`).classList.toggle("col-md-4")
+              }
+            />
+          </Col>
+        </Row>
+      );
+    } else {
+      return "";
+    }
+  };
+
+  const renderGIFV = url => {
+    if (isImage(url) === "VIDEO") {
+      return (
+        <Row>
+          <div className="embed-container">
+            <div className="embed-responsive embed-responsive-16by9">
+              <iframe
+                src={url.replace(".gifv", "/embed")}
+                alt={title}
+                className="embed-responsive-item"
+              />
+            </div>
+          </div>
+        </Row>
+      );
+    } else {
+      return "";
+    }
+  };
+
   return (
     <Linkify>
       <ListGroupItem className={`redditPost${id}`}>
         <h6>{url}</h6>
-        {isImage(url) === true ? (
-              <Row>
-                <Col sm={12} md={4} className={`thumbnail--${id}`}>
-                  <Thumbnail
-                    src={url}
-                    alt={title}
-                    onClick={
-                      () => document.querySelector(`.thumbnail--${id}`).classList.toggle("col-md-4")
-                    }
-                  />
-                </Col>
-              </Row>
-            ) : ""}
+        {renderImage(url)}
+        {renderGIFV(url)}
         {media === null ? "" : (
               <div className="embed-container">
                 <div
