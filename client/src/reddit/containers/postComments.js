@@ -62,13 +62,17 @@ export default class PostComments extends Component {
             </Button>
             <ListGroup>
               {this.state.comments.map(comment => {
-                  return (
-                    <Linkify key={comment.data.id}>
-                      <ListGroupItem
-                        dangerouslySetInnerHTML={{ __html: decodeHTML(comment.data.body_html) }}
-                      />
-                    </Linkify>
-                  );
+                  if (comment.data.body_html !== undefined) {
+                    return (
+                      <Linkify key={comment.data.id}>
+                        <ListGroupItem
+                          dangerouslySetInnerHTML={{ __html: decodeHTML(comment.data.body_html) }}
+                        />
+                      </Linkify>
+                    );
+                  } else {
+                    return "";
+                  }
                 })}
             </ListGroup>
           </div>
