@@ -56,6 +56,7 @@ class Subreddits extends Component {
             <FormGroup controlId="formControlsSelect" className="sort-by-selector">
               <ControlLabel>TOP POSTS FROM PAST:</ControlLabel>
               <FormControl
+                className="sort-by-selector-input"
                 componentClass="select"
                 onChange={e => {
                     this.props.setSortBy(e.target.value);
@@ -79,23 +80,19 @@ class Subreddits extends Component {
               subreddit =>
                 subreddit === ""
                   ? ""
-                  : (
-                    <Subreddit
-                      key={subreddit._id.toString()}
-                      id={subreddit._id.toString()}
-                      position={
-                        subreddits.all.map(sub => sub.subreddit).indexOf(subreddit.subreddit)
-                      }
-                      subredditName={subreddit.subreddit}
-                      onSelectClick={onSelectClick}
-                      onDeleteClick={onDeleteClick}
-                      status={
-                        subreddits.all[subreddits.current].subreddit === subreddit.subreddit
-                          ? "sidebar__wrapper__subreddit--selected"
-                          : "sidebar__wrapper__subreddit"
-                      }
-                    />
-                  )
+                  : <Subreddit
+                    key={subreddit._id.toString()}
+                    id={subreddit._id.toString()}
+                    position={subreddits.all.map(sub => sub.subreddit).indexOf(subreddit.subreddit)}
+                    subredditName={subreddit.subreddit}
+                    onSelectClick={onSelectClick}
+                    onDeleteClick={onDeleteClick}
+                    status={
+                      subreddits.all[subreddits.current].subreddit === subreddit.subreddit
+                        ? "sidebar__wrapper__subreddit--selected"
+                        : "sidebar__wrapper__subreddit"
+                    }
+                  />
             )
           }
         </ListGroup>
@@ -159,4 +156,4 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Subreddits)
+export default connect(mapStateToProps, mapDispatchToProps)(Subreddits);

@@ -2,3 +2,7 @@
   margin: auto 3%;
   width: 94%;
 }
+
+.sort-by-selector-input {
+  height: 100%;
+}
