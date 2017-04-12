@@ -37,12 +37,17 @@ $ node app.js
 #### Version 1.0
 - Fully integrated app with MongoDB
 
-### Features that I am Currently Working On:
+## Features that I am Currently Working On:
 #### User signup and login
 - Users can choose username, password will be like connect the dots (like the Android phone lock screen) because I don't want to store real passwords in my toy app.
+- In addition to being able to manipulate the sidebar, users will be able to select the media site that they want displayed (if someone doesn't use Reddit then they have the ability to hide the reddit tab)
 #### Home page
 - Lets users select specific youtube channels or subreddits to populate the homepage with.
 - Display the current and upcoming weather. Users can either select their city or use browser geolocation properties.
 #### Youtube / Reddit tabs
 - Confirmation screen for when users are deleting channels/subreddit.
 - Confirmation screen when users successfully added a channel to the list.
+#### Twitch Integration
+- Add Twitch
+#### Backend Migration from Node-MongoDB to Rails-PostgreSQL
+- Improves maintainability of the tech stack since I am more familiar with Rails/PostgreSQL now.
