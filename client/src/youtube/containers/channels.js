@@ -52,8 +52,8 @@ class Channels extends Component {
             channels.all.map(
               channel => (
                 <Channel
-                  key={channel._id.toString()}
-                  id={channel._id.toString()}
+                  key={channel.id.toString()}
+                  id={channel.id.toString()}
                   position={channels.all.map(channel => channel.username).indexOf(channel.username)}
                   name={channel.name}
                   current={channels.current}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router";
 import "../styles/main.css";
 import { Jumbotron, Grid, Row, Col } from "react-bootstrap";
@@ -32,3 +32,5 @@ class Main extends Component {
     );
   }
 }
+
+export default Main
