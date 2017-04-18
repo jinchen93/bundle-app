@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   # app.delete("/api/channels/:id", ChannelsController.delete);
 
 
-  get 'api/subreddits', to: proc { [200, {}, ['']]}
+  get     'api/subreddits',      to: 'subreddits#index'
+  post    'api/subreddits',      to: 'subreddits#create'
+  delete  'api/subreddits/:id',  to: 'subreddits#destroy'
+  delete  'api/subreddits',      to: 'subreddits#destroy_all'
   # app.get("/api/subreddits", SubredditsController.show);
   # app.post("/api/subreddits", SubredditsController.create);
   # app.delete("/api/subreddits", SubredditsController.deleteAll);

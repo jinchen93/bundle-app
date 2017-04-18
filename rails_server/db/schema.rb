@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418054309) do
+ActiveRecord::Schema.define(version: 20170418062957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "subreddits", force: :cascade do |t|
+    t.string   "subreddit",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "youtube_channels", force: :cascade do |t|
     t.string   "username",   null: false

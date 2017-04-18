@@ -81,8 +81,8 @@ class Subreddits extends Component {
                 subreddit === ""
                   ? ""
                   : <Subreddit
-                    key={subreddit._id.toString()}
-                    id={subreddit._id.toString()}
+                    key={subreddit.id.toString()}
+                    id={subreddit.id.toString()}
                     position={subreddits.all.map(sub => sub.subreddit).indexOf(subreddit.subreddit)}
                     subredditName={subreddit.subreddit}
                     onSelectClick={onSelectClick}

@@ -25,6 +25,7 @@ class YoutubeChannelsController < ApplicationController
   def destroy
     yt_channel = YoutubeChannel.find(params[:id])
     yt_channel.destroy
+    render json: yt_channel
   end
 
   private

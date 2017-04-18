@@ -6,7 +6,7 @@ import Posts from "./posts";
 class RedditApp extends Component {
   render() {
     const { subreddits, subredditPosts } = this.props;
-    if (subreddits.all[0] === "" && subredditPosts[0].title === "") {
+    if (subreddits.all.length === 0) {
       return <Subreddits />;
     } else {
       return (
