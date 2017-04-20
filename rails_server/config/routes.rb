@@ -11,4 +11,7 @@ Rails.application.routes.draw do
   delete  'api/subreddits/:id',  to: 'subreddits#destroy'
   delete  'api/subreddits',      to: 'subreddits#destroy_all'
 
+  post    'api/users',      to: 'users#create'
+  patch   'api/users/:id',  to: 'users#update'
+  delete  'api/users/:id',  to: 'users#destroy'
 end
