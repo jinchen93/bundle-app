@@ -5,7 +5,7 @@ class SubredditsController < ApplicationController
   end
 
   def create
-    subreddit = Subreddit.new(subreddit_params)
+    subreddit = Subreddit.new(subreddit: params[:subreddit])
 
     if subreddit.save
       render json: subreddit
@@ -20,11 +20,5 @@ class SubredditsController < ApplicationController
     subreddit = Subreddit.find(params[:id])
     subreddit.destroy
     render json: subreddit
-  end
-
-  private
-
-  def subreddit_params
-    params.permit(:subreddit)
   end
 end
