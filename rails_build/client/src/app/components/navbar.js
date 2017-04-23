@@ -4,10 +4,45 @@ import { connect } from "react-redux";
 import { Link } from "react-router";
 
 import { Navbar, Nav, NavItem } from "react-bootstrap";
-import { toggleSidebar, toggleNavbar } from "../actions";
+import { logout, toggleSidebar, toggleNavbar } from "../actions";
+import { browserHistory } from "react-router";
 
 class AppNavBar extends Component {
   render() {
+    const renderLogin = () => {
+      return (
+        <ul className="nav nav-pills">
+          <li role="presentation">
+            <Link to="/login">
+              Login
+            </Link>
+          </li>
+          <li role="presentation">
+            <Link to="/signup">
+              Signup
+            </Link>
+          </li>
+        </ul>
+      );
+    };
+
+    const renderLogout = () => {
+      return (
+        <ul className="nav nav-pills">
+          <li role="presentation">
+            <Link
+              onClick={() => {
+                this.props.logout(this.props.user.csrf_token);
+                browserHistory.push("/");
+              }}
+            >
+              Logout
+            </Link>
+          </li>
+        </ul>
+      );
+    };
+
     return (
       <Navbar fluid={true} className="appbar" fixedTop={true} collapseOnSelect>
         <Navbar.Header>
@@ -39,18 +74,9 @@ class AppNavBar extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-            <ul className="nav nav-pills">
-              <li role="presentation">
-                <Link to="/login">
-                  Login
-                </Link>
-              </li>
-              <li role="presentation">
-                <Link to="/signup">
-                  Signup
-                </Link>
-              </li>
-            </ul>
+            {this.props.user.username === "Guest"
+              ? renderLogin()
+              : renderLogout()}
           </Nav>
           <ul className="nav nav-pills navbar-nav">
             <li
@@ -78,13 +104,14 @@ class AppNavBar extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ toggleSidebar, toggleNavbar }, dispatch);
+  return bindActionCreators({ toggleSidebar, toggleNavbar, logout }, dispatch);
 }
 
 function mapStateToProps(state) {
   return {
     sidebarHidden: state.sidebarHidden,
-    navbarToggle: state.navbarToggle
+    navbarToggle: state.navbarToggle,
+    user: state.user
   };
 }
 

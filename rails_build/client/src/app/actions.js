@@ -65,3 +65,11 @@ export function login(params, csrf_token) {
       });
   };
 }
+
+export function logout(csrf_token) {
+  return dispatch => {
+    dispatch(
+      login({ user: { username: "Guest", password: "password" } }, csrf_token)
+    );
+  };
+}
