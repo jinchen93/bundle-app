@@ -1,0 +1,2 @@
+export const SET_SIDEBAR_TOGGLE = "SET_SIDEBAR_TOGGLE";
+export const GET_USER_STATUS = 'GET_USER_STATUS';
