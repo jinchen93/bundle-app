@@ -1,4 +1,5 @@
 import Request from "superagent";
+require('superagent-csrf')(Request);
 import {
   SET_SUBREDDIT_POSTS,
   SET_SUBREDDITS,
@@ -7,10 +8,13 @@ import {
   SET_SUBREDDIT_SORT
 } from "./actionTypes";
 
-export function addSubreddit(subreddit) {
+export function addSubreddit(subreddit, csrf_token) {
   return dispatch => {
     const newSubreddit = { subreddit: subreddit };
-    Request.post("/api/subreddits").send(newSubreddit).end(() => dispatch(fetchSubreddits()));
+    Request.post("/api/subreddits")
+    .csrf(csrf_token)
+    .send(newSubreddit)
+    .end(() => dispatch(fetchSubreddits()));
   };
 }
 
@@ -30,9 +34,11 @@ export function setSubreddits(subreddits) {
   return { type: SET_SUBREDDITS, payload: subreddits };
 }
 
-export function deleteAllSubreddits() {
+export function deleteAllSubreddits(csrf_token) {
   return dispatch => {
-    Request.delete("/api/subreddits").end((error, response) => {
+    Request.delete("/api/subreddits")
+    .csrf(csrf_token)
+    .end((error, response) => {
       if (error) {
         console.log("An error occured while deleting all subreddits from database");
       } else {
@@ -42,9 +48,11 @@ export function deleteAllSubreddits() {
   };
 }
 
-export function deleteSubreddit(id) {
+export function deleteSubreddit(id, csrf_token) {
   return dispatch => {
-    Request.delete(`/api/subreddits/${id}`).end((error, response) => {
+    Request.delete(`/api/subreddits/${id}`)
+    .csrf(csrf_token)
+    .end((error, response) => {
       if (error) {
         console.log("An error occured while trying to delete subreddit from database");
       } else {

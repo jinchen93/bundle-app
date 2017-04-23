@@ -32,7 +32,7 @@ class Subreddits extends Component {
       this.props.fetchSubredditPosts(subreddits.all[position].subreddit, sortBy);
     };
     const onDeleteClick = (id, position) => {
-      this.props.deleteSubreddit(id);
+      this.props.deleteSubreddit(id, this.props.user.csrf_token);
       if (position === subreddits.current) {
         if (position === subreddits.all.length - 1) {
           this.props.selectSubreddit(0);
@@ -99,7 +99,7 @@ class Subreddits extends Component {
         <form
           onSubmit={event => {
               event.preventDefault();
-              addSubreddit(subredditInput);
+              addSubreddit(subredditInput, this.props.user.csrf_token);
               onSubredditInput("");
             }}
         >
@@ -121,7 +121,7 @@ class Subreddits extends Component {
             block={true}
             bsStyle="danger"
             onClick={() => {
-                deleteAllSubreddits();
+                deleteAllSubreddits(this.props.user.csrf_token);
               }}
           >
             Clear Subreddits
@@ -137,7 +137,8 @@ function mapStateToProps(state) {
     sidebarHidden: state.sidebarHidden,
     subredditInput: state.subredditInput,
     subreddits: state.subreddits,
-    sortBy: state.sortBy
+    sortBy: state.sortBy,
+    user: state.user
   };
 }
 
