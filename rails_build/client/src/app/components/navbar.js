@@ -12,6 +12,11 @@ class AppNavBar extends Component {
     const renderLogin = () => {
       return (
         <ul className="nav nav-pills">
+          <li id="username">
+            <div>
+              Hi {this.props.user.username}
+            </div>
+          </li>
           <li role="presentation">
             <Link to="/login">
               Login
@@ -29,6 +34,11 @@ class AppNavBar extends Component {
     const renderLogout = () => {
       return (
         <ul className="nav nav-pills">
+          <li id="username">
+            <div>
+              Hi {this.props.user.username}
+            </div>
+          </li>
           <li role="presentation">
             <Link
               onClick={() => {
@@ -74,6 +84,7 @@ class AppNavBar extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
+
             {this.props.user.username === "Guest"
               ? renderLogin()
               : renderLogout()}
