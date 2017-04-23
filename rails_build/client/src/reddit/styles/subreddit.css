@@ -1,0 +1,51 @@
+/*--- Universal styling ---*/
+.sidebar__wrapper__subreddit,
+.sidebar__wrapper__subreddit--selected {
+  position: relative;
+}
+
+.sidebar__wrapper__subreddit span,
+.sidebar__wrapper__subreddit--selected span {
+  color: black;
+}
+
+.sidebar__wrapper__subreddit i,
+.sidebar__wrapper__subreddit--selected i {
+  display: none;
+}
+
+.sidebar__wrapper__subreddit:hover i,
+.sidebar__wrapper__subreddit--selected:hover i {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 15px;
+  color: #D91E18;
+}
+
+.sidebar__wrapper__subreddit i:hover,
+.sidebar__wrapper__subreddit--selected i:hover {
+  color: #96281B;
+}
+
+/*--- Individual styling DEFAULT ---*/
+.sidebar__wrapper__subreddit img {
+  height: 25px;
+  margin-right: 10px;
+}
+
+.sidebar__wrapper__subreddit span {
+  display: inline-block;
+}
+
+/*--- Individual styling SELECTED ---*/
+.sidebar__wrapper__subreddit--selected {
+  border-left: 4px solid #004C79;
+}
+
+.sidebar__wrapper__subreddit--selected img {
+  height: 50px;
+  margin-right: 10px;
+}

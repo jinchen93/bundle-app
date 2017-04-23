@@ -1,0 +1,77 @@
+html, body {
+  font-family: Roboto, Arial, sans-serif;
+  height: auto;
+  width: 100%;
+  background: #E8F4FA;
+  display: block;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  word-wrap: break-word;
+}
+
+p {
+  margin: 0;
+}
+
+nav > .container {
+  margin: 0;
+}
+
+.navbar-brand {
+  padding: 0;
+  height: 50px;
+  width: 250px;
+}
+
+.navbar-brand a {
+  height: 100%;
+  display: inline-block;
+}
+
+.nav-brand-logo {
+  height: 100%;
+  margin-left: 5px;
+  padding: 5px 0 5px 0;
+}
+
+.nav-brand-text {
+  font-size: 40px;
+  position: relative;
+  top: 10px;
+  left: 15px;
+}
+
+.nav-brand-hamburger {
+  padding-top: 0.4em;
+  font-size: 2em;
+  width: 2em;
+}
+
+@media screen and (max-width: 767px) {
+  .navbar-brand {
+    width: auto;
+  }
+
+  .nav-brand-logo {
+    margin-right: 25px;
+    display: block;
+  }
+
+  .nav-brand-text {
+    display: none;
+  }
+}
+
+.root {
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
