@@ -2,6 +2,11 @@
   position: absolute;
   top: 50px;
   width: 100%;
+  transition: all 0.2s;
+}
+
+.main__container--toggled {
+  top: 150px;
 }
 
 .main__container__logo {

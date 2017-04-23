@@ -1,10 +1,15 @@
 import {
   SET_SIDEBAR_TOGGLE,
   SET_NAVBAR_TOGGLE,
-  GET_USER_STATUS
+  GET_USER_STATUS,
+  SIGNUP,
+  CHANGE_LOGIN_STATUS
 } from "./actionTypes";
 
-const defaultUserState = { csrf_token: null, username: null };
+const defaultUserState = {
+  csrf_token: null,
+  username: "Guest"
+};
 
 export function sidebarReducer(state = false, action) {
   switch (action.type) {

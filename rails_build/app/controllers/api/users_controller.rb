@@ -1,18 +1,13 @@
 class Api::UsersController < ApplicationController
   def index
-    if logged_in?
-      render json: { username: current_user.username, csrf_token: form_authenticity_token }
-    else
-      render json: { username: 'guest', csrf_token: form_authenticity_token }
-    end
+    render json: { username: current_user.username, csrf_token: form_authenticity_token }
   end
 
   def create
     user = User.new(user_params)
-
     if user.valid?
       user.save
-      render json: user
+      render json: { user: user }
     else
       render json: { errors: user.errors.full_messages }, status: 422
     end
@@ -28,6 +23,6 @@ class Api::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :password, :session_token)
+    params.require(:user).permit(:username, :password)
   end
 end

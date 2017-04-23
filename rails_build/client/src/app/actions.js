@@ -1,8 +1,10 @@
 import Request from "superagent";
+require("superagent-csrf")(Request);
 import {
   SET_SIDEBAR_TOGGLE,
   SET_NAVBAR_TOGGLE,
-  GET_USER_STATUS
+  GET_USER_STATUS,
+  SIGNUP
 } from "./actionTypes";
 
 // ========== SIDEBAR ACTIONS ==========
@@ -30,4 +32,36 @@ export function getUser() {
 
 export function setUser(userInfo) {
   return { type: GET_USER_STATUS, payload: userInfo };
+}
+
+export function signup(params, csrf_token) {
+  return dispatch => {
+    console.log(params);
+    console.log(csrf_token);
+    Request.post("/api/users")
+      .csrf(csrf_token)
+      .send(params)
+      .end((error, response) => {
+        if (error) {
+          console.log(error);
+        } else {
+          dispatch(login(params, csrf_token));
+        }
+      });
+  };
+}
+
+export function login(params, csrf_token) {
+  return dispatch => {
+    Request.post("/api/session")
+      .csrf(csrf_token)
+      .send(params)
+      .end((error, response) => {
+        if (error) {
+          console.log(error);
+        } else {
+          dispatch(getUser());
+        }
+      });
+  };
 }

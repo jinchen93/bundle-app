@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
+import { connect } from "react-redux";
 import "../styles/main.css";
 import { Jumbotron, Grid, Row, Col } from "react-bootstrap";
 
 class Main extends Component {
-  render () {
+  render() {
     return (
-      <div className="main__container">
+      <div
+        className={`main__container ${this.props.navbarToggle === true ? "main__container--toggled" : ""}`}
+      >
         <Jumbotron className="main__container__header">
           <h1>Welcome to Bundle!</h1>
           <br />
@@ -18,12 +21,20 @@ class Main extends Component {
           <Row>
             <Col md={12} className="main__container__logo">
               <Link to="/youtube">
-                <img className="main-logos__image" src="Youtube-Logo.png" alt="Youtube logo" />
+                <img
+                  className="main-logos__image"
+                  src="Youtube-Logo.png"
+                  alt="Youtube logo"
+                />
               </Link>
             </Col>
             <Col md={12} className="main__container__logo reddit-logo">
               <Link to="/reddit">
-                <img className="main-logos__image" src="Reddit-Logo.png" alt="Reddit logo" />
+                <img
+                  className="main-logos__image"
+                  src="Reddit-Logo.png"
+                  alt="Reddit logo"
+                />
               </Link>
             </Col>
           </Row>
@@ -33,4 +44,10 @@ class Main extends Component {
   }
 }
 
-export default Main
+function mapStateToProps(state) {
+  return {
+    navbarToggle: state.navbarToggle
+  };
+}
+
+export default connect(mapStateToProps)(Main);

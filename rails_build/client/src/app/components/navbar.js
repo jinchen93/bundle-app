@@ -3,7 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from "react-router";
 
-import { Navbar } from "react-bootstrap";
+import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { toggleSidebar, toggleNavbar } from "../actions";
 
 class AppNavBar extends Component {
@@ -38,6 +38,20 @@ class AppNavBar extends Component {
           />
         </Navbar.Header>
         <Navbar.Collapse>
+          <Nav pullRight>
+            <ul className="nav nav-pills">
+              <li role="presentation">
+                <Link to="/login">
+                  Login
+                </Link>
+              </li>
+              <li role="presentation">
+                <Link to="/signup">
+                  Signup
+                </Link>
+              </li>
+            </ul>
+          </Nav>
           <ul className="nav nav-pills navbar-nav">
             <li
               role="presentation"
@@ -56,6 +70,7 @@ class AppNavBar extends Component {
               </Link>
             </li>
           </ul>
+
         </Navbar.Collapse>
       </Navbar>
     );
