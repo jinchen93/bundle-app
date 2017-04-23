@@ -7,9 +7,9 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
 
     resources :youtube_channels, only: [:index, :create, :destroy]
-    delete 'api/youtube_channels', to: 'youtube_channels#destroy_all'
+    delete 'youtube_channels', to: 'youtube_channels#destroy_all'
 
     resources :subreddits, only: [:index, :create, :destroy]
-    delete 'api/subreddits', to: 'subreddits#destroy_all'
+    delete 'subreddits', to: 'subreddits#destroy_all'
   end
 end
