@@ -18,34 +18,30 @@ class Videos extends Component {
     const videos = this.props.videos;
     return (
       <Grid
-        className={
-          this.props.sidebarHidden === true
-            ? "content-wrapper content-wrapper--expanded"
-            : "content-wrapper"
-        }
+        className={`content-wrapper
+          ${this.props.sidebarHidden === true ? "content-wrapper--expanded" : ""}
+          ${this.props.navbarToggle === true ? "content-wrapper--nav-toggled" : ""}`}
       >
         <Grid fluid={true}>
           <div className="row">
             <div className="row">
-              <div className="col-sm-1"></div>
-              {
-                videos.all.map(
-                  video => (
-                    <VideoThumbnail
-                      video={video}
-                      active={
-                        videos.current === video.position
-                          ? "video-thumbnail--selected"
-                          : "video-thumbnail"
-                      }
-                      onSelectVideo={position => this.props.selectVideo(position)}
-                      key={video.position}
-                    />
-                  )
-                )
-              }
+              <div className="col-sm-1" />
+              {videos.all.map(video => (
+                <VideoThumbnail
+                  video={video}
+                  active={
+                    videos.current === video.position
+                      ? "video-thumbnail--selected"
+                      : "video-thumbnail"
+                  }
+                  onSelectVideo={position => this.props.selectVideo(position)}
+                  key={video.position}
+                />
+              ))}
             </div>
-            {videos.all.length > 0 ? <CurrentVideo video={videos.all[videos.current]} /> : ""}
+            {videos.all.length > 0
+              ? <CurrentVideo video={videos.all[videos.current]} />
+              : ""}
           </div>
         </Grid>
       </Grid>
@@ -54,11 +50,15 @@ class Videos extends Component {
 }
 
 function mapStateToProps(state) {
-  return { videos: state.videos, sidebarHidden: state.sidebarHidden };
+  return {
+    videos: state.videos,
+    sidebarHidden: state.sidebarHidden,
+    navbarToggle: state.navbarToggle
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchVideos, selectVideo }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Videos)
+export default connect(mapStateToProps, mapDispatchToProps)(Videos);

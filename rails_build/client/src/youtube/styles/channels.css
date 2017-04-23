@@ -7,6 +7,7 @@
   background: #849FBB;
   padding: 0 7.5px;
   overflow: hidden;
+  transition: all 0.2s;
 }
 
 .sidebar__wrapper:hover {
@@ -16,7 +17,7 @@
 .sidebar__wrapper::-webkit-scrollbar {
   width: 5px;
 }
- 
+
 .sidebar__wrapper::-webkit-scrollbar-thumb {
   background-color: #595959;
   outline: 1px solid black;
@@ -53,5 +54,9 @@
   .sidebar__wrapper {
     display: block;
     z-index: 1;
+  }
+
+  .sidebar__wrapper--navbar-toggled {
+    top: 100px;
   }
 }

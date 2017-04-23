@@ -5,6 +5,7 @@
   width: calc(100% - 250px);
   height: auto;
   padding: 10px 20px;
+  transition: all 0.2s;
 }
 
 .content-wrapper--expanded {
@@ -12,9 +13,14 @@
   width: 100%;
 }
 
+
 @media screen and (max-width: 767px) {
   .content-wrapper {
     left: 0;
     width: 100%;
+  }
+  
+  .content-wrapper--nav-toggled {
+    top: 110px;
   }
 }

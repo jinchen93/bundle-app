@@ -15,14 +15,14 @@ p {
   margin: 0;
 }
 
+nav > .container {
+  margin: 0;
+}
+
 .navbar-brand {
   padding: 0;
   height: 50px;
   width: 250px;
-}
-
-.navbar-header {
-  float: left !important;
 }
 
 .navbar-brand a {
@@ -31,7 +31,6 @@ p {
 }
 
 .nav-brand-logo {
-  display: inline-block;
   height: 100%;
   margin-left: 5px;
   padding: 5px 0 5px 0;
@@ -44,13 +43,18 @@ p {
   left: 15px;
 }
 
+.nav-brand-hamburger {
+  padding-top: 0.4em;
+  font-size: 2em;
+  width: 2em;
+}
+
 @media screen and (max-width: 767px) {
   .navbar-brand {
     width: auto;
   }
 
   .nav-brand-logo {
-    margin-top: 5px;
     margin-right: 25px;
     display: block;
   }
@@ -65,7 +69,7 @@ p {
   height: 100%;
 }
 
-.wrapper { 
+.wrapper {
   position: absolute;
   display: inline-block;
   width: 100%;

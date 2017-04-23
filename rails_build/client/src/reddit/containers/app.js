@@ -23,4 +23,4 @@ function mapStateToProps(state) {
   return { subreddits: state.subreddits, subredditPosts: state.subredditPosts };
 }
 
-export default connect(mapStateToProps)(RedditApp)
+export default connect(mapStateToProps)(RedditApp);

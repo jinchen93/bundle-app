@@ -24,7 +24,10 @@ class Channels extends Component {
       this.props.selectVideo(0);
     };
     const onDeleteClick = (id, position) => {
-      this.props.deleteChannel({id: id, csrf_token: this.props.user.csrf_token});
+      this.props.deleteChannel({
+        id: id,
+        csrf_token: this.props.user.csrf_token
+      });
       if (position === channels.current) {
         if (position === channels.all.length - 1) {
           this.props.selectChannel(0);
@@ -38,44 +41,44 @@ class Channels extends Component {
 
     return (
       <div
-        className={
-          this.props.sidebarHidden === true
-            ? "sidebar__wrapper sidebar__wrapper--hidden"
-            : "sidebar__wrapper"
-        }
+        className={`sidebar__wrapper
+          ${this.props.sidebarHidden === true ? "sidebar__wrapper--hidden" : ""}
+          ${this.props.navbarToggle === true ? "sidebar__wrapper--navbar-toggled" : ""}
+        `}
       >
         <div className="sidebar__wrapper__header">
           <h2>CHANNELS</h2>
         </div>
         <ListGroup>
-          {
-            channels.all.map(
-              channel => (
-                <Channel
-                  key={channel.id.toString()}
-                  id={channel.id.toString()}
-                  position={channels.all.map(channel => channel.username).indexOf(channel.username)}
-                  name={channel.name}
-                  current={channels.current}
-                  onSelectClick={onSelectClick}
-                  onDeleteClick={onDeleteClick}
-                  status={
-                    channels.all[channels.current].name === channel.name
-                      ? "sidebar__wrapper__channel--selected"
-                      : "sidebar__wrapper__channel"
-                  }
-                  image={channel.thumbnail}
-                />
-              )
-            )
-          }
+          {channels.all.map(channel => (
+            <Channel
+              key={channel.id.toString()}
+              id={channel.id.toString()}
+              position={channels.all
+                .map(channel => channel.username)
+                .indexOf(channel.username)}
+              name={channel.name}
+              current={channels.current}
+              onSelectClick={onSelectClick}
+              onDeleteClick={onDeleteClick}
+              status={
+                channels.all[channels.current].name === channel.name
+                  ? "sidebar__wrapper__channel--selected"
+                  : "sidebar__wrapper__channel"
+              }
+              image={channel.thumbnail}
+            />
+          ))}
         </ListGroup>
         <form
           onSubmit={event => {
-              event.preventDefault();
-              this.props.fetchChannel(this.props.usernameInput, this.props.user.csrf_token);
-              this.props.onUsernameInput("");
-            }}
+            event.preventDefault();
+            this.props.fetchChannel(
+              this.props.usernameInput,
+              this.props.user.csrf_token
+            );
+            this.props.onUsernameInput("");
+          }}
         >
           <FormControl
             className="sidebar__wrapper__input"
@@ -95,9 +98,11 @@ class Channels extends Component {
             block={true}
             bsStyle="danger"
             onClick={() => {
-                this.props.deleteAllChannels({csrf_token: this.props.user.csrf_token});
-                document.getElementsByClassName("btn-danger").blur();
-              }}
+              this.props.deleteAllChannels({
+                csrf_token: this.props.user.csrf_token
+              });
+              document.getElementsByClassName("btn-danger").blur();
+            }}
           >
             Clear Usernames
           </Button>
@@ -112,7 +117,8 @@ function mapStateToProps(state) {
     channels: state.channels,
     usernameInput: state.usernameInput,
     sidebarHidden: state.sidebarHidden,
-    user: state.user
+    user: state.user,
+    navbarToggle: state.navbarToggle
   };
 }
 
@@ -131,4 +137,4 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Channels)
+export default connect(mapStateToProps, mapDispatchToProps)(Channels);
