@@ -49,6 +49,27 @@ nav > .container {
   width: 2em;
 }
 
+a:visited {
+  color: #0275d8;
+}
+
+a:hover {
+  color: #23527c;
+}
+
+.nav-pills > li {
+  height: 50px;
+}
+
+.nav-pills > li > a {
+  padding-top: 15px;
+  height: 50px;
+}
+
+.nav-pills > li:hover {
+  background-color: #E7E7E7;
+}
+
 @media screen and (max-width: 767px) {
   .navbar-brand {
     width: auto;
