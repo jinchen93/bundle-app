@@ -26,8 +26,6 @@ if (process.env.NODE_ENV === "development") {
 }
 
 store.dispatch(getUser());
-store.dispatch(fetchChannelsUsernames());
-store.dispatch(fetchSubreddits());
 
 ReactDOM.render(
   <Provider store={store}>

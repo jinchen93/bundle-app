@@ -12,10 +12,13 @@ import { fetchSubreddits } from "../../reddit/actions";
 class AppNavBar extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.username !== this.props.user.username) {
-      this.props.fetchChannelsUsernames();
-      this.props.fetchSubreddits();
       browserHistory.push("/");
     }
+  }
+
+  componentWillUpdate() {
+    this.props.fetchChannelsUsernames();
+    this.props.fetchSubreddits();
   }
 
   render() {
