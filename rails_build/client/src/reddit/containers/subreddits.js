@@ -3,7 +3,13 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import Subreddit from "../components/subreddit";
-import { FormGroup, ControlLabel, FormControl, ListGroup, Button } from "react-bootstrap";
+import {
+  FormGroup,
+  ControlLabel,
+  FormControl,
+  ListGroup,
+  Button
+} from "react-bootstrap";
 import {
   addSubreddit,
   onSubredditInput,
@@ -29,7 +35,10 @@ class Subreddits extends Component {
 
     const onSelectClick = position => {
       this.props.selectSubreddit(position);
-      this.props.fetchSubredditPosts(subreddits.all[position].subreddit, sortBy);
+      this.props.fetchSubredditPosts(
+        subreddits.all[position].subreddit,
+        sortBy
+      );
     };
     const onDeleteClick = (id, position) => {
       this.props.deleteSubreddit(id, this.props.user.csrf_token);
@@ -39,7 +48,10 @@ class Subreddits extends Component {
           this.props.fetchSubredditPosts(subreddits.all[0].subreddit, sortBy);
         } else {
           this.props.selectSubreddit(position);
-          this.props.fetchSubredditPosts(subreddits.all[position + 1].subreddit, sortBy);
+          this.props.fetchSubredditPosts(
+            subreddits.all[position + 1].subreddit,
+            sortBy
+          );
         }
       }
     };
@@ -47,24 +59,29 @@ class Subreddits extends Component {
     return (
       <div
         className={
-          sidebarHidden === true ? "sidebar__wrapper sidebar__wrapper--hidden" : "sidebar__wrapper"
+          sidebarHidden === true
+            ? "sidebar__wrapper sidebar__wrapper--hidden"
+            : "sidebar__wrapper"
         }
       >
         <div className="sidebar__wrapper__header">
           <h2>SUBREDDITS</h2>
           <form>
-            <FormGroup controlId="formControlsSelect" className="sort-by-selector">
+            <FormGroup
+              controlId="formControlsSelect"
+              className="sort-by-selector"
+            >
               <ControlLabel>TOP POSTS FROM PAST:</ControlLabel>
               <FormControl
                 className="sort-by-selector-input"
                 componentClass="select"
                 onChange={e => {
-                    this.props.setSortBy(e.target.value);
-                    this.props.fetchSubredditPosts(
-                      subreddits.all[subreddits.current].subreddit,
-                      e.target.value
-                    );
-                  }}
+                  this.props.setSortBy(e.target.value);
+                  this.props.fetchSubredditPosts(
+                    subreddits.all[subreddits.current].subreddit,
+                    e.target.value
+                  );
+                }}
               >
                 <option value="day">day</option>
                 <option value="week">week</option>
@@ -75,33 +92,34 @@ class Subreddits extends Component {
           </form>
         </div>
         <ListGroup>
-          {
-            subreddits.all.map(
-              subreddit =>
-                subreddit === ""
-                  ? ""
-                  : <Subreddit
+          {subreddits.all.map(
+            subreddit =>
+              (subreddit === ""
+                ? ""
+                : <Subreddit
                     key={subreddit.id.toString()}
                     id={subreddit.id.toString()}
-                    position={subreddits.all.map(sub => sub.subreddit).indexOf(subreddit.subreddit)}
+                    position={subreddits.all
+                      .map(sub => sub.subreddit)
+                      .indexOf(subreddit.subreddit)}
                     subredditName={subreddit.subreddit}
                     onSelectClick={onSelectClick}
                     onDeleteClick={onDeleteClick}
                     status={
-                      subreddits.all[subreddits.current].subreddit === subreddit.subreddit
+                      subreddits.all[subreddits.current].subreddit ===
+                        subreddit.subreddit
                         ? "sidebar__wrapper__subreddit--selected"
                         : "sidebar__wrapper__subreddit"
                     }
-                  />
-            )
-          }
+                  />)
+          )}
         </ListGroup>
         <form
           onSubmit={event => {
-              event.preventDefault();
-              addSubreddit(subredditInput, this.props.user.csrf_token);
-              onSubredditInput("");
-            }}
+            event.preventDefault();
+            addSubreddit(subredditInput, this.props.user.csrf_token);
+            onSubredditInput("");
+          }}
         >
           <FormControl
             className="sidebar__wrapper__input"
@@ -121,8 +139,8 @@ class Subreddits extends Component {
             block={true}
             bsStyle="danger"
             onClick={() => {
-                deleteAllSubreddits(this.props.user.csrf_token);
-              }}
+              deleteAllSubreddits(this.props.user.csrf_token);
+            }}
           >
             Clear Subreddits
           </Button>

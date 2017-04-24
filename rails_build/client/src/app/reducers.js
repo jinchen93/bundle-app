@@ -1,9 +1,7 @@
 import {
   SET_SIDEBAR_TOGGLE,
   SET_NAVBAR_TOGGLE,
-  GET_USER_STATUS,
-  SIGNUP,
-  CHANGE_LOGIN_STATUS
+  GET_USER_STATUS
 } from "./actionTypes";
 
 const defaultUserState = {

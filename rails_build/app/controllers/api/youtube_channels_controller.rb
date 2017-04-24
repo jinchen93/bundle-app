@@ -1,11 +1,12 @@
 class Api::YoutubeChannelsController < ApplicationController
   def index
-    yt_channels = YoutubeChannel.all
+    yt_channels = current_user.youtube_channels
     render json: yt_channels
   end
 
   def create
     new_yt_channel = YoutubeChannel.new(yt_channel_params)
+    new_yt_channel.user_id = current_user.id
 
     if new_yt_channel.save
       render json: new_yt_channel
@@ -13,7 +14,7 @@ class Api::YoutubeChannelsController < ApplicationController
   end
 
   def destroy_all
-    YoutubeChannel.destroy_all
+    current_user.youtube_channels.destroy_all
   end
 
   def destroy

@@ -5,7 +5,7 @@ import Posts from "./posts";
 
 class RedditApp extends Component {
   render() {
-    const { subreddits, subredditPosts } = this.props;
+    const { subreddits } = this.props;
     if (subreddits.all.length === 0) {
       return <Subreddits />;
     } else {
@@ -20,7 +20,7 @@ class RedditApp extends Component {
 }
 
 function mapStateToProps(state) {
-  return { subreddits: state.subreddits, subredditPosts: state.subredditPosts };
+  return { subreddits: state.subreddits };
 }
 
 export default connect(mapStateToProps)(RedditApp);

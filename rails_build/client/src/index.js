@@ -11,26 +11,27 @@ import routes from "./routes";
 import { rootReducer } from "./rootReducer";
 import { fetchChannelsUsernames } from "./youtube/actions";
 import { fetchSubreddits } from "./reddit/actions";
-import { getUser } from './app/actions'
+import { getUser } from "./app/actions";
 
-const middleware = [ ReduxThunk ];
+const middleware = [ReduxThunk];
 
 let store;
 if (process.env.NODE_ENV === "development") {
-  store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middleware)));
+  store = createStore(
+    rootReducer,
+    composeWithDevTools(applyMiddleware(...middleware))
+  );
 } else {
   store = createStore(rootReducer, applyMiddleware(...middleware));
 }
 
+store.dispatch(getUser());
 store.dispatch(fetchChannelsUsernames());
 store.dispatch(fetchSubreddits());
-store.dispatch(getUser());
 
 ReactDOM.render(
-  (
-    <Provider store={store}>
-      <Router history={browserHistory} routes={routes} />
-    </Provider>
-  ),
+  <Provider store={store}>
+    <Router history={browserHistory} routes={routes} />
+  </Provider>,
   document.querySelector(".root")
 );

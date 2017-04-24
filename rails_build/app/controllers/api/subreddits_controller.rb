@@ -1,19 +1,19 @@
 class Api::SubredditsController < ApplicationController
   def index
-    subreddits = Subreddit.all
+    subreddits = current_user.subreddits
     render json: subreddits
   end
 
   def create
     subreddit = Subreddit.new(subreddit: params[:subreddit])
-
+    subreddit.user_id = current_user.id
     if subreddit.save
       render json: subreddit
     end
   end
 
   def destroy_all
-    Subreddit.destroy_all
+    current_user.subreddits.destroy_all
   end
 
   def destroy

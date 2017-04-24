@@ -3,11 +3,21 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Link } from "react-router";
 
-import { Navbar, Nav, NavItem } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import { logout, toggleSidebar, toggleNavbar } from "../actions";
 import { browserHistory } from "react-router";
+import { fetchChannelsUsernames } from "../../youtube/actions";
+import { fetchSubreddits } from "../../reddit/actions";
 
 class AppNavBar extends Component {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user.username !== this.props.user.username) {
+      this.props.fetchChannelsUsernames();
+      this.props.fetchSubreddits();
+      browserHistory.push("/");
+    }
+  }
+
   render() {
     const renderLogin = () => {
       return (
@@ -33,7 +43,7 @@ class AppNavBar extends Component {
 
     const renderLogout = () => {
       return (
-        <ul className="nav nav-pills">
+        <ul active="" className="nav nav-pills">
           <li id="username">
             <div>
               Hi {this.props.user.username}
@@ -43,7 +53,6 @@ class AppNavBar extends Component {
             <Link
               onClick={() => {
                 this.props.logout(this.props.user.csrf_token);
-                browserHistory.push("/");
               }}
             >
               Logout
@@ -83,7 +92,7 @@ class AppNavBar extends Component {
           />
         </Navbar.Header>
         <Navbar.Collapse>
-          <Nav pullRight>
+          <Nav pullRight={true}>
 
             {this.props.user.username === "Guest"
               ? renderLogin()
@@ -115,7 +124,16 @@ class AppNavBar extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ toggleSidebar, toggleNavbar, logout }, dispatch);
+  return bindActionCreators(
+    {
+      toggleSidebar,
+      toggleNavbar,
+      logout,
+      fetchChannelsUsernames,
+      fetchSubreddits
+    },
+    dispatch
+  );
 }
 
 function mapStateToProps(state) {

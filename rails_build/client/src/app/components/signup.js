@@ -2,14 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "../styles/form.css";
-import {
-  Jumbotron,
-  Grid,
-  Row,
-  FormControl,
-  ControlLabel,
-  Button
-} from "react-bootstrap";
+import { Jumbotron, Grid, Row, FormControl, Button } from "react-bootstrap";
 import { signup } from "../actions";
 import { browserHistory } from "react-router";
 
@@ -20,12 +13,6 @@ class Signup extends Component {
       username: "",
       password: ""
     };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.user.username !== this.props.user.username) {
-      browserHistory.push("/");
-    }
   }
 
   update(field) {
@@ -73,6 +60,7 @@ class Signup extends Component {
                   type="password"
                   onChange={this.update("password")}
                   placeholder="Password"
+                  value={this.state.password}
                 />
               </Row>
               <Row>

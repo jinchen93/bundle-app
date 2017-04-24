@@ -31,6 +31,16 @@ class User < ApplicationRecord
     }
   )
 
+  has_many :subreddits,
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :Subreddit
+
+  has_many :youtube_channels,
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :YoutubeChannel
+
   attr_reader :password
 
   def self.find_by_credentials(username, password)
