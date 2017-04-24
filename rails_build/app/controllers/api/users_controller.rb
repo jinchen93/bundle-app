@@ -1,5 +1,8 @@
 class Api::UsersController < ApplicationController
   def index
+    if current_user.nil?
+      login!(User.find_by(username: 'Guest'))
+    end
     render json: { username: current_user.username, csrf_token: form_authenticity_token }
   end
 
