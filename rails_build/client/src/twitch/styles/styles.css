@@ -1,0 +1,24 @@
+.twitch-content-wrapper {
+  position: relative;
+}
+
+.twitch-chat {
+  position: fixed;
+  top: 9%;
+  width: 25%;
+}
+
+.twitch-chat--expanded {
+  position: fixed;
+  top: 9%;
+  width: 30%;
+}
+
+@media screen and (max-width: 767px) {
+  .twitch-chat,
+  .twitch-chat--expanded {
+    position: relative;
+    height: 600px;
+    width: 100%;
+  }
+}

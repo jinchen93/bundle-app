@@ -1,9 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import TwitchChannels from './twitchChannels';
+import Player from '../components/player';
+import '../styles/styles.css';
 
 class Twitch extends Component {
   render() {
-    return <div className="wrapper" />;
+    return (
+      <div className="wrapper">
+        <TwitchChannels />
+        <Player />
+      </div>
+    );
   }
 }
 
