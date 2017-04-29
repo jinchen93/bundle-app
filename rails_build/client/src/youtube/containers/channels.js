@@ -12,7 +12,7 @@ import {
   deleteChannel,
 } from '../actions';
 import {ListGroup, FormControl, Button} from 'react-bootstrap';
-import {generateForm} from '../../app/hoc/sidebar';
+import {SidebarForm, SidebarList} from '../../app/components/sidebar/modules';
 
 import '../styles/channels.css';
 
@@ -41,11 +41,9 @@ class Channels extends Component {
     };
 
     return (
-      <div
-        className={`sidebar__wrapper
-          ${this.props.sidebarHidden === true ? 'sidebar__wrapper--hidden' : ''}
-          ${this.props.navbarToggle === true ? 'sidebar__wrapper--navbar-toggled' : ''}
-        `}
+      <SidebarList
+        sidebarHidden={this.props.sidebarHidden}
+        navbarToggle={this.props.navbarToggle}
       >
         <div className="sidebar__wrapper__header">
           <h2>CHANNELS</h2>
@@ -72,44 +70,16 @@ class Channels extends Component {
           ))}
         </ListGroup>
 
-        <form
-          onSubmit={event => {
-            event.preventDefault();
-            this.props.fetchChannel(
-              this.props.usernameInput,
-              this.props.user.csrf_token
-            );
-            this.props.onUsernameInput('');
-          }}
-        >
-          <FormControl
-            className="sidebar__wrapper__input"
-            placeholder="Add channel username/ID"
-            value={this.props.usernameInput}
-            onChange={event => this.props.onUsernameInput(event.target.value)}
-          />
-          <Button
-            block={true}
-            bsStyle="success"
-            type="submit"
-            className="sidebar__wrapper__input__add"
-          >
-            +
-          </Button>
-          <Button
-            block={true}
-            bsStyle="danger"
-            onClick={() => {
-              this.props.deleteAllChannels({
-                csrf_token: this.props.user.csrf_token,
-              });
-              document.getElementsByClassName('btn-danger').blur();
-            }}
-          >
-            Clear Usernames
-          </Button>
-        </form>
-      </div>
+        <SidebarForm
+          inputVal={this.props.usernameInput}
+          type="YOUTUBE"
+          inputAction={this.props.onUsernameInput}
+          csrf_token={this.props.user.csrf_token}
+          deleteAction={this.props.deleteAllChannels}
+          addAction={this.props.fetchChannel}
+        />
+
+      </SidebarList>
     );
   }
 }

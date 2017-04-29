@@ -10,9 +10,9 @@ export default props => {
         props.deleteAction(props.csrf_token);
       }}
     >
-      {props.mediaType === 'REDDIT' ? 'Clear Subreddits' : ''}
-      {props.mediaType === 'YOUTUBE' ? 'Clear Channels' : ''}
-      {props.mediaType === 'Twitch' ? 'Clear Channels' : ''}
+      {props.type === 'REDDIT' ? 'Clear Subreddits' : ''}
+      {props.type === 'YOUTUBE' ? 'Clear Channels' : ''}
+      {props.type === 'TWITCH' ? 'Clear Channels' : ''}
     </Button>
   );
 };

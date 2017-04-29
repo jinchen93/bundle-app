@@ -6,7 +6,7 @@ export default props => {
     <FormControl
       className="sidebar__wrapper__input"
       placeholder={
-        props.mediaType === 'REDDIT' ? 'Add subreddit' : 'Add channel'
+        props.type === 'REDDIT' ? 'Add subreddit' : 'Add channel'
       }
       value={props.inputVal}
       onChange={event => props.inputAction(event.target.value)}

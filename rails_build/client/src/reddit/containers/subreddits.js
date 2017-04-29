@@ -89,6 +89,7 @@ class Subreddits extends Component {
             </FormGroup>
           </form>
         </div>
+
         <ListGroup>
           {subreddits.all.map(
             subreddit =>
