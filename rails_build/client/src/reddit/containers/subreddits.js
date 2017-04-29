@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import Subreddit from "../components/subreddit";
+import Subreddit from '../components/subreddit';
 import {
   FormGroup,
   ControlLabel,
   FormControl,
   ListGroup,
-  Button
-} from "react-bootstrap";
+  Button,
+} from 'react-bootstrap';
 import {
   addSubreddit,
   onSubredditInput,
@@ -17,9 +17,10 @@ import {
   selectSubreddit,
   deleteSubreddit,
   fetchSubredditPosts,
-  setSortBy
-} from "../actions";
-import "../styles/subreddits.css";
+  setSortBy,
+} from '../actions';
+import '../styles/subreddits.css';
+import {SidebarForm, SidebarList} from '../../app/components/sidebar/modules';
 
 class Subreddits extends Component {
   render() {
@@ -30,7 +31,7 @@ class Subreddits extends Component {
       subredditInput,
       sidebarHidden,
       deleteAllSubreddits,
-      sortBy
+      sortBy,
     } = this.props;
 
     const onSelectClick = position => {
@@ -57,12 +58,9 @@ class Subreddits extends Component {
     };
 
     return (
-      <div
-        className={
-          sidebarHidden === true
-            ? "sidebar__wrapper sidebar__wrapper--hidden"
-            : "sidebar__wrapper"
-        }
+      <SidebarList
+        sidebarHidden={this.props.sidebarHidden}
+        navbarToggle={this.props.navbarToggle}
       >
         <div className="sidebar__wrapper__header">
           <h2>SUBREDDITS</h2>
@@ -94,8 +92,8 @@ class Subreddits extends Component {
         <ListGroup>
           {subreddits.all.map(
             subreddit =>
-              (subreddit === ""
-                ? ""
+              (subreddit === ''
+                ? ''
                 : <Subreddit
                     key={subreddit.id.toString()}
                     id={subreddit.id.toString()}
@@ -108,44 +106,23 @@ class Subreddits extends Component {
                     status={
                       subreddits.all[subreddits.current].subreddit ===
                         subreddit.subreddit
-                        ? "sidebar__wrapper__subreddit--selected"
-                        : "sidebar__wrapper__subreddit"
+                        ? 'sidebar__wrapper__subreddit--selected'
+                        : 'sidebar__wrapper__subreddit'
                     }
                   />)
           )}
         </ListGroup>
-        <form
-          onSubmit={event => {
-            event.preventDefault();
-            addSubreddit(subredditInput, this.props.user.csrf_token);
-            onSubredditInput("");
-          }}
-        >
-          <FormControl
-            className="sidebar__wrapper__input"
-            placeholder="Add subreddit"
-            value={subredditInput}
-            onChange={event => onSubredditInput(event.target.value)}
-          />
-          <Button
-            block={true}
-            bsStyle="success"
-            type="submit"
-            className="sidebar__wrapper__input__add"
-          >
-            +
-          </Button>
-          <Button
-            block={true}
-            bsStyle="danger"
-            onClick={() => {
-              deleteAllSubreddits(this.props.user.csrf_token);
-            }}
-          >
-            Clear Subreddits
-          </Button>
-        </form>
-      </div>
+
+        <SidebarForm
+          inputVal={subredditInput}
+          type="REDDIT"
+          inputAction={onSubredditInput}
+          csrf_token={this.props.user.csrf_token}
+          deleteAction={deleteAllSubreddits}
+          addAction={addSubreddit}
+        />
+
+      </SidebarList>
     );
   }
 }
@@ -156,7 +133,8 @@ function mapStateToProps(state) {
     subredditInput: state.subredditInput,
     subreddits: state.subreddits,
     sortBy: state.sortBy,
-    user: state.user
+    user: state.user,
+    navbarToggle: state.navbarToggle,
   };
 }
 
@@ -169,7 +147,7 @@ function mapDispatchToProps(dispatch) {
       selectSubreddit,
       deleteSubreddit,
       fetchSubredditPosts,
-      setSortBy
+      setSortBy,
     },
     dispatch
   );
