@@ -16,11 +16,16 @@ import {SidebarForm, SidebarList} from '../../app/components/sidebar/modules';
 
 class TwitchChannels extends Component {
   componentDidMount() {
+    setTimeout;
+    this.props.twitchChannels.all.forEach(channel => {
+      this.props.updateStreamInfo(channel);
+    });
+
     setInterval(() => {
       this.props.twitchChannels.all.forEach(channel => {
         this.props.updateStreamInfo(channel);
       });
-    }, 3000);
+    }, 2000);
   }
 
   render() {

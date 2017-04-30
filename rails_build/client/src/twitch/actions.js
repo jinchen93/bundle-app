@@ -21,7 +21,6 @@ export function fetchTwitchChannels() {
     Request.get('/api/twitch_channels').end((error, response) => {
       if (error) {
         console.log('Error occured while fetching twitch channels');
-        console.log('Error occured while fetching twitch channels');
       } else {
         dispatch(setTwitchChannels(response.body));
       }
@@ -61,35 +60,6 @@ function postTwitchChannel(channel, csrf_token) {
   };
 }
 
-// export function fetchTwitchStreamsInfo(channels) {
-//   return dispatch => {
-//     const newChannels = [];
-//
-//     channels.forEach(channel => {
-//       const url = BASE_STREAM_URL + channel.username + CLIENT_ID;
-//       let newChannel;
-//
-//       Request.get(url).end((error, res) => {
-//         if (error) {
-//           newChannel = {...channel, viewers: 0};
-//           console.log(
-//             `Error occured while fetching stream info for ${channel.username}`
-//           );
-//         } else {
-//           newChannel = {
-//             ...channel,
-//             viewers: res.viewers === undefined ? 0 : res.viewers,
-//           };
-//         }
-//
-//         newChannels.push(newChannel);
-//       });
-//     });
-//
-//     dispatch(setTwitchChannels(newChannels));
-//   };
-// }
-
 export function deleteAllTwitchChannels(options = {csrf_token: null}) {
   return dispatch => {
     Request.delete('/api/twitch_channels').csrf(options.csrf_token).end(() => {
@@ -111,7 +81,6 @@ export function deleteTwitchChannel(options = {id: null, csrf_token: null}) {
 export function updateStreamInfo(channel) {
   return dispatch => {
     const url = BASE_STREAM_URL + channel.username + CLIENT_ID;
-    console.log(url);
     Request.get(url).end((error, response) => {
       if (error) {
         console.log(
@@ -119,10 +88,17 @@ export function updateStreamInfo(channel) {
         );
       } else {
         let stream = response.body.stream;
-        let new_channel = {
-          ...channel,
-          viewers: stream === null ? 0 : stream.viewers,
-        };
+        let new_channel;
+        if (stream === null) {
+          new_channel = {...channel, viewers: 0};
+        } else {
+          new_channel = {
+            ...channel,
+            viewers: stream.viewers,
+            status: stream.channel.status,
+          };
+        }
+
         dispatch(setTwitchChannel(new_channel));
       }
     });

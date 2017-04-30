@@ -10,11 +10,28 @@ export default props => {
     props.onDeleteClick(id, position);
   };
 
+  const renderViewerCount = () => {
+    if (props.viewers > 0) {
+      return (
+        <span>
+          <i id="record-icon" className="fa fa-user-circle" />
+          <span id="viewer-count">{props.viewers}</span>
+        </span>
+      );
+    } else {
+      return <i id="record-icon" className="fa fa-power-off" />;
+    }
+  };
+
   return (
     <div className={props.status}>
       <ListGroupItem href="#" onClick={() => handleSelectClick(props.position)}>
         <img id={props.status} src={props.image} alt={props.name} />
-        <span>{props.name}</span>
+        <span>
+          {props.name}
+          <br />
+          {renderViewerCount()}
+        </span>
       </ListGroupItem>
       <i
         className="fa fa-times"
