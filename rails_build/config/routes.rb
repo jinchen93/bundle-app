@@ -20,5 +20,6 @@ Rails.application.routes.draw do
     delete 'twitch_channels', to: 'twitch_channels#destroy_all'
   end
 
-  get '*path', to: 'main#index'
+  get '*path', to: redirect('/')
+
 end
