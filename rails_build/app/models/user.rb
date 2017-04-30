@@ -41,6 +41,11 @@ class User < ApplicationRecord
     foreign_key: :user_id,
     class_name: :YoutubeChannel
 
+  has_many :twitch_channels,
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :TwitchChannel
+
   attr_reader :password
 
   def self.find_by_credentials(username, password)

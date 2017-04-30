@@ -17,7 +17,7 @@ class Player extends Component {
               <div className="video-container">
                 <ResponsiveEmbed a16by9 className="video-container__embedd">
                   <iframe
-                    src="http://player.twitch.tv/?channel=dotamajor&autoplay=true"
+                    src="http://player.twitch.tv/?channel=capcomfighters&autoplay=true"
                     className="embed-responsive-item"
                     allowFullScreen
                   />
@@ -33,7 +33,7 @@ class Player extends Component {
                 }
                 frameBorder="0"
                 id="chat_embed"
-                src="http://twitch.tv/dotamajor/chat"
+                src="http://twitch.tv/capcomfighters/chat"
                 height="600"
                 width="350"
                 scrolling="no"

@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
     resources :subreddits, only: [:index, :create, :destroy]
     delete 'subreddits', to: 'subreddits#destroy_all'
+
+    resources :twitch_channels, only: [:index, :create, :destroy]
+    delete 'twitch_channels', to: 'twitch_channels#destroy_all'
   end
 
   get '*path', to: 'main#index'
