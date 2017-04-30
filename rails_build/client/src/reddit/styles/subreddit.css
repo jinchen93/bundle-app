@@ -9,13 +9,13 @@
   color: black;
 }
 
-.sidebar__wrapper__subreddit i,
-.sidebar__wrapper__subreddit--selected i {
+.sidebar__wrapper__subreddit .fa-times
+.sidebar__wrapper__subreddit--selected .fa-times {
   display: none;
 }
 
-.sidebar__wrapper__subreddit:hover i,
-.sidebar__wrapper__subreddit--selected:hover i {
+.sidebar__wrapper__subreddit:hover .fa-times
+.sidebar__wrapper__subreddit--selected:hover .fa-times {
   cursor: pointer;
   display: block;
   position: absolute;
@@ -25,8 +25,8 @@
   color: #D91E18;
 }
 
-.sidebar__wrapper__subreddit i:hover,
-.sidebar__wrapper__subreddit--selected i:hover {
+.sidebar__wrapper__subreddit .fa-times:hover,
+.sidebar__wrapper__subreddit--selected .fa-times:hover {
   color: #96281B;
 }
 

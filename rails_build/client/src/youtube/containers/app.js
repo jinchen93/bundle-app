@@ -1,8 +1,8 @@
-import { connect } from "react-redux";
-import React, { Component } from "react";
+import {connect} from 'react-redux';
+import React, {Component} from 'react';
 
-import Channels from "./channels";
-import Videos from "./videos";
+import Channels from './channels';
+import Videos from './videos';
 
 class YoutubeApp extends Component {
   render() {
@@ -22,7 +22,7 @@ class YoutubeApp extends Component {
 }
 
 function mapStateToProps(state) {
-  return { channels: state.channels };
+  return {channels: state.channels};
 }
 
-export default connect(mapStateToProps)(YoutubeApp)
+export default connect(mapStateToProps)(YoutubeApp);

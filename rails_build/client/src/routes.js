@@ -1,19 +1,23 @@
-import { Route, IndexRoute } from "react-router";
-import React from "react";
+import {Route, Router, IndexRoute, hashHistory} from 'react-router';
+import React from 'react';
 
-import App from "./app/components/app";
-import Main from "./app/components/main";
-import YoutubeApp from "./youtube/containers/app";
-import RedditApp from "./reddit/containers/app";
-import Signup from "./app/components/signup";
-import Login from "./app/components/login";
+import App from './app/components/app';
+import Main from './app/components/main';
+import YoutubeApp from './youtube/containers/app';
+import RedditApp from './reddit/containers/app';
+import Signup from './app/components/signup';
+import Login from './app/components/login';
+import Twitch from './twitch/containers/app';
 
 export default (
-  <Route path="/" component={App}>
-    <IndexRoute component={Main} />
-    <Route path="/youtube" component={YoutubeApp} />
-    <Route path="/reddit" component={RedditApp} />
-    <Route path="/login" component={Login} />
-    <Route path="/signup" component={Signup} />
-  </Route>
+  <Router history={hashHistory}>
+    <Route path="/" component={App}>
+      <IndexRoute component={Main} />
+      <Route path="/youtube" component={YoutubeApp} />
+      <Route path="/reddit" component={RedditApp} />
+      <Route path="/login" component={Login} />
+      <Route path="/signup" component={Signup} />
+      <Route path="/twitch" component={Twitch} />
+    </Route>
+  </Router>
 );

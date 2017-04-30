@@ -1,24 +1,26 @@
-import React, { Component } from "react";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { Link } from "react-router";
+import React, {Component} from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {Link} from 'react-router';
 
-import { Navbar, Nav } from "react-bootstrap";
-import { logout, toggleSidebar, toggleNavbar } from "../actions";
-import { browserHistory } from "react-router";
-import { fetchChannelsUsernames } from "../../youtube/actions";
-import { fetchSubreddits } from "../../reddit/actions";
+import {Navbar, Nav} from 'react-bootstrap';
+import {logout, toggleSidebar, toggleNavbar} from '../actions';
+import {browserHistory} from 'react-router';
+import {fetchChannelsUsernames} from '../../youtube/actions';
+import {fetchSubreddits} from '../../reddit/actions';
+import {fetchTwitchChannels} from '../../twitch/actions';
 
 class AppNavBar extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.username !== this.props.user.username) {
-      browserHistory.push("/");
+      browserHistory.push('/');
     }
   }
 
   componentWillUpdate() {
     this.props.fetchChannelsUsernames();
     this.props.fetchSubreddits();
+    this.props.fetchTwitchChannels();
   }
 
   render() {
@@ -97,14 +99,14 @@ class AppNavBar extends Component {
         <Navbar.Collapse>
           <Nav pullRight={true}>
 
-            {this.props.user.username === "Guest"
+            {this.props.user.username === 'Guest'
               ? renderLogin()
               : renderLogout()}
           </Nav>
           <ul className="nav nav-pills navbar-nav">
             <li
               role="presentation"
-              className={this.props.path === "/youtube" ? "active" : ""}
+              className={this.props.path === '/youtube' ? 'active' : ''}
             >
               <Link to="/youtube">
                 Youtube
@@ -112,10 +114,18 @@ class AppNavBar extends Component {
             </li>
             <li
               role="presentation"
-              className={this.props.path === "/reddit" ? "active" : ""}
+              className={this.props.path === '/reddit' ? 'active' : ''}
             >
               <Link to="/reddit">
                 Reddit
+              </Link>
+            </li>
+            <li
+              role="presentation"
+              className={this.props.path === '/twitch' ? 'active' : ''}
+            >
+              <Link to="/twitch">
+                Twitch
               </Link>
             </li>
           </ul>
@@ -133,7 +143,8 @@ function mapDispatchToProps(dispatch) {
       toggleNavbar,
       logout,
       fetchChannelsUsernames,
-      fetchSubreddits
+      fetchSubreddits,
+      fetchTwitchChannels,
     },
     dispatch
   );
@@ -143,7 +154,7 @@ function mapStateToProps(state) {
   return {
     sidebarHidden: state.sidebarHidden,
     navbarToggle: state.navbarToggle,
-    user: state.user
+    user: state.user,
   };
 }
 

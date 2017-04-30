@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import Channel from "../components/channel";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import Channel from '../components/channel';
 import {
   selectChannel,
   fetchVideos,
@@ -9,11 +9,12 @@ import {
   fetchChannel,
   onUsernameInput,
   deleteAllChannels,
-  deleteChannel
-} from "../actions";
-import { ListGroup, FormControl, Button } from "react-bootstrap";
+  deleteChannel,
+} from '../actions';
+import {ListGroup, FormControl, Button} from 'react-bootstrap';
+import {SidebarForm, SidebarList} from '../../app/components/sidebar/modules';
 
-import "../styles/channels.css";
+import '../styles/channels.css';
 
 class Channels extends Component {
   render() {
@@ -26,7 +27,7 @@ class Channels extends Component {
     const onDeleteClick = (id, position) => {
       this.props.deleteChannel({
         id: id,
-        csrf_token: this.props.user.csrf_token
+        csrf_token: this.props.user.csrf_token,
       });
       if (position === channels.current) {
         if (position === channels.all.length - 1) {
@@ -40,11 +41,9 @@ class Channels extends Component {
     };
 
     return (
-      <div
-        className={`sidebar__wrapper
-          ${this.props.sidebarHidden === true ? "sidebar__wrapper--hidden" : ""}
-          ${this.props.navbarToggle === true ? "sidebar__wrapper--navbar-toggled" : ""}
-        `}
+      <SidebarList
+        sidebarHidden={this.props.sidebarHidden}
+        navbarToggle={this.props.navbarToggle}
       >
         <div className="sidebar__wrapper__header">
           <h2>CHANNELS</h2>
@@ -63,51 +62,24 @@ class Channels extends Component {
               onDeleteClick={onDeleteClick}
               status={
                 channels.all[channels.current].name === channel.name
-                  ? "sidebar__wrapper__channel--selected"
-                  : "sidebar__wrapper__channel"
+                  ? 'sidebar__wrapper__channel--selected'
+                  : 'sidebar__wrapper__channel'
               }
               image={channel.thumbnail}
             />
           ))}
         </ListGroup>
-        <form
-          onSubmit={event => {
-            event.preventDefault();
-            this.props.fetchChannel(
-              this.props.usernameInput,
-              this.props.user.csrf_token
-            );
-            this.props.onUsernameInput("");
-          }}
-        >
-          <FormControl
-            className="sidebar__wrapper__input"
-            placeholder="Add channel username/ID"
-            value={this.props.usernameInput}
-            onChange={event => this.props.onUsernameInput(event.target.value)}
-          />
-          <Button
-            block={true}
-            bsStyle="success"
-            type="submit"
-            className="sidebar__wrapper__input__add"
-          >
-            +
-          </Button>
-          <Button
-            block={true}
-            bsStyle="danger"
-            onClick={() => {
-              this.props.deleteAllChannels({
-                csrf_token: this.props.user.csrf_token
-              });
-              document.getElementsByClassName("btn-danger").blur();
-            }}
-          >
-            Clear Usernames
-          </Button>
-        </form>
-      </div>
+
+        <SidebarForm
+          inputVal={this.props.usernameInput}
+          type="YOUTUBE"
+          inputAction={this.props.onUsernameInput}
+          csrf_token={this.props.user.csrf_token}
+          deleteAction={this.props.deleteAllChannels}
+          addAction={this.props.fetchChannel}
+        />
+
+      </SidebarList>
     );
   }
 }
@@ -118,7 +90,7 @@ function mapStateToProps(state) {
     usernameInput: state.usernameInput,
     sidebarHidden: state.sidebarHidden,
     user: state.user,
-    navbarToggle: state.navbarToggle
+    navbarToggle: state.navbarToggle,
   };
 }
 
@@ -131,7 +103,7 @@ function mapDispatchToProps(dispatch) {
       fetchChannel,
       onUsernameInput,
       deleteAllChannels,
-      deleteChannel
+      deleteChannel,
     },
     dispatch
   );

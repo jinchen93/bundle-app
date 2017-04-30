@@ -1,18 +1,19 @@
-import { combineReducers } from "redux";
-import { reducer as formReducer } from "redux-form";
+import {combineReducers} from 'redux';
+import {reducer as formReducer} from 'redux-form';
 
 import {
   videosReducer,
   usernameInputReducer,
-  channelsReducer
-} from "./youtube/reducers";
-import { sidebarReducer, userReducer, navbarReducer } from "./app/reducers";
+  channelsReducer,
+} from './youtube/reducers';
+import {sidebarReducer, userReducer, navbarReducer} from './app/reducers';
 import {
   subredditsReducer,
   subredditInputReducer,
   subredditPostsReducer,
-  sortByReducer
-} from "./reddit/reducers";
+  sortByReducer,
+} from './reddit/reducers';
+import {twitchChannelsReducer, twitchInputReducer} from './twitch/reducers';
 
 export const rootReducer = combineReducers({
   sidebarHidden: sidebarReducer,
@@ -25,5 +26,7 @@ export const rootReducer = combineReducers({
   subredditPosts: subredditPostsReducer,
   sortBy: sortByReducer,
   user: userReducer,
-  navbarToggle: navbarReducer
+  navbarToggle: navbarReducer,
+  twitchChannels: twitchChannelsReducer,
+  twitchInput: twitchInputReducer,
 });
