@@ -2,6 +2,7 @@ import {
   SET_TWITCH_CHANNELS,
   SELECT_TWITCH_CHANNEL,
   ON_TWITCH_INPUT,
+  SET_TWITCH_CHANNEL,
 } from './actionTypes';
 
 export function twitchChannelsReducer(state = {all: [], current: 0}, action) {
@@ -10,6 +11,17 @@ export function twitchChannelsReducer(state = {all: [], current: 0}, action) {
       return {...state, all: action.payload};
     case SELECT_TWITCH_CHANNEL:
       return {...state, current: action.payload};
+    case SET_TWITCH_CHANNEL:
+      return {
+        ...state,
+        all: state.all.map(channel => {
+          if (channel.id === action.payload.id) {
+            return action.payload;
+          } else {
+            return channel;
+          }
+        }),
+      };
     default:
       return state;
   }

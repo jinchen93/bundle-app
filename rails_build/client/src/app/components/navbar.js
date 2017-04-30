@@ -8,6 +8,7 @@ import {logout, toggleSidebar, toggleNavbar} from '../actions';
 import {browserHistory} from 'react-router';
 import {fetchChannelsUsernames} from '../../youtube/actions';
 import {fetchSubreddits} from '../../reddit/actions';
+import {fetchTwitchChannels} from '../../twitch/actions';
 
 class AppNavBar extends Component {
   componentWillReceiveProps(nextProps) {
@@ -19,6 +20,7 @@ class AppNavBar extends Component {
   componentWillUpdate() {
     this.props.fetchChannelsUsernames();
     this.props.fetchSubreddits();
+    this.props.fetchTwitchChannels();
   }
 
   render() {
@@ -142,6 +144,7 @@ function mapDispatchToProps(dispatch) {
       logout,
       fetchChannelsUsernames,
       fetchSubreddits,
+      fetchTwitchChannels,
     },
     dispatch
   );

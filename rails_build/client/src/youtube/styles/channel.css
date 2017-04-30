@@ -50,6 +50,10 @@
   border-left: 4px solid #004C79;
 }
 
+.sidebar__wrapper__channel--selected img {
+  height: 100px;
+}
+
 .sidebar__wrapper__channel--selected span {
   display: block;
 }

@@ -4,10 +4,25 @@ import {bindActionCreators} from 'redux';
 import {ListGroup} from 'react-bootstrap';
 
 import TwitchChannel from '../components/twitchChannel';
-import {selectTwitchChannel, fetchTwitchChannel} from '../actions';
+import {
+  selectTwitchChannel,
+  fetchTwitchChannel,
+  onTwitchInput,
+  deleteAllTwitchChannels,
+  deleteTwitchChannel,
+  updateStreamInfo,
+} from '../actions';
 import {SidebarForm, SidebarList} from '../../app/components/sidebar/modules';
 
 class TwitchChannels extends Component {
+  componentDidMount() {
+    setInterval(() => {
+      this.props.twitchChannels.all.forEach(channel => {
+        this.props.updateStreamInfo(channel);
+      });
+    }, 3000);
+  }
+
   render() {
     const {twitchChannels} = this.props;
 
@@ -45,12 +60,12 @@ class TwitchChannels extends Component {
               position={twitchChannels.all
                 .map(channel => channel.username)
                 .indexOf(channel.username)}
-              name={channel.displayName}
+              name={channel.display_name}
               current={twitchChannels.current}
               onSelectClick={onSelectClick}
               onDeleteClick={onDeleteClick}
               status={
-                twitchChannels.all[twitchChannels.current].name === channel.name
+                twitchChannels.all[twitchChannels.current].id === channel.id
                   ? 'sidebar__wrapper__channel--selected'
                   : 'sidebar__wrapper__channel'
               }
@@ -79,14 +94,22 @@ function mapStateToProps(state) {
     sidebarHidden: state.sidebarHidden,
     navbarToggle: state.navbarToggle,
     user: state.user,
+    twitchInput: state.twitchInput,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    fetchTwitchChannel,
-    selectTwitchChannel,
-  });
+  return bindActionCreators(
+    {
+      fetchTwitchChannel,
+      selectTwitchChannel,
+      onTwitchInput,
+      deleteAllTwitchChannels,
+      deleteTwitchChannel,
+      updateStreamInfo,
+    },
+    dispatch
+  );
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TwitchChannels);

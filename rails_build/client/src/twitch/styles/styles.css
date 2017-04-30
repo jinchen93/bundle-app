@@ -14,6 +14,11 @@
   width: 30%;
 }
 
+.twitch-channel-logo {
+  height: 100px;
+  width: auto;
+}
+
 @media screen and (max-width: 767px) {
   .twitch-chat,
   .twitch-chat--expanded {
