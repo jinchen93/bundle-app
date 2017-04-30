@@ -11,9 +11,22 @@ import {fetchSubreddits} from '../../reddit/actions';
 import {fetchTwitchChannels} from '../../twitch/actions';
 
 class AppNavBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      flashLoginSuccess: false,
+      flashLogoutSuccess: false
+    };
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.username !== this.props.user.username) {
       browserHistory.push('/');
+      if (this.props.user.username === 'Guest') {
+        this.loginSuccess();
+      } else {
+        this.logoutSuccess();
+      }
     }
   }
 
@@ -21,6 +34,20 @@ class AppNavBar extends Component {
     this.props.fetchChannelsUsernames();
     this.props.fetchSubreddits();
     this.props.fetchTwitchChannels();
+  }
+
+  logoutSuccess() {
+    this.setState({ flashLogoutSuccess: true });
+    setTimeout( () => {
+      this.setState({ flashLogoutSuccess: false });
+    }, 3000);
+  }
+
+  loginSuccess() {
+    this.setState({ flashLoginSuccess: true });
+    setTimeout( () => {
+      this.setState({ flashLoginSuccess: false });
+    }, 3000);
   }
 
   render() {
@@ -65,6 +92,32 @@ class AppNavBar extends Component {
           </li>
         </ul>
       );
+    };
+
+    const flashLogin = () => {
+      if (this.state.flashLoginSuccess) {
+        return (
+          <div
+            className="flash login"
+            onClick={() => this.setState({flashLoginSuccess: false})}
+          >
+            Login successful!
+          </div>
+        );
+      }
+    };
+
+    const flashLogout = () => {
+      if (this.state.flashLogoutSuccess) {
+        return (
+          <div
+            className="flash logout"
+            onClick={() => this.setState({flashLogoutSuccess: false})}
+          >
+            Logout successful!
+          </div>
+        );
+      }
     };
 
     return (
@@ -129,8 +182,9 @@ class AppNavBar extends Component {
               </Link>
             </li>
           </ul>
-
         </Navbar.Collapse>
+        {flashLogin()}
+        {flashLogout()}
       </Navbar>
     );
   }

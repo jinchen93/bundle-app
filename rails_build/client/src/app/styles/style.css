@@ -74,6 +74,43 @@ a:hover {
   background-color: #E7E7E7;
 }
 
+.flash {
+  position: fixed;
+  left: 25%;
+  top: 0%;
+  height: 50px;
+  width: 50%;
+  opacity: 0.9;
+  border-radius: 8px;
+  animation: dropin 1s ease-in-out 0s;
+  text-align: center;
+  padding-top: 0.2em;
+  font-size: 2em;
+  color: #ecf0f1;
+}
+
+.flash:hover {
+  cursor: pointer;
+  opacity: 0.4;
+  transition: all 0.3s;
+}
+
+@keyframes dropin {
+  0% { top: -5% }
+  5% { top: -2% }
+  10% { top: 0% }
+  15% { top: 0.5% }
+  30% { top: 0% }
+}
+
+.login {
+  background: #2ecc71;
+}
+
+.logout {
+  background: #e74c3c;
+}
+
 @media screen and (max-width: 767px) {
   .navbar-brand {
     width: auto;
