@@ -6,12 +6,14 @@
   position: fixed;
   top: 9%;
   width: 25%;
+  height: 85%;
 }
 
 .twitch-chat--expanded {
   position: fixed;
   top: 9%;
   width: 30%;
+  height: 85%;
 }
 
 .twitch-channel-logo {

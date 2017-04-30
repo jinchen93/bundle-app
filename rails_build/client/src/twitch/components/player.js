@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {ResponsiveEmbed, Grid, Row, Col} from 'react-bootstrap';
-import Linkify from 'react-linkify';
 
 class Player extends Component {
   render() {

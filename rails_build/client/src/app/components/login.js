@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import "../styles/form.css";
 import { Jumbotron, Grid, Row, FormControl, Button } from "react-bootstrap";
 import { login } from "../actions";
-import { browserHistory } from "react-router";
 
 class Login extends Component {
   constructor(props) {

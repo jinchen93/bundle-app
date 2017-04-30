@@ -11,7 +11,7 @@ import {
   deleteAllChannels,
   deleteChannel,
 } from '../actions';
-import {ListGroup, FormControl, Button} from 'react-bootstrap';
+import {ListGroup} from 'react-bootstrap';
 import {SidebarForm, SidebarList} from '../../app/components/sidebar/modules';
 
 import '../styles/channels.css';

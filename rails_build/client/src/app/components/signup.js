@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import "../styles/form.css";
 import { Jumbotron, Grid, Row, FormControl, Button } from "react-bootstrap";
 import { signup } from "../actions";
-import { browserHistory } from "react-router";
 
 class Signup extends Component {
   constructor(props) {
@@ -24,7 +23,9 @@ class Signup extends Component {
   render() {
     return (
       <div
-        className={`main__container ${this.props.navbarToggle === true ? "main__container--toggled" : ""}`}
+        className={`main__container
+          ${this.props.navbarToggle === true
+          ? "main__container--toggled" : ""}`}
       >
         <Jumbotron className="form">
           <Grid>

@@ -7,8 +7,7 @@ import {
   FormGroup,
   ControlLabel,
   FormControl,
-  ListGroup,
-  Button,
+  ListGroup
 } from 'react-bootstrap';
 import {
   addSubreddit,
@@ -29,7 +28,6 @@ class Subreddits extends Component {
       onSubredditInput,
       addSubreddit,
       subredditInput,
-      sidebarHidden,
       deleteAllSubreddits,
       sortBy,
     } = this.props;
