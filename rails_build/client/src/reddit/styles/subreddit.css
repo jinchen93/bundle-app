@@ -9,12 +9,12 @@
   color: black;
 }
 
-.sidebar__wrapper__subreddit .fa-times
+.sidebar__wrapper__subreddit .fa-times,
 .sidebar__wrapper__subreddit--selected .fa-times {
   display: none;
 }
 
-.sidebar__wrapper__subreddit:hover .fa-times
+.sidebar__wrapper__subreddit:hover .fa-times,
 .sidebar__wrapper__subreddit--selected:hover .fa-times {
   cursor: pointer;
   display: block;

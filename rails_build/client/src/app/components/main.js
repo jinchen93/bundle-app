@@ -19,21 +19,31 @@ class Main extends Component {
         </Jumbotron>
         <Grid>
           <Row>
-            <Col md={12} className="main__container__logo">
+            <Col md={1} />
+            <Col md={3} className="main__container__logo">
               <Link to="/youtube">
                 <img
-                  className="main-logos__image"
+                  className="main-logos__image youtube-image"
                   src="Youtube-Logo.png"
                   alt="Youtube logo"
                 />
               </Link>
             </Col>
-            <Col md={12} className="main__container__logo reddit-logo">
+            <Col md={3} className="main__container__logo reddit-logo">
               <Link to="/reddit">
                 <img
-                  className="main-logos__image"
+                  className="main-logos__image reddit-image"
                   src="Reddit-Logo.png"
                   alt="Reddit logo"
+                />
+              </Link>
+            </Col>
+            <Col md={3} className="main__container__logo twitch-logo">
+              <Link to="/twitch">
+                <img
+                  className="main-logos__image twitch-image"
+                  src="Twitch-Logo.png"
+                  alt="Twitch logo"
                 />
               </Link>
             </Col>

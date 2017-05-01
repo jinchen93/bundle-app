@@ -14,15 +14,41 @@
   text-align: center;
 }
 
-.main-logos__image {
-  display: inline-block;
-  width: 25%;
+.main-logos__image:hover{
+  transform: scale(1.05);
+  transition: all 0.1s ease-in-out;
+}
+
+.youtube-image {
+  margin-top: -8px;
+  width: 65%;
+  margin-bottom: 15px;
+}
+
+.twitch-logo {
+  margin-top: 25px;
+  border-radius: 10px;
+}
+
+.twitch-image {
+  border-radius: 10px;
+  width: 50%;
+}
+
+.reddit-image {
+  margin-top: -20px;
+  width: 55%;
 }
 
 .main__container__header {
   text-align: center;
   position: relative;
   top: 20px;
+}
+
+.navbar-logo {
+  height: 20px;
+  margin-right: 5px;
 }
 
 @media screen and (max-width: 767px) {

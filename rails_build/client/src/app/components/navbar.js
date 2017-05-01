@@ -162,6 +162,11 @@ class AppNavBar extends Component {
               className={this.props.path === '/youtube' ? 'active' : ''}
             >
               <Link to="/youtube">
+                <img
+                  className="navbar-logo"
+                  src="Youtube-Logo.png"
+                  alt="Youtube logo"
+                />
                 Youtube
               </Link>
             </li>
@@ -170,6 +175,11 @@ class AppNavBar extends Component {
               className={this.props.path === '/reddit' ? 'active' : ''}
             >
               <Link to="/reddit">
+                <img
+                  className="navbar-logo"
+                  src="Reddit-Logo.png"
+                  alt="Reddit logo"
+                />
                 Reddit
               </Link>
             </li>
@@ -178,6 +188,11 @@ class AppNavBar extends Component {
               className={this.props.path === '/twitch' ? 'active' : ''}
             >
               <Link to="/twitch">
+                <img
+                  className="navbar-logo"
+                  src="Twitch-Logo.png"
+                  alt="Twitch logo"
+                />
                 Twitch
               </Link>
             </li>
