@@ -12,7 +12,7 @@ _----Node build is deprecated!----_
 
 The Rails build is the latest version of the app.
 
-##### Steps to get the Rails server up and started:
+##### Steps to get the Rails server up and running:
 1. Change into the Rails directory with `cd rails_build`
 
 2. Run `bundle install` to install gems
