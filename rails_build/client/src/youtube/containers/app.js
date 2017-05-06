@@ -1,10 +1,15 @@
-import {connect} from 'react-redux';
-import React, {Component} from 'react';
-
-import Channels from './channels';
-import Videos from './videos';
+import { connect } from "react-redux";
+import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import Channels from "./channels";
+import Videos from "./videos";
+import { fetchChannelsUsernames } from "../actions";
 
 class YoutubeApp extends Component {
+  componentDidMount() {
+    this.props.fetchChannelsUsernames();
+  }
+
   render() {
     const channels = this.props.channels;
 
@@ -21,8 +26,17 @@ class YoutubeApp extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {channels: state.channels};
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      fetchChannelsUsernames
+    },
+    dispatch
+  );
 }
 
-export default connect(mapStateToProps)(YoutubeApp);
+function mapStateToProps(state) {
+  return { channels: state.channels };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(YoutubeApp);

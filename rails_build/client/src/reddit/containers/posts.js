@@ -5,26 +5,21 @@ import { bindActionCreators } from "redux";
 import {
   fetchSubredditPosts,
   selectSubreddit,
-  fetchPostComments
+  fetchPostComments,
 } from "../actions";
-
+import ContentWrapper from "../../app/components/contentWrapper";
 import { Grid } from "react-bootstrap";
 import Post from "./post";
 import "../styles/posts.css";
 
 class Posts extends Component {
-  constructor(props) {
-    super(props);
-    props.fetchSubredditPosts(props.subredditName, props.sortBy);
+  componentDidMount() {
+    this.props.fetchSubredditPosts(this.props.subredditName, this.props.sortBy);
   }
 
   render() {
     return (
-      <Grid
-        className={`content-wrapper
-          ${this.props.sidebarHidden === true ? "content-wrapper--expanded" : ""}
-          ${this.props.navbarToggle === true ? "content-wrapper--nav-toggled" : ""}`}
-      >
+      <ContentWrapper>
         <Grid fluid={true}>
           {this.props.posts.map(post => {
             return (
@@ -41,7 +36,7 @@ class Posts extends Component {
             );
           })}
         </Grid>
-      </Grid>
+      </ContentWrapper>
     );
   }
 }
@@ -52,7 +47,7 @@ function mapStateToProps(state) {
     sidebarHidden: state.sidebarHidden,
     subreddits: state.subreddits,
     sortBy: state.sortBy,
-    navbarToggle: state.navbarToggle
+    navbarToggle: state.navbarToggle,
   };
 }
 

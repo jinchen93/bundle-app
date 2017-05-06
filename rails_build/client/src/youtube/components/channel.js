@@ -17,7 +17,10 @@ export default props => {
         <img id={props.status} src={props.image} alt={props.name} />
         <span>{props.name}</span>
       </ListGroupItem>
-      <i className="fa fa-times" onClick={() => handleDeleteClick(props.id, props.position)}></i>
+      <i
+        className="fa fa-times"
+        onClick={() => handleDeleteClick(props.id, props.position)}
+      />
     </div>
   );
-}
+};

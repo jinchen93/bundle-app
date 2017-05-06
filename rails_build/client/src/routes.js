@@ -1,13 +1,13 @@
-import {Route, Router, IndexRoute, hashHistory} from 'react-router';
-import React from 'react';
+import { Route, Router, IndexRoute, hashHistory } from "react-router";
+import React from "react";
 
-import App from './app/components/app';
-import Main from './app/components/main';
-import YoutubeApp from './youtube/containers/app';
-import RedditApp from './reddit/containers/app';
-import Signup from './app/components/signup';
-import Login from './app/components/login';
-import Twitch from './twitch/containers/app';
+import App from "./app/components/app";
+import Main from "./app/components/main";
+import YoutubeApp from "./youtube/containers/app";
+import RedditApp from "./reddit/containers/app";
+import Signup from "./app/components/user-form/signup";
+import Login from "./app/components/user-form/login";
+import Twitch from "./twitch/containers/app";
 
 export default (
   <Router history={hashHistory}>

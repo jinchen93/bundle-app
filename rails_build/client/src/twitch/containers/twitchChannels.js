@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {ListGroup} from 'react-bootstrap';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { ListGroup } from "react-bootstrap";
 
-import TwitchChannel from '../components/twitchChannel';
+import TwitchChannel from "../components/twitchChannel";
 import {
   selectTwitchChannel,
   fetchTwitchChannel,
@@ -11,24 +11,32 @@ import {
   deleteAllTwitchChannels,
   deleteTwitchChannel,
   updateStreamInfo,
-} from '../actions';
-import {SidebarForm, SidebarList} from '../../app/components/sidebar/modules';
+} from "../actions";
+import { SidebarForm, SidebarList } from "../../app/components/sidebar/modules";
 
 class TwitchChannels extends Component {
+  constructor() {
+    super();
+    this.updateViewerCount = this.updateViewerCount.bind(this);
+  }
+
   componentDidMount() {
+    this.updateViewerCount();
+    this.intervalId = setInterval(this.updateViewerCount, 2000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
+  }
+
+  updateViewerCount() {
     this.props.twitchChannels.all.forEach(channel => {
       this.props.updateStreamInfo(channel);
     });
-
-    setInterval(() => {
-      this.props.twitchChannels.all.forEach(channel => {
-        this.props.updateStreamInfo(channel);
-      });
-    }, 2000);
   }
 
   render() {
-    const {twitchChannels} = this.props;
+    const { twitchChannels } = this.props;
 
     const onSelectClick = position => {
       this.props.selectTwitchChannel(position);
@@ -70,8 +78,8 @@ class TwitchChannels extends Component {
               onDeleteClick={onDeleteClick}
               status={
                 twitchChannels.all[twitchChannels.current].id === channel.id
-                  ? 'sidebar__wrapper__channel--selected'
-                  : 'sidebar__wrapper__channel'
+                  ? "sidebar__wrapper__channel--selected"
+                  : "sidebar__wrapper__channel"
               }
               image={channel.logo}
               live={channel.live}

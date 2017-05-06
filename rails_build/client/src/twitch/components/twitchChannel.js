@@ -1,5 +1,5 @@
-import React from 'react';
-import {ListGroupItem} from 'react-bootstrap';
+import React from "react";
+import { ListGroupItem } from "react-bootstrap";
 
 export default props => {
   const handleSelectClick = position => {

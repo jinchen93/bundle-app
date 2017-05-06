@@ -1,28 +1,32 @@
-import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import {Link} from 'react-router';
+import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { Link } from "react-router";
 
-import {Navbar, Nav} from 'react-bootstrap';
-import {logout, toggleSidebar, toggleNavbar} from '../actions';
-import {browserHistory} from 'react-router';
-import {fetchChannelsUsernames} from '../../youtube/actions';
-import {fetchSubreddits} from '../../reddit/actions';
-import {fetchTwitchChannels} from '../../twitch/actions';
+import { Navbar, Nav } from "react-bootstrap";
+import { logout, toggleSidebar, toggleNavbar } from "../actions";
+import { browserHistory } from "react-router";
+import { MEDIA_TYPES } from "../modules/mediaInfo";
+import NavElement from "./navElement";
 
 class AppNavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       flashLoginSuccess: false,
-      flashLogoutSuccess: false
+      flashLogoutSuccess: false,
     };
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.user.username !== this.props.user.username) {
-      browserHistory.push('/');
-      if (this.props.user.username === 'Guest') {
+    // csrf token conditional prevents loginSuccess from triggering on initial
+    // rendering of the page.
+    if (
+      nextProps.user.username !== this.props.user.username &&
+      this.props.user.csrf_token
+    ) {
+      browserHistory.push("/");
+      if (this.props.user.username === "Guest") {
         this.loginSuccess();
       } else {
         this.logoutSuccess();
@@ -30,24 +34,33 @@ class AppNavBar extends Component {
     }
   }
 
-  componentWillUpdate() {
-    this.props.fetchChannelsUsernames();
-    this.props.fetchSubreddits();
-    this.props.fetchTwitchChannels();
-  }
-
   logoutSuccess() {
     this.setState({ flashLogoutSuccess: true });
-    setTimeout( () => {
+    setTimeout(() => {
       this.setState({ flashLogoutSuccess: false });
     }, 3000);
   }
 
   loginSuccess() {
     this.setState({ flashLoginSuccess: true });
-    setTimeout( () => {
+    setTimeout(() => {
       this.setState({ flashLoginSuccess: false });
     }, 3000);
+  }
+
+  renderNavElements() {
+    const routePath = this.props.path;
+    return MEDIA_TYPES.map(media => {
+      return (
+        <NavElement
+          key={media.name}
+          url={media.url}
+          name={media.name}
+          route={media.route}
+          routePath={routePath}
+        />
+      );
+    });
   }
 
   render() {
@@ -99,7 +112,7 @@ class AppNavBar extends Component {
         return (
           <div
             className="flash login"
-            onClick={() => this.setState({flashLoginSuccess: false})}
+            onClick={() => this.setState({ flashLoginSuccess: false })}
           >
             Login successful!
           </div>
@@ -112,7 +125,7 @@ class AppNavBar extends Component {
         return (
           <div
             className="flash logout"
-            onClick={() => this.setState({flashLogoutSuccess: false})}
+            onClick={() => this.setState({ flashLogoutSuccess: false })}
           >
             Logout successful!
           </div>
@@ -152,51 +165,13 @@ class AppNavBar extends Component {
         <Navbar.Collapse>
           <Nav pullRight={true}>
 
-            {this.props.user.username === 'Guest'
+            {this.props.user.username === "Guest"
               ? renderLogin()
               : renderLogout()}
           </Nav>
-          <ul className="nav nav-pills navbar-nav">
-            <li
-              role="presentation"
-              className={this.props.path === '/youtube' ? 'active' : ''}
-            >
-              <Link to="/youtube">
-                <img
-                  className="navbar-logo"
-                  src="Youtube-Logo.png"
-                  alt="Youtube logo"
-                />
-                Youtube
-              </Link>
-            </li>
-            <li
-              role="presentation"
-              className={this.props.path === '/reddit' ? 'active' : ''}
-            >
-              <Link to="/reddit">
-                <img
-                  className="navbar-logo"
-                  src="Reddit-Logo.png"
-                  alt="Reddit logo"
-                />
-                Reddit
-              </Link>
-            </li>
-            <li
-              role="presentation"
-              className={this.props.path === '/twitch' ? 'active' : ''}
-            >
-              <Link to="/twitch">
-                <img
-                  className="navbar-logo"
-                  src="Twitch-Logo.png"
-                  alt="Twitch logo"
-                />
-                Twitch
-              </Link>
-            </li>
-          </ul>
+          <Nav>
+            {this.renderNavElements()}
+          </Nav>
         </Navbar.Collapse>
         {flashLogin()}
         {flashLogout()}
@@ -211,9 +186,6 @@ function mapDispatchToProps(dispatch) {
       toggleSidebar,
       toggleNavbar,
       logout,
-      fetchChannelsUsernames,
-      fetchSubreddits,
-      fetchTwitchChannels,
     },
     dispatch
   );
