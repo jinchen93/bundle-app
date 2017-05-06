@@ -1,10 +1,16 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import TwitchChannels from './twitchChannels';
-import Player from '../components/player';
-import '../styles/styles.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import TwitchChannels from "./twitchChannels";
+import Player from "../components/player";
+import "../styles/styles.css";
+import { fetchTwitchChannels } from "../actions";
+import { bindActionCreators } from "redux";
 
 class Twitch extends Component {
+  componentDidMount() {
+    this.props.fetchTwitchChannels();
+  }
+
   render() {
     return (
       <div className="wrapper">
@@ -15,8 +21,12 @@ class Twitch extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {twitchChannels: state.twitchChannels};
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchTwitchChannels }, dispatch);
 }
 
-export default connect(mapStateToProps)(Twitch);
+function mapStateToProps(state) {
+  return { twitchChannels: state.twitchChannels };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Twitch);

@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {ResponsiveEmbed, Grid, Row, Col} from 'react-bootstrap';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { ResponsiveEmbed, Grid, Row, Col } from "react-bootstrap";
+import ContentWrapper from "../../app/components/contentWrapper";
 
 class Player extends Component {
   render() {
-    const {twitchChannels} = this.props;
+    const { twitchChannels } = this.props;
     const currentChannel = twitchChannels.all[twitchChannels.current];
 
     const renderViewerCount = () => {
@@ -22,11 +23,7 @@ class Player extends Component {
 
     if (twitchChannels.all.length > 0) {
       return (
-        <Grid
-          className={`content-wrapper
-        ${this.props.sidebarHidden === true ? 'content-wrapper--expanded' : ''}
-        ${this.props.navbarToggle === true ? 'content-wrapper--nav-toggled' : ''}`}
-        >
+        <ContentWrapper>
           <Grid fluid={true} className="twitch-content-wrapper">
             <Row>
               <Col sm={8}>
@@ -44,8 +41,8 @@ class Player extends Component {
                 <iframe
                   className={
                     this.props.sidebarHidden === true
-                      ? 'twitch-chat--expanded'
-                      : 'twitch-chat'
+                      ? "twitch-chat--expanded"
+                      : "twitch-chat"
                   }
                   frameBorder="0"
                   id="chat_embed"
@@ -63,17 +60,17 @@ class Player extends Component {
 
                 <div
                   style={{
-                    height: '2px',
-                    background: '#2574A9',
-                    marginTop: '10px',
-                    marginBottom: '10px',
+                    height: "2px",
+                    background: "#2574A9",
+                    marginTop: "10px",
+                    marginBottom: "10px"
                   }}
                 />
               </Col>
             </Row>
             {renderViewerCount()}
           </Grid>
-        </Grid>
+        </ContentWrapper>
       );
     } else {
       return <div />;
@@ -85,7 +82,7 @@ function mapStateToProps(state) {
   return {
     sidebarHidden: state.sidebarHidden,
     navbarToggle: state.navbarToggle,
-    twitchChannels: state.twitchChannels,
+    twitchChannels: state.twitchChannels
   };
 }
 

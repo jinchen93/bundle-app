@@ -1,28 +1,25 @@
-import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import {Link} from 'react-router';
+import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { Link } from "react-router";
 
-import {Navbar, Nav} from 'react-bootstrap';
-import {logout, toggleSidebar, toggleNavbar} from '../actions';
-import {browserHistory} from 'react-router';
-import {fetchChannelsUsernames} from '../../youtube/actions';
-import {fetchSubreddits} from '../../reddit/actions';
-import {fetchTwitchChannels} from '../../twitch/actions';
+import { Navbar, Nav } from "react-bootstrap";
+import { logout, toggleSidebar, toggleNavbar } from "../actions";
+import { browserHistory } from "react-router";
 
 class AppNavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       flashLoginSuccess: false,
-      flashLogoutSuccess: false
+      flashLogoutSuccess: false,
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.username !== this.props.user.username) {
-      browserHistory.push('/');
-      if (this.props.user.username === 'Guest') {
+      browserHistory.push("/");
+      if (this.props.user.username === "Guest") {
         this.loginSuccess();
       } else {
         this.logoutSuccess();
@@ -30,22 +27,16 @@ class AppNavBar extends Component {
     }
   }
 
-  componentWillUpdate() {
-    this.props.fetchChannelsUsernames();
-    this.props.fetchSubreddits();
-    this.props.fetchTwitchChannels();
-  }
-
   logoutSuccess() {
     this.setState({ flashLogoutSuccess: true });
-    setTimeout( () => {
+    setTimeout(() => {
       this.setState({ flashLogoutSuccess: false });
     }, 3000);
   }
 
   loginSuccess() {
     this.setState({ flashLoginSuccess: true });
-    setTimeout( () => {
+    setTimeout(() => {
       this.setState({ flashLoginSuccess: false });
     }, 3000);
   }
@@ -99,7 +90,7 @@ class AppNavBar extends Component {
         return (
           <div
             className="flash login"
-            onClick={() => this.setState({flashLoginSuccess: false})}
+            onClick={() => this.setState({ flashLoginSuccess: false })}
           >
             Login successful!
           </div>
@@ -112,7 +103,7 @@ class AppNavBar extends Component {
         return (
           <div
             className="flash logout"
-            onClick={() => this.setState({flashLogoutSuccess: false})}
+            onClick={() => this.setState({ flashLogoutSuccess: false })}
           >
             Logout successful!
           </div>
@@ -152,14 +143,14 @@ class AppNavBar extends Component {
         <Navbar.Collapse>
           <Nav pullRight={true}>
 
-            {this.props.user.username === 'Guest'
+            {this.props.user.username === "Guest"
               ? renderLogin()
               : renderLogout()}
           </Nav>
           <ul className="nav nav-pills navbar-nav">
             <li
               role="presentation"
-              className={this.props.path === '/youtube' ? 'active' : ''}
+              className={this.props.path === "/youtube" ? "active" : ""}
             >
               <Link to="/youtube">
                 <img
@@ -172,7 +163,7 @@ class AppNavBar extends Component {
             </li>
             <li
               role="presentation"
-              className={this.props.path === '/reddit' ? 'active' : ''}
+              className={this.props.path === "/reddit" ? "active" : ""}
             >
               <Link to="/reddit">
                 <img
@@ -185,7 +176,7 @@ class AppNavBar extends Component {
             </li>
             <li
               role="presentation"
-              className={this.props.path === '/twitch' ? 'active' : ''}
+              className={this.props.path === "/twitch" ? "active" : ""}
             >
               <Link to="/twitch">
                 <img
@@ -211,9 +202,6 @@ function mapDispatchToProps(dispatch) {
       toggleSidebar,
       toggleNavbar,
       logout,
-      fetchChannelsUsernames,
-      fetchSubreddits,
-      fetchTwitchChannels,
     },
     dispatch
   );

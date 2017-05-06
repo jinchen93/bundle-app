@@ -1,12 +1,17 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import Subreddits from './subreddits';
-import Posts from './posts';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import Subreddits from "./subreddits";
+import Posts from "./posts";
+import { fetchSubreddits } from "../actions";
 
 class RedditApp extends Component {
+  componentDidMount() {
+    this.props.fetchSubreddits();
+  }
+
   render() {
-    const {subreddits} = this.props;
-    if (subreddits.all.length === 0) {
+    const { subreddits } = this.props;
+    if (subreddits.all[0] === "") {
       return <Subreddits />;
     } else {
       return (
@@ -20,7 +25,7 @@ class RedditApp extends Component {
 }
 
 function mapStateToProps(state) {
-  return {subreddits: state.subreddits};
+  return { subreddits: state.subreddits };
 }
 
-export default connect(mapStateToProps)(RedditApp);
+export default connect(mapStateToProps, { fetchSubreddits })(RedditApp);

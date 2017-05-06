@@ -1,20 +1,20 @@
 import Request from "superagent";
-require('superagent-csrf')(Request);
+require("superagent-csrf")(Request);
 import {
   SET_SUBREDDIT_POSTS,
   SET_SUBREDDITS,
   ON_SUBREDDIT_INPUT,
   SELECT_SUBREDDIT,
-  SET_SUBREDDIT_SORT
+  SET_SUBREDDIT_SORT,
 } from "./actionTypes";
 
 export function addSubreddit(subreddit, csrf_token) {
   return dispatch => {
     const newSubreddit = { subreddit: subreddit };
     Request.post("/api/subreddits")
-    .csrf(csrf_token)
-    .send(newSubreddit)
-    .end(() => dispatch(fetchSubreddits()));
+      .csrf(csrf_token)
+      .send(newSubreddit)
+      .end(() => dispatch(fetchSubreddits()));
   };
 }
 
@@ -22,7 +22,9 @@ export function fetchSubreddits() {
   return dispatch => {
     Request.get("/api/subreddits").end((error, response) => {
       if (error) {
-        console.log("An error occurred while fetching subreddits from database");
+        console.log(
+          "An error occurred while fetching subreddits from database"
+        );
       } else {
         dispatch(setSubreddits(response.body));
       }
@@ -37,28 +39,32 @@ export function setSubreddits(subreddits) {
 export function deleteAllSubreddits(csrf_token) {
   return dispatch => {
     Request.delete("/api/subreddits")
-    .csrf(csrf_token)
-    .end((error, response) => {
-      if (error) {
-        console.log("An error occured while deleting all subreddits from database");
-      } else {
-        dispatch(fetchSubreddits());
-      }
-    });
+      .csrf(csrf_token)
+      .end((error, response) => {
+        if (error) {
+          console.log(
+            "An error occured while deleting all subreddits from database"
+          );
+        } else {
+          dispatch(fetchSubreddits());
+        }
+      });
   };
 }
 
 export function deleteSubreddit(id, csrf_token) {
   return dispatch => {
     Request.delete(`/api/subreddits/${id}`)
-    .csrf(csrf_token)
-    .end((error, response) => {
-      if (error) {
-        console.log("An error occured while trying to delete subreddit from database");
-      } else {
-        dispatch(fetchSubreddits());
-      }
-    });
+      .csrf(csrf_token)
+      .end((error, response) => {
+        if (error) {
+          console.log(
+            "An error occured while trying to delete subreddit from database"
+          );
+        } else {
+          dispatch(fetchSubreddits());
+        }
+      });
   };
 }
 
@@ -69,7 +75,9 @@ export function selectSubreddit(position) {
 // --------- SUBREDDIT POSTS --------- //
 export function fetchSubredditPosts(subreddit, time) {
   return dispatch => {
-    Request.get(`https://www.reddit.com/r/${subreddit}/top.json?t=${time}`).end((err, res) => {
+    Request.get(
+      `https://www.reddit.com/r/${subreddit}/top.json?t=${time}`
+    ).end((err, res) => {
       const fetchedData = res.body.data.children;
       const postsData = fetchedData.map(post => {
         const postData = post.data;
@@ -80,7 +88,7 @@ export function fetchSubredditPosts(subreddit, time) {
           title: postData.title,
           url: postData.url,
           media: postData.media,
-          id: postData.id
+          id: postData.id,
         };
       });
       dispatch(setSubredditPosts(postsData));
