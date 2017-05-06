@@ -10,18 +10,18 @@ const StyledWrapper = glamorous.div(
     width: "calc(100% - 250px)",
     height: "auto",
     padding: "10px 20px",
-    transition: "all 0.2s"
+    transition: "all 0.2s",
   },
   props => ({
     left: props.sidebarHidden ? 0 : "250px",
-    width: props.sidebarHidden ? "100%" : "calc(100% - 250px)"
+    width: props.sidebarHidden ? "100%" : "calc(100% - 250px)",
   }),
   props => ({
     "@media screen and (max-width: 767px)": {
       left: 0,
       width: "100%",
-      top: props.navbarToggle ? "155px" : "50px"
-    }
+      top: props.navbarToggle ? "170px" : "50px",
+    },
   })
 );
 
@@ -41,7 +41,7 @@ class ContentWrapper extends React.Component {
 function mapStateToProps(state) {
   return {
     sidebarHidden: state.sidebarHidden,
-    navbarToggle: state.navbarToggle
+    navbarToggle: state.navbarToggle,
   };
 }
 
