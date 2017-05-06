@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import Channel from '../components/channel';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import Channel from "../components/channel";
 import {
   selectChannel,
   fetchVideos,
@@ -10,11 +10,11 @@ import {
   onUsernameInput,
   deleteAllChannels,
   deleteChannel,
-} from '../actions';
-import {ListGroup} from 'react-bootstrap';
-import {SidebarForm, SidebarList} from '../../app/components/sidebar/modules';
+} from "../actions";
+import { ListGroup } from "react-bootstrap";
+import { SidebarForm, SidebarList } from "../../app/components/sidebar/modules";
 
-import '../styles/channels.css';
+import "../styles/channels.css";
 
 class Channels extends Component {
   render() {
@@ -62,8 +62,8 @@ class Channels extends Component {
               onDeleteClick={onDeleteClick}
               status={
                 channels.all[channels.current].name === channel.name
-                  ? 'sidebar__wrapper__channel--selected'
-                  : 'sidebar__wrapper__channel'
+                  ? "sidebar__wrapper__channel--selected"
+                  : "sidebar__wrapper__channel"
               }
               image={channel.thumbnail}
             />

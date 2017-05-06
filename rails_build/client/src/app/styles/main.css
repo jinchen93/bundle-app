@@ -1,14 +1,3 @@
-.main__container {
-  position: absolute;
-  top: 50px;
-  width: 100%;
-  transition: all 0.2s;
-}
-
-.main__container--toggled {
-  top: 150px;
-}
-
 .main__container__logo {
   margin: 40px 0;
   text-align: center;

@@ -17,7 +17,12 @@ class AppNavBar extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.user.username !== this.props.user.username) {
+    // csrf token conditional prevents loginSuccess from triggering on initial
+    // rendering of the page.
+    if (
+      nextProps.user.username !== this.props.user.username &&
+      this.props.user.csrf_token
+    ) {
       browserHistory.push("/");
       if (this.props.user.username === "Guest") {
         this.loginSuccess();
