@@ -9,7 +9,7 @@ const StyledContainer = glamorous.div(
     transition: "all 0.2s",
   },
   props => ({
-    top: props.navbarToggle ? "150px" : "50px",
+    top: props.navbarToggle ? "170px" : "50px",
   })
 );
 

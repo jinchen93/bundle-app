@@ -1,7 +1,7 @@
 import React from "react";
 import glamorous from "glamorous";
 import { Jumbotron } from "react-bootstrap";
-import { headerStyle } from "../styles/modules";
+import { headerStyle } from "../modules/styles";
 
 const ComposedJumbotron = glamorous(Jumbotron)(headerStyle);
 

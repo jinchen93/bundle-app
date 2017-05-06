@@ -6,6 +6,8 @@ import { Link } from "react-router";
 import { Navbar, Nav } from "react-bootstrap";
 import { logout, toggleSidebar, toggleNavbar } from "../actions";
 import { browserHistory } from "react-router";
+import { MEDIA_TYPES } from "../modules/mediaInfo";
+import NavElement from "./navElement";
 
 class AppNavBar extends Component {
   constructor(props) {
@@ -44,6 +46,21 @@ class AppNavBar extends Component {
     setTimeout(() => {
       this.setState({ flashLoginSuccess: false });
     }, 3000);
+  }
+
+  renderNavElements() {
+    const routePath = this.props.path;
+    return MEDIA_TYPES.map(media => {
+      return (
+        <NavElement
+          key={media.name}
+          url={media.url}
+          name={media.name}
+          route={media.route}
+          routePath={routePath}
+        />
+      );
+    });
   }
 
   render() {
@@ -152,47 +169,9 @@ class AppNavBar extends Component {
               ? renderLogin()
               : renderLogout()}
           </Nav>
-          <ul className="nav nav-pills navbar-nav">
-            <li
-              role="presentation"
-              className={this.props.path === "/youtube" ? "active" : ""}
-            >
-              <Link to="/youtube">
-                <img
-                  className="navbar-logo"
-                  src="Youtube-Logo.png"
-                  alt="Youtube logo"
-                />
-                Youtube
-              </Link>
-            </li>
-            <li
-              role="presentation"
-              className={this.props.path === "/reddit" ? "active" : ""}
-            >
-              <Link to="/reddit">
-                <img
-                  className="navbar-logo"
-                  src="Reddit-Logo.png"
-                  alt="Reddit logo"
-                />
-                Reddit
-              </Link>
-            </li>
-            <li
-              role="presentation"
-              className={this.props.path === "/twitch" ? "active" : ""}
-            >
-              <Link to="/twitch">
-                <img
-                  className="navbar-logo"
-                  src="Twitch-Logo.png"
-                  alt="Twitch logo"
-                />
-                Twitch
-              </Link>
-            </li>
-          </ul>
+          <Nav>
+            {this.renderNavElements()}
+          </Nav>
         </Navbar.Collapse>
         {flashLogin()}
         {flashLogout()}
