@@ -3,11 +3,17 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import ChannelsContainer from './channels_container';
 import Videos from "./videos";
-import { fetchChannelsUsernames } from "../actions";
+import { fetchChannelsUsernames, fetchVideos } from "../actions";
 
 class YoutubeApp extends Component {
   componentDidMount() {
     this.props.fetchChannelsUsernames();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.channels.all[0] !== this.props.channels.all[0]) {
+      this.props.fetchVideos(nextProps.channels.all[0]);
+    }
   }
 
   render() {
@@ -29,7 +35,8 @@ class YoutubeApp extends Component {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      fetchChannelsUsernames
+      fetchChannelsUsernames,
+      fetchVideos
     },
     dispatch
   );

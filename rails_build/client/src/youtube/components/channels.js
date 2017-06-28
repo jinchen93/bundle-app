@@ -18,6 +18,7 @@ class Channels extends Component {
         id: id,
         csrf_token: this.props.user.csrf_token,
       });
+      console.log('hi');
       if (position === channels.current) {
         if (position === channels.all.length - 1) {
           this.props.selectChannel(0);

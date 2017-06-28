@@ -5,19 +5,16 @@ import {
   SET_VIDEOS,
   ON_USERNAME_INPUT,
 } from './actionTypes';
+import * as APIUtils from './api_utils';
 import Request from 'superagent';
-require('superagent-csrf')(Request);
 import {PLAYLIST_URL, CHANNEL_USERNAME_URL, CHANNEL_ID_URL} from './constants';
 
-// ========== CHANNEL ACTIONS ==========
 export function fetchChannelsUsernames() {
   return dispatch => {
-    Request.get('/api/youtube_channels').end((error, response) => {
-      if (error) {
-        console.log('Error occured while fetching youtube channels');
-      } else {
-        dispatch(setChannels(response.body));
-      }
+    APIUtils.fetchAllChannels( channels => {
+      console.log(channels);
+      dispatch(setChannels(channels));
+      dispatch(fetchChannel(channels[0]));
     });
   };
 }
@@ -26,44 +23,9 @@ export function setChannels(channels) {
   return {type: SET_CHANNELS, payload: channels};
 }
 
-export function fetchChannel(username, csrf_token) {
+export function fetchChannel(username) {
   return dispatch => {
-    const url = CHANNEL_USERNAME_URL + username;
-    Request.get(url).end((error, response) => {
-      if (error) {
-        console.log(`Error occured while fetching channel ${username}`);
-      } else if (response.body.items[0] !== undefined) {
-        const newChannel = {
-          username: username,
-          name: response.body.items[0].snippet.title,
-          thumbnail: response.body.items[0].snippet.thumbnails.default.url,
-          uploads: response.body.items[0].contentDetails.relatedPlaylists
-            .uploads,
-        };
-        Request.post('/api/youtube_channels')
-          .csrf(csrf_token)
-          .send(newChannel)
-          .end(() => dispatch(fetchChannelsUsernames()));
-      } else {
-        const url = CHANNEL_ID_URL + username;
-        Request.get(url).end((error, response) => {
-          if (error) {
-            console.log(`Error occured while fetching channel ${username}`);
-          } else {
-            const newChannel = {
-              username: username,
-              name: response.body.items[0].snippet.title,
-              thumbnail: response.body.items[0].snippet.thumbnails.default.url,
-              uploads: response.body.items[0].contentDetails.relatedPlaylists
-                .uploads,
-            };
-            Request.post('/api/youtube_channels')
-              .send(newChannel)
-              .end(() => dispatch(fetchChannelsUsernames()));
-          }
-        });
-      }
-    });
+    APIUtils.fetchChannel(username, () => dispatch(fetchChannelsUsernames()));
   };
 }
 

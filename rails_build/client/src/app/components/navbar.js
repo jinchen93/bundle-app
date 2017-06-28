@@ -164,10 +164,11 @@ class AppNavBar extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight={true}>
-
-            {this.props.user.username === "Guest"
-              ? renderLogin()
-              : renderLogout()}
+            {
+              this.props.user.username === "Guest"
+                ? renderLogin()
+                : renderLogout()
+            }
           </Nav>
           <Nav>
             {this.renderNavElements()}
