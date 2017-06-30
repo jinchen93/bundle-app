@@ -3,7 +3,9 @@
   <head>
     <title>Redesign</title>
     <%= csrf_meta_tags %>
-
+    <% if ENV["RAILS_ENV"] == "development" %>
+      <script src="http://localhost:4000/bundle.js"></script>
+    <% end %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
