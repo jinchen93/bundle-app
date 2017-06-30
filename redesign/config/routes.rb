@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :update]
     resource :session, only: [:create, :destroy]
 
+    resources :subreddits, only: [:index, :show, :create, :destroy]
     resources :youtube_channels, only: [:index, :show, :create, :destroy]
   end
 

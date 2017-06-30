@@ -13,7 +13,7 @@ class Api::YoutubeChannelsController < ApplicationController
 
   private
 
-  def youtube_channel_params(params)
+  def youtube_channel_params
     params.require("youtube_channel").permit(:username, :url)
   end
 end
