@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
     resources :subreddits, only: [:index, :show, :create, :destroy]
     resources :youtube_channels, only: [:index, :show, :create, :destroy]
+    resources :twitch_channels, only: [:index, :show, :create, :destroy]
   end
 
   root to: 'static_pages#root'
