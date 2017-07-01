@@ -21,13 +21,13 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.scss$/,
+        loaders: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
         test: [/\.jsx?$/],
         exclude: /(node_modules)/,
-        loaders: [
-          "react-hot-loader/webpack",
-          "babel-loader",
-          "eslint-loader",
-        ],
+        loaders: ["react-hot-loader/webpack", "babel-loader", "eslint-loader"],
       },
     ],
   },
