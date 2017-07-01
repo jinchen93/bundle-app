@@ -2,6 +2,9 @@
 <html>
   <head>
     <title>Redesign</title>
+    <script>
+      window.splashImg = '<%= asset_path "splash.jpg" %>'
+    </script>
     <%= csrf_meta_tags %>
     <% if ENV["RAILS_ENV"] == "development" %>
       <script src="http://localhost:4000/bundle.js"></script>
