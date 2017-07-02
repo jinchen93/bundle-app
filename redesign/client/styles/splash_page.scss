@@ -1,9 +1,87 @@
+$nav-height: 50px;
+$salmon: #ff6766;
+
 .splash-page-wrapper {
+  @include flex-center;
   height: 100vh;
   width: 100vw;
+  background-image: url(http://res.cloudinary.com/jinchen93/image/upload/v1499022770/striped-background_a0kfub.svg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-  .splash-nav {
-    height: 50px;
-    background: rgba(0, 0, 0, 0.7);
+  .splash-form-wrapper {
+    @include material-shadow(3);
+    @include flex-col-center;
+    background: #fefefe;
+    min-width: 400px;
+    max-width: 500px;
+    width: 50%;
+    height: 500px;
+    border-radius: 5%;
+
+    h3 {
+      font-weight: 500;
+    }
+
+    form {
+      @include flex-col-space-around;
+      margin-top: 40px;
+      height: 50%;
+      width: 60%;
+      box-sizing: border-box;
+      button {
+        display: block;
+        height: 40px;
+        width: 140px;
+        background: none;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: $salmon;
+        border: 2px solid $salmon;
+        border-radius: 30px;
+        transition: 200ms;
+        &:hover {
+          transition: 200ms;
+          background: $salmon;
+          color: #fefefe;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .input-group {
+      width: 100%;
+      position: relative;
+
+      input {
+        box-sizing: border-box;
+        height: 40px;
+        width: 100%;
+        border: 0;
+        border-bottom: 1px solid #e7e7e7;
+        font-size: 20px;
+        letter-spacing: 1px;
+        padding-left: 10px;
+        &:focus {
+          outline: none;
+        }
+      }
+
+      input:focus ~ .focus-bar {
+        width: 100%;
+        transition: 0.3s;
+      }
+
+      .focus-bar {
+        position: absolute;
+        width: 0;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        background: $salmon;
+        transition: 0.3s;
+      }
+    }
   }
 }
