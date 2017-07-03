@@ -1,11 +1,19 @@
 import React from "react";
+const defaultState = { username: "", password: "" };
 
 class SessionForm extends React.Component {
   constructor() {
     super();
-    this.state = { username: "", password: "" };
-
+    this.state = defaultState;
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(this.props);
+    this.props.signup(this.state);
+    this.setState(defaultState);
   }
 
   handleChange(e) {
@@ -18,7 +26,7 @@ class SessionForm extends React.Component {
     return (
       <div className="splash-form-wrapper">
         <h3>Welcome to BundleMe</h3>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className="input-group">
             <input
               type="text"

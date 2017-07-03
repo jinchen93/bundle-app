@@ -1,9 +1,9 @@
 import React from "react";
-import SessionForm from "./SessionForm";
+import SessionFormContainer from "./SessionFormContainer";
 
 const SplashPage = () =>
   <div className="splash-page-wrapper">
-    <SessionForm />
+    <SessionFormContainer />
   </div>;
 
 export default SplashPage;
