@@ -1,15 +1,37 @@
 import React from "react";
-import { HashRouter, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { Route, Redirect, Switch } from "react-router-dom";
 import SplashPage from "./splash/SplashPage";
+import HomePageContainer from "./home/HomePageContainer";
 
 class AppRouter extends React.Component {
-  render() {
+  componentDidUpdate() {
+    console.log("update");
+  }
+
+  renderLoggedIn() {
     return (
-      <HashRouter>
-        <Route to="/" component={SplashPage} />
-      </HashRouter>
+      <div>
+        <Route exact path="/" component={HomePageContainer} />
+      </div>
     );
+  }
+
+  renderLoggedOut() {
+    return (
+      <div>
+        <Route exact path="/" component={SplashPage} />
+      </div>
+    );
+  }
+
+  render() {
+    return this.props.loggedIn ? this.renderLoggedIn() : this.renderLoggedOut();
   }
 }
 
-export default AppRouter;
+const mapStateToProps = state => ({
+  loggedIn: Boolean(state.session.currentUser),
+});
+
+export default connect(mapStateToProps)(AppRouter);
