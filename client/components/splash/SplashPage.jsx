@@ -1,9 +1,11 @@
 import React from "react";
+import SwitchFormButton from "./SwitchFormButton";
 import SessionFormContainer from "./SessionFormContainer";
 
-const SplashPage = () =>
+const SplashPage = ({ formType }) =>
   <div className="splash-page-wrapper">
-    <SessionFormContainer />
+    <SwitchFormButton formType={formType} />
+    <SessionFormContainer formType={formType} />
   </div>;
 
 export default SplashPage;

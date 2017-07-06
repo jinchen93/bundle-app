@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Route, Redirect, Switch } from "react-router-dom";
+import { withRouter, Route } from "react-router-dom";
 import SplashPage from "./splash/SplashPage";
 import HomePageContainer from "./home/HomePageContainer";
 
@@ -20,7 +20,12 @@ class AppRouter extends React.Component {
   renderLoggedOut() {
     return (
       <div>
-        <Route exact path="/" component={SplashPage} />
+        <Route exact path="/" render={() => <SplashPage formType="signup" />} />
+        <Route
+          exact
+          path="/login"
+          render={() => <SplashPage formType="login" />}
+        />
       </div>
     );
   }
@@ -34,4 +39,4 @@ const mapStateToProps = state => ({
   loggedIn: Boolean(state.session.currentUser),
 });
 
-export default connect(mapStateToProps)(AppRouter);
+export default withRouter(connect(mapStateToProps)(AppRouter));
