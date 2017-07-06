@@ -1,4 +1,5 @@
 # Bundle!
+[![Build Status](https://travis-ci.org/jinchen93/bundle-app.svg?branch=master)](https://travis-ci.org/jinchen93/bundle-app)
 
 Link - [bundleme.net](http://bundleme.net/)
 

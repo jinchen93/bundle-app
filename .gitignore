@@ -8,6 +8,7 @@
 /.bundle
 
 node_modules
+coverage
 
 # Ignore all logfiles and tempfiles.
 /log/*
