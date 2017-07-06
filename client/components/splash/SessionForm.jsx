@@ -7,6 +7,7 @@ class SessionForm extends React.Component {
     this.state = defaultState;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDemoLogin = this.handleDemoLogin.bind(this);
   }
 
   handleSubmit(e) {
@@ -18,6 +19,10 @@ class SessionForm extends React.Component {
     } else if (formType === "login") {
       this.props.login(this.state).then(() => this.props.history.push("/"));
     }
+  }
+
+  handleDemoLogin() {
+    this.props.loginDemo().then(() => this.props.history.push("/"));
   }
 
   handleChange(e) {
@@ -90,7 +95,7 @@ class SessionForm extends React.Component {
           <div className="focus-bar" />
         </div>
         <button>SUBMIT</button>
-        <div className="demo" onClick={this.props.loginDemo}>
+        <div className="demo" onClick={this.handleDemoLogin}>
           TRY A DEMO
         </div>
       </form>

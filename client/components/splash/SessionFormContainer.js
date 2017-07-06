@@ -11,10 +11,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   signup: user => dispatch(signup(user)),
   login: user => dispatch(login(user)),
-  loginDemo: e => {
-    e.preventDefault();
-    return dispatch(login({ username: "guest", password: "password" }));
-  },
+  loginDemo: () => dispatch(login({ username: "guest", password: "password" })),
 });
 
 export default withRouter(
