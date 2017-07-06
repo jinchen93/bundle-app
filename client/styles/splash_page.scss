@@ -23,8 +23,8 @@ $salmon: #ff6766;
 
     form {
       @include flex-col-space-around;
-      margin-top: 40px;
-      height: 50%;
+      margin-top: 20px;
+      height: 60%;
       width: 60%;
       box-sizing: border-box;
       button {
@@ -44,6 +44,15 @@ $salmon: #ff6766;
           background: $salmon;
           color: #fefefe;
           cursor: pointer;
+        }
+      }
+      .demo {
+        color: $salmon;
+        font-size: 1.4rem;
+        font-weight: 500;
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
         }
       }
     }

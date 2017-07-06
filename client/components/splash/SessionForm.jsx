@@ -46,6 +46,9 @@ class SessionForm extends React.Component {
             <div className="focus-bar" />
           </div>
           <button>SUBMIT</button>
+          <div className="demo" onClick={this.props.loginDemo}>
+            TRY A DEMO
+          </div>
         </form>
       </div>
     );
