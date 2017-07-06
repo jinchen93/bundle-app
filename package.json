@@ -12,7 +12,7 @@
     "test": "mocha --compilers js:babel-core/register --compilers jsx:babel-register --require ./client/test/test_helper.js --recursive ./client/test",
     "test:watch": "npm run test -- --watch",
     "coverage": "node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover _mocha -- --compilers js:babel-core/register --compilers jsx:babel-register --require ./client/test/test_helper.js --recursive ./client/test",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "keywords": [],
   "author": "",
@@ -45,6 +45,7 @@
     "babel-istanbul": "^0.12.2",
     "chai": "^4.0.2",
     "chai-jquery": "^2.0.0",
+    "coveralls": "^2.13.1",
     "jquery": "^3.2.1",
     "jsdom": "^11.1.0",
     "mocha": "^3.4.2",
