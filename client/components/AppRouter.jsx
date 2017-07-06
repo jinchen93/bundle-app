@@ -27,7 +27,6 @@ class AppRouter extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return this.props.loggedIn ? this.renderLoggedIn() : this.renderLoggedOut();
   }
 }

@@ -5,7 +5,7 @@ import {
 } from "../actions/session_actions";
 import merge from "lodash/merge";
 
-const _nullState = {
+export const _nullState = {
   currentUser: null,
   errors: [],
 };

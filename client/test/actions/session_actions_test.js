@@ -10,7 +10,7 @@ import {
   fetchingSession,
 } from "../../actions/session_actions";
 
-describe("session actions", () => {
+describe("Session Actions", () => {
   describe("receiveCurrentUser", () => {
     it("has the correct type", () => {
       const action = receiveCurrentUser();
