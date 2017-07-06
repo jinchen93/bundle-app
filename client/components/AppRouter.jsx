@@ -5,13 +5,9 @@ import SplashPage from "./splash/SplashPage";
 import HomePageContainer from "./home/HomePageContainer";
 
 class AppRouter extends React.Component {
-  componentDidUpdate() {
-    console.log("update");
-  }
-
   renderLoggedIn() {
     return (
-      <div>
+      <div data-test="logged-in">
         <Route exact path="/" component={HomePageContainer} />
       </div>
     );
@@ -19,7 +15,7 @@ class AppRouter extends React.Component {
 
   renderLoggedOut() {
     return (
-      <div>
+      <div data-test="logged-out">
         <Route exact path="/" render={() => <SplashPage formType="signup" />} />
         <Route
           exact
@@ -31,6 +27,7 @@ class AppRouter extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return this.props.loggedIn ? this.renderLoggedIn() : this.renderLoggedOut();
   }
 }
