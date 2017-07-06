@@ -1,5 +1,7 @@
 # Bundle!
 [![Build Status](https://travis-ci.org/jinchen93/bundle-app.svg?branch=master)](https://travis-ci.org/jinchen93/bundle-app)
+[![Coverage Status](https://coveralls.io/repos/github/jinchen93/bundle-app/badge.svg?branch=master)](https://coveralls.io/github/jinchen93/bundle-app?branch=master)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 Link - [bundleme.net](http://bundleme.net/)
 
