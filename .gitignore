@@ -9,6 +9,7 @@
 
 node_modules
 coverage
+.coveralls.yml
 
 # Ignore all logfiles and tempfiles.
 /log/*

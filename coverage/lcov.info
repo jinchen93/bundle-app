@@ -1,5 +1,5 @@
 TN:
-SF:/Users/jinchen/Documents/Programming/bundle/redesign/client/reducers/root_reducer.js
+SF:/Users/jinchen/Documents/Programming/bundle/client/reducers/root_reducer.js
 FNF:0
 FNH:0
 DA:1,1
@@ -12,7 +12,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/Users/jinchen/Documents/Programming/bundle/redesign/client/reducers/session_reducer.js
+SF:/Users/jinchen/Documents/Programming/bundle/client/reducers/session_reducer.js
 FN:13,sessionReducer
 FNF:1
 FNH:1
@@ -40,7 +40,7 @@ BRF:4
 BRH:3
 end_of_record
 TN:
-SF:/Users/jinchen/Documents/Programming/bundle/redesign/client/actions/session_actions.js
+SF:/Users/jinchen/Documents/Programming/bundle/client/actions/session_actions.js
 FN:8,login
 FN:8,(anonymous_3)
 FN:11,(anonymous_4)
@@ -104,7 +104,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/Users/jinchen/Documents/Programming/bundle/redesign/client/utils/session_api_util.js
+SF:/Users/jinchen/Documents/Programming/bundle/client/utils/session_api_util.js
 FN:1,signup
 FN:8,login
 FN:15,logout
@@ -125,7 +125,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/Users/jinchen/Documents/Programming/bundle/redesign/client/components/splash/SessionFormContainer.js
+SF:/Users/jinchen/Documents/Programming/bundle/client/components/splash/SessionFormContainer.js
 FN:6,mapStateToProps
 FN:11,mapDispatchToProps
 FN:12,signup
@@ -151,7 +151,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/Users/jinchen/Documents/Programming/bundle/redesign/client/components/splash/SessionForm.jsx
+SF:/Users/jinchen/Documents/Programming/bundle/client/components/splash/SessionForm.jsx
 FN:5,SessionForm
 FN:12,handleSubmit
 FN:14,(anonymous_12)
@@ -184,7 +184,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/Users/jinchen/Documents/Programming/bundle/redesign/client/components/splash/SplashPage.jsx
+SF:/Users/jinchen/Documents/Programming/bundle/client/components/splash/SplashPage.jsx
 FN:4,SplashPage
 FNF:1
 FNH:1
