@@ -5,7 +5,7 @@ describe("SplashPage", () => {
   let component;
 
   beforeEach(() => {
-    component = renderComponent(SplashPage);
+    component = renderComponent(SplashPage, { formType: "signup" });
   });
 
   it("wraps the page", () => {

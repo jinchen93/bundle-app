@@ -7,17 +7,39 @@ $salmon: #ff6766;
   width: 100vw;
   background-image: linear-gradient(to top, #feada6 0%, #f5efef 100%);
 
+  .switch-form-button {
+    top: 1.5em;
+    right: 1.5em;
+    color: $salmon;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-radius: 0.5em;
+    position: fixed;
+    background: #fff;
+    padding: 0.5em 1.5em;
+    text-decoration: none;
+    transition: 200ms;
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    &:hover {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: 200ms;
+    }
+  }
+
   .splash-form-wrapper {
     @include material-shadow(3);
     @include flex-col-center;
     background: #fefefe;
-    min-width: 400px;
-    max-width: 500px;
-    width: 50%;
+    max-width: 100%;
+    width: 400px;
     height: 500px;
+    max-height: 100%;
     border-radius: 5%;
 
-    h3 {
+    h4 {
+      letter-spacing: 0.5px;
       font-weight: 500;
     }
 

@@ -12,10 +12,6 @@ describe("SessionFormContainer", () => {
     expect(component).to.exist;
   });
 
-  it("renders site name", () => {
-    expect(component).to.contain("BundleMe");
-  });
-
   it("has a form element", () => {
     expect(component.find("form")).to.exist;
   });
@@ -39,6 +35,26 @@ describe("SessionFormContainer", () => {
     it("shows text in the input area", () => {
       input.simulate("change", "new input value");
       expect(input).to.have.value("new input value");
+    });
+  });
+
+  describe("signup form", () => {
+    beforeEach(() => {
+      component = renderComponent(SessionFormContainer, { formType: "signup" });
+    });
+
+    it("renders site name", () => {
+      expect(component).to.contain("BundleMe");
+    });
+  });
+
+  describe("login form", () => {
+    beforeEach(() => {
+      component = renderComponent(SessionFormContainer, { formType: "login" });
+    });
+
+    it("renders site name", () => {
+      expect(component).to.contain("Log in");
     });
   });
 });
