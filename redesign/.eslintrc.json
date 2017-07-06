@@ -16,7 +16,7 @@
   },
   "rules": {
     "quotes": [
-      2,
+      0,
       "double"
     ],
     "eol-last": [

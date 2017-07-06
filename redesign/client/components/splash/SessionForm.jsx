@@ -23,7 +23,7 @@ class SessionForm extends React.Component {
     const { username, password } = this.state;
     return (
       <div className="splash-form-wrapper">
-        <h3>Welcome to BundleMe</h3>
+        <h3>Welcome to BundleMe!</h3>
         <form onSubmit={this.handleSubmit}>
           <div className="input-group">
             <input
