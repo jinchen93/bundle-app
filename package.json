@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node devServer.js",
     "build": "webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors",
-    "test": "mocha --compilers js:babel-core/register --compilers jsx:babel-register --require ./client/test/test_helper.js --recursive ./client/test && npm run coveralls",
+    "test": "mocha --compilers js:babel-core/register --compilers jsx:babel-register --require ./client/test/test_helper.js --recursive ./client/test",
     "test:watch": "npm run test -- --watch",
     "cover": "node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover _mocha -- --compilers js:babel-core/register --compilers jsx:babel-register --require ./client/test/test_helper.js --recursive ./client/test",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
