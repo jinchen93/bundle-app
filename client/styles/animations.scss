@@ -1,1 +1,31 @@
+$color1: #c5c1ff;
+$color2: #ffbac3;
+$color3: #e2b0ff;
+$color5: #fad7a1;
+$color4: #f6ceec;
 
+@keyframes background-animation {
+  0% {
+    background: $color1;
+  }
+
+  20% {
+    background: $color2;
+  }
+
+  40% {
+    background: $color3;
+  }
+
+  60% {
+    background: $color4;
+  }
+
+  80% {
+    background: $color5;
+  }
+
+  100% {
+    background: $color1;
+  }
+}
