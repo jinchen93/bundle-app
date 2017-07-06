@@ -1,0 +1,20 @@
+.content-wrapper {
+  position: absolute;
+  top: 50px;
+  left: 250px;
+  width: calc(100% - 250px);
+  height: auto;
+  padding: 10px 20px;
+}
+
+.content-wrapper--expanded {
+  left: 0;
+  width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .content-wrapper {
+    left: 0;
+    width: 100%;
+  }
+}
