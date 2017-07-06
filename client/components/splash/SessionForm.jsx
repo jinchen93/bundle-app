@@ -19,11 +19,29 @@ class SessionForm extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  renderErrors() {
+    const { errors } = this.props;
+    if (errors.length) {
+      return (
+        <ul>
+          {errors.map(error =>
+            <li>
+              {error}
+            </li>
+          )}
+        </ul>
+      );
+    } else {
+      return null;
+    }
+  }
+
   render() {
     const { username, password } = this.state;
     return (
       <div className="splash-form-wrapper">
         <h3>Welcome to BundleMe!</h3>
+        {this.renderErrors()}
         <form onSubmit={this.handleSubmit}>
           <div className="input-group">
             <input

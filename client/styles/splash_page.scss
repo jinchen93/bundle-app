@@ -21,6 +21,13 @@ $salmon: #ff6766;
       font-weight: 500;
     }
 
+    ul {
+      @include flex-col-space-around;
+      color: rgb(180, 0, 0);
+      font-size: 0.8em;
+      list-style: none;
+    }
+
     form {
       @include flex-col-space-around;
       margin-top: 20px;
