@@ -20,8 +20,9 @@ const store = createStore(rootReducer);
 chaiJquery(chai, chai.util, $);
 
 function renderComponent(ComponentClass, props = {}, state = {}) {
+  const mockStore = createStore(rootReducer, state);
   const componentInstance = ReactTestUtils.renderIntoDocument(
-    <Provider store={createStore(rootReducer, state)}>
+    <Provider store={mockStore}>
       <MemoryRouter>
         <ComponentClass {...props} />
       </MemoryRouter>

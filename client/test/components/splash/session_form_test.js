@@ -16,6 +16,14 @@ describe("SessionFormContainer", () => {
     expect(component.find("form")).to.exist;
   });
 
+  it("renders errors", () => {
+    component = renderComponent(SessionFormContainer, null, {
+      session: { errors: ["error"] },
+    });
+
+    expect(component.find("ul")).to.exist;
+  });
+
   describe("input-group", () => {
     let inputGroups, input;
 
