@@ -1,5 +1,9 @@
 import sinon from "sinon";
-import { renderComponent, expect } from "../../test_helper";
+import {
+  renderComponent,
+  renderAndUnmountComponent,
+  expect,
+} from "../../test_helper";
 import * as actions from "../../../actions/session_actions";
 import SessionFormContainer from "../../../components/splash/SessionFormContainer";
 
@@ -24,6 +28,21 @@ describe("SessionFormContainer", () => {
     });
 
     expect(component.find("ul")).to.exist;
+  });
+
+  describe("lifecycle hooks", () => {
+    beforeEach(() => {
+      sinon.stub(actions, "clearErrors").returns({ type: "" });
+    });
+
+    afterEach(() => {
+      actions.clearErrors.restore();
+    });
+
+    it("clears errors when unmounted", () => {
+      renderAndUnmountComponent(SessionFormContainer);
+      expect(actions.clearErrors.calledOnce).to.be.true;
+    });
   });
 
   describe("input-group", () => {

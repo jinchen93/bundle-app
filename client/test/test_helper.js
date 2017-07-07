@@ -20,7 +20,7 @@ const store = createStore(rootReducer);
 
 chaiJquery(chai, chai.util, $);
 
-function renderComponent(ComponentClass, props = {}, state = {}) {
+function getComponentInstance(ComponentClass, props = {}, state = {}) {
   const mockStore = createStore(rootReducer, state, applyMiddleware(thunk));
   const componentInstance = ReactTestUtils.renderIntoDocument(
     <Provider store={mockStore}>
@@ -30,7 +30,26 @@ function renderComponent(ComponentClass, props = {}, state = {}) {
     </Provider>
   );
 
+  return componentInstance;
+}
+
+function renderComponent(ComponentClass, props = {}, state = {}) {
+  const componentInstance = getComponentInstance(ComponentClass, props, state);
   return $(ReactDOM.findDOMNode(componentInstance));
+}
+
+function renderAndUnmountComponent(ComponentClass, props = {}, state = {}) {
+  const container = document.createElement("div");
+  const mockStore = createStore(rootReducer, state, applyMiddleware(thunk));
+  ReactDOM.render(
+    <Provider store={mockStore}>
+      <MemoryRouter>
+        <ComponentClass {...props} />
+      </MemoryRouter>
+    </Provider>,
+    container
+  );
+  ReactDOM.unmountComponentAtNode(container);
 }
 
 $.fn.simulate = function(eventName, value) {
@@ -40,4 +59,4 @@ $.fn.simulate = function(eventName, value) {
   ReactTestUtils.Simulate[eventName](this[0]);
 };
 
-export { renderComponent, expect, store };
+export { renderComponent, renderAndUnmountComponent, expect, store };
