@@ -4,7 +4,12 @@ import { signup, login, logout } from "../../utils/session_api_util";
 
 describe("Session API Util", () => {
   beforeEach(() => {
+    global.$ = sinon.stub();
     global.$.ajax = sinon.stub().returns("promise");
+  });
+
+  afterEach(() => {
+    global.$.reset();
   });
 
   describe("signup", () => {
