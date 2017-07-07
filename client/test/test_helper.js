@@ -15,6 +15,7 @@ global.window = dom.window;
 global.document = window.document;
 global.navigator = window.navigator;
 const $ = _$(window);
+const store = createStore(rootReducer);
 
 chaiJquery(chai, chai.util, $);
 
@@ -37,4 +38,4 @@ $.fn.simulate = function(eventName, value) {
   ReactTestUtils.Simulate[eventName](this[0]);
 };
 
-export { renderComponent, expect };
+export { renderComponent, expect, store };

@@ -7,29 +7,29 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 export const login = user => dispatch => {
   dispatch(fetchingSession());
-  return SessionAPIUtil.login(user)
-    .then(res => {
+  return SessionAPIUtil.login(user).then(
+    res => {
       dispatch(clearErrors());
       return dispatch(receiveCurrentUser(res));
-    })
-    .fail(errors => dispatch(receiveErrors(errors.responseJSON)));
+    },
+    errors => dispatch(receiveErrors(errors.responseJSON))
+  );
 };
 
 export const logout = () => dispatch => {
   dispatch(fetchingSession());
-  return SessionAPIUtil.logout().then(() =>
-    dispatch(receiveCurrentUser(null))
-  );
+  return SessionAPIUtil.logout().then(() => dispatch(receiveCurrentUser(null)));
 };
 
 export const signup = user => dispatch => {
   dispatch(fetchingSession());
-  return SessionAPIUtil.signup(user)
-    .then(res => {
+  return SessionAPIUtil.signup(user).then(
+    res => {
       dispatch(clearErrors());
       return dispatch(receiveCurrentUser(res));
-    })
-    .fail(errors => dispatch(receiveErrors(errors.responseJSON)));
+    },
+    errors => dispatch(receiveErrors(errors.responseJSON))
+  );
 };
 
 export const receiveCurrentUser = currentUser => ({
