@@ -1,4 +1,6 @@
+import sinon from "sinon";
 import { renderComponent, expect } from "../../test_helper";
+import * as actions from "../../../actions/session_actions";
 import SessionFormContainer from "../../../components/splash/SessionFormContainer";
 
 describe("SessionFormContainer", () => {
@@ -48,21 +50,43 @@ describe("SessionFormContainer", () => {
 
   describe("signup form", () => {
     beforeEach(() => {
+      sinon.stub(actions, "signup").returns(() => Promise.resolve({}));
       component = renderComponent(SessionFormContainer, { formType: "signup" });
+    });
+
+    afterEach(() => {
+      actions.signup.restore();
     });
 
     it("renders site name", () => {
       expect(component).to.contain("BundleMe");
     });
+
+    it("dispatches signup action on submit", () => {
+      const form = component.find("form");
+      form.simulate("submit");
+      expect(actions.signup.calledOnce).to.be.true;
+    });
   });
 
   describe("login form", () => {
     beforeEach(() => {
+      sinon.stub(actions, "login").returns(() => Promise.resolve({}));
       component = renderComponent(SessionFormContainer, { formType: "login" });
+    });
+
+    afterEach(() => {
+      actions.login.restore();
     });
 
     it("renders site name", () => {
       expect(component).to.contain("Log in");
+    });
+
+    it("dispatches login action on submit", () => {
+      const form = component.find("form");
+      form.simulate("submit");
+      expect(actions.login.calledOnce).to.be.true;
     });
   });
 });

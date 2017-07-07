@@ -7,7 +7,8 @@ import { JSDOM } from "jsdom";
 import chai, { expect } from "chai";
 import chaiJquery from "chai-jquery";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 import rootReducer from "../reducers/root_reducer";
 
 const dom = new JSDOM("<!doctype html><html><body></body></html>");
@@ -20,7 +21,7 @@ const store = createStore(rootReducer);
 chaiJquery(chai, chai.util, $);
 
 function renderComponent(ComponentClass, props = {}, state = {}) {
-  const mockStore = createStore(rootReducer, state);
+  const mockStore = createStore(rootReducer, state, applyMiddleware(thunk));
   const componentInstance = ReactTestUtils.renderIntoDocument(
     <Provider store={mockStore}>
       <MemoryRouter>
