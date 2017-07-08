@@ -1,0 +1,10 @@
+.home-wrapper {
+  padding-top: $nav-height;
+  width: 100%;
+  .content-wrapper {
+    height: calc(100vh - #{$nav-height});
+    width: 100%;
+    display: flex;
+    background: #eceff1;
+  }
+}

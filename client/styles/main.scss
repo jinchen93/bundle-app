@@ -60,3 +60,11 @@ h6 {
 div {
   box-sizing: border-box;
 }
+
+button {
+  transition: 100ms;
+  &:hover {
+    transition: 100ms;
+    cursor: pointer;
+  }
+}

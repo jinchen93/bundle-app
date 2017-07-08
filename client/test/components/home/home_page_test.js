@@ -8,7 +8,7 @@ describe("HomePageContainer", () => {
     component = renderComponent(HomePageContainer);
   });
 
-  it("renders a logout button", () => {
-    expect(component.find("button")).to.exist;
+  it("renders", () => {
+    expect(component).to.exist;
   });
 });
