@@ -1,5 +1,6 @@
 class Api::YoutubeChannelsController < ApplicationController
   def index
+    @channels = current_user.youtube_channels
   end
 
   def show
