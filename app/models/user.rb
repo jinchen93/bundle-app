@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  username        :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ApplicationRecord
   after_initialize :ensure_session_token
 
@@ -8,6 +20,12 @@ class User < ApplicationRecord
 
   has_many :youtube_channel_follows
   has_many :youtube_channels, through: :youtube_channel_follows
+
+  has_many :subreddit_follows
+  has_many :subreddits, through: :subreddit_follows
+
+  has_many :twitch_channel_follows
+  has_many :twitch_channels, through: :twitch_channel_follows
 
   attr_reader :password
 

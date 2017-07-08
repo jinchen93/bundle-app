@@ -9,6 +9,10 @@
 User.destroy_all
 YoutubeChannel.destroy_all
 YoutubeChannelFollow.destroy_all
+Subreddit.destroy_all
+SubredditFollow.destroy_all
+TwitchChannel.destroy_all
+TwitchChannelFollow.destroy_all
 
 guest = User.create({ username: "guest", password: "password" })
 
@@ -17,7 +21,27 @@ yt = YoutubeChannel.create({
   url: "https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails&key=#{ENV['youtube_api_key']}&forUsername=caseyneistat"
 })
 
+sr = Subreddit.create({
+  name: "javascript",
+  url: "https://www.reddit.com/r/javascript/.json"
+})
+
+tw = TwitchChannel.create({
+  name: "food",
+  url: "http://player.twitch.tv/?channel=food&autoplay=true"
+})
+
 YoutubeChannelFollow.create({
   youtube_channel_id: yt.id,
+  user_id: guest.id
+})
+
+SubredditFollow.create({
+  subreddit_id: sr.id,
+  user_id: guest.id
+})
+
+TwitchChannelFollow.create({
+  twitch_channel_id: tw.id,
   user_id: guest.id
 })
