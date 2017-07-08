@@ -20,7 +20,7 @@ describe("Session Reducer", () => {
       type: RECEIVE_CURRENT_USER,
       session,
     };
-    expect(sessionReducer({}, action)).to.eql(session);
+    expect(sessionReducer(undefined, action)).to.eql(session);
   });
 
   it("handles action of type RECEIVE_ERRORS", () => {
@@ -32,7 +32,7 @@ describe("Session Reducer", () => {
       type: RECEIVE_ERRORS,
       session,
     };
-    expect(sessionReducer({}, action)).to.eql(session);
+    expect(sessionReducer(undefined, action)).to.eql(session);
   });
 
   it("handles action of type CLEAR_ERRORS", () => {
