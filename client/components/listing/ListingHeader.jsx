@@ -6,7 +6,6 @@ const ListingHeader = () => {
     const target = e.target;
     target.classList.add("active");
     target.addEventListener("transitionend", () => {
-      console.log("end");
       target.classList.remove("active");
     });
   };
