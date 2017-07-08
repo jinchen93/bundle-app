@@ -1,5 +1,6 @@
 class Api::SubredditsController < ApplicationController
   def index
+    @subreddits = current_user.subreddits
   end
 
   def show

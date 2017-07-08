@@ -1,5 +1,6 @@
 class Api::TwitchChannelsController < ApplicationController
   def index
+    @channels = current_user.twitch_channels
   end
 
   def show

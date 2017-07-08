@@ -10,7 +10,7 @@
 #
 
 class YoutubeChannel < ApplicationRecord
-  validates :username, uniqueness: true, presence: true
+  validates :name, uniqueness: true, presence: true
   validates :url, presence: true
 
   has_many :youtube_channel_follows
