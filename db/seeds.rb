@@ -7,5 +7,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.destroy_all
+YoutubeChannel.destroy_all
+YoutubeChannelFollow.destroy_all
 
 guest = User.create({ username: "guest", password: "password" })
+
+yt = YoutubeChannel.create({
+  username: "caseyneistat",
+  url: "https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails&key=#{ENV['youtube_api_key']}&forUsername=caseyneistat"
+})
+
+YoutubeChannelFollow.create({
+  youtube_channel_id: yt.id,
+  user_id: guest.id
+})
