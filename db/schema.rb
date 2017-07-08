@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170630171705) do
+ActiveRecord::Schema.define(version: 20170708182628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "subreddit_follows", force: :cascade do |t|
+    t.integer  "subreddit_id", null: false
+    t.integer  "user_id",      null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["subreddit_id", "user_id"], name: "index_subreddit_follows_on_subreddit_id_and_user_id", unique: true, using: :btree
+  end
 
   create_table "subreddits", force: :cascade do |t|
     t.string   "name",       null: false
@@ -21,6 +29,14 @@ ActiveRecord::Schema.define(version: 20170630171705) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["url"], name: "index_subreddits_on_url", unique: true, using: :btree
+  end
+
+  create_table "twitch_channel_follows", force: :cascade do |t|
+    t.integer  "twitch_channel_id", null: false
+    t.integer  "user_id",           null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["twitch_channel_id", "user_id"], name: "index_twitch_channel_follows_on_twitch_channel_id_and_user_id", unique: true, using: :btree
   end
 
   create_table "twitch_channels", force: :cascade do |t|
@@ -39,6 +55,14 @@ ActiveRecord::Schema.define(version: 20170630171705) do
     t.datetime "updated_at",      null: false
     t.index ["session_token"], name: "index_users_on_session_token", using: :btree
     t.index ["username"], name: "index_users_on_username", using: :btree
+  end
+
+  create_table "youtube_channel_follows", force: :cascade do |t|
+    t.integer  "youtube_channel_id", null: false
+    t.integer  "user_id",            null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["youtube_channel_id", "user_id"], name: "index_youtube_channel_follows_on_youtube_channel_id_and_user_id", unique: true, using: :btree
   end
 
   create_table "youtube_channels", force: :cascade do |t|

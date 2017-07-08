@@ -1,0 +1,2 @@
+class YoutubeChannelFollow < ApplicationRecord
+end

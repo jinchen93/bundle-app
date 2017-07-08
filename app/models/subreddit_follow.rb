@@ -1,0 +1,2 @@
+class SubredditFollow < ApplicationRecord
+end

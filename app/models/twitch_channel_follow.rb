@@ -1,0 +1,2 @@
+class TwitchChannelFollow < ApplicationRecord
+end
