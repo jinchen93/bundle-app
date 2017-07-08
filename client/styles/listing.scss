@@ -4,15 +4,54 @@
   height: 100%;
   width: 25em;
   .listing-content {
-    background: #fff;
     @include material-shadow(1);
+    background: #fff;
     width: 100%;
     height: 100%;
   }
 
   .listing-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     width: 100%;
     height: 5em;
     border-bottom: 1px solid #ddd;
+    padding: 0 1em;
+
+    .logo-wrapper {
+      height: 100%;
+      width: 30%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      img {
+        @include material-shadow(1);
+        height: 70%;
+        border-radius: 10px;
+        transition: 100ms ease-in-out;
+        &:hover {
+          cursor: pointer;
+          transition: 100ms ease-in-out;
+        }
+      }
+
+      .youtube-logo {
+        box-shadow: 0 3px #fd6e72;
+      }
+
+      .reddit-logo {
+        box-shadow: 0 3px #ff8e64;
+      }
+
+      .twitch-logo {
+        box-shadow: 0 3px #a990d7;
+      }
+
+      .active {
+        margin-top: 6px;
+        box-shadow: none;
+      }
+    }
   }
 }
