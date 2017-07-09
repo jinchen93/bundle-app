@@ -16,9 +16,21 @@ TwitchChannelFollow.destroy_all
 
 guest = User.create({ username: "guest", password: "password" })
 
-yt = YoutubeChannel.create({
-  name: "caseyneistat",
-})
+channels = [
+  "techcrunch",
+  "caseyneistat",
+  "UCO1cgjhGzsSYb1rsB4bFe4Q",
+  "TheInfographicsShow"
+]
+
+channels.each do |channel|
+  yt = YoutubeChannel.create({ name: channel })
+  YoutubeChannelFollow.create({
+    youtube_channel_id: yt.id,
+    user_id: guest.id
+  })
+end
+
 
 sr = Subreddit.create({
   name: "javascript",
@@ -28,11 +40,6 @@ sr = Subreddit.create({
 tw = TwitchChannel.create({
   name: "food",
   url: "http://player.twitch.tv/?channel=food&autoplay=true"
-})
-
-YoutubeChannelFollow.create({
-  youtube_channel_id: yt.id,
-  user_id: guest.id
 })
 
 SubredditFollow.create({
