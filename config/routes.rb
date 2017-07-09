@@ -4,9 +4,9 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show, :update]
     resource :session, only: [:create, :destroy]
 
-    resources :subreddits, only: [:index, :show, :create, :destroy]
-    resources :youtube_channels, only: [:index, :show, :create, :destroy]
-    resources :twitch_channels, only: [:index, :show, :create, :destroy]
+    resources :subreddits, only: [:index, :show]
+    resources :youtube_channels, only: [:index, :show]
+    resources :twitch_channels, only: [:index, :show]
   end
 
   root to: 'static_pages#root'

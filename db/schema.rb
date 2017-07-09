@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170708224140) do
+ActiveRecord::Schema.define(version: 20170709174354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,10 +66,13 @@ ActiveRecord::Schema.define(version: 20170708224140) do
   end
 
   create_table "youtube_channels", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "url",        null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",         null: false
+    t.string   "url",          null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "upload_id"
+    t.string   "thumbnail"
+    t.string   "display_name"
     t.index ["url"], name: "index_youtube_channels_on_url", unique: true, using: :btree
   end
 

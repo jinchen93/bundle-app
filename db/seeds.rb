@@ -17,8 +17,7 @@ TwitchChannelFollow.destroy_all
 guest = User.create({ username: "guest", password: "password" })
 
 yt = YoutubeChannel.create({
-  username: "caseyneistat",
-  url: "https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails&key=#{ENV['youtube_api_key']}&forUsername=caseyneistat"
+  name: "caseyneistat",
 })
 
 sr = Subreddit.create({
