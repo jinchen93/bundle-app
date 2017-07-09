@@ -1,4 +1,5 @@
 import _$ from "jquery";
+import sinon from "sinon";
 import React from "react";
 import ReactDOM from "react-dom";
 import { MemoryRouter } from "react-router-dom";
@@ -10,6 +11,8 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "../reducers/root_reducer";
+import * as YoutubeAPIUtil from "../utils/youtube_api_util";
+import * as TwitchAPIUtil from "../utils/twitch_api_util";
 
 const dom = new JSDOM("<!doctype html><html><body></body></html>");
 global.window = dom.window;
@@ -52,6 +55,22 @@ function renderAndUnmountComponent(ComponentClass, props = {}, state = {}) {
   ReactDOM.unmountComponentAtNode(container);
 }
 
+function initializeAPITests() {
+  beforeEach(() => {
+    sinon
+      .stub(YoutubeAPIUtil, "fetchYoutubeFollows")
+      .returns(Promise.resolve("sucess"));
+    sinon
+      .stub(TwitchAPIUtil, "fetchTwitchFollows")
+      .returns(Promise.resolve("sucess"));
+  });
+
+  afterEach(() => {
+    YoutubeAPIUtil.fetchYoutubeFollows.restore();
+    TwitchAPIUtil.fetchTwitchFollows.restore();
+  });
+}
+
 $.fn.simulate = function(eventName, value) {
   if (value) {
     this.val(value);
@@ -59,4 +78,10 @@ $.fn.simulate = function(eventName, value) {
   ReactTestUtils.Simulate[eventName](this[0]);
 };
 
-export { renderComponent, renderAndUnmountComponent, expect, store };
+export {
+  renderComponent,
+  renderAndUnmountComponent,
+  expect,
+  store,
+  initializeAPITests,
+};

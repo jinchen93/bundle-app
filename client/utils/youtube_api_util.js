@@ -3,3 +3,9 @@ export const fetchYoutubeFollows = () =>
     method: "GET",
     url: "/api/youtube_channels",
   });
+
+export const fetchYoutubeVideos = id =>
+  $.ajax({
+    method: "GET",
+    url: `/api/youtube_channels/${id}`,
+  });

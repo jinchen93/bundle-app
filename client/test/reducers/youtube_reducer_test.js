@@ -13,10 +13,6 @@ describe("Youtube Reducer", () => {
       type: RECEIVE_YOUTUBE_FOLLOWS,
       channels,
     };
-    const state = {
-      channels,
-      videos: [],
-    };
-    expect(youtubeReducer(undefined, action)).to.eql(state);
+    expect(youtubeReducer(undefined, action).channels).to.eql(channels);
   });
 });

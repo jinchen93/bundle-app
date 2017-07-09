@@ -1,7 +1,9 @@
 import AppRouter from "../../components/AppRouter";
-import { renderComponent, expect } from "../test_helper";
+import { initializeAPITests, renderComponent, expect } from "../test_helper";
 
 describe("AppRouter", () => {
+  initializeAPITests();
+
   it("renders", () => {
     let component = renderComponent(AppRouter);
     expect(component).to.exist;

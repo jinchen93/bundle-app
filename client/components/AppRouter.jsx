@@ -4,16 +4,16 @@ import { withRouter, Route } from "react-router-dom";
 import SplashPage from "./splash/SplashPage";
 import HomePageContainer from "./home/HomePageContainer";
 
-class AppRouter extends React.Component {
-  renderLoggedIn() {
+const AppRouter = props => {
+  const renderLoggedIn = () => {
     return (
       <div data-test="logged-in">
         <Route exact path="/" component={HomePageContainer} />
       </div>
     );
-  }
+  };
 
-  renderLoggedOut() {
+  const renderLoggedOut = () => {
     return (
       <div data-test="logged-out">
         <Route exact path="/" render={() => <SplashPage formType="signup" />} />
@@ -24,12 +24,10 @@ class AppRouter extends React.Component {
         />
       </div>
     );
-  }
+  };
 
-  render() {
-    return this.props.loggedIn ? this.renderLoggedIn() : this.renderLoggedOut();
-  }
-}
+  return props.loggedIn ? renderLoggedIn() : renderLoggedOut();
+};
 
 const mapStateToProps = state => ({
   loggedIn: Boolean(state.session.currentUser),
