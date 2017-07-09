@@ -3,6 +3,7 @@ import * as YoutubeAPIUtil from "../utils/youtube_api_util";
 export const RECEIVE_YOUTUBE_FOLLOWS = "RECEIVE_YOUTUBE_FOLLOWS";
 export const RECEIVE_YOUTUBE_VIDEOS = "RECEIVE_YOUTUBE_VIDEOS";
 export const RECEIVE_YOUTUBE_CURRENT = "RECEIVE_YOUTUBE_CURRENT";
+export const RECEIVE_YOUTUBE_CHANNEL = "RECEIVE_YOUTUBE_CHANNEL";
 
 export const fetchYoutubeFollows = () => dispatch =>
   YoutubeAPIUtil.fetchYoutubeFollows().then(channels =>
@@ -12,6 +13,11 @@ export const fetchYoutubeFollows = () => dispatch =>
 export const fetchYoutubeVideos = id => dispatch =>
   YoutubeAPIUtil.fetchYoutubeVideos(id).then(videos =>
     dispatch(receiveYoutubeVideos(videos))
+  );
+
+export const followYoutubeChannel = name => dispatch =>
+  YoutubeAPIUtil.followYoutubeChannel(name).then(channel =>
+    dispatch(receiveYoutubeChannel(channel))
   );
 
 export const receiveYoutubeFollows = channels => ({
@@ -27,4 +33,9 @@ export const receiveYoutubeCurrent = current => ({
 export const receiveYoutubeVideos = videos => ({
   type: RECEIVE_YOUTUBE_VIDEOS,
   videos,
+});
+
+export const receiveYoutubeChannel = channel => ({
+  type: RECEIVE_YOUTUBE_CHANNEL,
+  channel,
 });

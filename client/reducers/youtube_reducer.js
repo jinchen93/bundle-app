@@ -2,6 +2,7 @@ import {
   RECEIVE_YOUTUBE_FOLLOWS,
   RECEIVE_YOUTUBE_VIDEOS,
   RECEIVE_YOUTUBE_CURRENT,
+  RECEIVE_YOUTUBE_CHANNEL,
 } from "../actions/youtube_actions";
 
 export const _nullState = {
@@ -21,6 +22,12 @@ const youtubeReducer = (state = _nullState, action) => {
       return { ...state, current: action.current };
     case RECEIVE_YOUTUBE_VIDEOS:
       return { ...state, videos: action.videos };
+    case RECEIVE_YOUTUBE_CHANNEL:
+      const newChannels = {
+        ...state.channels,
+        [action.channel.id]: action.channel,
+      };
+      return { ...state, channels: newChannels };
     default:
       return state;
   }
