@@ -2,11 +2,14 @@
 #
 # Table name: youtube_channels
 #
-#  id         :integer          not null, primary key
-#  username   :string           not null
-#  url        :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :integer          not null, primary key
+#  name         :string           not null
+#  url          :string           not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  upload_id    :string
+#  thumbnail    :string
+#  display_name :string
 #
 
 # API Constants
@@ -21,11 +24,8 @@ CHANNEL_ID_URL = "https://www.googleapis.com/youtube/v3/channels?"+
 
 
 class YoutubeChannel < ApplicationRecord
-  include HTTParty
   validate :validate_channel
-
-  validates :name, uniqueness: true, presence: true
-  validates :url, presence: true
+  validates :name, :url, :upload_id, :thumbnail, uniqueness: true, presence: true
 
   has_many :youtube_channel_follows
   has_many :users, through: :youtube_channel_follows
