@@ -5,8 +5,8 @@ const YoutubeVideoListItem = ({ idx, video, handleClick, selected }) => {
   const date = moment(video.snippet.publishedAt).format("MM/DD/YY");
   const renderDescription = () => {
     let { description } = video.snippet;
-    if (description.length > 160) {
-      description = description.slice(0, 160) + "...";
+    if (description.length > 150) {
+      description = description.slice(0, 150) + "...";
     }
 
     return (

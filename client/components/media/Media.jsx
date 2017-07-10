@@ -77,6 +77,24 @@ class Media extends React.Component {
     }
   }
 
+  renderYoutube() {
+    return (
+      <div className="media-content">
+        {this.renderEmbed()}
+        {this.renderVideoList()}
+      </div>
+    );
+  }
+
+  renderMode() {
+    switch (this.props.mode) {
+      case "YOUTUBE":
+        return this.renderYoutube();
+      default:
+        return <div className="media-content" />;
+    }
+  }
+
   handleClick(e) {
     console.log(e.currentTarget.getAttribute("data-idx"));
     this.props.receiveYoutubeCurrentVideo(
@@ -87,10 +105,7 @@ class Media extends React.Component {
   render() {
     return (
       <div className="media-wrapper">
-        <div className="media-content">
-          {this.renderEmbed()}
-          {this.renderVideoList()}
-        </div>
+        {this.renderMode()}
       </div>
     );
   }

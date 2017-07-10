@@ -8,6 +8,7 @@ import { fetchTwitchFollows } from "../../actions/twitch_actions";
 
 const mapStateToProps = state => ({
   youtube: state.youtube,
+  mode: state.mode,
 });
 
 const mapDispatchToProps = dispatch => ({

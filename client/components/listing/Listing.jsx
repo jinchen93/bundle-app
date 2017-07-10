@@ -25,24 +25,33 @@ class Listing extends React.Component {
     }
   }
 
+  renderMode() {
+    switch (this.props.mode) {
+      case "YOUTUBE":
+        return this.props.youtubeChannels.map(channel =>
+          <ListingItem
+            deleteMode={this.state.deleteMode}
+            handleClick={this.handleClick}
+            selected={this.props.currentChannel == channel.id}
+            key={channel.id}
+            channel={channel}
+          />
+        );
+      default:
+        return null;
+    }
+  }
+
   render() {
     return (
       <div className="listing-wrapper">
         <div className="listing-content">
-          <ListingHeader />
+          <ListingHeader receiveMode={this.props.receiveMode} />
           <ListingInformationContainer
             deleteMode={this.state.deleteMode}
             toggleDeleteMode={this.toggleDeleteMode}
           />
-          {this.props.youtubeChannels.map(channel =>
-            <ListingItem
-              deleteMode={this.state.deleteMode}
-              handleClick={this.handleClick}
-              selected={this.props.currentChannel == channel.id}
-              key={channel.id}
-              channel={channel}
-            />
-          )}
+          {this.renderMode()}
         </div>
       </div>
     );

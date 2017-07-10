@@ -71,6 +71,10 @@
       height: 1.5em;
       width: 100%;
       border: 1px solid #e7e7e7;
+      border-right: none;
+      padding-left: 0.5em;
+      box-sizing: border-box;
+      height: 2em;
       &:focus {
         outline: none;
       }
@@ -85,6 +89,21 @@
         cursor: pointer;
       }
     }
+
+    button {
+      box-sizing: border-box;
+      height: calc(2em + 1px);
+      color: white;
+      border: none;
+      font-weight: 500;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    .focus-bar {
+      height: 1px;
+    }
   }
 
   .youtube {
@@ -92,29 +111,46 @@
     i:hover {
       color: $dark-youtube;
     }
-    input {
-      border-right: none;
-      padding-left: 0.5em;
-      box-sizing: border-box;
-      height: 2em;
-    }
     button {
-      box-sizing: border-box;
-      height: calc(2em + 1px);
-      color: white;
-      border: none;
       background: $youtube-color;
-      font-weight: 500;
       &:hover {
         background: $dark-youtube;
       }
-      &:focus {
-        outline: none;
+    }
+    .focus-bar {
+      background: $youtube-color;
+    }
+  }
+
+  .reddit {
+    color: $reddit-color;
+    i:hover {
+      color: $dark-reddit;
+    }
+    button {
+      background: $reddit-color;
+      &:hover {
+        background: $dark-reddit;
       }
     }
     .focus-bar {
-      height: 1px;
-      background: $youtube-color;
+      background: $reddit-color;
+    }
+  }
+
+  .twitch {
+    color: $twitch-color;
+    i:hover {
+      color: $dark-twitch;
+    }
+    button {
+      background: $twitch-color;
+      &:hover {
+        background: $dark-twitch;
+      }
+    }
+    .focus-bar {
+      background: $twitch-color;
     }
   }
 
