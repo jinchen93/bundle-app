@@ -19,7 +19,9 @@ class Listing extends React.Component {
     if (this.state.deleteMode) {
       this.props.removeYoutubeChannel(e.currentTarget.getAttribute("data-id"));
     } else {
-      this.props.receiveYoutubeCurrent(e.currentTarget.getAttribute("data-id"));
+      this.props.receiveYoutubeCurrentChannel(
+        e.currentTarget.getAttribute("data-id")
+      );
     }
   }
 

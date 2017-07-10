@@ -4,12 +4,14 @@ import {
   RECEIVE_YOUTUBE_CURRENT,
   RECEIVE_YOUTUBE_CHANNEL,
   DELETE_YOUTUBE_CHANNEL,
+  RECEIVE_YOUTUBE_CURRENT_VIDEO,
 } from "../actions/youtube_actions";
 
 export const _nullState = {
   channels: [],
   videos: [],
   currentChannel: null,
+  currentVideo: null,
 };
 
 const youtubeReducer = (state = _nullState, action) => {
@@ -21,7 +23,9 @@ const youtubeReducer = (state = _nullState, action) => {
       const currentChannel = Object.keys(action.channels)[0];
       return { ...state, channels: action.channels, currentChannel };
     case RECEIVE_YOUTUBE_CURRENT:
-      return { ...state, currentChannel: action.current };
+      return { ...state, currentChannel: action.id };
+    case RECEIVE_YOUTUBE_CURRENT_VIDEO:
+      return { ...state, currentVideo: action.idx };
     case RECEIVE_YOUTUBE_VIDEOS:
       return { ...state, videos: action.videos };
     case RECEIVE_YOUTUBE_CHANNEL:

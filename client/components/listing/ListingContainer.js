@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import Listing from "./Listing";
 import { allYoutubeChannels } from "../../selectors/youtube_selectors";
 import {
-  receiveYoutubeCurrent,
+  receiveYoutubeCurrentChannel,
   removeYoutubeChannel,
 } from "../../actions/youtube_actions";
 
@@ -12,7 +12,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  receiveYoutubeCurrent: id => dispatch(receiveYoutubeCurrent(id)),
+  receiveYoutubeCurrentChannel: id =>
+    dispatch(receiveYoutubeCurrentChannel(id)),
   removeYoutubeChannel: id => dispatch(removeYoutubeChannel(id)),
 });
 

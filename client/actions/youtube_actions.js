@@ -3,6 +3,7 @@ import * as YoutubeAPIUtil from "../utils/youtube_api_util";
 export const RECEIVE_YOUTUBE_FOLLOWS = "RECEIVE_YOUTUBE_FOLLOWS";
 export const RECEIVE_YOUTUBE_VIDEOS = "RECEIVE_YOUTUBE_VIDEOS";
 export const RECEIVE_YOUTUBE_CURRENT = "RECEIVE_YOUTUBE_CURRENT";
+export const RECEIVE_YOUTUBE_CURRENT_VIDEO = "RECEIVE_YOUTUBE_CURRENT_VIDEO";
 export const RECEIVE_YOUTUBE_CHANNEL = "RECEIVE_YOUTUBE_CHANNEL";
 export const DELETE_YOUTUBE_CHANNEL = "DELETE_YOUTUBE_CHANNEL";
 
@@ -31,9 +32,9 @@ export const receiveYoutubeFollows = channels => ({
   channels,
 });
 
-export const receiveYoutubeCurrent = current => ({
+export const receiveYoutubeCurrentChannel = id => ({
   type: RECEIVE_YOUTUBE_CURRENT,
-  current,
+  id,
 });
 
 export const receiveYoutubeVideos = videos => ({
@@ -49,4 +50,9 @@ export const receiveYoutubeChannel = channel => ({
 export const deleteYoutubeChannel = id => ({
   type: DELETE_YOUTUBE_CHANNEL,
   id,
+});
+
+export const receiveYoutubeCurrentVideo = idx => ({
+  type: RECEIVE_YOUTUBE_CURRENT_VIDEO,
+  idx,
 });
