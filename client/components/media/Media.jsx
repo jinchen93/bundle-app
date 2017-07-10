@@ -1,5 +1,7 @@
 import React from "react";
 import YoutubeVideoList from "./YoutubeVideoList";
+import moment from "moment";
+import Linkify from "react-linkify";
 
 class Media extends React.Component {
   constructor(props) {
@@ -26,7 +28,8 @@ class Media extends React.Component {
   renderEmbed() {
     const { videos, currentVideo } = this.props;
     if (videos.length) {
-      const currentVideoId = videos[currentVideo].snippet.resourceId.videoId;
+      const video = videos[currentVideo].snippet;
+      const currentVideoId = video.resourceId.videoId;
       return (
         <div className="embed-wrapper">
           <div className="embed-container">
@@ -35,6 +38,19 @@ class Media extends React.Component {
               frameBorder="0"
               allowFullScreen
             />
+          </div>
+          <div className="video-info-container">
+            <div className="youtube-video-title">
+              {video.title}
+            </div>
+
+            <div>
+              {moment(video.publishedAt).format("ddd, MMMM Do YYYY, h:mm A")}
+            </div>
+            <hr />
+            <Linkify>
+              {video.description}
+            </Linkify>
           </div>
         </div>
       );

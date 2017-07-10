@@ -24,12 +24,12 @@
     font-weight: 500;
     border-radius: 0.2em;
     background: none;
-    color: #9575cd;
-    border: 1px solid #9575cd;
+    color: $purple;
+    border: 1px solid $purple;
     padding: 0.75rem;
     &:hover {
       color: #f8f9f9;
-      background: #9575cd;
+      background: $purple;
     }
   }
 }
