@@ -44,12 +44,16 @@ class Media extends React.Component {
               {video.title}
             </div>
 
-            <div>
+            <div className="date">
               {moment(video.publishedAt).format("ddd, MMMM Do YYYY, h:mm A")}
             </div>
             <hr />
-            <Linkify>
-              {video.description}
+            <Linkify className="video-description">
+              {video.description.split("\n").map((line, idx) =>
+                <div key={idx}>
+                  {line}
+                </div>
+              )}
             </Linkify>
           </div>
         </div>
