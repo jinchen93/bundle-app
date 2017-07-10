@@ -40,6 +40,7 @@ class ListingInformation extends React.Component {
             value={this.state.value}
             onChange={this.handleChange}
             className="add-listing"
+            placeholder="Channel username or ID"
           />
           <div className="focus-bar" />
         </div>

@@ -96,7 +96,6 @@
       border-right: none;
       padding-left: 0.5em;
       box-sizing: border-box;
-      letter-spacing: 0;
       height: 2em;
     }
     button {
@@ -136,5 +135,10 @@
 
   .selected {
     background: #ecf0f1;
+  }
+
+  #deleting:hover {
+    background: $youtube-color;
+    color: #fff;
   }
 }

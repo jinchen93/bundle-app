@@ -20,7 +20,7 @@ channels = [
   "techcrunch",
   "caseyneistat",
   "UCO1cgjhGzsSYb1rsB4bFe4Q",
-  "TheInfographicsShow"
+  "UCqr-7GDVTsdNBCeufvERYuw"
 ]
 
 channels.each do |channel|
