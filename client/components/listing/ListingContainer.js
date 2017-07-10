@@ -8,7 +8,7 @@ import {
 
 const mapStateToProps = state => ({
   youtubeChannels: allYoutubeChannels(state),
-  currentChannel: state.youtube.current,
+  currentChannel: state.youtube.currentChannel,
 });
 
 const mapDispatchToProps = dispatch => ({

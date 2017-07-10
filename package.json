@@ -28,6 +28,7 @@
     "eslint": "^4.1.1",
     "eslint-loader": "^1.8.0",
     "eslint-plugin-react": "^7.1.0",
+    "moment": "^2.18.1",
     "node-sass": "^4.5.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

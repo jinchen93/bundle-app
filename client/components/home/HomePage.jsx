@@ -10,8 +10,8 @@ class HomePage extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const lastYoutubeCurrent = prevProps.youtube.current;
-    const thisYoutubeCurrent = this.props.youtube.current;
+    const lastYoutubeCurrent = prevProps.youtube.currentChannel;
+    const thisYoutubeCurrent = this.props.youtube.currentChannel;
 
     if (lastYoutubeCurrent !== thisYoutubeCurrent) {
       const currentChannel = this.props.youtube.channels[thisYoutubeCurrent];

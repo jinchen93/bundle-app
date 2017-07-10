@@ -9,7 +9,7 @@ import {
 export const _nullState = {
   channels: [],
   videos: [],
-  current: null,
+  currentChannel: null,
 };
 
 const youtubeReducer = (state = _nullState, action) => {
@@ -18,10 +18,10 @@ const youtubeReducer = (state = _nullState, action) => {
 
   switch (action.type) {
     case RECEIVE_YOUTUBE_FOLLOWS:
-      const current = Object.keys(action.channels)[0];
-      return { ...state, channels: action.channels, current };
+      const currentChannel = Object.keys(action.channels)[0];
+      return { ...state, channels: action.channels, currentChannel };
     case RECEIVE_YOUTUBE_CURRENT:
-      return { ...state, current: action.current };
+      return { ...state, currentChannel: action.current };
     case RECEIVE_YOUTUBE_VIDEOS:
       return { ...state, videos: action.videos };
     case RECEIVE_YOUTUBE_CHANNEL:
