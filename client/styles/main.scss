@@ -69,3 +69,52 @@ button {
     cursor: pointer;
   }
 }
+
+img {
+  -khtml-user-select: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.input-group {
+  width: 100%;
+  position: relative;
+
+  input {
+    box-sizing: border-box;
+    height: 2em;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #e7e7e7;
+    font-size: 1em;
+    letter-spacing: 1px;
+    padding-left: 10px;
+    font-weight: 400;
+    &::placeholder {
+      transition: color 250ms;
+    }
+    &:focus {
+      outline: none;
+      &::placeholder {
+        transition: color 250ms;
+        color: #ccc;
+      }
+      ~ .focus-bar {
+        width: 100%;
+        transition: 0.3s;
+      }
+    }
+  }
+
+  .focus-bar {
+    position: absolute;
+    width: 0;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: $salmon;
+    transition: 0.3s;
+  }
+}

@@ -16,3 +16,9 @@ export const followYoutubeChannel = name =>
     url: "/api/youtube_channel_follows",
     data: { youtube_channel_follow: { name } },
   });
+
+export const removeYoutubeChannel = id =>
+  $.ajax({
+    method: "DELETE",
+    url: `/api/youtube_channel_follows/${id}`,
+  });

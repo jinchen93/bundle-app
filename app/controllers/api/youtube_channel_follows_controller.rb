@@ -28,6 +28,15 @@ class Api::YoutubeChannelFollowsController < ApplicationController
     end
   end
 
+  def destroy
+    @follow = YoutubeChannelFollow.find_by({
+      youtube_channel_id: params[:id],
+      user_id: current_user.id
+    })
+    @follow.destroy
+    render json: @follow.youtube_channel_id
+  end
+
   private
   def youtube_channel_follow_params
     params.require(:youtube_channel_follow).permit(:name)

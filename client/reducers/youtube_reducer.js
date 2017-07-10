@@ -3,6 +3,7 @@ import {
   RECEIVE_YOUTUBE_VIDEOS,
   RECEIVE_YOUTUBE_CURRENT,
   RECEIVE_YOUTUBE_CHANNEL,
+  DELETE_YOUTUBE_CHANNEL,
 } from "../actions/youtube_actions";
 
 export const _nullState = {
@@ -12,6 +13,7 @@ export const _nullState = {
 };
 
 const youtubeReducer = (state = _nullState, action) => {
+  let newChannels;
   Object.freeze(state);
 
   switch (action.type) {
@@ -23,10 +25,14 @@ const youtubeReducer = (state = _nullState, action) => {
     case RECEIVE_YOUTUBE_VIDEOS:
       return { ...state, videos: action.videos };
     case RECEIVE_YOUTUBE_CHANNEL:
-      const newChannels = {
+      newChannels = {
         ...state.channels,
         [action.channel.id]: action.channel,
       };
+      return { ...state, channels: newChannels };
+    case DELETE_YOUTUBE_CHANNEL:
+      newChannels = { ...state.channels };
+      delete newChannels[action.id];
       return { ...state, channels: newChannels };
     default:
       return state;

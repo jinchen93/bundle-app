@@ -3,7 +3,7 @@ import React from "react";
 const ListingHeader = () => {
   const handleClick = e => {
     e.preventDefault();
-    const target = e.target;
+    const target = e.currentTarget;
     target.classList.add("active");
     target.addEventListener("transitionend", () => {
       target.classList.remove("active");
