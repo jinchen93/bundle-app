@@ -13,6 +13,7 @@ import thunk from "redux-thunk";
 import rootReducer from "../reducers/root_reducer";
 import * as YoutubeAPIUtil from "../utils/youtube_api_util";
 import * as TwitchAPIUtil from "../utils/twitch_api_util";
+import * as RedditAPIUtil from "../utils/reddit_api_util";
 
 const dom = new JSDOM("<!doctype html><html><body></body></html>");
 global.window = dom.window;
@@ -63,11 +64,15 @@ function initializeAPITests() {
     sinon
       .stub(TwitchAPIUtil, "fetchTwitchFollows")
       .returns(Promise.resolve("sucess"));
+    sinon
+      .stub(RedditAPIUtil, "fetchRedditFollows")
+      .returns(Promise.resolve("sucess"));
   });
 
   afterEach(() => {
     YoutubeAPIUtil.fetchYoutubeFollows.restore();
     TwitchAPIUtil.fetchTwitchFollows.restore();
+    RedditAPIUtil.fetchRedditFollows.restore();
   });
 }
 
