@@ -10,9 +10,24 @@
 #
 
 class Subreddit < ApplicationRecord
+  validate :validate_subreddit
   validates :name, uniqueness: true, presence: true
   validates :url, presence: true
 
   has_many :subreddit_follows
   has_many :users, through: :subreddit_follows
+
+  def validate_subreddit
+    self.url = "http://www.reddit.com/r/#{self.name}.json"
+    # Check for one thread first to speed up api response
+    threads = request_subreddit_threads(1)
+    unless threads
+      self.errors[:base] << "Not a valid subreddit"
+    end
+  end
+
+  def request_subreddit_threads(num_threads)
+    url = self.url + "?limit=#{num_threads}"
+    HTTParty.get(url)["data"]["children"]
+  end
 end
