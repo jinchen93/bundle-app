@@ -31,20 +31,23 @@ channels.each do |channel|
   })
 end
 
+subreddits = [
+  "bayarea",
+  "programming",
+  "javascript"
+]
 
-sr = Subreddit.create({
-  name: "javascript",
-  url: "https://www.reddit.com/r/javascript/.json"
-})
+subreddits.each do |subreddit|
+  sr = Subreddit.create({ name: subreddit })
+  SubredditFollow.create({
+    subreddit_id: sr.id,
+    user_id: guest.id
+  })
+end
 
 tw = TwitchChannel.create({
   name: "food",
   url: "http://player.twitch.tv/?channel=food&autoplay=true"
-})
-
-SubredditFollow.create({
-  subreddit_id: sr.id,
-  user_id: guest.id
 })
 
 TwitchChannelFollow.create({

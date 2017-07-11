@@ -37,6 +37,17 @@ class Listing extends React.Component {
             channel={channel}
           />
         );
+      case "REDDIT":
+        return this.props.subreddits.map(subreddit =>
+          <ListingItem
+            reddit
+            deleteMode={this.state.deleteMode}
+            handleClick={this.handleClick}
+            selected={this.props.currentSubreddit == subreddit.id}
+            key={subreddit.id}
+            channel={subreddit}
+          />
+        );
       default:
         return null;
     }

@@ -6,6 +6,7 @@ import MediaContainer from "../media/MediaContainer.js";
 class HomePage extends React.Component {
   componentDidMount() {
     this.props.fetchYoutubeFollows();
+    this.props.fetchRedditFollows();
     this.props.fetchTwitchFollows();
   }
 

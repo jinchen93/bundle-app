@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import Listing from "./Listing";
 import { receiveMode } from "../../actions/mode_actions";
 import { allYoutubeChannels } from "../../selectors/youtube_selectors";
+import { allSubreddits } from "../../selectors/reddit_selectors";
 import {
   receiveYoutubeCurrentChannel,
   removeYoutubeChannel,
@@ -10,6 +11,7 @@ import {
 const mapStateToProps = state => ({
   mode: state.mode,
   youtubeChannels: allYoutubeChannels(state),
+  subreddits: allSubreddits(state),
   currentChannel: state.youtube.currentChannel,
 });
 

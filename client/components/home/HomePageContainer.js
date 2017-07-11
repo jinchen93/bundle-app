@@ -4,6 +4,7 @@ import {
   fetchYoutubeFollows,
   fetchYoutubeVideos,
 } from "../../actions/youtube_actions";
+import { fetchRedditFollows } from "../../actions/reddit_actions";
 import { fetchTwitchFollows } from "../../actions/twitch_actions";
 
 const mapStateToProps = state => ({
@@ -14,6 +15,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchYoutubeFollows: () => dispatch(fetchYoutubeFollows()),
   fetchYoutubeVideos: url => dispatch(fetchYoutubeVideos(url)),
+  fetchRedditFollows: () => dispatch(fetchRedditFollows()),
   fetchTwitchFollows: () => dispatch(fetchTwitchFollows()),
 });
 
