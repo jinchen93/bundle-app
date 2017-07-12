@@ -39,7 +39,12 @@ const RedditThread = ({ thread }) => {
             </span>
           </div>
           <div className="publisher">
-            <div className="comments">{thread.comments} comments</div>
+            <Link
+              className="comments"
+              to={`/reddit/comments/${thread.id}/${thread.permaTitle}`}
+            >
+              {thread.comments} comments
+            </Link>
             submitted {date} by {thread.author}
           </div>
         </div>
