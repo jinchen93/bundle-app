@@ -1,5 +1,5 @@
 import React from "react";
-import RedditThread from "./RedditThread";
+import SubredditThreadItem from "./SubredditThreadItem";
 
 class RedditContent extends React.Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class RedditContent extends React.Component {
       return (
         <div className="reddit-content-wrapper">
           {this.props.threads.map(thread =>
-            <RedditThread key={thread.id} thread={thread} />
+            <SubredditThreadItem key={thread.id} thread={thread} />
           )}
         </div>
       );

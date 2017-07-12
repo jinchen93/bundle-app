@@ -25,7 +25,19 @@ class ListingInformation extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.followYoutubeChannel(this.state.value);
+    switch (this.props.mode) {
+      case "YOUTUBE":
+        this.props.followYoutubeChannel(this.state.value);
+        break;
+      case "REDDIT":
+        this.props.followSubreddit(this.state.value);
+        break;
+      case "TWITCH":
+        break;
+      default:
+        break;
+    }
+
     this.setState({ value: "" });
   }
 

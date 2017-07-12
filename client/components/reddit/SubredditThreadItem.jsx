@@ -32,8 +32,14 @@ const RedditThread = ({ thread }) => {
           {thread.comments}
         </div>
         <div className="description">
-          {renderTitle()}
+          <div>
+            {renderTitle()}
+            <span>
+              ({thread.domain})
+            </span>
+          </div>
           <div className="publisher">
+            <div className="comments">{thread.comments} comments</div>
             submitted {date} by {thread.author}
           </div>
         </div>
