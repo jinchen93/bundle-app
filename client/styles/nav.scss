@@ -10,11 +10,14 @@
   padding: 0 1em;
   justify-content: space-between;
   align-items: center;
-
-  img {
-    height: 70%;
-    &:hover {
-      cursor: pointer;
+  a {
+    @include flex-center;
+    height: 100%;
+    img {
+      height: 70%;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 

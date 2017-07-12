@@ -1,5 +1,5 @@
-export const redirectToRoot = props => {
-  if (props.location.pathname !== "/") {
-    props.history.push("/");
+export const redirectTo = (path, props) => {
+  if (props.location.pathname !== path) {
+    props.history.push(path);
   }
 };

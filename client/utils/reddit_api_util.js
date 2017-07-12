@@ -4,7 +4,7 @@ export const fetchRedditFollows = () =>
     url: "/api/subreddits",
   });
 
-export const fetchSubreddit = id =>
+export const fetchSubredditThreads = id =>
   $.ajax({
     method: "GET",
     url: `/api/subreddits/${id}`,

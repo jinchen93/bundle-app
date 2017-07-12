@@ -1,26 +1,23 @@
 import React from "react";
-import { redirectToRoot } from "../../utils/router_util";
+import { Link } from "react-router-dom";
+import { redirectTo } from "../../utils/router_util";
 
 const Nav = props => {
   const handleLogoutClick = e => {
     e.preventDefault();
     props.logout().then(() => {
-      redirectToRoot(props);
+      redirectTo("/", props);
     });
-  };
-
-  const handleImgClick = e => {
-    e.preventDefault();
-    redirectToRoot(props);
   };
 
   return (
     <div className="nav-wrapper">
-      <img
-        onClick={handleImgClick}
-        src="http://res.cloudinary.com/jinchen93/image/upload/v1499466797/bundleme_rrdclf.svg"
-        alt="BundleMe Logo"
-      />
+      <Link to="/">
+        <img
+          src="http://res.cloudinary.com/jinchen93/image/upload/v1499466797/bundleme_rrdclf.svg"
+          alt="BundleMe Logo"
+        />
+      </Link>
       <button className="nav-logout-btn" onClick={handleLogoutClick}>
         Logout
       </button>

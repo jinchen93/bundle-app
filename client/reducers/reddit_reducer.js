@@ -19,7 +19,8 @@ const redditReducer = (state = _nullState, action) => {
 
   switch (action.type) {
     case RECEIVE_REDDIT_FOLLOWS:
-      return { ...state, subreddits: action.subreddits };
+      const currentSubreddit = Object.keys(action.subreddits)[0];
+      return { ...state, subreddits: action.subreddits, currentSubreddit };
     case RECEIVE_SUBREDDIT_THREADS:
       return { ...state, threads: action.threads };
     case RECEIVE_CURRENT_SUBREDDIT:

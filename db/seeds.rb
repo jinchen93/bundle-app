@@ -34,7 +34,8 @@ end
 subreddits = [
   "bayarea",
   "programming",
-  "javascript"
+  "javascript",
+  "askreddit"
 ]
 
 subreddits.each do |subreddit|
