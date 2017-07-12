@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter, Route } from "react-router-dom";
+import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import SplashPage from "./splash/SplashPage";
 import HomePageContainer from "./home/HomePageContainer";
 
@@ -8,7 +8,10 @@ const AppRouter = props => {
   const renderLoggedIn = () => {
     return (
       <div data-test="logged-in">
-        <Route exact path="/" component={HomePageContainer} />
+        <Switch>
+          <Route path="/:mode" component={HomePageContainer} />
+          <Redirect to="/youtube" />
+        </Switch>
       </div>
     );
   };
