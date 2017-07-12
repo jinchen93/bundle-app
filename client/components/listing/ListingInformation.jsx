@@ -54,11 +54,11 @@ class ListingInformation extends React.Component {
   renderPlaceholder() {
     switch (this.props.mode) {
       case "YOUTUBE":
-        return "Channel username or ID";
+        return "Username or ID";
       case "REDDIT":
-        return "Subreddit name";
+        return "Subreddit";
       case "TWITCH":
-        return "Channel username";
+        return "Username";
       default:
         return "";
     }

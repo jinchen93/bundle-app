@@ -1,5 +1,5 @@
 import React from "react";
-import { redirectToRoot } from "../../utils/router_util";
+import { redirectTo } from "../../utils/router_util";
 
 const defaultState = { username: "", password: "" };
 
@@ -21,14 +21,14 @@ class SessionForm extends React.Component {
     const { formType } = this.props;
 
     if (formType === "signup") {
-      this.props.signup(this.state).then(() => redirectToRoot(this.props));
+      this.props.signup(this.state).then(() => redirectTo("/", this.props));
     } else if (formType === "login") {
-      this.props.login(this.state).then(() => redirectToRoot(this.props));
+      this.props.login(this.state).then(() => redirectTo("/", this.props));
     }
   }
 
   handleDemoLogin() {
-    this.props.loginDemo().then(() => redirectToRoot(this.props));
+    this.props.loginDemo().then(() => redirectTo("/", this.props));
   }
 
   handleChange(e) {

@@ -4,25 +4,34 @@ import ListingContainer from "../listing/ListingContainer";
 import MediaContainer from "../media/MediaContainer.js";
 
 class HomePage extends React.Component {
+  constructor() {
+    super();
+    this.fetchContent = this.fetchContent.bind(this);
+  }
+
   componentDidMount() {
-    this.props.fetchYoutubeFollows();
-    this.props.fetchRedditFollows();
-    this.props.fetchTwitchFollows();
+    this.establishMode();
+    this.fetchContent();
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.mode === "YOUTUBE") {
-      this.updateYoutube(prevProps);
-    }
+  componentDidUpdate() {
+    this.establishMode();
+    this.fetchContent();
   }
 
-  updateYoutube(prevProps) {
-    const lastYoutubeCurrent = prevProps.youtube.currentChannel;
-    const thisYoutubeCurrent = this.props.youtube.currentChannel;
+  establishMode() {
+    const mode = this.props.match.params.mode;
+    this.props.receiveMode(mode.toUpperCase());
+  }
 
-    if (lastYoutubeCurrent !== thisYoutubeCurrent) {
-      const currentChannel = this.props.youtube.channels[thisYoutubeCurrent];
-      this.props.fetchYoutubeVideos(currentChannel.id);
+  fetchContent() {
+    const { mode } = this.props;
+    if (mode === "YOUTUBE") {
+      this.props.fetchYoutubeFollows();
+    } else if (mode === "REDDIT") {
+      this.props.fetchRedditFollows();
+    } else if (mode === "TWITCH") {
+      this.props.fetchTwitchFollows();
     }
   }
 

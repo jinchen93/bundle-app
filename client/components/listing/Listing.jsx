@@ -7,7 +7,8 @@ class Listing extends React.Component {
   constructor(props) {
     super(props);
     this.state = { deleteMode: false };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleYoutubeClick = this.handleYoutubeClick.bind(this);
+    this.handleRedditClick = this.handleRedditClick.bind(this);
     this.toggleDeleteMode = this.toggleDeleteMode.bind(this);
   }
 
@@ -15,13 +16,21 @@ class Listing extends React.Component {
     this.setState({ deleteMode: !this.state.deleteMode });
   }
 
-  handleClick(e) {
+  handleYoutubeClick(e) {
+    const target = e.currentTarget;
     if (this.state.deleteMode) {
-      this.props.removeYoutubeChannel(e.currentTarget.getAttribute("data-id"));
+      this.props.removeYoutubeChannel(target.getAttribute("data-id"));
     } else {
-      this.props.receiveYoutubeCurrentChannel(
-        e.currentTarget.getAttribute("data-id")
-      );
+      this.props.receiveYoutubeCurrentChannel(target.getAttribute("data-id"));
+    }
+  }
+
+  handleRedditClick(e) {
+    const target = e.currentTarget;
+    if (this.state.deleteMode) {
+      this.props.removeSubreddit(target.getAttribute("data-id"));
+    } else {
+      this.props.receiveCurrentSubreddit(target.getAttribute("data-id"));
     }
   }
 
@@ -31,7 +40,7 @@ class Listing extends React.Component {
         return this.props.youtubeChannels.map(channel =>
           <ListingItem
             deleteMode={this.state.deleteMode}
-            handleClick={this.handleClick}
+            handleClick={this.handleYoutubeClick}
             selected={this.props.currentChannel == channel.id}
             key={channel.id}
             channel={channel}
@@ -42,7 +51,7 @@ class Listing extends React.Component {
           <ListingItem
             reddit
             deleteMode={this.state.deleteMode}
-            handleClick={this.handleClick}
+            handleClick={this.handleRedditClick}
             selected={this.props.currentSubreddit == subreddit.id}
             key={subreddit.id}
             channel={subreddit}
