@@ -8,7 +8,7 @@ class Api::YoutubeChannelsController < ApplicationController
     if channel
       render json: channel.get_videos
     else
-      render json: ["Invalid youtube channel ID"], status: 422
+      render json: ["Invalid youtube channel"], status: 422
     end
   end
 

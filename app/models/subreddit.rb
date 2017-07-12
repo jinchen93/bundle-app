@@ -28,6 +28,10 @@ class Subreddit < ApplicationRecord
 
   def request_subreddit_threads(num_threads)
     url = self.url + "?limit=#{num_threads}"
-    HTTParty.get(url)["data"]["children"]
+    request = HTTParty.get(url, {
+      timeout: 10,
+      headers: { "User-Agent" => "BundleMe" }
+    })
+    request["data"]["children"]
   end
 end

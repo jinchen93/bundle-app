@@ -4,12 +4,13 @@ class Api::SubredditsController < ApplicationController
   end
 
   def show
-  end
-
-  def create
-  end
-
-  def destroy
+    subreddit = Subreddit.find_by(id: params[:id])
+    if subreddit
+      @threads = subreddit.request_subreddit_threads(10)
+      render :show
+    else
+      render json: ["Invalid subreddit"]
+    end
   end
 
   private
