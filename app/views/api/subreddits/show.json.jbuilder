@@ -1,4 +1,4 @@
-json.array!(@threads) do |thread|
+json.array!(@threads[0..9]) do |thread|
   data = thread["data"]
   json.extract! data, "id", "permalink", "url", "title", "score", "author", "domain"
   json.comments data["num_comments"]
@@ -9,7 +9,6 @@ json.array!(@threads) do |thread|
   else
     json.thumbnail nil
   end
-
   permaStartIdx = data["permalink"].index(data["id"]) + data["id"].length + 1
   permaTitle = data["permalink"][permaStartIdx..-1]
   json.permaTitle permaTitle
