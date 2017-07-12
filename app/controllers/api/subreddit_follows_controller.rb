@@ -33,6 +33,17 @@ class Api::SubredditFollowsController < ApplicationController
     end
   end
 
+  def destroy
+    follow = SubredditFollow.find_by({
+      subreddit_id: params[:id],
+      user_id: current_user.id
+    })
+    if follow
+      follow.destroy
+      render json: follow.subreddit_id
+    end
+  end
+
   private
   def subreddit_follow_params
     params.require(:subreddit_follow).permit(:name)

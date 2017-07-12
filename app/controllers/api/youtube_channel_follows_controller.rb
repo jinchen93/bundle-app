@@ -29,12 +29,14 @@ class Api::YoutubeChannelFollowsController < ApplicationController
   end
 
   def destroy
-    @follow = YoutubeChannelFollow.find_by({
+    follow = YoutubeChannelFollow.find_by({
       youtube_channel_id: params[:id],
       user_id: current_user.id
     })
-    @follow.destroy
-    render json: @follow.youtube_channel_id
+    if follow
+      follow.destroy
+      render json: follow.youtube_channel_id
+    end
   end
 
   private
