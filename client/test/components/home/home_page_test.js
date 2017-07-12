@@ -7,7 +7,9 @@ describe("HomePageContainer", () => {
   initializeAPITests();
 
   beforeEach(() => {
-    component = renderComponent(HomePageContainer);
+    component = renderComponent(HomePageContainer, {
+      match: { params: { mode: "" } },
+    });
   });
 
   it("renders", () => {
