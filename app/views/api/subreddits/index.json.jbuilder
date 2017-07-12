@@ -1,5 +1,5 @@
 @subreddits.each do |subreddit|
   json.set! subreddit.id do
-    json.extract! subreddit, :id, :name, :url
+    json.extract! subreddit, :id, :name
   end
 end
