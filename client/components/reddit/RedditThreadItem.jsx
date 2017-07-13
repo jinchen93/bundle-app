@@ -3,13 +3,14 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 
 const RedditThreadItem = ({ path, thread }) => {
+  console.log(path);
   const date = moment.unix(thread.date).fromNow();
   const renderTitle = () => {
     if (thread.self) {
       return (
         <Link
           className="title"
-          to={`${path}/comments/${thread.id}/${thread.permaTitle}`}
+          to={`${path}/${thread.id}/${thread.permaTitle}`}
           dangerouslySetInnerHTML={{ __html: thread.title }}
         />
       );

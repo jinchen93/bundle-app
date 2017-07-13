@@ -1,6 +1,7 @@
 import {
   RECEIVE_REDDIT_FOLLOWS,
   RECEIVE_SUBREDDIT_THREADS,
+  RECEIVE_REDDIT_COMMENTS,
   RECEIVE_SUBREDDIT,
   DELETE_SUBREDDIT,
 } from "../actions/reddit_actions.js";
@@ -8,7 +9,7 @@ import {
 export const _nullState = {
   subreddits: {},
   threads: [],
-  currentThread: { idx: null, content: null },
+  comments: [],
 };
 
 const redditReducer = (state = _nullState, action) => {
@@ -21,6 +22,8 @@ const redditReducer = (state = _nullState, action) => {
       return { ...state, subreddits: action.subreddits, currentSubreddit };
     case RECEIVE_SUBREDDIT_THREADS:
       return { ...state, threads: action.threads };
+    case RECEIVE_REDDIT_COMMENTS:
+      return { ...state, comments: action.comments };
     case RECEIVE_SUBREDDIT:
       newSubreddits = {
         ...state.subreddits,

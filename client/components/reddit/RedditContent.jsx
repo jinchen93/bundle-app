@@ -1,14 +1,14 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import RedditThreadListContainer from "./RedditThreadListContainer";
-import RedditCommentList from "./RedditCommentList";
+import RedditCommentListContainer from "./RedditCommentListContainer";
 
 class RedditContent extends React.Component {
   render() {
     return (
       <div className="media-content">
         {this.props.match.params.threadId
-          ? <RedditCommentList />
+          ? <RedditCommentListContainer />
           : <RedditThreadListContainer />}
       </div>
     );

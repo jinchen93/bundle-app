@@ -28,7 +28,7 @@ class RedditThreadList extends React.Component {
         <div className="reddit-content-wrapper">
           {this.props.threads.map(thread =>
             <RedditThreadItem
-              path={this.props.path}
+              path={this.props.location.pathname}
               key={thread.id}
               thread={thread}
             />

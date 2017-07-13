@@ -1,5 +1,13 @@
 import React from "react";
 
-const RedditCommentList = props => <div>Hi</div>;
+class RedditCommentList extends React.Component {
+  componentDidMount() {
+    this.props.fetchRedditComments(this.props.match.params.threadId);
+  }
+
+  render() {
+    return <div>Hi</div>;
+  }
+}
 
 export default RedditCommentList;
