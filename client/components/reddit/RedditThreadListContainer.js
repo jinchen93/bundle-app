@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import RedditContent from "./RedditContent";
+import RedditThreadList from "./RedditThreadList";
+
 import {
   fetchSubredditThreads,
   receiveSubredditThreads,
@@ -8,7 +9,6 @@ import {
 
 const mapStateToProps = state => ({
   threads: state.reddit.threads,
-  currentSubreddit: state.reddit.currentSubreddit,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -17,5 +17,5 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(RedditContent)
+  connect(mapStateToProps, mapDispatchToProps)(RedditThreadList)
 );

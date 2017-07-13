@@ -1,6 +1,6 @@
 import React from "react";
 import YoutubeContentContainer from "../youtube/YoutubeContentContainer";
-import RedditContentContainer from "../reddit/RedditContentContainer";
+import RedditContent from "../reddit/RedditContent";
 
 const Media = ({ mode, itemId }) => {
   const renderMode = () => {
@@ -9,7 +9,7 @@ const Media = ({ mode, itemId }) => {
         case "youtube":
           return <YoutubeContentContainer />;
         case "reddit":
-          return <RedditContentContainer />;
+          return <RedditContent />;
         default:
           return <div className="media-content" />;
       }

@@ -1,39 +1,18 @@
 import React from "react";
-import RedditThreadList from "./RedditThreadList";
+import { withRouter } from "react-router-dom";
+import RedditThreadListContainer from "./RedditThreadListContainer";
 import RedditCommentList from "./RedditCommentList";
 
 class RedditContent extends React.Component {
-  componentDidMount() {
-    this.fetchNewThreads();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.match.params.id !== this.props.match.params.id) {
-      this.fetchNewThreads();
-    }
-  }
-
-  componentWillUnmount() {
-    this.props.resetThreads();
-  }
-
-  fetchNewThreads() {
-    if (this.props.match.params.id) {
-      this.props.fetchSubredditThreads(this.props.match.params.id);
-    }
-  }
-
   render() {
     return (
       <div className="media-content">
-        <RedditThreadList
-          path={this.props.location.pathname}
-          threads={this.props.threads}
-        />
-        <RedditCommentList />
+        {this.props.match.params.threadId
+          ? <RedditCommentList />
+          : <RedditThreadListContainer />}
       </div>
     );
   }
 }
 
-export default RedditContent;
+export default withRouter(RedditContent);
