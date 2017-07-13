@@ -6,8 +6,11 @@ Rails.application.routes.draw do
 
     resources :youtube_channels, only: [:index, :show]
     resources :youtube_channel_follows, only: [:create, :destroy]
+
     resources :subreddits, only: [:index, :show]
     resources :subreddit_follows, only: [:create, :destroy]
+    get "subreddits/comments/:id", to: "subreddits#comments"
+
     resources :twitch_channels, only: [:index, :show]
     resources :twitch_channel_follows, only: [:create, :destroy]
   end

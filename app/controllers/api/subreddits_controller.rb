@@ -13,6 +13,11 @@ class Api::SubredditsController < ApplicationController
     end
   end
 
+  def comments
+    @comments = Subreddit.fetch_comments(params[:id])
+    render :comments
+  end
+
   private
 
   def subreddit_params

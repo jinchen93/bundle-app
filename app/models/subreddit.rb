@@ -34,4 +34,12 @@ class Subreddit < ApplicationRecord
     })
     request["data"]["children"]
   end
+
+  def self.fetch_comments(id)
+    request = HTTParty.get("http://reddit.com/comments/" + id + "/.json", {
+      timeout: 10,
+      headers: { "User-Agent" => "BundleMe" }
+    })
+    request[1]["data"]["children"]
+  end
 end
