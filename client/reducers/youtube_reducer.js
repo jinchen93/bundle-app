@@ -1,7 +1,6 @@
 import {
   RECEIVE_YOUTUBE_FOLLOWS,
   RECEIVE_YOUTUBE_VIDEOS,
-  RECEIVE_YOUTUBE_CURRENT_CHANNEL,
   RECEIVE_YOUTUBE_CHANNEL,
   DELETE_YOUTUBE_CHANNEL,
   RECEIVE_YOUTUBE_CURRENT_VIDEO,
@@ -10,7 +9,6 @@ import {
 export const _nullState = {
   channels: {},
   videos: [],
-  currentChannel: null,
   currentVideo: null,
 };
 
@@ -22,8 +20,6 @@ const youtubeReducer = (state = _nullState, action) => {
     case RECEIVE_YOUTUBE_FOLLOWS:
       const currentChannel = Object.keys(action.channels)[0];
       return { ...state, channels: action.channels, currentChannel };
-    case RECEIVE_YOUTUBE_CURRENT_CHANNEL:
-      return { ...state, currentChannel: action.id };
     case RECEIVE_YOUTUBE_CURRENT_VIDEO:
       return { ...state, currentVideo: action.idx };
     case RECEIVE_YOUTUBE_VIDEOS:

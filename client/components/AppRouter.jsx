@@ -9,7 +9,7 @@ const AppRouter = props => {
     return (
       <div data-test="logged-in">
         <Switch>
-          <Route path="/:mode/:id?" component={HomePageContainer} />
+          <Route path="/:mode/:id?/:threadId?" component={HomePageContainer} />
           <Redirect to="/youtube" />
         </Switch>
       </div>

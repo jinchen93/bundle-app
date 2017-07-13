@@ -36,23 +36,25 @@ class Listing extends React.Component {
 
   renderMode() {
     switch (this.props.mode) {
-      case "YOUTUBE":
+      case "youtube":
         return this.props.youtubeChannels.map(channel =>
           <ListingItem
+            mode={this.props.mode}
             deleteMode={this.state.deleteMode}
             handleClick={this.handleYoutubeClick}
-            selected={this.props.currentChannel == channel.id}
+            selected={this.props.match.params.id == channel.id}
             key={channel.id}
             channel={channel}
           />
         );
-      case "REDDIT":
+      case "reddit":
         return this.props.subreddits.map(subreddit =>
           <ListingItem
             reddit
+            mode={this.props.mode}
             deleteMode={this.state.deleteMode}
             handleClick={this.handleRedditClick}
-            selected={this.props.currentSubreddit == subreddit.id}
+            selected={this.props.match.params.id == subreddit.id}
             key={subreddit.id}
             channel={subreddit}
           />
@@ -66,8 +68,9 @@ class Listing extends React.Component {
     return (
       <div className="listing-wrapper">
         <div className="listing-content">
-          <ListingHeader receiveMode={this.props.receiveMode} />
+          <ListingHeader />
           <ListingInformationContainer
+            mode={this.props.mode}
             deleteMode={this.state.deleteMode}
             toggleDeleteMode={this.toggleDeleteMode}
           />

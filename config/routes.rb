@@ -12,6 +12,6 @@ Rails.application.routes.draw do
     resources :twitch_channel_follows, only: [:create, :destroy]
   end
 
-  get "*path", to: "application#root"
+  get "*path", to: "static_pages#root"
   root "static_pages#root"
 end

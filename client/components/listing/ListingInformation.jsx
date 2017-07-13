@@ -26,13 +26,13 @@ class ListingInformation extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     switch (this.props.mode) {
-      case "YOUTUBE":
+      case "youtube":
         this.props.followYoutubeChannel(this.state.value);
         break;
-      case "REDDIT":
+      case "reddit":
         this.props.followSubreddit(this.state.value);
         break;
-      case "TWITCH":
+      case "twitch":
         break;
       default:
         break;
@@ -45,7 +45,7 @@ class ListingInformation extends React.Component {
     return (
       <form
         onSubmit={this.handleSubmit}
-        className={`listing-information ${this.props.mode.toLowerCase()}`}
+        className={`listing-information ${this.props.mode}`}
       >
         <div className="input-group">
           <input
@@ -65,11 +65,11 @@ class ListingInformation extends React.Component {
 
   renderPlaceholder() {
     switch (this.props.mode) {
-      case "YOUTUBE":
+      case "youtube":
         return "Username or ID";
-      case "REDDIT":
+      case "reddit":
         return "Subreddit";
-      case "TWITCH":
+      case "twitch":
         return "Username";
       default:
         return "";
@@ -78,8 +78,8 @@ class ListingInformation extends React.Component {
 
   renderDelete() {
     return (
-      <div className={`listing-information ${this.props.mode.toLowerCase()}`}>
-        {this.props.mode === "REDDIT" ? "DELETE SUBREDDITS" : "DELETE CHANNELS"}
+      <div className={`listing-information ${this.props.mode}`}>
+        {this.props.mode === "reddit" ? "DELETE SUBREDDITS" : "DELETE CHANNELS"}
         <div>
           <i onClick={this.props.toggleDeleteMode} className="ion-close" />
         </div>
@@ -89,8 +89,8 @@ class ListingInformation extends React.Component {
 
   renderDefault() {
     return (
-      <div className={`listing-information ${this.props.mode.toLowerCase()}`}>
-        {this.props.mode === "REDDIT" ? "SUBREDDITS" : "CHANNELS"}
+      <div className={`listing-information ${this.props.mode}`}>
+        {this.props.mode === "reddit" ? "SUBREDDITS" : "CHANNELS"}
         <div>
           <i onClick={this.props.toggleDeleteMode} className="ion-minus" />
           <i onClick={this.toggleAddBar} className="ion-plus" />

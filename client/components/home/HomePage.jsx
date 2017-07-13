@@ -1,7 +1,7 @@
 import React from "react";
 import NavContainer from "./NavContainer";
 import ListingContainer from "../listing/ListingContainer";
-import MediaContainer from "../media/MediaContainer.js";
+import Media from "../media/Media";
 
 class HomePage extends React.Component {
   constructor() {
@@ -10,38 +10,32 @@ class HomePage extends React.Component {
   }
 
   componentDidMount() {
-    this.establishMode();
     this.fetchContent();
   }
 
   componentDidUpdate() {
-    this.establishMode();
     this.fetchContent();
   }
 
-  establishMode() {
-    const mode = this.props.match.params.mode;
-    this.props.receiveMode(mode.toUpperCase());
-  }
-
   fetchContent() {
-    const { mode } = this.props;
-    if (mode === "YOUTUBE") {
+    const mode = this.props.match.params.mode;
+    if (mode === "youtube") {
       this.props.fetchYoutubeFollows();
-    } else if (mode === "REDDIT") {
+    } else if (mode === "reddit") {
       this.props.fetchRedditFollows();
-    } else if (mode === "TWITCH") {
+    } else if (mode === "twitch") {
       this.props.fetchTwitchFollows();
     }
   }
 
   render() {
+    const { mode, id } = this.props.match.params;
     return (
       <div className="home-wrapper">
         <NavContainer />
         <div className="content-wrapper">
-          <ListingContainer />
-          <MediaContainer />
+          <ListingContainer mode={mode} />
+          <Media itemId={id} mode={mode} />
         </div>
       </div>
     );

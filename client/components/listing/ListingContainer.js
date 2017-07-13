@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Listing from "./Listing";
-import { receiveMode } from "../../actions/mode_actions";
+import { withRouter } from "react-router-dom";
 import { allYoutubeChannels } from "../../selectors/youtube_selectors";
 import { allSubreddits } from "../../selectors/reddit_selectors";
 import {
@@ -13,15 +13,11 @@ import {
 } from "../../actions/reddit_actions";
 
 const mapStateToProps = state => ({
-  mode: state.mode,
   youtubeChannels: allYoutubeChannels(state),
   subreddits: allSubreddits(state),
-  currentChannel: state.youtube.currentChannel,
-  currentSubreddit: state.reddit.currentSubreddit,
 });
 
 const mapDispatchToProps = dispatch => ({
-  receiveMode: mode => dispatch(receiveMode(mode)),
   receiveYoutubeCurrentChannel: id =>
     dispatch(receiveYoutubeCurrentChannel(id)),
   removeYoutubeChannel: id => dispatch(removeYoutubeChannel(id)),
@@ -29,4 +25,6 @@ const mapDispatchToProps = dispatch => ({
   receiveCurrentSubreddit: id => dispatch(receiveCurrentSubreddit(id)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Listing);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Listing)
+);

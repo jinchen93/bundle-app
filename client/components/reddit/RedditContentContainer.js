@@ -1,6 +1,10 @@
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import RedditContent from "./RedditContent";
-import { fetchSubredditThreads } from "../../actions/reddit_actions";
+import {
+  fetchSubredditThreads,
+  receiveSubredditThreads,
+} from "../../actions/reddit_actions";
 
 const mapStateToProps = state => ({
   threads: state.reddit.threads,
@@ -8,7 +12,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  resetThreads: () => dispatch(receiveSubredditThreads([])),
   fetchSubredditThreads: id => dispatch(fetchSubredditThreads(id)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RedditContent);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(RedditContent)
+);

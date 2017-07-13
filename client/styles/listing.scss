@@ -154,6 +154,8 @@
   }
 
   .listing-item {
+    color: black;
+    text-decoration: none;
     display: flex;
     align-items: center;
     font-weight: 500;
@@ -173,8 +175,13 @@
     background: #ecf0f1;
   }
 
-  #deleting:hover {
+  #deleting-youtube:hover {
     background: $youtube-color;
+    color: #fff;
+  }
+
+  #deleting-reddit:hover {
+    background: $reddit-color;
     color: #fff;
   }
 }

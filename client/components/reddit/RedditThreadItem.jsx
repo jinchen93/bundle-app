@@ -2,14 +2,14 @@ import React from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
-const RedditThread = ({ thread }) => {
+const RedditThreadItem = ({ path, thread }) => {
   const date = moment.unix(thread.date).fromNow();
   const renderTitle = () => {
     if (thread.self) {
       return (
         <Link
           className="title"
-          to={`/reddit/comments/${thread.id}/${thread.permaTitle}`}
+          to={`${path}/comments/${thread.id}/${thread.permaTitle}`}
           dangerouslySetInnerHTML={{ __html: thread.title }}
         />
       );
@@ -41,7 +41,7 @@ const RedditThread = ({ thread }) => {
           <div className="publisher">
             <Link
               className="comments"
-              to={`/reddit/comments/${thread.id}/${thread.permaTitle}`}
+              to={`${path}/${thread.id}/${thread.permaTitle}`}
             >
               {thread.comments} comments
             </Link>
@@ -56,4 +56,4 @@ const RedditThread = ({ thread }) => {
   );
 };
 
-export default RedditThread;
+export default RedditThreadItem;

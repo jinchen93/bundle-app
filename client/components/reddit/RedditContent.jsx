@@ -1,46 +1,36 @@
 import React from "react";
-import SubredditThreadItem from "./SubredditThreadItem";
+import RedditThreadList from "./RedditThreadList";
+import RedditCommentList from "./RedditCommentList";
 
 class RedditContent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.renderThreads = this.renderThreads.bind(this);
-  }
-
   componentDidMount() {
     this.fetchNewThreads();
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.currentSubreddit !== this.props.currentSubreddit) {
+    if (prevProps.match.params.id !== this.props.match.params.id) {
       this.fetchNewThreads();
     }
   }
 
-  fetchNewThreads() {
-    if (this.props.currentSubreddit) {
-      this.props.fetchSubredditThreads(this.props.currentSubreddit);
-    }
+  componentWillUnmount() {
+    this.props.resetThreads();
   }
 
-  renderThreads() {
-    if (this.props.threads.length) {
-      return (
-        <div className="reddit-content-wrapper">
-          {this.props.threads.map(thread =>
-            <SubredditThreadItem key={thread.id} thread={thread} />
-          )}
-        </div>
-      );
-    } else {
-      return null;
+  fetchNewThreads() {
+    if (this.props.match.params.id) {
+      this.props.fetchSubredditThreads(this.props.match.params.id);
     }
   }
 
   render() {
     return (
       <div className="media-content">
-        {this.renderThreads()}
+        <RedditThreadList
+          path={this.props.location.pathname}
+          threads={this.props.threads}
+        />
+        <RedditCommentList />
       </div>
     );
   }

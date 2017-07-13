@@ -1,13 +1,14 @@
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import YoutubeContent from "./YoutubeContent";
 import {
   fetchYoutubeVideos,
   receiveYoutubeCurrentVideo,
 } from "../../actions/youtube_actions";
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   videos: state.youtube.videos,
-  currentChannel: state.youtube.currentChannel,
+  currentChannel: ownProps.match.params.id,
   currentVideo: state.youtube.currentVideo,
 });
 
@@ -16,4 +17,6 @@ const mapDispatchToProps = dispatch => ({
   receiveYoutubeCurrentVideo: idx => dispatch(receiveYoutubeCurrentVideo(idx)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(YoutubeContent);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(YoutubeContent)
+);

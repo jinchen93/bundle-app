@@ -2,15 +2,19 @@ import React from "react";
 import YoutubeContentContainer from "../youtube/YoutubeContentContainer";
 import RedditContentContainer from "../reddit/RedditContentContainer";
 
-const Media = ({ mode }) => {
+const Media = ({ mode, itemId }) => {
   const renderMode = () => {
-    switch (mode) {
-      case "YOUTUBE":
-        return <YoutubeContentContainer />;
-      case "REDDIT":
-        return <RedditContentContainer />;
-      default:
-        return <div className="media-content" />;
+    if (itemId) {
+      switch (mode) {
+        case "youtube":
+          return <YoutubeContentContainer />;
+        case "reddit":
+          return <RedditContentContainer />;
+        default:
+          return <div className="media-content" />;
+      }
+    } else {
+      return <div className="media-content" />;
     }
   };
 

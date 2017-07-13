@@ -23,7 +23,6 @@ class YoutubeContent extends React.Component {
   }
 
   handleClick(e) {
-    console.log(e.currentTarget.getAttribute("data-idx"));
     this.props.receiveYoutubeCurrentVideo(
       e.currentTarget.getAttribute("data-idx")
     );
