@@ -22,3 +22,9 @@ export const removeSubreddit = id =>
     method: "DELETE",
     url: `/api/subreddit_follows/${id}`,
   });
+
+export const fetchRedditComments = id =>
+  $.ajax({
+    method: "GET",
+    url: `/api/subreddits/comments/${id}`,
+  });
