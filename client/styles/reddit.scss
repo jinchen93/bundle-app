@@ -74,3 +74,58 @@
     }
   }
 }
+
+.reddit-comment-list-container {
+  font-size: 1.4rem;
+  font-weight: 400;
+  .top {
+    margin: 1em 0;
+    border-left: 2px solid #e7e7e7;
+  }
+  .comment {
+    margin: 0.5em 0 0.5em 0.5em;
+    padding: 0.5em 1em 0.9em 1em;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+
+    .comment-meta-data {
+      .author {
+        font-size: 0.9em;
+        color: $reddit-color;
+      }
+      .points {
+        margin-left: 1em;
+        color: $dark-reddit;
+        font-weight: 500;
+        font-size: 0.8em;
+        button {
+          margin-left: 1em;
+          border: 1px solid #e7e7e7;
+          background: inherit;
+          border-radius: 3px;
+          &:focus {
+            outline: none;
+          }
+          i {
+            color: $dark-reddit;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .comment-body {
+    margin-top: 0.2em;
+  }
+
+  .grey {
+    background: #fafafa;
+    border-radius: 5px;
+  }
+  .children {
+    margin-left: 2em;
+  }
+}
