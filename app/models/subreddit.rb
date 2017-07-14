@@ -17,6 +17,22 @@ class Subreddit < ApplicationRecord
   has_many :subreddit_follows
   has_many :users, through: :subreddit_follows
 
+  def self.fetch_comments(id)
+    request = HTTParty.get("http://reddit.com/comments/" + id + "/.json", {
+      timeout: 10,
+      headers: { "User-Agent" => "BundleMe" }
+    })
+    request
+  end
+
+  def self.fetch_all
+    request = HTTParty.get("http://reddit.com/r/all/.json?limit=10", {
+      timeout: 10,
+      headers: { "User-Agent" => "BundleMe" }
+    })
+    request["data"]["children"]
+  end
+
   def validate_subreddit
     self.url = "http://www.reddit.com/r/#{self.name}.json"
     # Check for one thread first to speed up api response
@@ -33,13 +49,5 @@ class Subreddit < ApplicationRecord
       headers: { "User-Agent" => "BundleMe" }
     })
     request["data"]["children"]
-  end
-
-  def self.fetch_comments(id)
-    request = HTTParty.get("http://reddit.com/comments/" + id + "/.json", {
-      timeout: 10,
-      headers: { "User-Agent" => "BundleMe" }
-    })
-    request
   end
 end

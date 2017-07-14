@@ -18,6 +18,15 @@ class Api::SubredditsController < ApplicationController
     render :comments
   end
 
+  def r_all
+    @threads = Subreddit.fetch_all
+    if @threads
+      render :show
+    else
+      render json: ["An error occurred while fetching /r/all"]
+    end
+  end
+
   private
 
   def subreddit_params

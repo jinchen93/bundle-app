@@ -7,7 +7,7 @@ json.thread do
   json.comments comment["data"]["num_comments"]
   json.domain comment["data"]["domain"]
   json.url comment["data"]["url"]
-  json.data comment["data"]
+  json.subreddit comment["data"]["subreddit"]
   json.body coder.decode(comment["data"]["selftext_html"])
 end
 
