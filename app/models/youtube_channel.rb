@@ -22,13 +22,19 @@ CHANNEL_USERNAME_URL = "https://www.googleapis.com/youtube/v3/channels?" +
 CHANNEL_ID_URL = "https://www.googleapis.com/youtube/v3/channels?"+
   "part=snippet%2CcontentDetails&key=#{ENV['youtube_api_key']}&id="
 
+MOST_POPULAR_URL = "https://www.googleapis.com/youtube/v3/videos?" +
+  "part=snippet%2CcontentDetails&chart=mostPopular&key=#{ENV['youtube_api_key']}"
 
 class YoutubeChannel < ApplicationRecord
   validate :validate_channel
-  validates :name, :url, :upload_id, :thumbnail, uniqueness: true, presence: true
+  validates :name, :display_name, :url, :upload_id, :thumbnail, uniqueness: true, presence: true
 
   has_many :youtube_channel_follows
   has_many :users, through: :youtube_channel_follows
+
+  def self.get_most_popular
+    HTTParty.get(MOST_POPULAR_URL)["items"]
+  end
 
   def validate_channel
     # Perform two checks, valid username or valid channel id

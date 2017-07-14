@@ -12,6 +12,16 @@ class Api::YoutubeChannelsController < ApplicationController
     end
   end
 
+  def most_popular
+    videos = YoutubeChannel.get_most_popular
+    p "videos"
+    if videos
+      render json: videos
+    else
+      render json: ["Something went wrong while fetching the most popular videos"], status: 422
+    end
+  end
+
   private
 
   def youtube_channel_params
