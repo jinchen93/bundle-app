@@ -18,6 +18,9 @@ const Nav = props => {
           alt="BundleMe Logo"
         />
       </Link>
+      <span className="nav-title">
+        {props.name}
+      </span>
       <button className="nav-logout-btn" onClick={handleLogoutClick}>
         Logout
       </button>

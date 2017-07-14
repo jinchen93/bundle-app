@@ -10,6 +10,12 @@
   padding: 0 1em;
   justify-content: space-between;
   align-items: center;
+
+  .nav-title {
+    font-weight: 500;
+    font-size: 1.6em;
+  }
+
   a {
     @include flex-center;
     height: 100%;
