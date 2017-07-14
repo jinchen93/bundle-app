@@ -8,17 +8,24 @@ class YoutubeContent extends React.Component {
     this.renderEmbed = this.renderEmbed.bind(this);
     this.renderVideoList = this.renderVideoList.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.renderMostPopular = this.renderMostPopular.bind(this);
   }
 
   componentDidMount() {
     this.resetCurrentVideo();
     this.fetchNewVideos();
+    if (!this.props.match.params.id) {
+      this.props.fetchYoutubeMostPopular();
+    }
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.currentChannel !== this.props.currentChannel) {
       this.resetCurrentVideo();
       this.fetchNewVideos();
+      if (!this.props.match.params.id) {
+        this.props.fetchYoutubeMostPopular();
+      }
     }
   }
 
@@ -38,15 +45,24 @@ class YoutubeContent extends React.Component {
     this.props.receiveYoutubeCurrentVideo(0);
   }
 
+  renderMostPopular() {
+    const { videos, currentVideo } = this.props;
+    if (videos.length) {
+      const video = videos[currentVideo];
+      const embedId = video.id;
+      return <YoutubeEmbed video={video.snippet} embedId={embedId} />;
+    }
+    return null;
+  }
+
   renderEmbed() {
     const { videos, currentVideo } = this.props;
     if (videos.length) {
-      const video = videos[currentVideo].snippet;
-      const embedId = video.resourceId.videoId;
-      return <YoutubeEmbed video={video} embedId={embedId} />;
-    } else {
-      return null;
+      const video = videos[currentVideo];
+      const embedId = video.snippet.resourceId.videoId;
+      return <YoutubeEmbed video={video.snippet} embedId={embedId} />;
     }
+    return null;
   }
 
   renderVideoList() {
@@ -64,12 +80,21 @@ class YoutubeContent extends React.Component {
   }
 
   render() {
-    return (
-      <div className="media-content">
-        {this.renderEmbed()}
-        {this.renderVideoList()}
-      </div>
-    );
+    if (this.props.match.params.id) {
+      return (
+        <div className="media-content">
+          {this.renderEmbed()}
+          {this.renderVideoList()}
+        </div>
+      );
+    } else {
+      return (
+        <div className="media-content">
+          {this.renderMostPopular()}
+          {this.renderVideoList()}
+        </div>
+      );
+    }
   }
 }
 

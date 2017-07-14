@@ -4,6 +4,7 @@ import YoutubeContent from "./YoutubeContent";
 import {
   fetchYoutubeVideos,
   receiveYoutubeCurrentVideo,
+  fetchYoutubeMostPopular,
 } from "../../actions/youtube_actions";
 
 const mapStateToProps = (state, ownProps) => ({
@@ -15,6 +16,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   fetchYoutubeVideos: id => dispatch(fetchYoutubeVideos(id)),
   receiveYoutubeCurrentVideo: idx => dispatch(receiveYoutubeCurrentVideo(idx)),
+  fetchYoutubeMostPopular: () => dispatch(fetchYoutubeMostPopular()),
 });
 
 export default withRouter(

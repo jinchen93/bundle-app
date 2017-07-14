@@ -9,7 +9,6 @@ import {
 export const _nullState = {
   channels: {},
   videos: [],
-  currentVideo: null,
 };
 
 const youtubeReducer = (state = _nullState, action) => {
