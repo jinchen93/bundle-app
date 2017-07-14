@@ -9,7 +9,7 @@ import {
 export const _nullState = {
   subreddits: {},
   threads: [],
-  comments: [],
+  comments: { thread: null, comments: null },
 };
 
 const redditReducer = (state = _nullState, action) => {

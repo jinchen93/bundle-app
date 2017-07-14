@@ -7,7 +7,8 @@ import {
 } from "../../actions/reddit_actions";
 
 const mapStateToProps = state => ({
-  comments: state.reddit.comments,
+  thread: state.reddit.comments.thread,
+  comments: state.reddit.comments.comments,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -17,20 +17,19 @@ class Listing extends React.Component {
   }
 
   handleYoutubeClick(e) {
-    const target = e.currentTarget;
     if (this.state.deleteMode) {
+      e.preventDefault();
+      const target = e.currentTarget;
       this.props.removeYoutubeChannel(target.getAttribute("data-id"));
-    } else {
-      this.props.receiveYoutubeCurrentChannel(target.getAttribute("data-id"));
     }
   }
 
   handleRedditClick(e) {
-    const target = e.currentTarget;
     if (this.state.deleteMode) {
+      e.preventDefault();
+      console.log("clicked");
+      const target = e.currentTarget;
       this.props.removeSubreddit(target.getAttribute("data-id"));
-    } else {
-      this.props.receiveCurrentSubreddit(target.getAttribute("data-id"));
     }
   }
 

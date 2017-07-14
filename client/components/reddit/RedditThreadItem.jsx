@@ -2,9 +2,28 @@ import React from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
-const RedditThreadItem = ({ path, thread }) => {
-  console.log(path);
+const RedditThreadItem = ({ self, path, thread }) => {
   const date = moment.unix(thread.date).fromNow();
+
+  const renderComments = () => {
+    if (self) {
+      return (
+        <p className="comments">
+          {thread.comments} comments
+        </p>
+      );
+    } else {
+      return (
+        <Link
+          className="comments"
+          to={`${path}/${thread.id}/${thread.permaTitle}`}
+        >
+          {thread.comments} comments
+        </Link>
+      );
+    }
+  };
+
   const renderTitle = () => {
     if (thread.self) {
       return (
@@ -30,7 +49,7 @@ const RedditThreadItem = ({ path, thread }) => {
     <div className="reddit-thread-item">
       <div className="thread-data-wrapper">
         <div className="score">
-          {thread.comments}
+          {thread.score}
         </div>
         <div className="description">
           <div>
@@ -40,12 +59,7 @@ const RedditThreadItem = ({ path, thread }) => {
             </span>
           </div>
           <div className="publisher">
-            <Link
-              className="comments"
-              to={`${path}/${thread.id}/${thread.permaTitle}`}
-            >
-              {thread.comments} comments
-            </Link>
+            {renderComments()}
             submitted {date} by {thread.author}
           </div>
         </div>

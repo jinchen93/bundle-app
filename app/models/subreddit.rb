@@ -40,6 +40,6 @@ class Subreddit < ApplicationRecord
       timeout: 10,
       headers: { "User-Agent" => "BundleMe" }
     })
-    request[1]["data"]["children"]
+    request
   end
 end
