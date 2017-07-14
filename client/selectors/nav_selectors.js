@@ -3,7 +3,11 @@ export const getName = (state, props) => {
   if (mode === "reddit") {
     const hasSubreddits = Boolean(Object.keys(state.reddit.subreddits).length);
     if (hasSubreddits) {
-      return id ? state.reddit.subreddits[id].name : "All";
+      if (state.reddit.subreddits[id]) {
+        return state.reddit.subreddits[id].name;
+      } else {
+        return "All";
+      }
     }
   } else if (mode === "youtube") {
     const hasChannels = Boolean(Object.keys(state.youtube.channels).length);

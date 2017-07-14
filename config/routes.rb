@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :youtube_channel_follows, only: [:create, :destroy]
 
     get "subreddits/comments/:id", to: "subreddits#comments"
+    get "subreddits/r/all", to: "subreddits#r_all"
     resources :subreddits, only: [:index, :show]
     resources :subreddit_follows, only: [:create, :destroy]
 

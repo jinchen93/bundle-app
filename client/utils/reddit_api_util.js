@@ -28,3 +28,9 @@ export const fetchRedditComments = id =>
     method: "GET",
     url: `/api/subreddits/comments/${id}`,
   });
+
+export const fetchAllSubreddit = () =>
+  $.ajax({
+    method: "GET",
+    url: "/api/subreddits/r/all",
+  });

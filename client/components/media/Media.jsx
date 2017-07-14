@@ -2,7 +2,7 @@ import React from "react";
 import YoutubeContentContainer from "../youtube/YoutubeContentContainer";
 import RedditContent from "../reddit/RedditContent";
 
-const Media = ({ mode, itemId }) => {
+const Media = ({ mode }) => {
   const renderMode = () => {
     switch (mode) {
       case "youtube":

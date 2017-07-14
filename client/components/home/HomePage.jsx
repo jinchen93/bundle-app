@@ -29,13 +29,13 @@ class HomePage extends React.Component {
   }
 
   render() {
-    const { mode, id } = this.props.match.params;
+    const { mode } = this.props.match.params;
     return (
       <div className="home-wrapper">
         <NavContainer />
         <div className="content-wrapper">
           <ListingContainer mode={mode} />
-          <Media itemId={id} mode={mode} />
+          <Media mode={mode} />
         </div>
       </div>
     );

@@ -18,7 +18,11 @@ class RedditCommentList extends React.Component {
         <div className="reddit-comment-list-container">
           <div className="reddit-content-wrapper">
             <div className="thread-post">
-              <RedditThreadItem self thread={this.props.thread} />
+              <RedditThreadItem
+                allSubreddit={this.props.match.params.channelName === "all"}
+                self
+                thread={this.props.thread}
+              />
               {this.props.thread.body &&
                 <RedditThreadBody body={this.props.thread.body} />}
             </div>

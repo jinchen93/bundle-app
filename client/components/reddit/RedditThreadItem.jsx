@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
-const RedditThreadItem = ({ self, path, thread }) => {
+const RedditThreadItem = ({ allSubreddit, self, path, thread }) => {
   const date = moment.unix(thread.date).fromNow();
 
   const renderComments = () => {
@@ -61,6 +61,7 @@ const RedditThreadItem = ({ self, path, thread }) => {
           <div className="publisher">
             {renderComments()}
             submitted {date} by {thread.author}
+            {allSubreddit && ` to /r/${thread.subreddit}`}
           </div>
         </div>
       </div>

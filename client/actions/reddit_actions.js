@@ -29,6 +29,11 @@ export const followSubreddit = name => dispatch =>
 export const removeSubreddit = id => dispatch =>
   RedditAPIUtil.removeSubreddit(id).then(id => dispatch(deleteSubreddit(id)));
 
+export const fetchAllSubreddit = () => dispatch =>
+  RedditAPIUtil.fetchAllSubreddit().then(threads =>
+    dispatch(receiveSubredditThreads(threads))
+  );
+
 export const receiveRedditFollows = subreddits => ({
   type: RECEIVE_REDDIT_FOLLOWS,
   subreddits,

@@ -7,12 +7,19 @@ class RedditThreadList extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchNewThreads();
+    if (this.props.match.params.id) {
+      this.fetchNewThreads();
+    } else {
+      this.props.fetchAllSubreddit();
+    }
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.id !== this.props.match.params.id) {
       this.fetchNewThreads();
+      if (!this.props.match.params.id) {
+        this.props.fetchAllSubreddit();
+      }
     }
   }
 
@@ -28,7 +35,12 @@ class RedditThreadList extends React.Component {
         <div className="reddit-content-wrapper">
           {this.props.threads.map(thread =>
             <RedditThreadItem
-              path={this.props.location.pathname}
+              allSubreddit={!Boolean(this.props.match.params.id)}
+              path={
+                this.props.match.params.id
+                  ? this.props.location.pathname
+                  : "/reddit/r/all"
+              }
               key={thread.id}
               thread={thread}
             />
