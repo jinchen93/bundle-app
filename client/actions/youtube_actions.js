@@ -26,6 +26,11 @@ export const removeYoutubeChannel = id => dispatch =>
     dispatch(deleteYoutubeChannel(id))
   );
 
+export const fetchYoutubeMostPopular = () => dispatch =>
+  YoutubeAPIUtil.fetchYoutubeMostPopular().then(videos =>
+    dispatch(receiveYoutubeVideos(videos))
+  );
+
 export const receiveYoutubeFollows = channels => ({
   type: RECEIVE_YOUTUBE_FOLLOWS,
   channels,

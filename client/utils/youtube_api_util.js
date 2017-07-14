@@ -22,3 +22,9 @@ export const removeYoutubeChannel = id =>
     method: "DELETE",
     url: `/api/youtube_channel_follows/${id}`,
   });
+
+export const fetchYoutubeMostPopular = () =>
+  $.ajax({
+    method: "GET",
+    url: "/api/youtube_channels/most_popular",
+  });
