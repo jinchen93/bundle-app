@@ -1,4 +1,5 @@
 import React from "react";
+import Loader from "../loader/Loader";
 import RedditThreadBody from "./RedditThreadBody";
 import RedditComment from "./RedditComment";
 import RedditThreadItem from "./RedditThreadItem";
@@ -8,11 +9,11 @@ class RedditCommentList extends React.Component {
     this.props.fetchRedditComments(this.props.match.params.threadId);
   }
 
-  componentWillUnmount() {
-    this.props.resetComments();
-  }
-
   render() {
+    if (this.props.loading) {
+      return <Loader type="reddit" />;
+    }
+
     if (this.props.comments) {
       return (
         <div className="reddit-comment-list-container">
@@ -38,7 +39,7 @@ class RedditCommentList extends React.Component {
         </div>
       );
     } else {
-      return <div />;
+      return null;
     }
   }
 }

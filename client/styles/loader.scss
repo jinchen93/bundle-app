@@ -1,6 +1,6 @@
 @mixin loader-style($color) {
-  height: 4em;
-  width: 4em;
+  height: 3em;
+  width: 3em;
   position: relative;
   &:before,
   &:after {
@@ -12,18 +12,18 @@
     right: 0;
     top: 0;
     bottom: 50%;
-    box-shadow: -2em 0 0 $color;
+    box-shadow: -1.5em 0 0 $color;
   }
 }
 
 @keyframes youtube-loader {
   0%,
   100% {
-    box-shadow: -2em 0 0 transparent;
+    box-shadow: -1.5em 0 0 transparent;
     background-color: $youtube-color;
   }
   50% {
-    box-shadow: -2em 0 0 $youtube-color;
+    box-shadow: -1.5em 0 0 $youtube-color;
     background-color: transparent;
   }
 }
@@ -31,11 +31,11 @@
 @keyframes reddit-loader {
   0%,
   100% {
-    box-shadow: -2em 0 0 transparent;
+    box-shadow: -1.5em 0 0 transparent;
     background-color: $reddit-color;
   }
   50% {
-    box-shadow: -2em 0 0 $reddit-color;
+    box-shadow: -1.5em 0 0 $reddit-color;
     background-color: transparent;
   }
 }
@@ -43,6 +43,7 @@
 .loader-wrapper {
   @include flex-center;
   width: 100%;
+  margin-bottom: 10%;
 
   .loader {
     &.youtube {

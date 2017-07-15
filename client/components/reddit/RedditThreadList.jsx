@@ -1,11 +1,8 @@
 import React from "react";
 import RedditThreadItem from "./RedditThreadItem";
+import Loader from "../loader/Loader";
 
 class RedditThreadList extends React.Component {
-  componentWillUnmount() {
-    this.props.resetThreads();
-  }
-
   componentDidMount() {
     if (this.props.match.params.id) {
       this.fetchNewThreads();
@@ -30,6 +27,10 @@ class RedditThreadList extends React.Component {
   }
 
   render() {
+    if (this.props.loading) {
+      return <Loader type="reddit" />;
+    }
+
     if (this.props.threads.length) {
       return (
         <div className="reddit-content-wrapper">
