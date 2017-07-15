@@ -9,6 +9,11 @@ json.thread do
   json.url comment["data"]["url"]
   json.subreddit comment["data"]["subreddit"]
   json.body coder.decode(comment["data"]["selftext_html"])
+
+  thumbnail = comment["data"]["thumbnail"]
+  unless thumbnail == "default" || thumbnail == "self" || thumbnail == ""
+    json.thumbnail thumbnail
+  end
 end
 
 json.comments do

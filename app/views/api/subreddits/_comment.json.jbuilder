@@ -6,10 +6,6 @@ json.score comment["data"]["score"]
 json.date comment["data"]["created_utc"]
 json.author comment["data"]["author"]
 
-if comment["data"]["preview"]
-  json.thumbnail comment["data"]["preview"]["images"][0]["source"]["url"]
-end
-
 if comment["data"]["title"]
   json.title comment["data"]["title"]
 end
