@@ -27,9 +27,14 @@
         text-decoration: underline;
       }
     }
-
-    img {
-      height: 80%;
+    .image-wrapper {
+      @include flex-center;
+      height: 4em;
+      width: 4em;
+      overflow: hidden;
+      img {
+        height: 100%;
+      }
     }
 
     .thread-data-wrapper {

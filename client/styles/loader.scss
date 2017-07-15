@@ -1,0 +1,74 @@
+@mixin loader-style($color) {
+  height: 4em;
+  width: 4em;
+  position: relative;
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: $color;
+    left: 50%;
+    right: 0;
+    top: 0;
+    bottom: 50%;
+    box-shadow: -2em 0 0 $color;
+  }
+}
+
+@keyframes youtube-loader {
+  0%,
+  100% {
+    box-shadow: -2em 0 0 transparent;
+    background-color: $youtube-color;
+  }
+  50% {
+    box-shadow: -2em 0 0 $youtube-color;
+    background-color: transparent;
+  }
+}
+
+@keyframes reddit-loader {
+  0%,
+  100% {
+    box-shadow: -2em 0 0 transparent;
+    background-color: $reddit-color;
+  }
+  50% {
+    box-shadow: -2em 0 0 $reddit-color;
+    background-color: transparent;
+  }
+}
+
+.loader-wrapper {
+  @include flex-center;
+  width: 100%;
+
+  .loader {
+    &.youtube {
+      @include loader-style($youtube-color);
+      &:before,
+      &:after {
+        animation: youtube-loader 0.8s linear infinite;
+      }
+      &:after {
+        top: 50%;
+        bottom: 0;
+        animation-delay: .2s;
+      }
+    }
+
+    &.reddit {
+      @include loader-style($reddit-color);
+      &:before,
+      &:after {
+        animation: reddit-loader 0.8s linear infinite;
+      }
+      &:after {
+        top: 50%;
+        bottom: 0;
+        animation-delay: .2s;
+      }
+    }
+  }
+}
