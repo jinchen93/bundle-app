@@ -45,6 +45,14 @@ const RedditThreadItem = ({ allSubreddit, self, path, thread }) => {
     }
   };
 
+  const renderImage = () => {
+    return (
+      <div className="image-wrapper">
+        <img src={thread.thumbnail} alt={thread.title + " thumbnail"} />
+      </div>
+    );
+  };
+
   return (
     <div className="reddit-thread-item">
       <div className="thread-data-wrapper">
@@ -66,8 +74,7 @@ const RedditThreadItem = ({ allSubreddit, self, path, thread }) => {
         </div>
       </div>
 
-      {thread.thumbnail &&
-        <img src={thread.thumbnail} alt={thread.title + " thumbnail"} />}
+      {thread.thumbnail && renderImage()}
     </div>
   );
 };
