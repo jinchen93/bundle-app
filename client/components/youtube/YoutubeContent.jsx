@@ -1,6 +1,7 @@
 import React from "react";
 import YoutubeVideoList from "./YoutubeVideoList";
 import YoutubeEmbed from "./YoutubeEmbed";
+import Loader from "../loader/Loader";
 
 class YoutubeContent extends React.Component {
   constructor(props) {
@@ -59,8 +60,10 @@ class YoutubeContent extends React.Component {
     const { videos, currentVideo } = this.props;
     if (videos.length) {
       const video = videos[currentVideo];
-      const embedId = video.snippet.resourceId.videoId;
-      return <YoutubeEmbed video={video.snippet} embedId={embedId} />;
+      if (video.snippet.resourceId) {
+        const embedId = video.snippet.resourceId.videoId;
+        return <YoutubeEmbed video={video.snippet} embedId={embedId} />;
+      }
     }
     return null;
   }
@@ -80,6 +83,14 @@ class YoutubeContent extends React.Component {
   }
 
   render() {
+    if (this.props.loading) {
+      return (
+        <div className="media-content">
+          <Loader type="youtube" />
+        </div>
+      );
+    }
+
     if (this.props.match.params.id) {
       return (
         <div className="media-content">

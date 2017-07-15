@@ -5,31 +5,7 @@ export const RECEIVE_YOUTUBE_VIDEOS = "RECEIVE_YOUTUBE_VIDEOS";
 export const RECEIVE_YOUTUBE_CURRENT_VIDEO = "RECEIVE_YOUTUBE_CURRENT_VIDEO";
 export const RECEIVE_YOUTUBE_CHANNEL = "RECEIVE_YOUTUBE_CHANNEL";
 export const DELETE_YOUTUBE_CHANNEL = "DELETE_YOUTUBE_CHANNEL";
-
-export const fetchYoutubeFollows = () => dispatch =>
-  YoutubeAPIUtil.fetchYoutubeFollows().then(channels =>
-    dispatch(receiveYoutubeFollows(channels))
-  );
-
-export const fetchYoutubeVideos = id => dispatch =>
-  YoutubeAPIUtil.fetchYoutubeVideos(id).then(videos =>
-    dispatch(receiveYoutubeVideos(videos))
-  );
-
-export const followYoutubeChannel = name => dispatch =>
-  YoutubeAPIUtil.followYoutubeChannel(name).then(channel =>
-    dispatch(receiveYoutubeChannel(channel))
-  );
-
-export const removeYoutubeChannel = id => dispatch =>
-  YoutubeAPIUtil.removeYoutubeChannel(id).then(id =>
-    dispatch(deleteYoutubeChannel(id))
-  );
-
-export const fetchYoutubeMostPopular = () => dispatch =>
-  YoutubeAPIUtil.fetchYoutubeMostPopular().then(videos =>
-    dispatch(receiveYoutubeVideos(videos))
-  );
+export const LOADING_YOUTUBE_VIDEOS = "LOADING_YOUTUBE_VIDEOS";
 
 export const receiveYoutubeFollows = channels => ({
   type: RECEIVE_YOUTUBE_FOLLOWS,
@@ -55,3 +31,36 @@ export const receiveYoutubeCurrentVideo = idx => ({
   type: RECEIVE_YOUTUBE_CURRENT_VIDEO,
   idx,
 });
+
+export const loadingYoutubeVideos = () => ({
+  type: LOADING_YOUTUBE_VIDEOS,
+});
+
+export const fetchYoutubeFollows = () => dispatch =>
+  YoutubeAPIUtil.fetchYoutubeFollows().then(channels =>
+    dispatch(receiveYoutubeFollows(channels))
+  );
+
+export const fetchYoutubeVideos = id => dispatch => {
+  dispatch(loadingYoutubeVideos());
+  return YoutubeAPIUtil.fetchYoutubeVideos(id).then(videos =>
+    dispatch(receiveYoutubeVideos(videos))
+  );
+};
+
+export const followYoutubeChannel = name => dispatch =>
+  YoutubeAPIUtil.followYoutubeChannel(name).then(channel =>
+    dispatch(receiveYoutubeChannel(channel))
+  );
+
+export const removeYoutubeChannel = id => dispatch =>
+  YoutubeAPIUtil.removeYoutubeChannel(id).then(id =>
+    dispatch(deleteYoutubeChannel(id))
+  );
+
+export const fetchYoutubeMostPopular = () => dispatch => {
+  dispatch(loadingYoutubeVideos());
+  return YoutubeAPIUtil.fetchYoutubeMostPopular().then(videos =>
+    dispatch(receiveYoutubeVideos(videos))
+  );
+};

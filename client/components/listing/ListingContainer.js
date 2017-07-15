@@ -6,7 +6,6 @@ import { allSubreddits } from "../../selectors/reddit_selectors";
 import {
   receiveYoutubeCurrentChannel,
   removeYoutubeChannel,
-  receiveYoutubeVideos,
 } from "../../actions/youtube_actions";
 import {
   removeSubreddit,
@@ -24,7 +23,6 @@ const mapDispatchToProps = dispatch => ({
   removeYoutubeChannel: id => dispatch(removeYoutubeChannel(id)),
   removeSubreddit: id => dispatch(removeSubreddit(id)),
   receiveCurrentSubreddit: id => dispatch(receiveCurrentSubreddit(id)),
-  resetYoutubeVideos: () => dispatch(receiveYoutubeVideos([])),
 });
 
 export default withRouter(

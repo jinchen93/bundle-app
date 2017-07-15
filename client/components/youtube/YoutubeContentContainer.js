@@ -11,6 +11,7 @@ const mapStateToProps = (state, ownProps) => ({
   videos: state.youtube.videos,
   currentChannel: ownProps.match.params.id,
   currentVideo: state.youtube.currentVideo,
+  loading: state.loader.youtubeVideos,
 });
 
 const mapDispatchToProps = dispatch => ({

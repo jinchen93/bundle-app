@@ -21,8 +21,6 @@ class Listing extends React.Component {
       e.preventDefault();
       const target = e.currentTarget;
       this.props.removeYoutubeChannel(target.getAttribute("data-id"));
-    } else {
-      this.props.resetYoutubeVideos();
     }
   }
 
