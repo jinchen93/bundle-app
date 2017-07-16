@@ -1,6 +1,7 @@
 class Api::SubredditFollowsController < ApplicationController
   def create
-    subreddit_name = get_valid_name(subreddit_follow_params[:name])
+    name = subreddit_follow_params[:name].downcase
+    subreddit_name = get_valid_name(name)
     @subreddit = Subreddit.find_by(name: subreddit_name)
 
     if @subreddit

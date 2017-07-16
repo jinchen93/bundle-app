@@ -1,6 +1,6 @@
 class Api::YoutubeChannelFollowsController < ApplicationController
   def create
-    channel_name = youtube_channel_follow_params[:name]
+    channel_name = youtube_channel_follow_params[:name].downcase
     @channel = YoutubeChannel.find_by(name: channel_name)
 
     # Check to see if channel exists, if not then create it=
