@@ -4,11 +4,19 @@ class Api::TwitchChannelsController < ApplicationController
   end
 
   def show
-    @channel = TwitchChannel.find_by({ name: params[:name] })
-    if @channel
+    channel = TwitchChannel.find_by({ name: params[:id] })
+
+    if channel
+      @stream = channel.get_stream_data
       render :show
     else
-      render json: ["Cannot find that channel"], status: 422
+      channel = TwitchChannel.new({ name: params[:id] })
+      if channel.save
+        @stream = channel.get_stream_data
+        render :show
+      else
+        render json: ["Cannot find that channel"], status: 422
+      end
     end
   end
 

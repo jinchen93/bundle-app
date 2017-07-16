@@ -48,6 +48,10 @@ class TwitchChannel < ApplicationRecord
     self.thumbnail = data["logo"]
   end
 
+  def get_stream_data
+    HTTParty.get(STREAM_URL + self.name + CLIENT_ID)["stream"]
+  end
+
   # Will be called in cron job
   def update_channel
     validate_channel
