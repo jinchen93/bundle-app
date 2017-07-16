@@ -8,7 +8,7 @@ const TwitchStreamItem = ({ stream }) =>
         {stream.game}
       </div>
       <img src={stream.thumbnail} alt={stream.displayName} />
-      <Link to="/" className="stream-status">
+      <Link to={`/twitch/${stream.name}`} className="stream-status">
         {stream.status}
       </Link>
       <div className="stream-info">
