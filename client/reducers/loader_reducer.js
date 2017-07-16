@@ -11,6 +11,8 @@ import {
 import {
   LOADING_TWITCH_TOP_STREAMS,
   RECEIVE_TWITCH_TOP_STREAMS,
+  LOADING_TWITCH_STREAM,
+  RECEIVE_TWITCH_STREAM,
 } from "../actions/twitch_actions";
 
 export const _nullState = {
@@ -18,6 +20,7 @@ export const _nullState = {
   redditThreads: false,
   redditComments: false,
   twitchTopStreams: false,
+  twitchStream: false,
 };
 
 const loaderReducer = (state = _nullState, action) => {
@@ -40,6 +43,10 @@ const loaderReducer = (state = _nullState, action) => {
       return { ...state, twitchTopStreams: true };
     case RECEIVE_TWITCH_TOP_STREAMS:
       return { ...state, twitchTopStreams: false };
+    case LOADING_TWITCH_STREAM:
+      return { ...state, twitchStream: true };
+    case RECEIVE_TWITCH_STREAM:
+      return { ...state, twitchStream: false };
     default:
       return state;
   }
