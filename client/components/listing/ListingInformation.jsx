@@ -33,6 +33,7 @@ class ListingInformation extends React.Component {
         this.props.followSubreddit(this.state.value);
         break;
       case "twitch":
+        this.props.followTwitchChannel(this.state.value);
         break;
       default:
         break;

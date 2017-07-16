@@ -1,17 +1,22 @@
 .twitch-top-streams-wrapper {
   display: flex;
   flex-wrap: wrap;
-  padding-top: 0.5em;
 
   .twitch-stream-item-container {
-    height: 33%;
-    width: 33%;
+    height: calc(33% - 1em);
+    width: calc(33% - 2em);
+    background: #fff;
+    border: 1px solid #e7e7e7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em 0em;
+    margin: 0.4em 1em;
 
     .twitch-stream-item {
       display: flex;
       flex-direction: column;
-      padding-left: 10%;
-      width: 80%;
+      width: 70%;
 
       img {
         height: auto;
@@ -43,6 +48,85 @@
         font-size: 1rem;
         font-weight: 500;
       }
+    }
+  }
+}
+
+.twitch-stream-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  .embed-wrapper {
+    background: none;
+    border: none;
+    .embed-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .status {
+      border: 1px solid #e7e7e7;
+      border-right: none;
+      padding: 0.5em;
+      font-size: 2rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      background: #fff;
+      img {
+        height: 8rem;
+        margin-right: 1em;
+      }
+      .status-description {
+        .bottom-info {
+          display: flex;
+          align-items: center;
+          height: 100%;
+          .game {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding-bottom: 2px;
+            font-size: 1.6rem;
+            color: $dark-twitch;
+            i {
+              margin-right: 0.5rem;
+              font-size: 2.6rem;
+            }
+          }
+          .viewers {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            margin-bottom: 2px;
+            margin-left: 1em;
+            color: $youtube-color;
+            div {
+              align-self: flex-end;
+              padding-bottom: 0.2em;
+              margin-left: 0.5em;
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .chat-embed {
+    height: 100%;
+    border: 1px solid #e7e7e7;
+    .twitch-chat {
+      width: 340px;
+      height: 100%;
     }
   }
 }

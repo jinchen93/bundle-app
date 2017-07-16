@@ -4,7 +4,7 @@ import RedditThreadListContainer from "./RedditThreadListContainer";
 import RedditCommentListContainer from "./RedditCommentListContainer";
 
 const RedditContent = props =>
-  <div className="media-content">
+  <div className="media-content white">
     {props.match.params.threadId
       ? <RedditCommentListContainer />
       : <RedditThreadListContainer />}

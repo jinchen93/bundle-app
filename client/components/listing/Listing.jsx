@@ -37,6 +37,7 @@ class Listing extends React.Component {
     if (this.state.deleteMode) {
       e.preventDefault();
       const target = e.currentTarget;
+      console.log(target.getAttribute("data-id"));
       this.props.removeTwitchChannel(target.getAttribute("data-id"));
     }
   }
@@ -72,7 +73,7 @@ class Listing extends React.Component {
             mode={this.props.mode}
             deleteMode={this.state.deleteMode}
             handleClick={this.handleTwitchClick}
-            selected={this.props.match.params.id == channel.id}
+            selected={this.props.match.params.id == channel.idName}
             key={channel.id}
             channel={channel}
           />

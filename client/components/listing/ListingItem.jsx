@@ -9,7 +9,11 @@ const ListingItem = props => {
       id={deleteMode ? `deleting-${mode}` : ""}
       data-id={channel.id}
       className={selected ? "listing-item selected" : "listing-item"}
-      to={`/${mode}/${channel.id}/${channel.name}`}
+      to={
+        mode === "twitch"
+          ? `/twitch/${channel.idName}`
+          : `/${mode}/${channel.id}/${channel.name}`
+      }
       onClick={handleClick}
     >
       {!reddit &&

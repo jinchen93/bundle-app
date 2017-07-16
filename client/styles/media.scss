@@ -6,7 +6,7 @@
 
   .media-content {
     max-width: 1200px;
-    background: #fff;
+    background: #faf9fa;
     @include material-shadow(1);
     width: 100%;
     height: 100%;
@@ -14,4 +14,8 @@
     padding: 1em;
     overflow: auto;
   }
+}
+
+.white {
+  background: #fff !important;
 }

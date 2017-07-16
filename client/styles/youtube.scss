@@ -1,5 +1,7 @@
 .embed-wrapper {
   width: 100%;
+  background: #fff;
+  border: 1px solid #e7e7e7;
   .embed-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -15,7 +17,7 @@
     }
   }
   .video-info-container {
-    padding: 0.5em 0.3em;
+    padding: 0.5em 1em;
     .youtube-video-title {
       font-size: 1.4em;
       font-weight: 400;
@@ -34,6 +36,7 @@
 }
 
 .youtube-video-list {
+  background: #fff;
   margin-left: 1em;
   height: 100%;
   display: flex;
