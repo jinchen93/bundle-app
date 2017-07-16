@@ -1,10 +1,8 @@
 json.extract! @stream, "game", "viewers"
 
-channel = @stream["channel"]
-json.extract! channel, "status", "views", "followers", "logo"
-if channel["profile_banner"]
-  json.banner channel["profile_banner"]
-else
-  json.banner "http://res.cloudinary.com/jinchen93/image/upload/v1500188306/bg_glitch_pattern_eocwoe.png"
-end
-json.displayName channel["display_name"]
+stream_channel = @stream["channel"]
+json.extract! stream_channel, "status", "views", "followers", "logo"
+json.banner stream_channel["profile_banner"]
+json.displayName stream_channel["display_name"]
+json.embed @channel.embed_url
+json.chat @channel.chat_url
