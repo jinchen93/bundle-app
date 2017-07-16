@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170715213158) do
+ActiveRecord::Schema.define(version: 20170716163811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,12 +41,12 @@ ActiveRecord::Schema.define(version: 20170715213158) do
 
   create_table "twitch_channels", force: :cascade do |t|
     t.string   "name",         null: false
-    t.string   "url",          null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "thumbnail"
     t.string   "display_name"
-    t.index ["url"], name: "index_twitch_channels_on_url", unique: true, using: :btree
+    t.string   "embed_url"
+    t.string   "chat_url"
   end
 
   create_table "users", force: :cascade do |t|
