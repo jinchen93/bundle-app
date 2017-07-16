@@ -1,1 +1,0 @@
-export const SET_SIDEBAR_TOGGLE = "SET_SIDEBAR_TOGGLE";
