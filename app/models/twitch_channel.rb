@@ -18,7 +18,7 @@ TOP_STREAMS_URL = "https://api.twitch.tv/kraken/streams/?client_id=#{ENV['twitch
 
 class TwitchChannel < ApplicationRecord
   validate :validate_channel
-  validates :name, :display_name, :url, :thumbnail,
+  validates :name, :display_name, :embed_url, :chat_url, :thumbnail,
     uniqueness: true, presence: true
 
   has_many :twitch_channel_follows
@@ -34,8 +34,8 @@ class TwitchChannel < ApplicationRecord
   end
 
   def validate_channel
-    self.url = CHANNEL_URL + self.name + CLIENT_ID
-    request = HTTParty.get(self.url)
+    url = CHANNEL_URL + self.name + CLIENT_ID
+    request = HTTParty.get(url)
     if request["status"] == 404
       self.errors[:base] << "Not a valid username"
     else
@@ -44,6 +44,8 @@ class TwitchChannel < ApplicationRecord
   end
 
   def process_channel_data(data)
+    self.embed_url = "http://player.twitch.tv/?channel=#{self.name}&autoplay=true"
+    self.chat_url = "http://twitch.tv/#{self.name}/chat"
     self.display_name = data["display_name"]
     self.thumbnail = data["logo"]
   end
