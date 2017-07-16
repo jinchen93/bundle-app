@@ -80,6 +80,10 @@ test:
 #
 production:
   <<: *default
+  host: localhost
+  adapter: postgresql
+  encoding: utf8
   database: bundleme_production
-  username: bundleme
-  password: <%= ENV['bundleme_DATABASE_PASSWORD'] %>
+  pool: 5
+  username: <%= ENV['BUNDLEME_DATABASE_USER'] %>
+  password: <%= ENV['BUNDLEME_DATABASE_PASSWORD'] %>
