@@ -104,6 +104,9 @@ class SessionForm extends React.Component {
         <div className="demo" onClick={this.handleDemoLogin}>
           TRY A DEMO
         </div>
+        <a className="github" href="https://github.com/jinchen93/bundle-app">
+          Made by Jin Chen
+        </a>
       </form>
     );
   }

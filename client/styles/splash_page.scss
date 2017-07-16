@@ -3,6 +3,11 @@
   height: 100vh;
   width: 100vw;
   animation: background-animation 20s ease infinite;
+  .github {
+    font-size: 1.2rem;
+    color: $salmon;
+    font-weight: 500;
+  }
 
   .switch-form-button {
     top: 1.5em;
