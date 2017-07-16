@@ -9,6 +9,7 @@ class Listing extends React.Component {
     this.state = { deleteMode: false };
     this.handleYoutubeClick = this.handleYoutubeClick.bind(this);
     this.handleRedditClick = this.handleRedditClick.bind(this);
+    this.handleTwitchClick = this.handleTwitchClick.bind(this);
     this.toggleDeleteMode = this.toggleDeleteMode.bind(this);
   }
 
@@ -27,9 +28,16 @@ class Listing extends React.Component {
   handleRedditClick(e) {
     if (this.state.deleteMode) {
       e.preventDefault();
-      console.log("clicked");
       const target = e.currentTarget;
       this.props.removeSubreddit(target.getAttribute("data-id"));
+    }
+  }
+
+  handleTwitchClick(e) {
+    if (this.state.deleteMode) {
+      e.preventDefault();
+      const target = e.currentTarget;
+      this.props.removeTwitchChannel(target.getAttribute("data-id"));
     }
   }
 
@@ -56,6 +64,17 @@ class Listing extends React.Component {
             selected={this.props.match.params.id == subreddit.id}
             key={subreddit.id}
             channel={subreddit}
+          />
+        );
+      case "twitch":
+        return this.props.twitchChannels.map(channel =>
+          <ListingItem
+            mode={this.props.mode}
+            deleteMode={this.state.deleteMode}
+            handleClick={this.handleTwitchClick}
+            selected={this.props.match.params.id == channel.id}
+            key={channel.id}
+            channel={channel}
           />
         );
       default:

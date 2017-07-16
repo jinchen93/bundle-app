@@ -3,6 +3,7 @@ import Listing from "./Listing";
 import { withRouter } from "react-router-dom";
 import { allYoutubeChannels } from "../../selectors/youtube_selectors";
 import { allSubreddits } from "../../selectors/reddit_selectors";
+import { allTwitchChannels } from "../../selectors/twitch_selectors";
 import {
   receiveYoutubeCurrentChannel,
   removeYoutubeChannel,
@@ -11,18 +12,21 @@ import {
   removeSubreddit,
   receiveCurrentSubreddit,
 } from "../../actions/reddit_actions";
+import { removeTwitchChannel } from "../../actions/twitch_actions";
 
 const mapStateToProps = state => ({
   youtubeChannels: allYoutubeChannels(state),
   subreddits: allSubreddits(state),
+  twitchChannels: allTwitchChannels(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   receiveYoutubeCurrentChannel: id =>
     dispatch(receiveYoutubeCurrentChannel(id)),
+  receiveCurrentSubreddit: id => dispatch(receiveCurrentSubreddit(id)),
   removeYoutubeChannel: id => dispatch(removeYoutubeChannel(id)),
   removeSubreddit: id => dispatch(removeSubreddit(id)),
-  receiveCurrentSubreddit: id => dispatch(receiveCurrentSubreddit(id)),
+  removeTwitchChannel: id => dispatch(removeTwitchChannel(id)),
 });
 
 export default withRouter(

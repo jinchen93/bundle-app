@@ -91,6 +91,7 @@ class YoutubeContent extends React.Component {
       );
     }
 
+    // Conditional rendering for /youtube vs. /youtube/id routes
     if (this.props.match.params.id) {
       return (
         <div className="media-content">

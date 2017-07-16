@@ -40,10 +40,23 @@
   }
 }
 
+@keyframes twitch-loader {
+  0%,
+  100% {
+    box-shadow: -1.5em 0 0 transparent;
+    background-color: $twitch-color;
+  }
+  50% {
+    box-shadow: -1.5em 0 0 $twitch-color;
+    background-color: transparent;
+  }
+}
+
 .loader-wrapper {
   @include flex-center;
   width: 100%;
   margin-bottom: 10%;
+  opacity: 0.5;
 
   .loader {
     &.youtube {
@@ -64,6 +77,19 @@
       &:before,
       &:after {
         animation: reddit-loader 0.8s linear infinite;
+      }
+      &:after {
+        top: 50%;
+        bottom: 0;
+        animation-delay: .2s;
+      }
+    }
+
+    &.twitch {
+      @include loader-style($twitch-color);
+      &:before,
+      &:after {
+        animation: twitch-loader 0.8s linear infinite;
       }
       &:after {
         top: 50%;

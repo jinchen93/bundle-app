@@ -8,11 +8,16 @@ import {
   RECEIVE_SUBREDDIT_THREADS,
   RECEIVE_REDDIT_COMMENTS,
 } from "../actions/reddit_actions";
+import {
+  LOADING_TWITCH_TOP_STREAMS,
+  RECEIVE_TWITCH_TOP_STREAMS,
+} from "../actions/twitch_actions";
 
 export const _nullState = {
   youtubeVideos: false,
   redditThreads: false,
   redditComments: false,
+  twitchTopStreams: false,
 };
 
 const loaderReducer = (state = _nullState, action) => {
@@ -31,6 +36,10 @@ const loaderReducer = (state = _nullState, action) => {
       return { ...state, redditComments: true };
     case RECEIVE_REDDIT_COMMENTS:
       return { ...state, redditComments: false };
+    case LOADING_TWITCH_TOP_STREAMS:
+      return { ...state, twitchTopStreams: true };
+    case RECEIVE_TWITCH_TOP_STREAMS:
+      return { ...state, twitchTopStreams: false };
     default:
       return state;
   }

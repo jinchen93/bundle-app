@@ -1,0 +1,48 @@
+.twitch-top-streams-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 0.5em;
+
+  .twitch-stream-item-container {
+    height: 33%;
+    width: 33%;
+
+    .twitch-stream-item {
+      display: flex;
+      flex-direction: column;
+      padding-left: 10%;
+      width: 80%;
+
+      img {
+        height: auto;
+        width: 100%;
+      }
+
+      .stream-status {
+        padding-top: 0.4rem;
+        color: black;
+        font-weight: 400;
+        height: 2rem;
+        font-size: 1.4rem;
+        line-height: 2rem;
+        text-decoration: none;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .stream-info {
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: #777;
+      }
+      .game-info {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+  }
+}

@@ -14,6 +14,11 @@ export const getName = (state, props) => {
     if (hasChannels) {
       return id ? state.youtube.channels[id].name : "Trending";
     }
+  } else if (mode === "twitch") {
+    const hasChannels = Boolean(Object.keys(state.twitch.channels).length);
+    if (hasChannels) {
+      return id ? state.twitch.channels[id].name : "Top Channels";
+    }
   }
 
   return "";

@@ -1,6 +1,7 @@
 import React from "react";
 import YoutubeContentContainer from "../youtube/YoutubeContentContainer";
 import RedditContent from "../reddit/RedditContent";
+import TwitchContent from "../twitch/TwitchContent";
 
 const Media = ({ mode }) => {
   const renderMode = () => {
@@ -9,6 +10,8 @@ const Media = ({ mode }) => {
         return <YoutubeContentContainer />;
       case "reddit":
         return <RedditContent />;
+      case "twitch":
+        return <TwitchContent />;
       default:
         return <div className="media-content" />;
     }
