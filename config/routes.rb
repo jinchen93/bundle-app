@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :subreddits, only: [:index, :show]
     resources :subreddit_follows, only: [:create, :destroy]
 
+    get "twitch_channels/top_streams", to: "twitch_channels#top_streams"
     resources :twitch_channels, only: [:index, :show]
     resources :twitch_channel_follows, only: [:create, :destroy]
   end

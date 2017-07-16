@@ -27,7 +27,8 @@ MOST_POPULAR_URL = "https://www.googleapis.com/youtube/v3/videos?" +
 
 class YoutubeChannel < ApplicationRecord
   validate :validate_channel
-  validates :name, :display_name, :url, :upload_id, :thumbnail, uniqueness: true, presence: true
+  validates :name, :display_name, :url, :upload_id, :thumbnail,
+    uniqueness: true, presence: true
 
   has_many :youtube_channel_follows
   has_many :users, through: :youtube_channel_follows
@@ -73,5 +74,11 @@ class YoutubeChannel < ApplicationRecord
   def get_videos
     video_url = PLAYLIST_URL + self.upload_id
     HTTParty.get(video_url)["items"]
+  end
+
+  # Will be called in cron job
+  def update_channel
+    validate_channel
+    self.save
   end
 end

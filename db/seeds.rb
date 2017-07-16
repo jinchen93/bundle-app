@@ -46,12 +46,16 @@ subreddits.each do |subreddit|
   })
 end
 
-tw = TwitchChannel.create({
-  name: "food",
-  url: "http://player.twitch.tv/?channel=food&autoplay=true"
-})
+twitch_channels = [
+  "food",
+  "bobross"
+]
 
-TwitchChannelFollow.create({
-  twitch_channel_id: tw.id,
-  user_id: guest.id
-})
+twitch_channels.each do |channel|
+  tw = TwitchChannel.create({ name: channel })
+  TwitchChannelFollow.create({
+    twitch_channel_id: tw.id,
+    user_id: guest.id
+  })
+end
+

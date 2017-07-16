@@ -2,11 +2,13 @@
 #
 # Table name: twitch_channels
 #
-#  id         :integer          not null, primary key
-#  name       :string           not null
-#  url        :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :integer          not null, primary key
+#  name         :string           not null
+#  url          :string           not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  thumbnail    :string
+#  display_name :string
 #
 
 require 'test_helper'
