@@ -6,43 +6,21 @@
 Link - [bundleme.net](http://bundleme.net/)
 
 ## Introduction
-This app will aggregate media content from several sources and bundle them up into a single page app.
-The purpose of this app is to make a single home page for users to check daily.
-It removes the chore of navigating to the users fav. sites just to see if something new has been posted.
-In the future users will have the ability to add/remove media channels.
+This app aggregates media content from several sources and bundles them up into a single page app.
 
+**Currently supporting: Youtube, Reddit, and Twitch**
 
-## Navigating the Repo
-_----Node build is deprecated!----_
+This app provides a new home page for people who want all of their daily content streamlined to them on one site! It removes the chore of having to manually navigate to your favorite site just to check to see if new content has been posted.
 
-The Rails build is the latest version of the app.
+<img src="http://res.cloudinary.com/jinchen93/image/upload/v1500258126/Screen_Shot_2017-07-16_at_7.21.43_PM_jc6yuk.png" alt="BundleMe screenshot">
 
-##### Steps to get the Rails server up and running:
-1. Change into the Rails directory with `cd rails_build`
+## Changelog
+#### Version 3.0
+- Complete site redesign.
+  - Cleaner UI - removed third party CSS libraries
+  - Smoother data flow from backend to frontend
+  - Added home pages!
 
-2. Run `bundle install` to install gems
-
-3. Run `rake db:create` to create the Postgres server
-
-4. Run `rake db:migrate` to create the tables in the Postgres server
-
-5. Change into the client directory with `cd client`
-
-6. Install npm packages with `npm install`
-
-7. Compile production ready build with `npm run build`
-
-8. Change into the build directory with `cd build`
-
-9. Copy all of the contents to the `rails_build/public` directory with `cp -rf * ../../public`
-
-10. Change back to the `rails_build` root directory with `cd ../..`
-
-11. Run the Rails server on port :9000 `rails s -p 9000`
-
-12. Navigate to `localhost:9000`
-
-### Changelog
 #### Version 2.1
 - Add Twitch channels
 
