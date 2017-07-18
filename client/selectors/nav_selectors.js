@@ -2,10 +2,10 @@ import { allTwitchChannels } from "../selectors/twitch_selectors";
 
 export const getName = (state, props) => {
   const { mode, id } = props.match.params;
-  if (mode === "reddit") {
-    return getRedditTitle(state, id);
-  } else if (mode === "youtube") {
+  if (mode === "youtube") {
     return getYoutubeTitle(state, id);
+  } else if (mode === "reddit") {
+    return getRedditTitle(state, id);
   } else if (mode === "twitch") {
     return getTwitchTitle(state, id);
   }
@@ -13,22 +13,24 @@ export const getName = (state, props) => {
   return "";
 };
 
+const getYoutubeTitle = (state, id) => {
+  const hasChannels = Boolean(Object.keys(state.youtube.channels).length);
+  if (hasChannels) {
+    if (id) {
+      return state.youtube.channels[id].name;
+    }
+  }
+  return "Trending";
+};
+
 const getRedditTitle = (state, id) => {
   const hasSubreddits = Boolean(Object.keys(state.reddit.subreddits).length);
   if (hasSubreddits) {
     if (state.reddit.subreddits[id]) {
       return state.reddit.subreddits[id].name;
-    } else {
-      return "All";
     }
   }
-};
-
-const getYoutubeTitle = (state, id) => {
-  const hasChannels = Boolean(Object.keys(state.youtube.channels).length);
-  if (hasChannels) {
-    return id ? state.youtube.channels[id].name : "Trending";
-  }
+  return "All";
 };
 
 const getTwitchTitle = (state, id) => {
@@ -41,10 +43,9 @@ const getTwitchTitle = (state, id) => {
         return channel.name;
       } else {
         channel = state.twitch.topStreams.find(channel => channel.name === id);
-        return channel ? channel.displayName : "";
+        return channel ? channel.displayName : "Top Channels";
       }
-    } else {
-      return "Top Channels";
     }
   }
+  return "Top Channels";
 };

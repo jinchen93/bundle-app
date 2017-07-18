@@ -9,7 +9,7 @@ const Nav = props => {
       redirectTo("/", props);
     });
   };
-
+  console.log(props.name);
   return (
     <div className="nav-wrapper">
       <Link to="/">
