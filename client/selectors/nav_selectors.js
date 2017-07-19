@@ -16,7 +16,7 @@ export const getName = (state, props) => {
 const getYoutubeTitle = (state, id) => {
   const hasChannels = Boolean(Object.keys(state.youtube.channels).length);
   if (hasChannels) {
-    if (id) {
+    if (state.youtube.channels[id]) {
       return state.youtube.channels[id].name;
     }
   }
