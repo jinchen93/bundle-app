@@ -6,7 +6,7 @@ const YoutubeEmbed = ({ video, embedId }) =>
   <div className="embed-wrapper">
     <div className="embed-container">
       <iframe
-        src={`http://www.youtube.com/embed/${embedId}`}
+        src={`https://www.youtube.com/embed/${embedId}`}
         frameBorder="0"
         allowFullScreen
       />
