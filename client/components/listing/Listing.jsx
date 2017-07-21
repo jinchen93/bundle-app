@@ -37,7 +37,6 @@ class Listing extends React.Component {
     if (this.state.deleteMode) {
       e.preventDefault();
       const target = e.currentTarget;
-      console.log(target.getAttribute("data-id"));
       this.props.removeTwitchChannel(target.getAttribute("data-id"));
     }
   }

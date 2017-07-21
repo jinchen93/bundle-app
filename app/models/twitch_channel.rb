@@ -44,8 +44,8 @@ class TwitchChannel < ApplicationRecord
   end
 
   def process_channel_data(data)
-    self.embed_url = "http://player.twitch.tv/?channel=#{self.name}&autoplay=true"
-    self.chat_url = "http://twitch.tv/#{self.name}/chat"
+    self.embed_url = "https://player.twitch.tv/?channel=#{self.name}&autoplay=true"
+    self.chat_url = "https://twitch.tv/#{self.name}/chat"
     self.display_name = data["display_name"]
     self.thumbnail = data["logo"]
   end
