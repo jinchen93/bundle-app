@@ -20,7 +20,8 @@ channels = [
   "techcrunch",
   "caseyneistat",
   "UCO1cgjhGzsSYb1rsB4bFe4Q",
-  "UCqr-7GDVTsdNBCeufvERYuw"
+  "UCqr-7GDVTsdNBCeufvERYuw",
+  "vsauce"
 ]
 
 channels.each do |channel|
@@ -35,7 +36,9 @@ subreddits = [
   "bayarea",
   "programming",
   "javascript",
-  "askreddit"
+  "askreddit",
+  "movies",
+  "technology"
 ]
 
 subreddits.each do |subreddit|
@@ -48,7 +51,10 @@ end
 
 twitch_channels = [
   "food",
-  "bobross"
+  "streamhouse",
+  "monstercat",
+  "saltyteemo",
+  "medrybw"
 ]
 
 twitch_channels.each do |channel|
