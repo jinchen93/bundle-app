@@ -160,6 +160,7 @@
     font-weight: 500;
     padding: 0.2em 1em;
     height: 2.5em;
+    position: relative;
     &:hover {
       cursor: pointer;
       background: #ecf0f1;
@@ -167,6 +168,21 @@
     img {
       height: 100%;
       margin-right: 1em;
+    }
+    .twitch-viewer-count {
+      color: $youtube-color;
+      position: absolute;
+      top: 25%;
+      right: 1em;
+      display: flex;
+      align-items: center;
+      .circle {
+        margin-right: 0.5em;
+        background: $youtube-color;
+        border-radius: 50%;
+        height: 5px;
+        width: 5px;
+      }
     }
   }
 

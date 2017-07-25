@@ -7,6 +7,7 @@ class HomePage extends React.Component {
   constructor() {
     super();
     this.fetchContent = this.fetchContent.bind(this);
+    this.state = { interval: null };
   }
 
   componentDidMount() {
@@ -14,6 +15,10 @@ class HomePage extends React.Component {
   }
 
   componentDidUpdate() {
+    if (this.props.mode !== twitch && this.interval) {
+      clearInterval(this.interval);
+      this.interval = null;
+    }
     this.fetchContent();
   }
 
@@ -25,6 +30,9 @@ class HomePage extends React.Component {
       this.props.fetchRedditFollows();
     } else if (mode === "twitch") {
       this.props.fetchTwitchFollows();
+      this.interval = setInterval(() => {
+        this.props.fetchTwitchFollows();
+      }, 20000);
     }
   }
 

@@ -59,4 +59,14 @@ class TwitchChannel < ApplicationRecord
     validate_channel
     self.save
   end
+
+  def get_viewer_count
+    url = STREAM_URL + self.name + CLIENT_ID
+    request = HTTParty.get(url)
+    if request["stream"]
+      return request["stream"]["viewers"]
+    else
+      return nil
+    end
+  end
 end
