@@ -3,8 +3,10 @@ import { store, expect } from "../test_helper";
 import * as YoutubeAPIUtil from "../../utils/youtube_api_util";
 import {
   RECEIVE_YOUTUBE_FOLLOWS,
+  RECEIVE_YOUTUBE_VIDEOS,
   fetchYoutubeFollows,
   receiveYoutubeFollows,
+  fetchYoutubeVideos,
 } from "../../actions/youtube_actions";
 
 describe("Youtube Actions", () => {
@@ -39,10 +41,40 @@ describe("Youtube Actions", () => {
         expect(YoutubeAPIUtil.fetchYoutubeFollows.calledOnce).to.be.true;
       });
 
-      it("dispatches RECEIVE_YOUTUBE_FOLLOWS on sucess", () => {
+      it("dispatches RECEIVE_YOUTUBE_FOLLOWS on success", () => {
         fetchStub.returns(Promise.resolve("success"));
         return fetchYoutubeFollows()(store.dispatch).then(action => {
           expect(action.type).to.equal(RECEIVE_YOUTUBE_FOLLOWS);
+        });
+      });
+    });
+
+    describe("fetchYoutubeVideos", () => {
+      let fetchStub;
+
+      beforeEach(() => {
+        fetchStub = sinon.stub(YoutubeAPIUtil, "fetchYoutubeVideos");
+        fetchStub.returns(Promise.resolve("success"));
+      });
+
+      afterEach(() => {
+        YoutubeAPIUtil.fetchYoutubeVideos.restore();
+      });
+
+      it("makes an ajax call", () => {
+        fetchYoutubeVideos()(store.dispatch);
+        expect(YoutubeAPIUtil.fetchYoutubeVideos.calledOnce).to.be.true;
+      });
+
+      it("dispatches RECEIVE_YOUTUBE_VIDEOS on success", () => {
+        return fetchYoutubeVideos()(store.dispatch).then(action => {
+          expect(action.type).to.equal(RECEIVE_YOUTUBE_VIDEOS);
+        });
+      });
+
+      it("has a payload of videos", () => {
+        return fetchYoutubeVideos()(store.dispatch).then(action => {
+          expect(action.videos).to.exist;
         });
       });
     });
