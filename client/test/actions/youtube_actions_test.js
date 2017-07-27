@@ -17,6 +17,8 @@ import {
   followYoutubeChannel,
   receiveYoutubeCurrentVideo,
   loadingYoutubeVideos,
+  removeYoutubeChannel,
+  fetchYoutubeMostPopular,
 } from "../../actions/youtube_actions";
 
 describe("Youtube Actions", () => {
@@ -163,6 +165,54 @@ describe("Youtube Actions", () => {
       it("dispatches RECEIVE_YOUTUBE_CHANNEL on success", () => {
         return followYoutubeChannel()(store.dispatch).then(action => {
           expect(action.type).to.equal(RECEIVE_YOUTUBE_CHANNEL);
+        });
+      });
+    });
+
+    describe("removeYoutubeChannel", () => {
+      let fetchStub;
+
+      beforeEach(() => {
+        fetchStub = sinon.stub(YoutubeAPIUtil, "removeYoutubeChannel");
+        fetchStub.returns(Promise.resolve("success"));
+      });
+
+      afterEach(() => {
+        YoutubeAPIUtil.removeYoutubeChannel.restore();
+      });
+
+      it("makes an ajax call", () => {
+        removeYoutubeChannel()(store.dispatch);
+        expect(YoutubeAPIUtil.removeYoutubeChannel.calledOnce).to.be.true;
+      });
+
+      it("dispatches DELETE_YOUTUBE_CHANNEL on success", () => {
+        return removeYoutubeChannel()(store.dispatch).then(action => {
+          expect(action.type).to.equal(DELETE_YOUTUBE_CHANNEL);
+        });
+      });
+    });
+
+    describe("fetchYoutubeMostPopular", () => {
+      let fetchStub;
+
+      beforeEach(() => {
+        fetchStub = sinon.stub(YoutubeAPIUtil, "fetchYoutubeMostPopular");
+        fetchStub.returns(Promise.resolve("success"));
+      });
+
+      afterEach(() => {
+        YoutubeAPIUtil.fetchYoutubeMostPopular.restore();
+      });
+
+      it("makes an ajax call", () => {
+        fetchYoutubeMostPopular()(store.dispatch);
+        expect(YoutubeAPIUtil.fetchYoutubeMostPopular.calledOnce).to.be.true;
+      });
+
+      it("dispatches RECEIVE_YOUTUBE_VIDEOS on success", () => {
+        return fetchYoutubeMostPopular()(store.dispatch).then(action => {
+          expect(action.type).to.equal(RECEIVE_YOUTUBE_VIDEOS);
         });
       });
     });
