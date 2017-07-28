@@ -60,16 +60,19 @@ function initializeAPITests() {
   beforeEach(() => {
     sinon
       .stub(YoutubeAPIUtil, "fetchYoutubeFollows")
-      .returns(Promise.resolve("sucess"));
+      .returns(Promise.resolve("success"));
     sinon
       .stub(YoutubeAPIUtil, "fetchYoutubeMostPopular")
       .returns(Promise.resolve("success"));
     sinon
       .stub(TwitchAPIUtil, "fetchTwitchFollows")
-      .returns(Promise.resolve("sucess"));
+      .returns(Promise.resolve("success"));
     sinon
       .stub(RedditAPIUtil, "fetchRedditFollows")
-      .returns(Promise.resolve("sucess"));
+      .returns(Promise.resolve("success"));
+    sinon
+      .stub(RedditAPIUtil, "fetchAllSubreddit")
+      .returns(Promise.resolve("success"));
   });
 
   afterEach(() => {
@@ -77,6 +80,7 @@ function initializeAPITests() {
     YoutubeAPIUtil.fetchYoutubeMostPopular.restore();
     TwitchAPIUtil.fetchTwitchFollows.restore();
     RedditAPIUtil.fetchRedditFollows.restore();
+    RedditAPIUtil.fetchAllSubreddit.restore();
   });
 }
 
