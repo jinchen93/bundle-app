@@ -102,3 +102,14 @@
     }
   }
 }
+
+@media (max-width: 1100px) {
+  .media-content {
+    flex-wrap: wrap;
+  }
+  .youtube-video-list {
+    width: 100%;
+    display: block;
+    margin: 0;
+  }
+}
