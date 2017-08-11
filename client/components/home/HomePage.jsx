@@ -7,7 +7,8 @@ class HomePage extends React.Component {
   constructor() {
     super();
     this.fetchContent = this.fetchContent.bind(this);
-    this.state = { interval: null };
+    this.handleVisibilityClick = this.handleVisibilityClick.bind(this);
+    this.state = { interval: null, sideVisibility: true };
   }
 
   componentDidMount() {
@@ -36,13 +37,18 @@ class HomePage extends React.Component {
     }
   }
 
+  handleVisibilityClick() {
+    this.setState({ sideVisibility: !this.state.sideVisibility });
+  }
+
   render() {
     const { mode } = this.props.match.params;
     return (
       <div className="home-wrapper">
         <NavContainer />
+        <i className="ion-navicon-round" onClick={this.handleVisibilityClick} />
         <div className="content-wrapper">
-          <ListingContainer mode={mode} />
+          <ListingContainer visible={this.state.sideVisibility} mode={mode} />
           <Media mode={mode} />
         </div>
       </div>

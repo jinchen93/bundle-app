@@ -205,3 +205,10 @@
     color: #fff;
   }
 }
+
+@media (max-width: 700px) {
+  .listing-wrapper {
+    position: fixed;
+    z-index: 2;
+  }
+}

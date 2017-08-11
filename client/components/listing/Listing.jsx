@@ -84,7 +84,7 @@ class Listing extends React.Component {
 
   render() {
     return (
-      <div className="listing-wrapper">
+      <div className={this.props.visible ? "listing-wrapper" : "hidden"}>
         <div className="listing-content">
           <ListingHeader />
           <ListingInformationContainer
