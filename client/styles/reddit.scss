@@ -177,3 +177,15 @@
     }
   }
 }
+
+@media (max-width: 900px) {
+  .reddit-content-wrapper {
+    height: 150%;
+  }
+}
+
+@media (max-width: 700px) {
+  .reddit-content-wrapper {
+    height: 200%;
+  }
+}
