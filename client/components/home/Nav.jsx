@@ -11,7 +11,7 @@ const Nav = props => {
   };
 
   return (
-    <div className="nav-wrapper">
+    <div className={`nav-wrapper border-${props.mode}`}>
       <Link to="/">
         <img
           src="http://res.cloudinary.com/jinchen93/image/upload/v1499466797/bundleme_rrdclf.svg"

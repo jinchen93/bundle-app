@@ -45,7 +45,7 @@ class HomePage extends React.Component {
     const { mode } = this.props.match.params;
     return (
       <div className="home-wrapper">
-        <NavContainer />
+        <NavContainer mode={mode} />
         <i className="ion-navicon-round" onClick={this.handleVisibilityClick} />
         <div className="content-wrapper">
           <ListingContainer visible={this.state.sideVisibility} mode={mode} />

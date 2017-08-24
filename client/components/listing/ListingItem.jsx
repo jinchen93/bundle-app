@@ -28,8 +28,7 @@ const ListingItem = props => {
       {!reddit &&
         <img src={channel.thumbnail} alt={channel.name + " thumbnail"} />}
       {channelName}
-      {twitch &&
-        channel.viewers &&
+      {channel.viewers &&
         <div className="twitch-viewer-count">
           <div className="circle" />
           {channel.viewers}
