@@ -16,6 +16,7 @@ const ListingItem = props => {
       id={deleteMode ? `deleting-${mode}` : ""}
       data-id={channel.id}
       data-name={channelName}
+      data-mode={mode}
       className={selected ? "listing-item selected" : "listing-item"}
       to={
         mode === "twitch"

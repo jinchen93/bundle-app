@@ -7,10 +7,8 @@ class Listing extends React.Component {
   constructor(props) {
     super(props);
     this.state = { deleteMode: false };
-    this.deleteConfirmation = this.deleteConfirmation.bind(this);
-    this.handleYoutubeClick = this.handleYoutubeClick.bind(this);
-    this.handleRedditClick = this.handleRedditClick.bind(this);
-    this.handleTwitchClick = this.handleTwitchClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.dispatchDeleteAction = this.dispatchDeleteAction.bind(this);
     this.toggleDeleteMode = this.toggleDeleteMode.bind(this);
   }
 
@@ -18,35 +16,34 @@ class Listing extends React.Component {
     this.setState({ deleteMode: !this.state.deleteMode });
   }
 
-  deleteConfirmation(e) {
+  handleClick(e) {
     if (this.state.deleteMode) {
       e.preventDefault();
-      const name = e.currentTarget.getAttribute("data-name");
-      return window.confirm(`Are you sure you want to delete ${name}?`)
+      const target = e.currentTarget;
+      const name = target.getAttribute("data-name");
+      const mode = target.getAttribute("data-mode");
+      const id = target.getAttribute("data-id");
+      const confirm = window.confirm(
+        `Are you sure you want to delete ${name}?`
+      );
+      if (confirm) {
+        this.dispatchDeleteAction(mode, id).then(() => {
+          this.toggleDeleteMode();
+        });
+      }
     }
   }
 
-  handleYoutubeClick(e) {
-    const confirmClick = this.deleteConfirmation(e);
-    if (confirmClick) {
-      const id = e.currentTarget.getAttribute("data-id");
-      this.props.removeYoutubeChannel(id);
-    }
-  }
-
-  handleRedditClick(e) {
-    const confirmClick = this.deleteConfirmation(e);
-    if (confirmClick) {
-      const id = e.currentTarget.getAttribute("data-id");
-      this.props.removeSubreddit(id);
-    }
-  }
-
-  handleTwitchClick(e) {
-    const confirmClick = this.deleteConfirmation(e);
-    if (confirmClick) {
-      const id = e.currentTarget.getAttribute("data-id");
-      this.props.removeTwitchChannel(id);
+  dispatchDeleteAction(mode, id) {
+    switch (mode) {
+      case "twitch":
+        return this.props.removeTwitchChannel(id);
+      case "reddit":
+        return this.props.removeSubreddit(id);
+      case "youtube":
+        return this.props.removeYoutubeChannel(id);
+      default:
+        return;
     }
   }
 
@@ -57,7 +54,7 @@ class Listing extends React.Component {
           <ListingItem
             mode={this.props.mode}
             deleteMode={this.state.deleteMode}
-            handleClick={this.handleYoutubeClick}
+            handleClick={this.handleClick}
             selected={this.props.match.params.id == channel.id}
             key={channel.id}
             channel={channel}
@@ -69,7 +66,7 @@ class Listing extends React.Component {
             reddit
             mode={this.props.mode}
             deleteMode={this.state.deleteMode}
-            handleClick={this.handleRedditClick}
+            handleClick={this.handleClick}
             selected={this.props.match.params.id == subreddit.id}
             key={subreddit.id}
             channel={subreddit}
@@ -80,7 +77,7 @@ class Listing extends React.Component {
           <ListingItem
             mode={this.props.mode}
             deleteMode={this.state.deleteMode}
-            handleClick={this.handleTwitchClick}
+            handleClick={this.handleClick}
             selected={this.props.match.params.id == channel.idName}
             key={channel.id}
             channel={channel}
