@@ -27,10 +27,9 @@ class Listing extends React.Component {
         `Are you sure you want to delete ${name}?`
       );
       if (confirm) {
-        this.dispatchDeleteAction(mode, id).then(() => {
-          this.toggleDeleteMode();
-        });
+        this.dispatchDeleteAction(mode, id);
       }
+      this.toggleDeleteMode();
     }
   }
 

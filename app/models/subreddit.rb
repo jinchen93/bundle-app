@@ -37,7 +37,7 @@ class Subreddit < ApplicationRecord
     self.url = "http://www.reddit.com/r/#{self.name}.json"
     # Check for one thread first to speed up api response
     threads = request_subreddit_threads(1)
-    unless threads
+    if threads.empty?
       self.errors[:base] << "Not a valid subreddit"
     end
   end
