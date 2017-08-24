@@ -46,7 +46,7 @@ class ListingInformation extends React.Component {
         break;
     }
 
-    this.setState({ value: "" });
+    this.setState({ value: "", addBarOpen: false });
   }
 
   renderAdd() {
