@@ -11,6 +11,13 @@ class ListingInformation extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.renderDelete = this.renderDelete.bind(this);
     this.renderPlaceholder = this.renderPlaceholder.bind(this);
+    this.focusInput = this.focusInput.bind(this);
+  }
+
+  focusInput(node) {
+    if (node) {
+      node.focus();
+    }
   }
 
   toggleAddBar(e) {
@@ -50,6 +57,7 @@ class ListingInformation extends React.Component {
       >
         <div className="input-group">
           <input
+            ref={this.focusInput}
             type="text"
             value={this.state.value}
             onChange={this.handleChange}
