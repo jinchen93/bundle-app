@@ -7,6 +7,7 @@ class Listing extends React.Component {
   constructor(props) {
     super(props);
     this.state = { deleteMode: false };
+    this.deleteConfirmation = this.deleteConfirmation.bind(this);
     this.handleYoutubeClick = this.handleYoutubeClick.bind(this);
     this.handleRedditClick = this.handleRedditClick.bind(this);
     this.handleTwitchClick = this.handleTwitchClick.bind(this);
@@ -17,27 +18,35 @@ class Listing extends React.Component {
     this.setState({ deleteMode: !this.state.deleteMode });
   }
 
-  handleYoutubeClick(e) {
+  deleteConfirmation(e) {
     if (this.state.deleteMode) {
       e.preventDefault();
-      const target = e.currentTarget;
-      this.props.removeYoutubeChannel(target.getAttribute("data-id"));
+      const name = e.currentTarget.getAttribute("data-name");
+      return window.confirm(`Are you sure you want to delete ${name}?`)
+    }
+  }
+
+  handleYoutubeClick(e) {
+    const confirmClick = this.deleteConfirmation(e);
+    if (confirmClick) {
+      const id = e.currentTarget.getAttribute("data-id");
+      this.props.removeYoutubeChannel(id);
     }
   }
 
   handleRedditClick(e) {
-    if (this.state.deleteMode) {
-      e.preventDefault();
-      const target = e.currentTarget;
-      this.props.removeSubreddit(target.getAttribute("data-id"));
+    const confirmClick = this.deleteConfirmation(e);
+    if (confirmClick) {
+      const id = e.currentTarget.getAttribute("data-id");
+      this.props.removeSubreddit(id);
     }
   }
 
   handleTwitchClick(e) {
-    if (this.state.deleteMode) {
-      e.preventDefault();
-      const target = e.currentTarget;
-      this.props.removeTwitchChannel(target.getAttribute("data-id"));
+    const confirmClick = this.deleteConfirmation(e);
+    if (confirmClick) {
+      const id = e.currentTarget.getAttribute("data-id");
+      this.props.removeTwitchChannel(id);
     }
   }
 
