@@ -68,6 +68,9 @@ function initializeAPITests() {
       .stub(TwitchAPIUtil, "fetchTwitchFollows")
       .returns(Promise.resolve("success"));
     sinon
+      .stub(TwitchAPIUtil, "fetchTopStreams")
+      .returns(Promise.resolve("success"));
+    sinon
       .stub(RedditAPIUtil, "fetchRedditFollows")
       .returns(Promise.resolve("success"));
     sinon
@@ -79,6 +82,7 @@ function initializeAPITests() {
     YoutubeAPIUtil.fetchYoutubeFollows.restore();
     YoutubeAPIUtil.fetchYoutubeMostPopular.restore();
     TwitchAPIUtil.fetchTwitchFollows.restore();
+    TwitchAPIUtil.fetchTopStreams.restore();
     RedditAPIUtil.fetchRedditFollows.restore();
     RedditAPIUtil.fetchAllSubreddit.restore();
   });
