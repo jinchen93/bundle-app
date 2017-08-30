@@ -14,6 +14,10 @@ This app provides a new home page for people who want all of their daily content
 
 <img src="http://res.cloudinary.com/jinchen93/image/upload/v1500258126/Screen_Shot_2017-07-16_at_7.21.43_PM_jc6yuk.png" alt="BundleMe screenshot">
 
+## WIP Features
+- Add Yelp API. Make two lists, one for search queries and the second for locations.
+Users should be able to select one item from each list and perform a Yelp search.
+
 ## Changelog
 #### Version 3.0
 - Complete site redesign.
