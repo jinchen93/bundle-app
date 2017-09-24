@@ -1,3 +1,5 @@
+// @flow
+
 import {
   RECEIVE_REDDIT_FOLLOWS,
   RECEIVE_SUBREDDIT_THREADS,
@@ -12,7 +14,7 @@ export const _nullState = {
   comments: { thread: null, comments: null },
 };
 
-const redditReducer = (state = _nullState, action) => {
+const redditReducer = (state: Object = _nullState, action: Object) => {
   let newSubreddits;
   Object.freeze(state);
 
