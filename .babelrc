@@ -1,10 +1,4 @@
 {
-  "presets": [
-    "es2015",
-    "react"
-  ],
-  "plugins": [
-    "react-hot-loader/babel",
-    "transform-object-rest-spread"
-  ]
+  "presets": ["es2015", "react", "flow"],
+  "plugins": ["react-hot-loader/babel", "transform-object-rest-spread"]
 }

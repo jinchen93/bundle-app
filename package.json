@@ -1,18 +1,24 @@
 {
   "name": "bundle-app",
   "version": "1.0.0",
-  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "description":
+    "This README would normally document whatever steps are necessary to get the application up and running.",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
     "start": "node devServer.js",
-    "build": "webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors",
-    "test": "mocha --compilers js:babel-core/register --compilers jsx:babel-register --require ./client/test/test_helper.js --recursive ./client/test",
+    "build":
+      "webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors",
+    "test":
+      "mocha --compilers js:babel-core/register --compilers jsx:babel-register --require ./client/test/test_helper.js --recursive ./client/test",
     "test:watch": "npm run test -- --watch",
-    "cover": "node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover _mocha -- --compilers js:babel-core/register --compilers jsx:babel-register --require ./client/test/test_helper.js --recursive ./client/test",
-    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+    "cover":
+      "node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover _mocha -- --compilers js:babel-core/register --compilers jsx:babel-register --require ./client/test/test_helper.js --recursive ./client/test",
+    "coveralls":
+      "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
+    "flow": "flow"
   },
   "keywords": [],
   "author": "",
@@ -44,11 +50,13 @@
     "webpack": "^3.0.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
+    "babel-cli": "^6.26.0",
     "babel-istanbul": "^0.12.2",
+    "babel-preset-flow": "^6.23.0",
     "chai": "^4.0.2",
     "chai-jquery": "^2.0.0",
     "coveralls": "^2.13.1",
+    "flow-bin": "^0.55.0",
     "jquery": "^3.2.1",
     "jsdom": "^11.1.0",
     "mocha": "^3.4.2",
