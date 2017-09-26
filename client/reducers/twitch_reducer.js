@@ -1,3 +1,5 @@
+// @flow
+
 import {
   RECEIVE_TWITCH_FOLLOWS,
   RECEIVE_TWITCH_CHANNEL,
@@ -12,7 +14,7 @@ export const _nullState = {
   topStreams: [],
 };
 
-const twitchReducer = (state = _nullState, action) => {
+const twitchReducer = (state: Object = _nullState, action: Object) => {
   let newChannels;
   Object.freeze(state);
 
