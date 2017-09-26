@@ -1,3 +1,5 @@
+// @flow
+
 import {
   RECEIVE_CURRENT_USER,
   RECEIVE_ERRORS,
@@ -10,7 +12,7 @@ export const _nullState = {
   errors: [],
 };
 
-const sessionReducer = (state = _nullState, action) => {
+const sessionReducer = (state: Object = _nullState, action: Object) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
