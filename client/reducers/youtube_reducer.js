@@ -1,3 +1,5 @@
+// @flow
+
 import {
   RECEIVE_YOUTUBE_FOLLOWS,
   RECEIVE_YOUTUBE_VIDEOS,
@@ -11,7 +13,7 @@ export const _nullState = {
   videos: [],
 };
 
-const youtubeReducer = (state = _nullState, action) => {
+const youtubeReducer = (state: Object = _nullState, action: Object) => {
   let newChannels;
   Object.freeze(state);
 
