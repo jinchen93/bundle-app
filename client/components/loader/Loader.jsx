@@ -1,8 +1,11 @@
+// @flow
+
 import React from "react";
 
-const Loader = ({ type }) =>
+const Loader = ({ type }: { type: string }) => (
   <div className="loader-wrapper">
     <div className={`loader ${type}`} />
-  </div>;
+  </div>
+);
 
 export default Loader;
