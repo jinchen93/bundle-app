@@ -1,9 +1,11 @@
+// @flow
+
 import React from "react";
 import YoutubeContentContainer from "../youtube/YoutubeContentContainer";
 import RedditContent from "../reddit/RedditContent";
 import TwitchContent from "../twitch/TwitchContent";
 
-const Media = ({ mode }) => {
+const Media = ({ mode }: { mode: string }) => {
   const renderMode = () => {
     switch (mode) {
       case "youtube":
@@ -17,11 +19,7 @@ const Media = ({ mode }) => {
     }
   };
 
-  return (
-    <div className="media-wrapper">
-      {renderMode()}
-    </div>
-  );
+  return <div className="media-wrapper">{renderMode()}</div>;
 };
 
 export default Media;
