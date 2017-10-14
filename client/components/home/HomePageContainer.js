@@ -1,3 +1,5 @@
+// @flow
+
 import { connect } from "react-redux";
 import HomePage from "./HomePage";
 import { fetchYoutubeFollows } from "../../actions/youtube_actions";
