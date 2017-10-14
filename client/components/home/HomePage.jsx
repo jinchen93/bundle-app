@@ -1,14 +1,32 @@
+// @flow
+
 import React from "react";
 import NavContainer from "./NavContainer";
 import ListingContainer from "../listing/ListingContainer";
 import Media from "../media/Media";
 
-class HomePage extends React.Component {
+type Props = {
+  mode: string,
+  match: Object,
+  fetchYoutubeFollows: Function,
+  fetchRedditFollows: Function,
+  fetchTwitchFollows: Function,
+};
+
+type State = {
+  sideVisibility: boolean,
+};
+
+class HomePage extends React.Component<Props, State> {
+  fetchContent: Function;
+  handleVisibilityClick: Function;
+  interval: ?number;
+
   constructor() {
     super();
     this.fetchContent = this.fetchContent.bind(this);
     this.handleVisibilityClick = this.handleVisibilityClick.bind(this);
-    this.state = { interval: null, sideVisibility: true };
+    this.state = { sideVisibility: true };
   }
 
   componentDidMount() {
@@ -16,7 +34,7 @@ class HomePage extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.mode !== twitch && this.interval) {
+    if (this.props.mode !== "twitch" && this.interval) {
       clearInterval(this.interval);
       this.interval = null;
     }

@@ -1,3 +1,5 @@
+// @flow
+
 import {
   LOADING_YOUTUBE_VIDEOS,
   RECEIVE_YOUTUBE_VIDEOS,
@@ -23,7 +25,7 @@ export const _nullState = {
   twitchStream: false,
 };
 
-const loaderReducer = (state = _nullState, action) => {
+const loaderReducer = (state: Object = _nullState, action: Object) => {
   Object.freeze(state);
 
   switch (action.type) {
