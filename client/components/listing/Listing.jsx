@@ -1,10 +1,31 @@
+// @flow
+
 import React from "react";
 import ListingHeader from "./ListingHeader";
 import ListingItem from "./ListingItem";
 import ListingInformationContainer from "./ListingInformationContainer.js";
 
-class Listing extends React.Component {
-  constructor(props) {
+type Props = {
+  mode: string,
+  youtubeChannels: Array<Object>,
+  subreddits: Array<Object>,
+  twitchChannels: Array<Object>,
+  match: Object,
+  removeTwitchChannel: Function,
+  removeSubreddit: Function,
+  removeYoutubeChannel: Function,
+};
+
+type State = {
+  deleteMode: boolean,
+};
+
+class Listing extends React.Component<Props, State> {
+  handleClick: Function;
+  dispatchDeleteAction: Function;
+  toggleDeleteMode: Function;
+
+  constructor(props: Object) {
     super(props);
     this.state = { deleteMode: false };
     this.handleClick = this.handleClick.bind(this);
@@ -16,7 +37,7 @@ class Listing extends React.Component {
     this.setState({ deleteMode: !this.state.deleteMode });
   }
 
-  handleClick(e) {
+  handleClick(e: Object) {
     if (this.state.deleteMode) {
       e.preventDefault();
       const target = e.currentTarget;
@@ -33,7 +54,7 @@ class Listing extends React.Component {
     }
   }
 
-  dispatchDeleteAction(mode, id) {
+  dispatchDeleteAction(mode: string, id: number) {
     switch (mode) {
       case "twitch":
         return this.props.removeTwitchChannel(id);
@@ -49,7 +70,7 @@ class Listing extends React.Component {
   renderMode() {
     switch (this.props.mode) {
       case "youtube":
-        return this.props.youtubeChannels.map(channel =>
+        return this.props.youtubeChannels.map(channel => (
           <ListingItem
             mode={this.props.mode}
             deleteMode={this.state.deleteMode}
@@ -58,9 +79,9 @@ class Listing extends React.Component {
             key={channel.id}
             channel={channel}
           />
-        );
+        ));
       case "reddit":
-        return this.props.subreddits.map(subreddit =>
+        return this.props.subreddits.map(subreddit => (
           <ListingItem
             reddit
             mode={this.props.mode}
@@ -70,9 +91,9 @@ class Listing extends React.Component {
             key={subreddit.id}
             channel={subreddit}
           />
-        );
+        ));
       case "twitch":
-        return this.props.twitchChannels.map(channel =>
+        return this.props.twitchChannels.map(channel => (
           <ListingItem
             mode={this.props.mode}
             deleteMode={this.state.deleteMode}
@@ -81,7 +102,7 @@ class Listing extends React.Component {
             key={channel.id}
             channel={channel}
           />
-        );
+        ));
       default:
         return null;
     }
