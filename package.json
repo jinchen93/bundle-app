@@ -1,23 +1,18 @@
 {
   "name": "bundle-app",
   "version": "1.0.0",
-  "description":
-    "This README would normally document whatever steps are necessary to get the application up and running.",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
     "start": "node devServer.js",
-    "build":
-      "webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors",
-    "test":
-      "mocha --compilers js:babel-core/register --compilers jsx:babel-register --require ./client/test/test_helper.js --recursive ./client/test",
+    "build": "webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors",
+    "test": "mocha --compilers js:babel-core/register --compilers jsx:babel-register --require ./client/test/test_helper.js --recursive ./client/test",
     "test:watch": "npm run test -- --watch",
-    "cover":
-      "node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover _mocha -- --compilers js:babel-core/register --compilers jsx:babel-register --require ./client/test/test_helper.js --recursive ./client/test",
-    "coveralls":
-      "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
+    "cover": "node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover _mocha -- --compilers js:babel-core/register --compilers jsx:babel-register --require ./client/test/test_helper.js --recursive ./client/test",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "flow": "flow"
   },
   "keywords": [],
@@ -30,6 +25,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "classnames": "^2.2.5",
     "css-loader": "^0.28.4",
     "eslint": "^4.1.1",
     "eslint-loader": "^1.8.0",

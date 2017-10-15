@@ -1,3 +1,5 @@
+// @flow
+
 import { connect } from "react-redux";
 import Listing from "./Listing";
 import { withRouter } from "react-router-dom";

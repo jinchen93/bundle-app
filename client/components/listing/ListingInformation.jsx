@@ -1,7 +1,31 @@
+// @flow
+
 import React from "react";
 
-class ListingInformation extends React.Component {
-  constructor(props) {
+type Props = {
+  mode: string,
+  followYoutubeChannel: Function,
+  followSubreddit: Function,
+  followTwitchChannel: Function,
+  toggleDeleteMode: Function,
+};
+
+type State = {
+  addBarOpen: boolean,
+  value: string,
+};
+
+class ListingInformation extends React.Component<Props, State> {
+  toggleAddBar: Function;
+  renderAdd: Function;
+  renderDefault: Function;
+  handleSubmit: Function;
+  handleChange: Function;
+  renderDelete: Function;
+  renderPlaceholder: Function;
+  focusInput: Function;
+
+  constructor(props: Object) {
     super(props);
     this.state = { addBarOpen: false, value: "" };
     this.toggleAddBar = this.toggleAddBar.bind(this);
@@ -14,23 +38,23 @@ class ListingInformation extends React.Component {
     this.focusInput = this.focusInput.bind(this);
   }
 
-  focusInput(node) {
+  focusInput(node: Object) {
     if (node) {
       node.focus();
     }
   }
 
-  toggleAddBar(e) {
+  toggleAddBar(e: Object) {
     e.preventDefault();
     this.setState({ addBarOpen: !this.state.addBarOpen });
   }
 
-  handleChange(e) {
+  handleChange(e: Object) {
     e.preventDefault();
     this.setState({ value: e.currentTarget.value });
   }
 
-  handleSubmit(e) {
+  handleSubmit(e: Object) {
     e.preventDefault();
     switch (this.props.mode) {
       case "youtube":
