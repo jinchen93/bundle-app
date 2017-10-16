@@ -1,10 +1,19 @@
+// @flow
+
 import React from "react";
 import Loader from "../loader/Loader";
 import RedditThreadBody from "./RedditThreadBody";
 import RedditComment from "./RedditComment";
 import RedditThreadItem from "./RedditThreadItem";
 
-class RedditCommentList extends React.Component {
+type Props = {
+  match: Object,
+  fetchRedditComments: Function,
+  thread: Object,
+  comments: Array<Object>,
+};
+
+class RedditCommentList extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchRedditComments(this.props.match.params.threadId);
   }
@@ -24,17 +33,18 @@ class RedditCommentList extends React.Component {
                 self
                 thread={this.props.thread}
               />
-              {this.props.thread.body &&
-                <RedditThreadBody body={this.props.thread.body} />}
+              {this.props.thread.body && (
+                <RedditThreadBody body={this.props.thread.body} />
+              )}
             </div>
-            {this.props.comments.map(comment =>
+            {this.props.comments.map(comment => (
               <RedditComment
                 topComment
                 alternateColor={false}
                 key={comment.id}
                 comment={comment}
               />
-            )}
+            ))}
           </div>
         </div>
       );
