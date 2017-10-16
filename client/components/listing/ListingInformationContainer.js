@@ -1,3 +1,5 @@
+// @flow
+
 import { connect } from "react-redux";
 import { followYoutubeChannel } from "../../actions/youtube_actions";
 import { followSubreddit } from "../../actions/reddit_actions";

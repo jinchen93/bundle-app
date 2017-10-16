@@ -1,7 +1,20 @@
+// @flow
 import React from "react";
 
-class RedditComment extends React.Component {
-  constructor(props) {
+type Props = {
+  alternateColor: boolean,
+  topComment: boolean,
+  comment: Object,
+};
+
+type State = {
+  childrenHidden: boolean,
+};
+
+class RedditComment extends React.Component<Props, State> {
+  handleClick: Function;
+
+  constructor(props: Object) {
     super(props);
     this.state = { childrenHidden: false };
     this.handleClick = this.handleClick.bind(this);
@@ -10,17 +23,18 @@ class RedditComment extends React.Component {
   renderReplies() {
     const { alternateColor, comment } = this.props;
     if (comment.replies) {
-      return comment.replies.map(comment =>
+      return comment.replies.map(comment => (
         <RedditComment
+          topComment={false}
           alternateColor={!alternateColor}
           key={comment.id}
           comment={comment}
         />
-      );
+      ));
     }
   }
 
-  handleClick(e) {
+  handleClick(e: Object) {
     e.preventDefault();
     e.stopPropagation();
     this.setState({ childrenHidden: !this.state.childrenHidden });
@@ -33,9 +47,7 @@ class RedditComment extends React.Component {
         <div className={topComment ? "top" : ""}>
           <div className={alternateColor ? "comment grey" : "comment"}>
             <div className="comment-meta-data">
-              <span className="author">
-                {comment.author}
-              </span>
+              <span className="author">{comment.author}</span>
               <span className="points">
                 {comment.score} points{" "}
                 <button onClick={this.handleClick}>
@@ -47,16 +59,16 @@ class RedditComment extends React.Component {
                 </button>
               </span>
             </div>
-            {!this.state.childrenHidden &&
+            {!this.state.childrenHidden && (
               <div
                 className="comment-body"
                 dangerouslySetInnerHTML={{ __html: comment.body }}
-              />}
+              />
+            )}
           </div>
-          {!this.state.childrenHidden &&
-            <div className="children">
-              {this.renderReplies()}
-            </div>}
+          {!this.state.childrenHidden && (
+            <div className="children">{this.renderReplies()}</div>
+          )}
         </div>
       );
     } else {

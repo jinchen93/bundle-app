@@ -1,7 +1,9 @@
+// @flow
+
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ListingItem = props => {
+const ListingItem = (props: Object) => {
   const { handleClick, reddit, channel, selected, deleteMode, mode } = props;
   let channelName;
 
@@ -25,14 +27,16 @@ const ListingItem = props => {
       }
       onClick={handleClick}
     >
-      {!reddit &&
-        <img src={channel.thumbnail} alt={channel.name + " thumbnail"} />}
+      {!reddit && (
+        <img src={channel.thumbnail} alt={channel.name + " thumbnail"} />
+      )}
       {channelName}
-      {channel.viewers &&
+      {channel.viewers && (
         <div className="twitch-viewer-count">
           <div className="circle" />
           {channel.viewers}
-        </div>}
+        </div>
+      )}
     </Link>
   );
 };

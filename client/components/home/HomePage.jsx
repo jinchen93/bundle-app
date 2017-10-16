@@ -62,10 +62,13 @@ class HomePage extends React.Component<Props, State> {
   render() {
     const { mode } = this.props.match.params;
     return (
-      <div className="home-wrapper">
+      <div className={"home-wrapper"}>
         <NavContainer mode={mode} />
-        <i className="ion-navicon-round" onClick={this.handleVisibilityClick} />
-        <div className="content-wrapper">
+        <i
+          className={"ion-navicon-round"}
+          onClick={this.handleVisibilityClick}
+        />
+        <div className={"content-wrapper"}>
           <ListingContainer visible={this.state.sideVisibility} mode={mode} />
           <Media mode={mode} />
         </div>
