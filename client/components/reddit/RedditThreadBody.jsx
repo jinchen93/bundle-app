@@ -1,6 +1,13 @@
+// @flow
+
 import React from "react";
 
-const RedditThreadBody = ({ body }) =>
-  <div className="body" dangerouslySetInnerHTML={{ __html: body }} />;
+type Props = {
+  body: string,
+};
+
+const RedditThreadBody = ({ body }: Props) => (
+  <div className="body" dangerouslySetInnerHTML={{ __html: body }} />
+);
 
 export default RedditThreadBody;

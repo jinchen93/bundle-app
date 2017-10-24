@@ -4,6 +4,7 @@ import React from "react";
 import ListingHeader from "./ListingHeader";
 import ListingItem from "./ListingItem";
 import ListingInformationContainer from "./ListingInformationContainer.js";
+import cn from "classnames";
 
 type Props = {
   mode: string,
@@ -14,6 +15,7 @@ type Props = {
   removeTwitchChannel: Function,
   removeSubreddit: Function,
   removeYoutubeChannel: Function,
+  visible: boolean,
 };
 
 type State = {
@@ -110,7 +112,12 @@ class Listing extends React.Component<Props, State> {
 
   render() {
     return (
-      <div className={this.props.visible ? "listing-wrapper" : "hidden"}>
+      <div
+        className={cn({
+          "listing-wrapper": this.props.visible,
+          hidden: !this.props.visible,
+        })}
+      >
         <div className="listing-content">
           <ListingHeader />
           <ListingInformationContainer

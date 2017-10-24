@@ -3,6 +3,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { redirectTo } from "../../utils/router_util";
+import cn from "classnames";
 
 type Props = {
   logout: Function,
@@ -19,7 +20,7 @@ const Nav = (props: Props) => {
   };
 
   return (
-    <div className={`nav-wrapper border-${props.mode}`}>
+    <div className={cn("nav-wrapper", `border-${props.mode}`)}>
       <Link to="/">
         <img
           src="http://res.cloudinary.com/jinchen93/image/upload/v1499466797/bundleme_rrdclf.svg"
