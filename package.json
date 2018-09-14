@@ -48,6 +48,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-istanbul": "^0.12.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-flow": "^6.23.0",
     "chai": "^4.0.2",
     "chai-jquery": "^2.0.0",

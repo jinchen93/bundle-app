@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import React, { Component } from "react";
 
 type Props = {
   alternateColor: boolean,
@@ -11,13 +11,12 @@ type State = {
   childrenHidden: boolean,
 };
 
-class RedditComment extends React.Component<Props, State> {
+class RedditComment extends Component<Props, State> {
   handleClick: Function;
 
   constructor(props: Object) {
     super(props);
     this.state = { childrenHidden: false };
-    this.handleClick = this.handleClick.bind(this);
   }
 
   renderReplies() {
@@ -34,7 +33,7 @@ class RedditComment extends React.Component<Props, State> {
     }
   }
 
-  handleClick(e: Object) {
+  handleClick = (e: Object) => {
     e.preventDefault();
     e.stopPropagation();
     this.setState({ childrenHidden: !this.state.childrenHidden });

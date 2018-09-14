@@ -1,5 +1,4 @@
 // @flow
-
 import React, { PureComponent } from "react";
 import Loader from "../loader/Loader";
 import RedditThreadBody from "./RedditThreadBody";
