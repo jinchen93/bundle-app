@@ -1,6 +1,6 @@
 // @flow
 
-import React from "react";
+import React, { PureComponent } from "react";
 import Loader from "../loader/Loader";
 import RedditThreadBody from "./RedditThreadBody";
 import RedditComment from "./RedditComment";
@@ -15,7 +15,7 @@ type Props = {
   comment: Object,
 };
 
-class RedditCommentList extends React.Component<Props> {
+class RedditCommentList extends PureComponent<Props> {
   componentDidMount() {
     const {
       fetchRedditComments,
