@@ -11,46 +11,54 @@ type Props = {
   fetchRedditComments: Function,
   thread: Object,
   comments: Array<Object>,
+  loading: Boolean,
+  comment: Object,
 };
 
 class RedditCommentList extends React.Component<Props> {
   componentDidMount() {
-    this.props.fetchRedditComments(this.props.match.params.threadId);
+    const {
+      fetchRedditComments,
+      match: { params: { threadId } },
+    } = this.props;
+
+    fetchRedditComments(threadId);
   }
 
   render() {
-    if (this.props.loading) {
-      return <Loader type="reddit" />;
-    }
+    const {
+      match: { params: { channelName } },
+      loading,
+      comments,
+      thread,
+    } = this.props;
 
-    if (this.props.comments) {
-      return (
-        <div className="reddit-comment-list-container">
-          <div className="reddit-content-wrapper">
-            <div className="thread-post">
-              <RedditThreadItem
-                allSubreddit={this.props.match.params.channelName === "all"}
-                self
-                thread={this.props.thread}
-              />
-              {this.props.thread.body && (
-                <RedditThreadBody body={this.props.thread.body} />
-              )}
-            </div>
-            {this.props.comments.map(comment => (
-              <RedditComment
-                topComment
-                alternateColor={false}
-                key={comment.id}
-                comment={comment}
-              />
-            ))}
+    if (loading) return <Loader type="reddit" />;
+    if (!comments) return null;
+    return (
+      <div className="reddit-comment-list-container">
+        <div className="reddit-content-wrapper">
+          <div className="thread-post">
+            <RedditThreadItem
+              allSubreddit={channelName === "all"}
+              self
+              thread={thread}
+            />
+            {thread.body && (
+              <RedditThreadBody body={thread.body} />
+            )}
           </div>
+          {comments.map(comment => (
+            <RedditComment
+              topComment
+              alternateColor={false}
+              key={comment.id}
+              comment={comment}
+            />
+          ))}
         </div>
-      );
-    } else {
-      return null;
-    }
+      </div>
+    );
   }
 }
 
