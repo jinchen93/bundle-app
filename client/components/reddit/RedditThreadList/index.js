@@ -22,57 +22,64 @@ const actions = {
   fetchAllSubreddit,
 };
 
+const ALL_SUBREDDIT = '/reddit/r/all';
+
 class RedditThreadList extends React.Component {
   componentDidMount() {
-    if (this.props.match.params.id) {
-      this.fetchNewThreads();
-    } else {
-      this.props.fetchAllSubreddit();
-    }
+    const { match: { params: { id } }, fetchAllSubreddit } = this.props;
+
+    if (id) return this.fetchNewThreads();
+    fetchAllSubreddit();
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.match.params.id !== this.props.match.params.id) {
+    const { match: { params: { id: prevId } } } = prevProps;
+    const {
+      match: { params: { id } },
+      fetchAllSubreddit,
+    } = this.props;
+
+    if (prevId !== id) {
       this.fetchNewThreads();
-      if (!this.props.match.params.id) {
-        this.props.fetchAllSubreddit();
+      if (!id) {
+        fetchAllSubreddit();
       }
     }
   }
 
   fetchNewThreads() {
-    if (this.props.match.params.id) {
-      this.props.fetchSubredditThreads(this.props.match.params.id);
-    }
+    const {
+      match: { params: { id } },
+      fetchSubredditThreads,
+    } = this.props;
+
+    if (id) fetchSubredditThreads(id);
   }
 
   render() {
-    if (this.props.loading) {
-      return <Loader type="reddit" />;
-    }
+    const {
+      match: { params: { id } },
+      location: { pathname },
+      loading,
+      threads,
+    } = this.props;
 
-    if (this.props.threads.length) {
-      return (
-        <div className="reddit-content-wrapper">
-          {this.props.threads.map(thread => (
-            <RedditThreadItem
-              allSubreddit={!Boolean(this.props.match.params.id)}
-              path={
-                this.props.match.params.id ? (
-                  this.props.location.pathname
-                ) : (
-                  '/reddit/r/all'
-                )
-              }
-              key={thread.id}
-              thread={thread}
-            />
-          ))}
-        </div>
-      );
-    } else {
-      return null;
-    }
+    if (loading) return <Loader type="reddit" />;
+
+    if (!threads.length) return null;
+
+    return (
+      <div className="reddit-content-wrapper">
+        {threads.map(thread => (
+          <RedditThreadItem
+            allSubreddit={!Boolean(id)}
+            path={id ? pathname : ALL_SUBREDDIT}
+            key={thread.id}
+            thread={thread}
+          />
+        ))}
+      </div>
+    );
   }
 }
 
