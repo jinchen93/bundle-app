@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const RedditThreadItem = ({ allSubreddit, expanded, path, thread }) => {
   const {
     date,
-    comments,
+    comments: numComments,
     id,
     permaTitle,
     self,
@@ -17,6 +17,8 @@ const RedditThreadItem = ({ allSubreddit, expanded, path, thread }) => {
     author,
     subreddit,
   } = thread;
+
+  const authorMeta = `submitted ${unix(date).fromNow()} by ${author}`;
 
   return (
     <div className="reddit-thread-item">
@@ -42,13 +44,13 @@ const RedditThreadItem = ({ allSubreddit, expanded, path, thread }) => {
           </div>
           <div className="publisher">
             {expanded ? (
-              <p className="comments">{comments} comments</p>
+              <p className="comments">{numComments} comments</p>
             ) : (
               <Link className="comments" to={`${path}/${id}/${permaTitle}`}>
-                {comments} comments
+                {numComments} comments
               </Link>
             )}
-            submitted {unix(date).fromNow()} by {author}
+            {authorMeta}
             {allSubreddit && ` to /r/${subreddit}`}
           </div>
         </div>
