@@ -1,9 +1,34 @@
 // @flow
 import React, { PureComponent } from "react";
-import Loader from "../loader/Loader";
-import RedditThreadBody from "./RedditThreadBody";
-import RedditComment from "./RedditComment";
-import RedditThreadItem from "./RedditThreadItem";
+import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
+import { withRouter } from "react-router-dom";
+import Loader from "../../loader/Loader";
+import RedditThreadBody from "../RedditThreadBody";
+import RedditComment from "../RedditComment";
+import RedditThreadItem from "../RedditThreadItem";
+import { fetchRedditComments } from "../../../actions/reddit_actions";
+
+const mapStateToProps = ({
+  reddit: {
+    comments: {
+      thread,
+      comments,
+    }
+  },
+  loader: {
+    redditComments: loading,
+  },
+}) => ({
+  thread,
+  comments,
+  loading,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(
+  { fetchRedditComments },
+  dispatch,
+)
 
 type Props = {
   match: Object,
@@ -61,4 +86,6 @@ class RedditCommentList extends PureComponent<Props> {
   }
 }
 
-export default RedditCommentList;
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(RedditCommentList)
+);
