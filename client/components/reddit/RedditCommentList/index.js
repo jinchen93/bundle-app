@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import Loader from '../../loader/Loader';
-import RedditThreadBody from '../RedditThreadBody';
 import RedditComment from '../RedditComment';
 import RedditThreadItem from '../RedditThreadItem';
 import { fetchRedditComments } from '../../../actions/reddit_actions';
@@ -18,8 +17,7 @@ const mapStateToProps = ({
   loading,
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ fetchRedditComments }, dispatch);
+const actions = { fetchRedditComments };
 
 type Props = {
   match: Object,
@@ -58,7 +56,12 @@ class RedditCommentList extends PureComponent<Props> {
               allSubreddit={channelName === 'all'}
               thread={thread}
             />
-            {thread.body && <RedditThreadBody body={thread.body} />}
+            {thread.body && (
+              <div
+                className="body"
+                dangerouslySetInnerHTML={{ __html: thread.body }}
+              />
+            )}
           </div>
           {comments.map(comment => (
             <RedditComment
@@ -73,6 +76,8 @@ class RedditCommentList extends PureComponent<Props> {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(RedditCommentList)
