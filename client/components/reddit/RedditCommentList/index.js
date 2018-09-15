@@ -52,7 +52,7 @@ class RedditCommentList extends PureComponent<Props> {
         <div className="reddit-content-wrapper">
           <div className="thread-post">
             <RedditThreadItem
-              self
+              expanded
               allSubreddit={channelName === 'all'}
               thread={thread}
             />
