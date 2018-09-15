@@ -18,42 +18,36 @@ const RedditThreadItem = ({ allSubreddit, expanded, path, thread }) => {
     subreddit,
   } = thread;
 
-  const renderComments = () => expanded
-    ? <p className="comments">{comments} comments</p>
-    : (
-      <Link className="comments" to={`${path}/${id}/${permaTitle}`}>
-        {comments} comments
-      </Link>
-    )
-
-  const renderTitle = () => self
-    ? (
-      <Link
-        className="title"
-        to={`${path}/${id}/${permaTitle}`}
-        dangerouslySetInnerHTML={{ __html: title }}
-      />
-    )
-    : (
-      <a
-        href={url}
-        target="__blank"
-        className="title"
-        dangerouslySetInnerHTML={{ __html: title }}
-      />
-    )
-
   return (
     <div className="reddit-thread-item">
       <div className="thread-data-wrapper">
         <div className="score">{score}</div>
         <div className="description">
           <div>
-            {renderTitle()}
+            {self ? (
+              <Link
+                className="title"
+                to={`${path}/${id}/${permaTitle}`}
+                dangerouslySetInnerHTML={{ __html: title }}
+              />
+            ) : (
+              <a
+                href={url}
+                target="__blank"
+                className="title"
+                dangerouslySetInnerHTML={{ __html: title }}
+              />
+            )}
             <span>({domain})</span>
           </div>
           <div className="publisher">
-            {renderComments()}
+            {expanded ? (
+              <p className="comments">{comments} comments</p>
+            ) : (
+              <Link className="comments" to={`${path}/${id}/${permaTitle}`}>
+                {comments} comments
+              </Link>
+            )}
             submitted {unix(date).fromNow()} by {author}
             {allSubreddit && ` to /r/${subreddit}`}
           </div>
