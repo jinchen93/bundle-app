@@ -1,9 +1,9 @@
 import React from "react";
-import moment from "moment";
+import { unix } from "moment";
 import { Link } from "react-router-dom";
 
 const RedditThreadItem = ({ allSubreddit, self, path, thread }) => {
-  const date = moment.unix(thread.date).fromNow();
+  const date = unix(thread.date).fromNow();
 
   const renderComments = () => {
     if (self) {

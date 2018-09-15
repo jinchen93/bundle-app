@@ -35,7 +35,7 @@ module.exports = {
         loaders: [ 'style-loader', 'css-loader', 'sass-loader' ],
       },
       {
-        test: [ /\.jsx?$/ ],
+        test: [ /\.jsx?$/, /\.js?$/ ],
         exclude: /(node_modules)/,
         loader: 'babel-loader',
         query: {
@@ -47,7 +47,7 @@ module.exports = {
         },
       },
       {
-        test: [ /\.jsx?$/ ],
+        test: [ /\.jsx?$/, /\.js?$/ ],
         exclude: /(node_modules)/,
         loader: 'eslint-loader',
       },
