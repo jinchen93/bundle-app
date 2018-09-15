@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import MetaData from './MetaData';
 
 type Props = {
@@ -35,26 +35,21 @@ class RedditComment extends Component<Props, State> {
     e.preventDefault();
     e.stopPropagation();
     this.setState({ childrenHidden: !this.state.childrenHidden });
-  }
+  };
 
   render() {
     const { childrenHidden } = this.state;
     const {
       alternateColor,
       topComment,
-      comment: {
-        author,
-        score,
-        body,
-        replies,
-      }
+      comment: { author, score, body, replies },
     } = this.props;
 
     if (!body) return null;
 
     return (
-      <div className={topComment ? "top" : ""}>
-        <div className={alternateColor ? "comment grey" : "comment"}>
+      <div className={topComment ? 'top' : ''}>
+        <div className={alternateColor ? 'comment grey' : 'comment'}>
           <MetaData
             author={author}
             onClick={this.handleMinimizeClick}
@@ -68,7 +63,8 @@ class RedditComment extends Component<Props, State> {
             />
           )}
         </div>
-        {!childrenHidden && replies && (
+        {!childrenHidden &&
+        replies && (
           <div className="children">
             {this.renderNestedComments(replies, alternateColor)}
           </div>

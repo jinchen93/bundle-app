@@ -1,34 +1,25 @@
 // @flow
-import React, { PureComponent } from "react";
-import { connect } from "react-redux";
+import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withRouter } from "react-router-dom";
-import Loader from "../../loader/Loader";
-import RedditThreadBody from "../RedditThreadBody";
-import RedditComment from "../RedditComment";
-import RedditThreadItem from "../RedditThreadItem";
-import { fetchRedditComments } from "../../../actions/reddit_actions";
+import { withRouter } from 'react-router-dom';
+import Loader from '../../loader/Loader';
+import RedditThreadBody from '../RedditThreadBody';
+import RedditComment from '../RedditComment';
+import RedditThreadItem from '../RedditThreadItem';
+import { fetchRedditComments } from '../../../actions/reddit_actions';
 
 const mapStateToProps = ({
-  reddit: {
-    comments: {
-      thread,
-      comments,
-    }
-  },
-  loader: {
-    redditComments: loading,
-  },
+  reddit: { comments: { thread, comments } },
+  loader: { redditComments: loading },
 }) => ({
   thread,
   comments,
   loading,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(
-  { fetchRedditComments },
-  dispatch,
-)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ fetchRedditComments }, dispatch);
 
 type Props = {
   match: Object,
@@ -41,10 +32,7 @@ type Props = {
 
 class RedditCommentList extends PureComponent<Props> {
   componentDidMount() {
-    const {
-      fetchRedditComments,
-      match: { params: { threadId } },
-    } = this.props;
+    const { fetchRedditComments, match: { params: { threadId } } } = this.props;
 
     fetchRedditComments(threadId);
   }
@@ -58,19 +46,19 @@ class RedditCommentList extends PureComponent<Props> {
     } = this.props;
 
     if (loading) return <Loader type="reddit" />;
+
     if (!comments) return null;
+
     return (
       <div className="reddit-comment-list-container">
         <div className="reddit-content-wrapper">
           <div className="thread-post">
             <RedditThreadItem
-              allSubreddit={channelName === "all"}
               self
+              allSubreddit={channelName === 'all'}
               thread={thread}
             />
-            {thread.body && (
-              <RedditThreadBody body={thread.body} />
-            )}
+            {thread.body && <RedditThreadBody body={thread.body} />}
           </div>
           {comments.map(comment => (
             <RedditComment
