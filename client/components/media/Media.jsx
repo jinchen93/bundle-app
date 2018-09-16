@@ -1,18 +1,18 @@
 // @flow
 
-import React from "react";
-import YoutubeContentContainer from "../youtube/YoutubeContentContainer";
-import RedditContent from "../reddit/RedditContent";
-import TwitchContent from "../twitch/TwitchContent";
+import React from 'react';
+import YoutubeContentContainer from '../youtube/YoutubeContentContainer';
+import RedditContent from '../reddit/RedditContent';
+import TwitchContent from '../twitch/TwitchContent';
 
 const Media = ({ mode }: { mode: string }) => {
   const renderMode = () => {
     switch (mode) {
-      case "youtube":
+      case 'youtube':
         return <YoutubeContentContainer />;
-      case "reddit":
+      case 'reddit':
         return <RedditContent />;
-      case "twitch":
+      case 'twitch':
         return <TwitchContent />;
       default:
         return <div className="media-content" />;
