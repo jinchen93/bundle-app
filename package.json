@@ -31,7 +31,7 @@
     "eslint-loader": "^1.8.0",
     "eslint-plugin-react": "^7.1.0",
     "linkifyjs": "^2.1.4",
-    "moment": "^2.18.1",
+    "moment": "^2.19.3",
     "node-sass": "^4.5.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
