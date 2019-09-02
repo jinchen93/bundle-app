@@ -61,7 +61,7 @@
     "react-addons-test-utils": "^15.6.2",
     "react-error-overlay": "^1.0.8",
     "sinon": "^2.3.6",
-    "webpack-dev-middleware": "^1.11.0",
+    "webpack-dev-middleware": "^2.0.6",
     "webpack-dev-server": "^2.5.0",
     "webpack-hot-middleware": "^2.18.0"
   }
