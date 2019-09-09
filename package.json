@@ -40,7 +40,7 @@
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "redux": "^3.7.1",
-    "redux-thunk": "^2.2.0",
+    "redux-thunk": "^2.3.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "webpack": "^3.0.0"
