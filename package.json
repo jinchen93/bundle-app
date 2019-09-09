@@ -52,7 +52,7 @@
     "babel-preset-flow": "^6.23.0",
     "chai": "^4.0.2",
     "chai-jquery": "^2.0.0",
-    "coveralls": "^2.13.1",
+    "coveralls": "^3.0.6",
     "flow-bin": "^0.106.3",
     "jquery": "^3.4.1",
     "jsdom": "^11.1.0",
